@@ -1,2 +1,2 @@
-public abstract with sharing class CustomObject {
+public interface CustomObject {
 }
