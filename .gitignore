@@ -50,3 +50,4 @@ $RECYCLE.BIN/
 .idea
 jest.config.js
 .eslintignore
+OfflineSymbolTable.zip

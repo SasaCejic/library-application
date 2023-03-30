@@ -1,11 +1,12 @@
 public with sharing class ObjectFactory {
     @TestVisible private static Map<String, CustomObject> mocks = new Map<String, CustomObject>();
 
-    public CustomObject createObject(String objectName) {
-        if (Test.isRunningTest() && this.objectHasMock(objectName)) {
-            return getObjectMock(objectName);
+    public CustomObject createObject(System.Type classType) {
+        String className = classType.getName();
+        if (Test.isRunningTest() && this.objectHasMock(className)) {
+            return getObjectMock(className);
         } else {
-            return (CustomObject) Type.forName(objectName).newInstance();
+            return (CustomObject) Type.forName(className).newInstance();
         }
     }
 
