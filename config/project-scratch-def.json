@@ -1,13 +1,48 @@
 {
-  "orgName": "ivantulev company",
+  "orgName": "Library - Dev",
   "edition": "Developer",
-  "features": ["EnableSetPasswordInApi"],
+  "description" : "",
+  "hasSampleData" : true,
+  "features": [
+    "PlatformCache",
+    "DebugApex"
+  ],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
     },
+    "securitySettings": {
+      "networkAccess": {
+        "ipRanges": [
+          {
+            "start": "78.130.148.68",
+            "end": "78.130.148.68",
+            "description": "Office"
+          }
+        ]
+      },
+      "passwordPolicies": {
+        "expiration": "Never"
+      },
+      "sessionSettings": {
+        "forceRelogin": false,
+        "sessionTimeout": "TwelveHours",
+        "forceLogoutOnSessionTimeout": false,
+        "disableTimeoutWarning": true
+      },
+      "enableAdminLoginAsAnyUser": true,
+      "enableAuraSecureEvalPref": true
+    },
     "mobileSettings": {
       "enableS1EncryptedStoragePref2": false
+    },
+    "userManagementSettings": {
+      "enableEnhancedPermsetMgmt": true,
+      "enableEnhancedProfileMgmt": true,
+      "enableNewProfileUI": true
+    },
+    "userEngagementSettings": {
+      "enableScheduledSwitcher": false
     }
   }
 }
