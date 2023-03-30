@@ -1,7 +1,7 @@
 @IsTest
 public with sharing class ControllerIntegrationTest {
     @IsTest
-    static void getAccounts_willReturnAccounts() {
+    static void getAccounts_willReturnAccounts_ifAtLeastOneIsFound() {
         // setup
         Account a = new Account(Name = 'TestAccount');
         insert a;
