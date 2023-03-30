@@ -1,0 +1,5 @@
+- [ ] Unit Tests are implemented for Apex code
+- [ ] All Unit Tests run with success
+- [ ] The feature is manually tested and it works
+- [ ] Ticket is moved to the appropriate status
+- [ ] The feature branch is up-to-date with develop
