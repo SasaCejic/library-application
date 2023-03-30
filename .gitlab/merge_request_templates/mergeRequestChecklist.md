@@ -1,3 +1,4 @@
+- [ ] The Title of the Merge Request is the ID of the story
 - [ ] Unit Tests are implemented for Apex code
 - [ ] All Unit Tests run with success
 - [ ] The feature is manually tested and it works
