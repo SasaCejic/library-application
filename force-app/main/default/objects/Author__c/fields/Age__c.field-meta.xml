@@ -4,10 +4,10 @@
     <externalId>false</externalId>
     <formula>IF(
    NOT(ISBLANK( Date_Of_Birth__c )) &amp;&amp; NOT(ISBLANK( Date_Of_Death__c)),
-   YEAR( Date_Of_Death__c ) - YEAR( Date_Of_Birth__c),
+    FLOOR(( ( Date_Of_Death__c - Date_Of_Birth__c ) / 365 )),
    IF(
        NOT(ISBLANK( Date_Of_Birth__c)),
-       YEAR(TODAY()) - YEAR(Date_Of_Birth__c),
+       FLOOR(( ( TODAY() - Date_Of_Birth__c) / 365 )),
        null
      )
    )</formula>

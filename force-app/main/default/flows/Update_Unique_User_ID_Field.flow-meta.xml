@@ -45,7 +45,7 @@
             <targetReference>Update_Hidden_Unique_User_Id</targetReference>
         </connector>
         <object>Author__c</object>
-        <recordTriggerType>Create</recordTriggerType>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
