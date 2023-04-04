@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <description>Update Unique User ID Field  with the id of user to secured one to one relationship because the field is unique.</description>
+    <environments>Default</environments>
+    <interviewLabel>Update Unique User ID Field {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Unique User ID Field</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Updates the unique user id field with the value of user Id, because the field is marked as unique, creating of another record with the same Id will result in an error, which secures One to One relationship.</description>
+        <name>Update_Hidden_Unique_User_Id</name>
+        <label>Update Hidden Unique User Id</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <inputAssignments>
+            <field>Unique_User_Id__c</field>
+            <value>
+                <elementReference>$Record.UserId__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Hidden_Unique_User_Id</targetReference>
+        </connector>
+        <object>Author__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
