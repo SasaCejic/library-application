@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hours_of_Listening__c</fullName>
+    <description>Length in hours of an audio book</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Length in hours of an audio book</inlineHelpText>
+    <label>Hours of Listening</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
