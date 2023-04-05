@@ -5,10 +5,28 @@
     <externalId>false</externalId>
     <inlineHelpText>Language of the Book</inlineHelpText>
     <label>Language</label>
-    <length>50</length>
     <required>true</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Text</type>
-    <unique>false</unique>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>English</fullName>
+                <default>true</default>
+                <label>English</label>
+            </value>
+            <value>
+                <fullName>Russian</fullName>
+                <default>false</default>
+                <label>Russian</label>
+            </value>
+            <value>
+                <fullName>Spanish</fullName>
+                <default>false</default>
+                <label>Spanish</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
 </CustomField>
