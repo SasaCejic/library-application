@@ -52,3 +52,9 @@ jest.config.js
 .eslintignore
 OfflineSymbolTable.zip
 IlluminatedCloud
+
+#Profiles
+**/profiles
+
+#Layouts
+**/layouts
