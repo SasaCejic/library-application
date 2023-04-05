@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Book__c</fullName>
-    <description>Master - Detail relationship with associated Book</description>
+    <description>Master - Detail relationship with associated Book.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Master - Detail relationship with associated Book</inlineHelpText>
+    <inlineHelpText>Master - Detail relationship with associated Book.</inlineHelpText>
     <label>Book</label>
     <referenceTo>Book__c</referenceTo>
     <relationshipLabel>Book Reviews</relationshipLabel>
