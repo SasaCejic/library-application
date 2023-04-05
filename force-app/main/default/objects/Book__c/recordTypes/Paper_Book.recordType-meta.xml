@@ -4,4 +4,34 @@
     <active>true</active>
     <description>Physical printed copy of a book</description>
     <label>Paper Book</label>
+    <picklistValues>
+        <picklist>Categories__c</picklist>
+        <values>
+            <fullName>Fantasy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sci-fi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Young Adult</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Language__c</picklist>
+        <values>
+            <fullName>English</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Russian</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Spanish</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
 </RecordType>
