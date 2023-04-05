@@ -11,36 +11,32 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Store_Identification_Code__c</field>
+                <behavior>Edit</behavior>
+                <field>Print_Length__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Hours_of_Listening__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Categories__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Language__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Publish_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
                 <field>Description__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Email__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Address__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Opening_Hour__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Closing_Hour__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Working_Hours__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Manager__c</field>
+                <field>ISBN__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
