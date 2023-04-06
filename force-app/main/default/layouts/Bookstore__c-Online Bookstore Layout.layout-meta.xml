@@ -28,6 +28,10 @@
                 <field>Email__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Total_Number_Of_Books__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Manager__c</field>
             </layoutItems>
