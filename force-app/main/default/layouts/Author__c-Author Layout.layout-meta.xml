@@ -31,6 +31,10 @@
                 <behavior>Readonly</behavior>
                 <field>Age__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Number_Of_Published_Books__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
