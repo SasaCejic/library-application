@@ -24,6 +24,7 @@
     <tabs>Bookstore__c</tabs>
     <tabs>Author__c</tabs>
     <tabs>Publisher__c</tabs>
+    <tabs>Advanced_Book_Search</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Library_Application_UtilityBar</utilityBar>
 </CustomApplication>
