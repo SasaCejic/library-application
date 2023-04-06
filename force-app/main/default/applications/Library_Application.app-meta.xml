@@ -11,6 +11,10 @@
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <label>Library Application</label>
     <navType>Standard</navType>
+    <tabs>Book__c</tabs>
+    <tabs>Bookstore__c</tabs>
+    <tabs>Author__c</tabs>
+    <tabs>Publisher__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Library_Application_UtilityBar</utilityBar>
 </CustomApplication>
