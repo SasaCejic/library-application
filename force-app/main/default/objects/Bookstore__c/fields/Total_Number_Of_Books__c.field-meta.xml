@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Number_Of_Books__c</fullName>
+    <description>Number of different book titles in the book store</description>
+    <externalId>false</externalId>
+    <label>Total Number Of Books</label>
+    <summaryForeignKey>Bookstore_Book__c.Bookstore__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
