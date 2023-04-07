@@ -74,12 +74,20 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
-        <fields>NAME</fields>
+        <fields>Book__c.NAME</fields>
+        <fields>Book__c.CUST_RECORDTYPE</fields>
+        <fields>Quantity__c</fields>
         <relatedList>Bookstore_Book__c.Bookstore__c</relatedList>
+        <sortField>Book__c.NAME</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
+        <fields>Publisher__c.NAME</fields>
+        <fields>Publisher__c.Email__c</fields>
+        <fields>Publisher__c.Phone__c</fields>
         <relatedList>Bookstore_Publisher__c.Bookstore__c</relatedList>
+        <sortField>Publisher__c.NAME</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
