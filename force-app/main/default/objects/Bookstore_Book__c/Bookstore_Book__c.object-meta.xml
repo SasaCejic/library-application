@@ -155,8 +155,9 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Bookstore_Book</label>
     <nameField>
+        <displayFormat>BB-{0000}</displayFormat>
         <label>Bookstore_Book Name</label>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Bookstore_Books</pluralLabel>
     <searchLayouts></searchLayouts>
