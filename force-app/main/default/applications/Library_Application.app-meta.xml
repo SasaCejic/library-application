@@ -8,6 +8,24 @@
         <type>Flexipage</type>
         <pageOrSobjectType>standard-home</pageOrSobjectType>
     </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Bookstore_Book_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Bookstore_Book__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Bookstore_Book_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Bookstore_Book__c</pageOrSobjectType>
+    </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
@@ -19,6 +37,24 @@
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <label>Library Application</label>
     <navType>Standard</navType>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Paper_Book_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Book__c</pageOrSobjectType>
+        <recordType>Book__c.Paper_Book</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Paper_Book_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Book__c</pageOrSobjectType>
+        <recordType>Book__c.Paper_Book</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
     <tabs>standard-home</tabs>
     <tabs>Book__c</tabs>
     <tabs>Bookstore__c</tabs>
