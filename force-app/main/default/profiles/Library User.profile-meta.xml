@@ -251,10 +251,6 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Book_Review__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
         <tab>Book__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
