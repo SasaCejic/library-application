@@ -14,3 +14,6 @@ package.xml
 
 #Profiles
 **/profiles
+
+#Layouts
+**/layouts

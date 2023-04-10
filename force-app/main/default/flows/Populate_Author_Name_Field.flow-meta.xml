@@ -43,21 +43,6 @@
         <connector>
             <targetReference>Populate_Name_Field</targetReference>
         </connector>
-        <filterLogic>or</filterLogic>
-        <filters>
-            <field>First_Name__c</field>
-            <operator>IsChanged</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Last_Name__c</field>
-            <operator>IsChanged</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
         <object>Author__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
