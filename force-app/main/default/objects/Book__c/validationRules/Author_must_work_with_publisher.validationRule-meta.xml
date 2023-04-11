@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Author_must_work_with_publisher</fullName>
-    <active>true</active>
-    <errorConditionFormula>NOT( Author_And_Publisher_Match__c )</errorConditionFormula>
-    <errorMessage>Selected author and publisher must be working together</errorMessage>
-</ValidationRule>
