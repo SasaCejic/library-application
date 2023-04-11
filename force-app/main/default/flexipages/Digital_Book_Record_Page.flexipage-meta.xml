@@ -148,7 +148,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>required</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Description__c</fieldItem>
                 <identifier>RecordDescription_cField</identifier>
