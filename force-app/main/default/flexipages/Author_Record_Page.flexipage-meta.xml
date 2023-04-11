@@ -243,6 +243,12 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentName>storesWithAuthorsBooks</componentName>
+                <identifier>c_storesWithAuthorsBooks</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>force:recordDetailPanelMobile</componentName>
                 <identifier>force_recordDetailPanelMobile</identifier>
             </componentInstance>
