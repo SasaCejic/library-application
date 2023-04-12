@@ -26,6 +26,24 @@
         <type>Flexipage</type>
         <pageOrSobjectType>Bookstore_Book__c</pageOrSobjectType>
     </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Publisher_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Publisher__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Publisher_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Publisher__c</pageOrSobjectType>
+    </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
@@ -52,6 +70,24 @@
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Book__c</pageOrSobjectType>
         <recordType>Book__c.Paper_Book</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Digital_Book_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Book__c</pageOrSobjectType>
+        <recordType>Book__c.Digital_Book</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Digital_Book_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Book__c</pageOrSobjectType>
+        <recordType>Book__c.Digital_Book</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>

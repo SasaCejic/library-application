@@ -12,34 +12,18 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>RecordTypeId</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Store_Identification_Code__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Description__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Email__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Total_Number_Of_Books__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Manager__c</field>
+                <behavior>Required</behavior>
+                <field>Phone__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>OwnerId</field>
+                <field>Address__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -68,25 +52,32 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
-        <fields>Book__c.NAME</fields>
-        <fields>Book__c.CUST_RECORDTYPE</fields>
-        <fields>Quantity__c</fields>
-        <relatedList>Bookstore_Book__c.Bookstore__c</relatedList>
-        <sortField>Book__c.NAME</sortField>
+        <fields>NAME</fields>
+        <fields>Author__c</fields>
+        <fields>Language__c</fields>
+        <fields>RECORDTYPE</fields>
+        <relatedList>Book__c.Publisher__c</relatedList>
+        <sortField>NAME</sortField>
         <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
-        <fields>Publisher__c.NAME</fields>
-        <fields>Publisher__c.Email__c</fields>
-        <fields>Publisher__c.Phone__c</fields>
-        <relatedList>Bookstore_Publisher__c.Bookstore__c</relatedList>
-        <sortField>Publisher__c.NAME</sortField>
+        <fields>Author__c.NAME</fields>
+        <relatedList>Author_Publisher__c.Publisher__c</relatedList>
+        <sortField>Author__c.NAME</sortField>
+        <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>Bookstore__c.NAME</fields>
+        <fields>Bookstore__c.Email__c</fields>
+        <fields>Bookstore__c.CUST_RECORDTYPE</fields>
+        <relatedList>Bookstore_Publisher__c.Publisher__c</relatedList>
+        <sortField>Bookstore__c.NAME</sortField>
         <sortOrder>Asc</sortOrder>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -95,7 +86,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hDS000009Y5wv</masterLabel>
+        <masterLabel>00h8F000001h3O4</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

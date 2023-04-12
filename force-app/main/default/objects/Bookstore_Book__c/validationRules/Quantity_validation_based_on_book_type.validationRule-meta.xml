@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quantity_validation_based_on_book_type</fullName>
+    <active>true</active>
+    <errorConditionFormula>(Book__r.RecordType.Name  = &quot;Paper Book&quot; &amp;&amp; (Quantity__c&lt;1 || ISNULL(Quantity__c))) || (Book__r.RecordType.Name = &quot;Digital Book&quot; &amp;&amp; NOT(ISNULL(Quantity__c) ) )</errorConditionFormula>
+    <errorDisplayField>Book__c</errorDisplayField>
+    <errorMessage>Quantity field must be set to a number larger than 0 when adding paper books to a store and empty in the case of a digital book</errorMessage>
+</ValidationRule>
