@@ -50,7 +50,7 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Book_Review__c.Comment__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
