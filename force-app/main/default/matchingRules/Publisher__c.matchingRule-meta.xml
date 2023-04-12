@@ -2,7 +2,7 @@
 <MatchingRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <matchingRules>
         <fullName>Duplicate_Name_matching_rule</fullName>
-        <label>Duplicate Name matching rule</label>
+        <label>Duplicate Name matching rules</label>
         <matchingRuleItems>
             <blankValueBehavior>NullNotAllowed</blankValueBehavior>
             <fieldName>Name</fieldName>
