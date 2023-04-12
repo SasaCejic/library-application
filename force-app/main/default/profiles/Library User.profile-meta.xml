@@ -132,11 +132,6 @@
         <field>Publisher__c.Address__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Publisher__c.Hidden_Unique_Name_Field__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <layoutAssignments>
         <layout>Book_Review__c-Book Review Layout</layout>
     </layoutAssignments>
