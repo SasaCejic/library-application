@@ -191,7 +191,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Categories__c</fieldItem>
                 <identifier>RecordCategories_cField</identifier>
