@@ -6,7 +6,7 @@
     <inlineHelpText>Book review subject</inlineHelpText>
     <label>Subject</label>
     <length>255</length>
-    <required>false</required>
+    <required>true</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Text</type>

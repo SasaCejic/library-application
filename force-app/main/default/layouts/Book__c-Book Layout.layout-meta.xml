@@ -76,10 +76,7 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>NAME</fields>
-        <fields>Subject__c</fields>
-        <fields>Stars__c</fields>
         <relatedList>Book_Review__c.Book__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -88,7 +85,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h8K00000134jS</masterLabel>
+        <masterLabel>00hDR000009Bx4t</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
