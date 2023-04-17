@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Book_Manager_Validation</fullName>
+    <active>true</active>
+    <description>This validation rule checks if the current user is a book manager and if they work for a said bookstore.</description>
+    <errorConditionFormula>AND( $Permission.Bookstore_Manager,  Bookstore__r.Manager__r.Id !=  $User.Id )</errorConditionFormula>
+    <errorMessage>You can only add books to bookstores you work for!</errorMessage>
+</ValidationRule>
