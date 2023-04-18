@@ -3,7 +3,8 @@ public with sharing class BookstoreSelector implements CustomObject{
         return [
             SELECT
                 Id,
-                Name
+                Name,
+                Email__c
             FROM
                 Bookstore__c
             WHERE

@@ -1,22 +1,52 @@
 import { LightningElement, wire, api } from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
 import BOOKSTORE_NAME_FIELD from '@salesforce/schema/Bookstore__c.Name';
-import DESCRIPTION_FIELD from '@salesforce/schema/Bookstore__c.Description__c';
+import BOOKSTORE_EMAIL_FIELD from '@salesforce/schema/Bookstore__c.Email__c';
 import getStoresWithAuthorsBooks from '@salesforce/apex/BookstoreController.getBookstoresWithAuthorsBooks';
 
 const COLUMNS = [
-    { label: 'Bookstore Name', fieldName: BOOKSTORE_NAME_FIELD.fieldApiName, type: 'text'},
-    { label: 'Description', fieldName: DESCRIPTION_FIELD.fieldApiName, type: 'text'}
+    { label: 'Bookstore Name', fieldName: BOOKSTORE_NAME_FIELD.fieldApiName, type: 'button',
+      typeAttributes: {label: { fieldName: BOOKSTORE_NAME_FIELD.fieldApiName }, name : 'urlredirect', variant: 'base' } },
+    { label: 'Bookstore Email', fieldName: BOOKSTORE_EMAIL_FIELD.fieldApiName, type: 'email' }
 ];
 
-export default class StoresWithAuthorsBooks extends LightningElement {
+export default class StoresWithAuthorsBooks extends NavigationMixin (LightningElement) {
     @api recordId;
-    bookstores = [];
+    bookstores;
     columns = COLUMNS;
 
-    @wire(getStoresWithAuthorsBooks, {authorId: 'a027d00000GnnytAAB'})
+    @wire(getStoresWithAuthorsBooks, {authorId: '$recordId'})
     wiredBookstores({data}){
         if(data){
-            this.bookstores = data;
+            if(data.length > 0){
+                this.bookstores = data;
+            }
         }
+    }
+
+    handleRowAction(event) {
+        const actionName = event.detail.action.name;
+        const row = event.detail.row;
+        switch (actionName) {
+            case 'urlredirect':
+                this.showRowDetails(row);
+                break;
+            default:
+        }
+    }
+
+    showRowDetails(row){
+        this.navigate('standard__recordPage', row.Id, 'Bookstore__c', 'view');
+    }
+
+    navigate(type, recordId, objectApiName, actionName){
+        this[NavigationMixin.Navigate]({
+            type: type,
+            attributes:{
+                recordId: recordId,
+                objectApiName: objectApiName,
+                actionName: actionName
+            }
+        });
     }
 }

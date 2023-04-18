@@ -1,5 +1,5 @@
-public with sharing class BookstoreBookSelector {
-    public List<Bookstore_Book__c> getBookstoreBooksWithAuthorsBooks(Id authorId){
+public with sharing class BookstoreBookSelector implements CustomObject{
+    public AggregateResult[] getBookstoreBooksWithAuthorsBooks(Id authorId){
         return [
             SELECT
                 Bookstore__c
@@ -15,6 +15,8 @@ public with sharing class BookstoreBookSelector {
                 WHERE
                     Author__c = :authorId
                 )
+            GROUP BY
+                Bookstore__c
         ];
     }
 }
