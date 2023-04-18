@@ -14,16 +14,12 @@
         <label>Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Rating__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Comment__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -36,8 +32,8 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Subject__c</field>
+                <behavior>Edit</behavior>
+                <field>Comment__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

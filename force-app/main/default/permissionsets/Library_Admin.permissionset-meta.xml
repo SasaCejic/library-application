@@ -31,6 +31,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Book_Review__c.Comment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Book_Review__c.Stars__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Book__c.Author__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -82,11 +92,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Bookstore__c.Total_Number_Of_Books__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Bookstore__c.Working_Hours__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
