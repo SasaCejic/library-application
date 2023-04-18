@@ -70,9 +70,6 @@
                         <valueListItems>
                             <value>CREATEDBY_USER</value>
                         </valueListItems>
-                        <valueListItems>
-                            <value>Subject__c</value>
-                        </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
