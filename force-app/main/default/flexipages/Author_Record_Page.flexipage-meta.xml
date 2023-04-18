@@ -85,8 +85,9 @@
                 <identifier>RecordNameField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.CreatedBy.Username}</leftValue>
-                        <operator>NE</operator>
+                        <leftValue>{!Record.Age__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>111424142</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
