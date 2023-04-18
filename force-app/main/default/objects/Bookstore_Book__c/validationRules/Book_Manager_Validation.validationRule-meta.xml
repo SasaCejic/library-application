@@ -3,6 +3,6 @@
     <fullName>Book_Manager_Validation</fullName>
     <active>true</active>
     <description>This validation rule checks if the current user is a book manager and if they work for a said bookstore.</description>
-    <errorConditionFormula>AND( $Permission.Bookstore_Manager,  Bookstore__r.Manager__r.Id !=  $User.Id )</errorConditionFormula>
+    <errorConditionFormula>AND(  $User.isBookstoreManager__c ,  Bookstore__r.Manager__r.Id !=  $User.Id )</errorConditionFormula>
     <errorMessage>You can only add books to bookstores you work for!</errorMessage>
 </ValidationRule>

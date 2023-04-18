@@ -75,7 +75,7 @@
                 <identifier>RecordRecordTypeIdField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!$Permission.CustomPermission.Bookstore_Manager}</leftValue>
+                        <leftValue>{!$User.isBookstoreManager__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -159,7 +159,24 @@
                 <identifier>RecordManager_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-5b3046ce-ba5b-488c-b820-8bdbeecc4891</name>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Record_Type__c</fieldItem>
+                <identifier>RecordRecord_Type_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!$User.isBookstoreManager__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-91f6c364-aaa0-4c84-b79d-c8fa5228d3c9</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
