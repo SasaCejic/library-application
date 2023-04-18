@@ -155,9 +155,8 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Author</label>
     <nameField>
-        <displayFormat>AP-{0000}</displayFormat>
         <label>Author Name</label>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Authors</pluralLabel>
     <searchLayouts></searchLayouts>
