@@ -78,7 +78,6 @@
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>NAME</fields>
-        <fields>Subject__c</fields>
         <fields>Stars__c</fields>
         <relatedList>Book_Review__c.Book__c</relatedList>
     </relatedLists>
