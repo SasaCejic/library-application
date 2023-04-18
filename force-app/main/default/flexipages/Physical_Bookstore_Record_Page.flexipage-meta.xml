@@ -73,7 +73,7 @@
                 <identifier>RecordRecordTypeIdField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!$Permission.CustomPermission.Book_Manager}</leftValue>
+                        <leftValue>{!$User.isBookstoreManager__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -150,7 +150,7 @@
                 <identifier>RecordRecord_Type_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!$Permission.CustomPermission.Book_Manager}</leftValue>
+                        <leftValue>{!$User.isBookstoreManager__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
