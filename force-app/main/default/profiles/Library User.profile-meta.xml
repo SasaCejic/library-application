@@ -64,6 +64,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Book__c.Categories__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Book__c.Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -105,6 +110,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Bookstore__c.Opening_Hour__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Bookstore__c.Store_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -235,6 +245,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>Bookstore__c.Online</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
