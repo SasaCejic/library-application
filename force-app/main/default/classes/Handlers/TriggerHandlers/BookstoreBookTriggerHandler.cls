@@ -1,6 +1,6 @@
 /*
 * This class handles what happens with Bookstore_Book__c object in triggers
-* stopTrigger variable serves for disabling trigger during tests
+* stopTrigger variable serves for disabling trigger during test
 */
 public with sharing class BookstoreBookTriggerHandler extends TriggerHandler {
     /*

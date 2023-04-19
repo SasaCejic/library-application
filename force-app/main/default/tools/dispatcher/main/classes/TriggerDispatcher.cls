@@ -3,7 +3,7 @@
 */
 public with sharing class TriggerDispatcher {
     /*
-    * @param operationType - type of operration that started the trigger
+    * @param operationType - type of operration that started the trigge
     * @param handler - Class of type TriggerHanlder that implements blogic of what happens with the trigger
     */ 
     public void dispatch(TriggerOperation operationType, TriggerHandler handler) {

@@ -3,6 +3,6 @@
     <fullName>Manager_Publisher_Assigment_To_Bookstore</fullName>
     <active>true</active>
     <description>Bookstore managers can assign publishers only to the bookstore they are working for.</description>
-    <errorConditionFormula>AND( $Permission.Bookstore_Manager,  Bookstore__r.Manager__r.Id !=  $User.Id )</errorConditionFormula>
+    <errorConditionFormula>AND(  $User.isBookstoreManager__c = true,  Bookstore__r.Manager__r.Id !=  $User.Id )</errorConditionFormula>
     <errorMessage>You can&apos;t add publishers for bookstores you don&apos;t work for!</errorMessage>
 </ValidationRule>
