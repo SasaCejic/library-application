@@ -26,8 +26,10 @@ public with sharing class BookstoreBookValidationService implements CustomObject
             publisherAndBookstoreIds.add(currentList);
         }
         //Get all Bookstore_Publisher__c object that correspond to the list of pairs
-        BookstorePublisherSelector bkstorePubSelector = (BookstorePublisherSelector) new ObjectFactory().createObject(BookstorePublisherSelector.class);
-        List<Bookstore_Publisher__c> bookstorePublishers = bkstorePubSelector.getBookstorePublishersWithPublisherAndBookstoreId(publisherAndBookstoreIds);
+        BookstorePublisherSelector bkstorePubSelector = (BookstorePublisherSelector) new ObjectFactory()
+        .createObject(BookstorePublisherSelector.class);
+        List<Bookstore_Publisher__c> bookstorePublishers = bkstorePubSelector
+        .getBookstorePublishersWithPublisherAndBookstoreId(publisherAndBookstoreIds);
         //Check which Bookstore_Book__c objects are valid and for the rest add errors.
         for(Bookstore_Book__c bookstoreBook: newBookstoreBooks) {
             Boolean isValid = false;

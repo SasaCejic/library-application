@@ -4,17 +4,17 @@
 @isTest
 public with sharing class BookSelectorTest {
     @istest
-    public static void getBookById_willReturnBook() {
-        List<Publisher__c> publisherForInsert = new PublisherTestFactory().createPublishers(1);
+    public static void getBooksBySetOfIds_willReturnBook() {
+        List<Publisher__c> publisherForInsert = new TestFactory().createPublishers(1);
         insert publisherForInsert;
-        List<Book__c> booksForInsert = new BookTestFactory().createBooks(5, publisherForInsert[0].Id);
+        List<Book__c> booksForInsert = new TestFactory().createBooks(5, publisherForInsert[0].Id);
         insert booksForInsert;
         
         Test.startTest();
-        List<Book__c> bookForTest = new BookSelector().getBookById(booksForInsert[0].Id);
+        Map<Id, Book__c> bookForTest = new BookSelector().getBooksBySetOfIds(new Set<Id>{booksForInsert[0].Id});
         Test.stopTest();
 
-        System.assertEquals(bookForTest[0].Id, booksForInsert[0].Id);
-        System.assertEquals(bookForTest[0].Publisher__c, booksForInsert[0].Publisher__c);
+        System.assertEquals(bookForTest.values()[0].Id, booksForInsert[0].Id);
+        System.assertEquals(bookForTest.values()[0].Publisher__c, booksForInsert[0].Publisher__c);
     }
 }
