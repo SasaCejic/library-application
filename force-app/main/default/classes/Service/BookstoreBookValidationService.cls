@@ -9,35 +9,38 @@ public with sharing class BookstoreBookValidationService implements CustomObject
     public void validatePublisher(List<Bookstore_Book__c> newBookstoreBooks) {
         //Set of book ids corresponding to added bookstoreBooks
         Set<Id> addedBookIds = new Set<Id>();
-        List<Set<Id>> publisherAndBookstoreIds = new List<Set<Id, Id>>();
-        //Loop through all new records and perform validation for them
+        //List that holds pairs of publisher and bookstore Ids corresponding to the Bookstore_Book__c object
+        List<List<Id>> publisherAndBookstoreIds = new List<List<Id>>();
+        //Loop through all new records and put all book ids into a set
         for(Bookstore_Book__c bookstoreBook : newBookstoreBooks) {
             addedBookIds.add(bookstoreBook.Book__c);
-            /*
-            BookSelector bookSelector = (BookSelector) new ObjectFactory().createObject(bookSelector.class);
-            //Get publisher Id of the book that is being added to the bookstore
-            Id publisherId = bookSelector.getBookById(bookstoreBook.Book__c)[0].Publisher__c;
-            BookstorePublisherSelector bkStorePublisherSelector = (BookstorePublisherSelector) new ObjectFactory()
-            .createObject(BookstorePublisherSelector.class);
-            // Get Publisher that is assigned to both Bookstore and the book
-            List<Bookstore_Publisher__c> correspondingBookstorePublishers = bkStorePublisherSelector
-            .getBookstorePublisherByPublisherIdAndBookstoreId(publisherId, bookstoreBook.Bookstore__c);
-            // If no publisher is found, validation fails, book can't be added to the store
-            if (correspondingBookstorePublishers.isEmpty()) {
-                bookstoreBook.addError('Book and bookstore must work with the same publisher!');
-            }*/
         }
-        Map<Id, Book__c> booksWithPublishers = new BookSelector().getBooksBySetOfIds(addedBookIds);
+        //Create book selector object and get all books that were added
+        BookSelector bookSelector = (BookSelector) new ObjectFactory().createObject(BookSelector.class);
+        Map<Id, Book__c> correspondingBooks = bookSelector.getBooksBySetOfIds(addedBookIds);
+        //Create pairs of publishers and bookstores
         for(Bookstore_Book__c bookstoreBook: newBookstoreBooks) {
-            publisherAndBookstoreIds.put(booksWithPublishers.get(bookstoreBook.Book__c).Publisher__c, bookstoreBook.Bookstore__c);
+            List<Id> currentList = new List<Id>();
+            currentList.add(correspondingBooks.get(bookstoreBook.Book__c).Publisher__c);
+            currentList.add(bookstoreBook.Bookstore__c);
+            publisherAndBookstoreIds.add(currentList);
         }
-        // Build the dynamic SOQL query
-        String soqlQuery = 'SELECT Id, Publisher__c, Bookstore__c FROM Bookstore_Publisher__c WHERE ';
-        for (Set<Id> setId : publisherAndBookstoreIds) {
-            soqlQuery += '(Publisher__c = \'' + setId.iterator().next() + '\' AND Bookstore__c = \'' + setId.iterator().next() + '\') OR ';
+        //Get all Bookstore_Publisher__c object that correspond to the list of pairs
+        BookstorePublisherSelector bkstorePubSelector = (BookstorePublisherSelector) new ObjectFactory().createObject(BookstorePublisherSelector.class);
+        List<Bookstore_Publisher__c> bookstorePublishers = bkstorePubSelector.getBookstorePublishersWithPublisherAndBookstoreId(publisherAndBookstoreIds);
+        //Check which Bookstore_Book__c objects are valid and for the rest add errors.
+        for(Bookstore_Book__c bookstoreBook: newBookstoreBooks) {
+            Boolean isValid = false;
+            for(Bookstore_Publisher__c bkstorePub : bookstorePublishers) {
+                Id publisherId = correspondingBooks.get(bookstoreBook.Book__c).Publisher__c;
+                if(bookstoreBook.Bookstore__c == bkstorePub.Bookstore__c && bkstorePub.Publisher__c == publisherId ) {
+                    isValid = true;
+                    break;
+                }   
+            }
+            if(!isValid) {
+                bookstoreBook.addError('Book and bookstore must work with the same publisher!');
+            }   
         }
-        soqlQuery = soqlQuery.removeEnd(' OR ');
-        List<Bookstore_Publisher__c> bookstorePublishers = Database.query(soqlQuery);
-        
     }
 }

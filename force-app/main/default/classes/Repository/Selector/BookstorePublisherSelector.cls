@@ -7,13 +7,13 @@ public with sharing class BookstorePublisherSelector implements CustomObject {
     * @param publisherId - Id of the publisher assigned to the bookstore
     * @param bookstoreId - Id of the bookstore 
     */
-    public List<Bookstore_Publisher__c> getBookstorePublisherByPublisherIdAndBookstoreId(Id publisherId, Id bookStoreId) {
-        return [
-            SELECT
-                Id
-            FROM Bookstore_Publisher__c
-            WHERE Publisher__c =: publisherId
-            AND Bookstore__c =: bookStoreId
-        ];
+    public List<Bookstore_Publisher__c> getBookstorePublishersWithPublisherAndBookstoreId(List<List<Id>> publisherAndBookstoreIds) {
+        // Build the dynamic SOQL query
+        String soqlQuery = 'SELECT Id, Publisher__c, Bookstore__c FROM Bookstore_Publisher__c WHERE ';
+        for (List<Id> listId : publisherAndBookstoreIds) {
+            soqlQuery += '(Publisher__c = \'' + listId[0] + '\' AND Bookstore__c = \'' + listId[1] + '\') OR ';
+        }
+        soqlQuery = soqlQuery.removeEnd(' OR ');
+        return Database.query(soqlQuery);
     }
 }

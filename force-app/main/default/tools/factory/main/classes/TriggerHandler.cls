@@ -1,5 +1,5 @@
 /*
-* Trigger Handler is an abstract class that defines methods for all possibilites in a trigger
+* Trigger Handler is an abstract class that defines method for all possibilites in a trigger
 */
 global abstract class TriggerHandler {
     public virtual void beforeInsert(List<sObject> newRecords) {}
