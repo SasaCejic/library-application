@@ -26,14 +26,19 @@ public with sharing class BookstoreBookValidationService implements CustomObject
             publisherAndBookstoreIds.add(currentList);
         }
         //Get all Bookstore_Publisher__c object that correspond to the list of pairs
-        BookstorePublisherSelector bkstorePubSelector = (BookstorePublisherSelector) new ObjectFactory().createObject(BookstorePublisherSelector.class);
-        List<Bookstore_Publisher__c> bookstorePublishers = bkstorePubSelector.getBookstorePublishersWithPublisherAndBookstoreId(publisherAndBookstoreIds);
+        String soqlQuery = 'SELECT Id, Publisher__c, Bookstore__c FROM Bookstore_Publisher__c WHERE ';
+        for (List<Id> listId : publisherAndBookstoreIds) {
+            soqlQuery += '(Publisher__c = \'' + listId[0] + '\' AND Bookstore__c = \'' + listId[1] + '\') OR ';
+        }
+        soqlQuery = soqlQuery.removeEnd(' OR ');
+        BookstorePublisherSelector bookstorePublisherSelector = (BookstorePublisherSelector) new ObjectFactory().createObject(BookstorePublisherSelector.class);
+        List<Bookstore_Publisher__c> bookstorePublishers = bookstorePublisherSelector.getBookstorePublishersWithPublisherAndBookstoreId(soqlQuery);
         //Check which Bookstore_Book__c objects are valid and for the rest add errors.
         for(Bookstore_Book__c bookstoreBook: newBookstoreBooks) {
             Boolean isValid = false;
-            for(Bookstore_Publisher__c bkstorePub : bookstorePublishers) {
+            for(Bookstore_Publisher__c bookstorePublisher : bookstorePublishers) {
                 Id publisherId = correspondingBooks.get(bookstoreBook.Book__c).Publisher__c;
-                if(bookstoreBook.Bookstore__c == bkstorePub.Bookstore__c && bkstorePub.Publisher__c == publisherId ) {
+                if(bookstoreBook.Bookstore__c == bookstorePublisher.Bookstore__c && bookstorePublisher.Publisher__c == publisherId ) {
                     isValid = true;
                     break;
                 }   
