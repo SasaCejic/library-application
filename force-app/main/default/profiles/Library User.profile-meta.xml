@@ -64,6 +64,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Book__c.Categories__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Book__c.Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -109,12 +114,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Bookstore__c.Total_Number_Of_Books__c</field>
-        <readable>true</readable>
+        <field>Bookstore__c.Store_Type__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Bookstore__c.Working_Hours__c</field>
+        <field>Bookstore__c.Total_Number_Of_Books__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
