@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+	<types>
+		<members>*</members>
+		<name>ApexClass</name>
+	</types>
+	<types>
+		<members>Library_Application</members>
+		<name>CustomApplication</name>
+	</types>
+	<types>
+		<members>Announcement__c.Bookstore__c</members>
+		<members>Announcement__c.Description__c</members>
+		<members>Announcement__c.Title__c</members>
+		<members>Author_Publisher__c.Author__c</members>
+		<members>Author_Publisher__c.Publisher__c</members>
+		<members>Author__c.Age__c</members>
+		<members>Author__c.Date_Of_Birth__c</members>
+		<members>Author__c.Date_Of_Death__c</members>
+		<members>Author__c.First_Name__c</members>
+		<members>Author__c.Last_Name__c</members>
+		<members>Author__c.Number_Of_Published_Books__c</members>
+		<members>Book_Review__c.Book__c</members>
+		<members>Book_Review__c.Comment__c</members>
+		<members>Book_Review__c.Rating__c</members>
+		<members>Book_Review__c.Stars__c</members>
+		<members>Book__c.Author__c</members>
+		<members>Book__c.Categories__c</members>
+		<members>Book__c.Description__c</members>
+		<members>Book__c.Hours_of_Listening__c</members>
+		<members>Book__c.ISBN__c</members>
+		<members>Book__c.Language__c</members>
+		<members>Book__c.Print_Length__c</members>
+		<members>Book__c.Publish_Date__c</members>
+		<members>Book__c.Publisher__c</members>
+		<members>Bookstore_Book__c.Book__c</members>
+		<members>Bookstore_Book__c.Bookstore__c</members>
+		<members>Bookstore_Book__c.Quantity__c</members>
+		<members>Bookstore_Publisher__c.Bookstore__c</members>
+		<members>Bookstore_Publisher__c.Publisher__c</members>
+		<members>Bookstore__c.Address__c</members>
+		<members>Bookstore__c.Closing_Hour__c</members>
+		<members>Bookstore__c.Description__c</members>
+		<members>Bookstore__c.Email__c</members>
+		<members>Bookstore__c.Manager__c</members>
+		<members>Bookstore__c.Opening_Hour__c</members>
+		<members>Bookstore__c.Store_Identification_Code__c</members>
+		<members>Bookstore__c.Total_Number_Of_Books__c</members>
+		<members>Publisher__c.Address__c</members>
+		<members>Publisher__c.Email__c</members>
+		<members>Publisher__c.Phone__c</members>
+		<members>Subscription__c.Bookstore__c</members>
+		<members>Subscription__c.End_Date__c</members>
+		<members>Subscription__c.Frequency__c</members>
+		<members>Subscription__c.Start_Date__c</members>
+		<members>Subscription__c.Type__c</members>
+		<name>CustomField</name>
+	</types>
+	<types>
+		<members>Announcement__c</members>
+		<members>Author_Publisher__c</members>
+		<members>Author__c</members>
+		<members>Book_Review__c</members>
+		<members>Book__c</members>
+		<members>Bookstore_Book__c</members>
+		<members>Bookstore_Publisher__c</members>
+		<members>Bookstore__c</members>
+		<members>Publisher__c</members>
+		<members>Subscription__c</members>
+		<name>CustomObject</name>
+	</types>
+	<types>
+		<members>Advanced_Book_Search</members>
+		<members>Announcement__c</members>
+		<members>Author__c</members>
+		<members>Book__c</members>
+		<members>Bookstore__c</members>
+		<members>Publisher__c</members>
+		<name>CustomTab</name>
+	</types>
+	<types>
+		<members>Publisher__c.Duplicate_Name</members>
+		<name>DuplicateRule</name>
+	</types>
+	<types>
+		<members>Advanced_Book_Search</members>
+		<members>Bookstore_Book_Record_Page</members>
+		<members>Bookstore_Record_Page</members>
+		<members>Digital_Book_Record_Page</members>
+		<members>Library_Application_UtilityBar</members>
+		<members>Library_Home_Page</members>
+		<members>Paper_Book_Record_Page</members>
+		<members>Publisher_Record_Page</members>
+		<name>FlexiPage</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>Flow</name>
+	</types>
+	<types>
+		<members>Author_Publisher__c-Author_Publisher Layout</members>
+		<members>Author__c-Author Layout</members>
+		<members>Book_Review__c-Book Review Layout</members>
+		<members>Book__c-Book Layout</members>
+		<members>Bookstore_Book__c-Bookstore_Book Layout</members>
+		<members>Bookstore_Publisher__c-Bookstore_Publisher Layout</members>
+		<members>Bookstore__c-Online Bookstore Layout</members>
+		<members>Bookstore__c-Physical Bookstore Layout</members>
+		<members>Publisher__c-Publisher Layout</members>
+		<members>Subscription__c-Subscription Layout</members>
+		<name>Layout</name>
+	</types>
+	<types>
+		<members>Publisher__c.Duplicate_Name_matching_rule</members>
+		<name>MatchingRule</name>
+	</types>
+	<types>
+		<members>Publisher__c</members>
+		<name>MatchingRules</name>
+	</types>
+	<types>
+		<members>Library_Admin</members>
+		<name>PermissionSet</name>
+	</types>
+	<types>
+		<members>Library User</members>
+		<name>Profile</name>
+	</types>
+	<types>
+		<members>Address</members>
+		<name>Settings</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>StaticResource</name>
+	</types>
+	<version>55.0</version>
+</Package>

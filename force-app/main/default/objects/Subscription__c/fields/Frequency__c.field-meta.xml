@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Frequency__c</fullName>
+    <externalId>false</externalId>
+    <label>Frequency</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Each Notification</fullName>
+                <default>true</default>
+                <label>Each Notification</label>
+            </value>
+            <value>
+                <fullName>Once a Day</fullName>
+                <default>false</default>
+                <label>Once a Day</label>
+            </value>
+            <value>
+                <fullName>Once a Week</fullName>
+                <default>false</default>
+                <label>Once a Week</label>
+            </value>
+            <value>
+                <fullName>Once a Month</fullName>
+                <default>false</default>
+                <label>Once a Month</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
