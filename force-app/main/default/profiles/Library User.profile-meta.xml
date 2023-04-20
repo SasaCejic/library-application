@@ -115,7 +115,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Bookstore__c.Store_Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -245,6 +245,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>Bookstore__c.Online</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
