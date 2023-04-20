@@ -2,15 +2,11 @@
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Recently_Added_Books</fullName>
     <columns>NAME</columns>
-    <columns>Author__c</columns>
-    <columns>Publish_Date__c</columns>
-    <columns>Publisher__c</columns>
-    <columns>ISBN__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>CREATED_DATE</field>
         <operation>equals</operation>
-        <value>LAST_N_DAYS:7</value>
+        <value>LAST_N_DAYS:31</value>
     </filters>
     <label>Recently Added Books</label>
 </ListView>
