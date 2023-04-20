@@ -263,6 +263,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>Bookstore__c.Online</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
