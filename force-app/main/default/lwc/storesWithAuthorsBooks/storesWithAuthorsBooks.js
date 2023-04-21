@@ -2,7 +2,7 @@ import { LightningElement, wire, api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import BOOKSTORE_NAME_FIELD from '@salesforce/schema/Bookstore__c.Name';
 import BOOKSTORE_EMAIL_FIELD from '@salesforce/schema/Bookstore__c.Email__c';
-import getStoresWithAuthorsBooks from '@salesforce/apex/BookstoreController.getBookstoresWithAuthorsBooks';
+import getBookstoresWithAuthorsBooks from '@salesforce/apex/AuthorController.getBookstoresWithAuthorsBooks';
 
 const COLUMNS = [
     { label: 'Bookstore Name', fieldName: BOOKSTORE_NAME_FIELD.fieldApiName, type: 'button',
@@ -15,7 +15,7 @@ export default class StoresWithAuthorsBooks extends NavigationMixin (LightningEl
     bookstores;
     columns = COLUMNS;
 
-    @wire(getStoresWithAuthorsBooks, {authorId: '$recordId'})
+    @wire(getBookstoresWithAuthorsBooks, {authorId: '$recordId'})
     wiredBookstores({data}){
         if(data){
             if(data.length > 0){
