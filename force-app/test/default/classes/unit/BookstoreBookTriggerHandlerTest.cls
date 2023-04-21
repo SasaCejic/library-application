@@ -50,7 +50,7 @@ public with sharing class BookstoreBookTriggerHandlerTest {
 
         Test.startTest();
         BookstoreBookTriggerHandler bookstoreBookTriggerHandler = new BookstoreBookTriggerHandler();
-        bookstoreBookTriggerHandler.isDisabled = true;
+        bookstoreBookTriggerHandler.disableTrigger();
         bookstoreBookTriggerHandler.beforeInsert(bookstoreBooksForMock);
         Test.stopTest();
 
