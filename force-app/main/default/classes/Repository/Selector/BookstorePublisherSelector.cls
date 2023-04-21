@@ -5,7 +5,13 @@ public with sharing class BookstorePublisherSelector implements CustomObject {
     /*
     * Method fetches the Bookstore_Publisher__c(Junction) object that has provided publisherId and bookStore Id 
     */
-    public List<Bookstore_Publisher__c> getBookstorePublishersWithPublisherAndBookstoreId(String soqlQuery) {
-        return Database.query(soqlQuery);
+    public List<Bookstore_Publisher__c> getAllBookstorePublishers() {
+        return [
+            SELECT
+                Id,
+                Publisher__c,
+                Bookstore__c
+            FROM Bookstore_Publisher__c
+        ];
     }
 }
