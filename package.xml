@@ -24,7 +24,6 @@
 		<members>Book_Review__c.Comment__c</members>
 		<members>Book_Review__c.Rating__c</members>
 		<members>Book_Review__c.Stars__c</members>
-		<members>Book_Review__c.Subject__c</members>
 		<members>Book__c.Author__c</members>
 		<members>Book__c.Categories__c</members>
 		<members>Book__c.Description__c</members>
@@ -47,7 +46,6 @@
 		<members>Bookstore__c.Opening_Hour__c</members>
 		<members>Bookstore__c.Store_Identification_Code__c</members>
 		<members>Bookstore__c.Total_Number_Of_Books__c</members>
-		<members>Bookstore__c.Working_Hours__c</members>
 		<members>Publisher__c.Address__c</members>
 		<members>Publisher__c.Email__c</members>
 		<members>Publisher__c.Phone__c</members>

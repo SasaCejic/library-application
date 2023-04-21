@@ -118,14 +118,6 @@
         <connector>
             <targetReference>Decrement_previous_authors_number_of_books</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Author__c</field>
-            <operator>IsNull</operator>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </filters>
         <object>Book__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
