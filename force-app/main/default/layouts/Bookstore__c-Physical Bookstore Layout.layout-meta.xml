@@ -41,7 +41,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Record_Type__c</field>
+                <field>Store_Identification_Code_Formula__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
