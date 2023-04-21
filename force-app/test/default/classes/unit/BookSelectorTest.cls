@@ -4,7 +4,7 @@
 @isTest
 public with sharing class BookSelectorTest {
     @istest
-    public static void getBooksBySetOfIds_willReturnBook() {
+    public static void getBooksBySetOfIds_willReturnFiveBook_ifFiveBooksWereInserted() {
         List<Publisher__c> publisherForInsert = new TestFactory().createPublishers(1);
         insert publisherForInsert;
         List<Book__c> booksForInsert = new TestFactory().createBooks(5, publisherForInsert[0].Id);

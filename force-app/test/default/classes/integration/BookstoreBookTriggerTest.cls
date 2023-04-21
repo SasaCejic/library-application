@@ -7,7 +7,7 @@ public with sharing class BookstoreBookTriggerTest {
     * Method performs successfull Publisher validation because it is ran as Book Manager
     */
     @isTest
-    public static void testTriggerOnInsert_willPerformPublisherValidation() {
+    public static void onInsert_willAddError_whenBookstorePublisherIsNotAdded() {
         List<Publisher__c> publisherForTest = new TestFactory().createPublishers(1);
         insert publisherForTest;
         List<Bookstore__c> bookstoreForTest = new TestFactory().createBookstores(1);
