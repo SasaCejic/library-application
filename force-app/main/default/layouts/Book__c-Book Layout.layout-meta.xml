@@ -19,7 +19,7 @@
                 <field>Hours_of_Listening__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Categories__c</field>
             </layoutItems>
             <layoutItems>
@@ -78,7 +78,6 @@
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>NAME</fields>
-        <fields>Subject__c</fields>
         <fields>Stars__c</fields>
         <relatedList>Book_Review__c.Book__c</relatedList>
     </relatedLists>
@@ -88,7 +87,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h8K00000134jS</masterLabel>
+        <masterLabel>00h5t000000eC8W</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

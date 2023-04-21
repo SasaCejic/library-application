@@ -155,10 +155,9 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Book Review</label>
     <nameField>
-        <displayFormat>BR-{0000}</displayFormat>
-        <label>Review Number</label>
+        <label>Subject</label>
         <trackHistory>false</trackHistory>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Book Reviews</pluralLabel>
     <searchLayouts></searchLayouts>
