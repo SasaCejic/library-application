@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Print_length_listening_hours_mandatory</fullName>
+    <active>true</active>
+    <errorConditionFormula>( RecordType.DeveloperName ==&apos;Paper_Book&apos; &amp;&amp;  (ISNULL( Print_Length__c )|| Print_Length__c&lt;=0) )||
+(RecordType.DeveloperName ==&apos;Digital_Book&apos; &amp;&amp;  (ISNULL(  Hours_of_Listening__c  )|| Hours_of_Listening__c&lt;=0))</errorConditionFormula>
+    <errorMessage>Paper books must contain a positive number for print length, while digital ones must contain a positive number for hours of listening</errorMessage>
+</ValidationRule>
