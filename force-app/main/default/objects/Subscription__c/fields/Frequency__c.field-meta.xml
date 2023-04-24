@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Rating__c</fullName>
-    <description>Associated book rating</description>
+    <fullName>Frequency__c</fullName>
     <externalId>false</externalId>
-    <inlineHelpText>Associated book rating</inlineHelpText>
-    <label>Rating</label>
+    <label>Frequency</label>
     <required>true</required>
-    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
@@ -14,29 +11,24 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>1</fullName>
-                <default>false</default>
-                <label>1</label>
+                <fullName>Each Notification</fullName>
+                <default>true</default>
+                <label>Each Notification</label>
             </value>
             <value>
-                <fullName>2</fullName>
+                <fullName>Once a Day</fullName>
                 <default>false</default>
-                <label>2</label>
+                <label>Once a Day</label>
             </value>
             <value>
-                <fullName>3</fullName>
+                <fullName>Once a Week</fullName>
                 <default>false</default>
-                <label>3</label>
+                <label>Once a Week</label>
             </value>
             <value>
-                <fullName>4</fullName>
+                <fullName>Once a Month</fullName>
                 <default>false</default>
-                <label>4</label>
-            </value>
-            <value>
-                <fullName>5</fullName>
-                <default>false</default>
-                <label>5</label>
+                <label>Once a Month</label>
             </value>
         </valueSetDefinition>
     </valueSet>

@@ -146,20 +146,20 @@
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
-    <enableHistory>true</enableHistory>
+    <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
-    <label>Book Review</label>
+    <label>Bookstore_Book</label>
     <nameField>
-        <label>Subject</label>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
+        <displayFormat>BB-{0000}</displayFormat>
+        <label>Bookstore_Book Name</label>
+        <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Book Reviews</pluralLabel>
+    <pluralLabel>Bookstore_Books</pluralLabel>
     <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
