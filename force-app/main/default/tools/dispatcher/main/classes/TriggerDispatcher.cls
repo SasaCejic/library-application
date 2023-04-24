@@ -13,6 +13,9 @@ public with sharing class TriggerDispatcher {
     * @param handler - Class of type TriggerHanlder that implements blogic of what happens with the trigger
     */ 
     public void dispatch() {
+        if(handler.isDisabled()) {
+            return;
+        }
         switch on operationType {
             when BEFORE_INSERT {
                 handler.beforeInsert(Trigger.new);

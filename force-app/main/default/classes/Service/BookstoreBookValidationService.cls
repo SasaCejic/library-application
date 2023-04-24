@@ -39,6 +39,7 @@ public with sharing class BookstoreBookValidationService implements CustomObject
             for(Bookstore_Publisher__c bookstorePublisher:bookstorePublishers) {
                 if(publisherAndBookstoreIdPair[0] == bookstorePublisher.Publisher__c && publisherAndBookstoreIdPair[1] == bookstorePublisher.Bookstore__c) {
                         isFound = true;
+                        break;
                 }
             }
             if(!isFound) {
