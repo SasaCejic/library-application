@@ -1,10 +1,11 @@
 /*
-* This class perfoms tests for Book Selector class
+* This class perfoms tests for Book Selector class 
 */
 @isTest
 public with sharing class BookSelectorTest {
     @istest
     public static void getBooksBySetOfIds_willReturnFiveBook_ifFiveBooksWereInserted() {
+        BookTriggerHandler.triggerDisabled=true;
         //create Data for tests
         TestFactory testFactory = new TestFactory();
         Map<String, String> publisherDetails = new Map<String, String>();
@@ -28,9 +29,9 @@ public with sharing class BookSelectorTest {
         
         Test.startTest();
         Map<Id, Book__c> bookForTest = new BookSelector().getMapByIds(new Set<Id>{bookForInsert.Id});
-        Test.stopTest();
+        Test.stopTest(); 
 
-        System.assertEquals(bookForTest.values().Id, bookForInsert.Id);
-        System.assertEquals(bookForTest.values().Publisher__c, bookForInsert.Publisher__c);
+        System.assertEquals((bookForTest.values()[0]).Id, bookForInsert.Id);
+        System.assertEquals((bookForTest.values()[0]).Publisher__c, bookForInsert.Publisher__c);
     }
 }

@@ -1,5 +1,5 @@
 /*
-* This class performs tests for Bookstore_Book__c trigger
+* This class performs tests for Bookstore_Book__c trigger 
 */
 @isTest
 public with sharing class BookstoreBookTriggerTest {
@@ -8,6 +8,7 @@ public with sharing class BookstoreBookTriggerTest {
     */
     @isTest
     public static void onInsert_willAddError_whenBookstorePublisherIsNotAdded() {
+        BookTriggerHandler.triggerDisabled=true;
         //Create data for mocks and test
         TestFactory testFactory = new TestFactory();
         Map<String, String> publisherDetails = new Map<String, String>();
