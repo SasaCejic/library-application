@@ -4,7 +4,7 @@
     <externalId>false</externalId>
     <label>Book</label>
     <referenceTo>Book__c</referenceTo>
-    <relationshipLabel>Bookstore_Books</relationshipLabel>
+    <relationshipLabel>Bookstore Books</relationshipLabel>
     <relationshipName>Bookstore_Books</relationshipName>
     <relationshipOrder>1</relationshipOrder>
     <reparentableMasterDetail>false</reparentableMasterDetail>
