@@ -19,7 +19,7 @@ public with sharing class BookstoreBookValidationService implements CustomObject
         }
         //Create book selector object and get all books that were added
         BookSelector bookSelector = (BookSelector) new ObjectFactory().createObject(BookSelector.class);
-        Map<Id, Book__c> correspondingBooks = bookSelector.getBooksBySetOfIds(addedBookIds);
+        Map<Id, Book__c> correspondingBooks = bookSelector.getMapByIds(addedBookIds);
         //Create pairs of publishers and bookstores and add them to the map
         for(Bookstore_Book__c bookstoreBook: newBookstoreBooks) {
             List<Id> currentList = new List<Id>();
@@ -29,7 +29,7 @@ public with sharing class BookstoreBookValidationService implements CustomObject
         }
         //Get all bookstore_publisher__c objects
         BookstorePublisherSelector bookstorePublisherSelector = (BookstorePublisherSelector) new ObjectFactory().createObject(BookstorePublisherSelector.class);
-        List<Bookstore_Publisher__c> bookstorePublishers = bookstorePublisherSelector.getAllBookstorePublishers();
+        List<Bookstore_Publisher__c> bookstorePublishers = bookstorePublisherSelector.getList();
         //Find the Bookstore_Publisher__c objects corresponding to pairs of bookstores and publishers 
         //If the corresponding Bookstore_Publisher__c is not found for the Bookstore_Book__c object Id
         //Add that Id to the set of the Bookstore_Book__c objects to add an error to

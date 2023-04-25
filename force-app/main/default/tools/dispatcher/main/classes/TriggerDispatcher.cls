@@ -16,6 +16,7 @@ public with sharing class TriggerDispatcher {
         if(handler.isDisabled()) {
             return;
         }
+        
         switch on operationType {
             when BEFORE_INSERT {
                 handler.beforeInsert(Trigger.new);

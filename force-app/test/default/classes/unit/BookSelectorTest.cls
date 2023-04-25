@@ -10,7 +10,7 @@ public with sharing class BookSelectorTest {
         publisherDetails.put('name', 'publisher');
         publisherDetails.put('email', 'publisher@gmail.com');
         publisherDetails.put('phone', '1241353');
-        Publisher__c publisherForTest = testFactory.createPublisher(publisherDetails, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(publisherDetails, true, false);
 
         Map<String, String> bookDetails = new Map<String, String>();
         bookDetails.put('name', 'book');
@@ -18,10 +18,10 @@ public with sharing class BookSelectorTest {
         bookDetails.put('ISBN', '214215425');
         bookDetails.put('language', 'english');
         bookDetails.put('categories', 'fantasy');
-        Book__c bookForInsert = testFactory.createBook(publisherForTest.Id, bookDetails, true);
+        Book__c bookForInsert = testFactory.createBook(publisherForTest.Id, bookDetails, true, false);
         
         Test.startTest();
-        Map<Id, Book__c> bookForTest = new BookSelector().getBooksBySetOfIds(new Set<Id>{bookForInsert.Id});
+        Map<Id, Book__c> bookForTest = new BookSelector().getMapByIds(new Set<Id>{bookForInsert.Id});
         Test.stopTest();
 
         System.assertEquals(bookForTest.values().Id, bookForInsert.Id);

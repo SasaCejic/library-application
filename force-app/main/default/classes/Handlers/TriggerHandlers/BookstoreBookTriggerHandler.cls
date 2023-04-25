@@ -4,12 +4,12 @@
 */
 public with sharing class BookstoreBookTriggerHandler extends TriggerHandler {
     @TestVisible
-    public static Boolean disabled = false;
+    public static Boolean triggerDisabled = false;
     /*
     * method used to disable trigger 
     */
     public override Boolean isDisabled() {
-        return disabled;
+        return triggerDisabled;
     }
     /*
     * @param - newRecords - records being inserted
