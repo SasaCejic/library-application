@@ -17,7 +17,7 @@ public with sharing class BookstorePublisherSelectorTest {
         bookstoreDetails.put('name', 'bookstore');
         bookstoreDetails.put('email', 'bookstore@gmail.com');
         bookstoreDetails.put('storeId', '1241353');
-        Bookstore__c bookstoreForTest =testFactory.createBookstore(bookstoreDetails, true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(bookstoreDetails, true);
         Bookstore_Publisher__c bookStorePublisherForInsert = testFactory
         .createBookstorePublisher(publisherForTest.Id,  bookstoreForTest.Id, true);
 
