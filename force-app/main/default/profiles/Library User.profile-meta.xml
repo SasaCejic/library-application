@@ -6,6 +6,42 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>BookSelector</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookSelectorTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreBookTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreBookTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreBookTriggerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreBookValidationService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreBookValidationServiceTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstorePublisherSelector</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstorePublisherSelectorTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BookstoreBookController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -43,6 +79,18 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ObjectFactory</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TestFactory</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TriggerDispatcher</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TriggerHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
@@ -200,10 +248,16 @@
         <recordType>Bookstore__c.Physical</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>CommunityMemberLayout-Community Member Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Publisher__c-Publisher Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Subscription__c-Subscription Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>User-User Layout</layout>
     </layoutAssignments>
     <objectPermissions>
         <allowCreate>false</allowCreate>
