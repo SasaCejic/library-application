@@ -23,70 +23,16 @@
 
 // List<Bookstore_Book__c> bookstoreBooks = [SELECT Bookstore__c FROM Bookstore_Book__c WHERE Book__c IN (SELECT Id FROM Book__c WHERE Author__c = 'a027d00000GnnytAAB')];
 
-Id authorId = 'a028B000001xOcTQAU';
-// List <Bookstore_Book__c> bsb = [
-//             SELECT
-//                 Bookstore__r.Name
-//             FROM
-//                 Bookstore_Book__c
-//             WHERE
-//                 Book__c
-//             IN (
-//                 SELECT
-//                     Id
-//                 FROM
-//                     Book__c
-//                 WHERE
-//                     Author__c = :authorId
-//                 )
-//         ];
+Id authorId = 'a0201000002lRGsAAM';
 
-        // for(Bookstore_Book__c b : bsb){
-        //     system.debug(b.Bookstore__r.Name);
+        // create testFactory
+        TestFactory testFactory = new TestFactory();
 
-        // }
+        //create and insert Author__c object
+        Author__c newAuthor = new Author__c();
+        newAuthor.Name = 'Djura Jaksic';
+        newAuthor.First_Name__c = 'Djura';
+        newAuthor.Last_Name__c = 'Jaksic';
+        newAuthor.Date_Of_Birth__c = Date.newInstance(1950, 1, 1);
 
-
-        AggregateResult[] bsb = [
-            SELECT
-                Bookstore__c
-            FROM
-                Bookstore_Book__c
-            WHERE
-                Book__c
-            IN (
-                SELECT
-                    Id
-                FROM
-                    Book__c
-                WHERE
-                    Author__c = :authorId
-                )
-            GROUP BY
-            Bookstore__c
-        ];
-
-        // for(AggregateResult ar : bsb){
-        //     system.debug(ar.get('Bookstore__c'));
-        // }
-
-        List<Id> bookstoreIds= new List<Id>();
-
-        for(AggregateResult ar : bsb){
-            bookstoreIds.add((Id)ar.get('Bookstore__c'));
-        }
-
-        List<Bookstore__c> bookstores = [
-            SELECT
-                Id,
-                Name
-            FROM
-                Bookstore__c
-            WHERE
-                Id IN :bookstoreIds
-        ];
-
-        for(Bookstore__c bs : bookstores){
-            system.debug(bs.Name);
-        }
-
+        insert newAuthor;
