@@ -5,11 +5,12 @@
 public with sharing class BookSelectorTest {
     @istest
     public static void getBooksBySetOfIds_willReturnFiveBook_ifFiveBooksWereInserted() {
+        TestFactory testFactory = new TestFactory();
         Map<String, String> publisherDetails = new Map<String, String>();
         publisherDetails.put('name', 'publisher');
         publisherDetails.put('email', 'publisher@gmail.com');
         publisherDetails.put('phone', '1241353');
-        Publisher__c publisherForTest = new TestFactory().createPublisher(publisherDetails, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(publisherDetails, true);
 
         Map<String, String> bookDetails = new Map<String, String>();
         bookDetails.put('name', 'book');
@@ -17,7 +18,7 @@ public with sharing class BookSelectorTest {
         bookDetails.put('ISBN', '214215425');
         bookDetails.put('language', 'english');
         bookDetails.put('categories', 'fantasy');
-        Book__c bookForInsert = new TestFactory().createBook(publisherForTest.Id, bookDetails, true);
+        Book__c bookForInsert = testFactory.createBook(publisherForTest.Id, bookDetails, true);
         
         Test.startTest();
         Map<Id, Book__c> bookForTest = new BookSelector().getBooksBySetOfIds(new Set<Id>{bookForInsert.Id});

@@ -9,17 +9,18 @@ public with sharing class BookstoreBookValidationServiceTest {
     @isTest
     public static void validatePublisher_willNotAddError_ifBookstorePublisherIsAdded() {
         //Create data for mocks and test
+        TestFactory testFactory = new TestFactory();
         Map<String, String> publisherDetails = new Map<String, String>();
         publisherDetails.put('name', 'publisher');
         publisherDetails.put('email', 'publisher@gmail.com');
         publisherDetails.put('phone', '1241353');
-        Publisher__c publisherForTest = new TestFactory().createPublisher(publisherDetails, false);
+        Publisher__c publisherForTest = testFactory.createPublisher(publisherDetails, false);
 
         Map<String, String> bookstoreDetails = new Map<String, String>();
         bookstoreDetails.put('name', 'bookstore');
         bookstoreDetails.put('email', 'bookstore@gmail.com');
         bookstoreDetails.put('storeId', '1241353');
-        Bookstore__c bookstoreForTest = new TestFactory().createBookstore(bookstoreDetails, false);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(bookstoreDetails, false);
 
         Map<String, String> bookDetails = new Map<String, String>();
         bookDetails.put('name', 'book');
@@ -27,11 +28,11 @@ public with sharing class BookstoreBookValidationServiceTest {
         bookDetails.put('ISBN', '214215425');
         bookDetails.put('language', 'english');
         bookDetails.put('categories', 'fantasy');
-        Book__c bookForTest = new TestFactory().createBook(publisherForTest.Id, bookDetails, false);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, bookDetails, false);
 
-        Bookstore_Book__c bookstoreBookForTest = new TestFactory()
+        Bookstore_Book__c bookstoreBookForTest = testFactory
         .createBookstoreBook(bookForTest.Id, bookstoreForTest.Id, false);
-        Bookstore_Publisher__c bookStorePublisherForMock = new TestFactory()
+        Bookstore_Publisher__c bookStorePublisherForMock = testFactory
         .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false);
         
         Map<Id, Book__c> bookMapForMock = new Map<Id, Book__c>();
@@ -62,17 +63,18 @@ public with sharing class BookstoreBookValidationServiceTest {
     @isTest
     public static void validatePublisher_willAddError_ifBookstorePublisherIsNotAdded() {
        //Create data for mocks and test
+       TestFactory testFactory = new TestFactory();
        Map<String, String> publisherDetails = new Map<String, String>();
        publisherDetails.put('name', 'publisher');
        publisherDetails.put('email', 'publisher@gmail.com');
        publisherDetails.put('phone', '1241353');
-       Publisher__c publisherForTest = new TestFactory().createPublisher(publisherDetails, false);
+       Publisher__c publisherForTest = testFactory.createPublisher(publisherDetails, false);
 
        Map<String, String> bookstoreDetails = new Map<String, String>();
        bookstoreDetails.put('name', 'bookstore');
        bookstoreDetails.put('email', 'bookstore@gmail.com');
        bookstoreDetails.put('storeId', '1241353');
-       Bookstore__c bookstoreForTest = new TestFactory().createBookstore(bookstoreDetails, false);
+       Bookstore__c bookstoreForTest = testFactory.createBookstore(bookstoreDetails, false);
 
        Map<String, String> bookDetails = new Map<String, String>();
        bookDetails.put('name', 'book');
@@ -80,9 +82,9 @@ public with sharing class BookstoreBookValidationServiceTest {
        bookDetails.put('ISBN', '214215425');
        bookDetails.put('language', 'english');
        bookDetails.put('categories', 'fantasy');
-       Book__c bookForTest = new TestFactory().createBook(publisherForTest.Id, bookDetails, false);
+       Book__c bookForTest = testFactory.createBook(publisherForTest.Id, bookDetails, false);
 
-       Bookstore_Book__c bookstoreBookForTest = new TestFactory()
+       Bookstore_Book__c bookstoreBookForTest = testFactory
        .createBookstoreBook(bookForTest.Id, bookstoreForTest.Id, false);
        
        Map<Id, Book__c> bookMapForMock = new Map<Id, Book__c>();
@@ -113,17 +115,18 @@ public with sharing class BookstoreBookValidationServiceTest {
     @isTest
     public static void validatePublisher_willUseCorrectSelectors() {
         //Create data for mocks and test
+        TestFactory testFactory = new TestFactory();
         Map<String, String> publisherDetails = new Map<String, String>();
         publisherDetails.put('name', 'publisher');
         publisherDetails.put('email', 'publisher@gmail.com');
         publisherDetails.put('phone', '1241353');
-        Publisher__c publisherForTest = new TestFactory().createPublisher(publisherDetails, false);
+        Publisher__c publisherForTest = testFactory.createPublisher(publisherDetails, false);
 
         Map<String, String> bookstoreDetails = new Map<String, String>();
         bookstoreDetails.put('name', 'bookstore');
         bookstoreDetails.put('email', 'bookstore@gmail.com');
         bookstoreDetails.put('storeId', '1241353');
-        Bookstore__c bookstoreForTest = new TestFactory().createBookstore(bookstoreDetails, false);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(bookstoreDetails, false);
 
         Map<String, String> bookDetails = new Map<String, String>();
         bookDetails.put('name', 'book');
@@ -131,9 +134,9 @@ public with sharing class BookstoreBookValidationServiceTest {
         bookDetails.put('ISBN', '214215425');
         bookDetails.put('language', 'english');
         bookDetails.put('categories', 'fantasy');
-        Book__c bookForTest = new TestFactory().createBook(publisherForTest.Id, bookDetails, false);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, bookDetails, false);
 
-        Bookstore_Book__c bookstoreBookForTest = new TestFactory()
+        Bookstore_Book__c bookstoreBookForTest = testFactory
         .createBookstoreBook(bookForTest.Id, bookstoreForTest.Id, false);
         
         Map<Id, Book__c> bookMapForMock = new Map<Id, Book__c>();
