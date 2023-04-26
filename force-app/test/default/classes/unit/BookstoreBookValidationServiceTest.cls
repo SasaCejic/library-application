@@ -25,7 +25,7 @@ public with sharing class BookstoreBookValidationServiceTest {
         Map<String, String> authorDetails = new Map<String, String>();
         authorDetails.put('firstName', 'Author');
         authorDetails.put('lastName', 'Author');
-        Author__c authorForTest = testFactory.createAuthor(authorDetails, true, false);
+        Author__c authorForTest = testFactory.createAuthor(authorDetails, false, true);
 
         Map<String, String> bookDetails = new Map<String, String>();
         bookDetails.put('name', 'book');
