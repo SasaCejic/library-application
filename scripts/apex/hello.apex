@@ -25,14 +25,6 @@
 
 Id authorId = 'a0201000002lRGsAAM';
 
-        // create testFactory
-        TestFactory testFactory = new TestFactory();
+List<Author__c> authors = [SELECT Name FROM Author__c WHERE Id = :authorId];
+system.debug(authors.size());
 
-        //create and insert Author__c object
-        Author__c newAuthor = new Author__c();
-        newAuthor.Name = 'Djura Jaksic';
-        newAuthor.First_Name__c = 'Djura';
-        newAuthor.Last_Name__c = 'Jaksic';
-        newAuthor.Date_Of_Birth__c = Date.newInstance(1950, 1, 1);
-
-        insert newAuthor;

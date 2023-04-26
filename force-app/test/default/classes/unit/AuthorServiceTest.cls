@@ -6,7 +6,7 @@
 @isTest
 public with sharing class AuthorServiceTest {
     @IsTest
-    static void getBookstoresWithAuthorsBooks_willUseSelectors() {
+    static void getBookstoresWithAuthorsBooks_WillUseSelectors() {
         //create Bookstore__c
         TestFactory testFactory = new TestFactory();
         Map<String, String> bookstoreDetails = new Map<String, String>();
@@ -41,8 +41,10 @@ public with sharing class AuthorServiceTest {
         );
 
         // execute
+        Test.startTest();
         AuthorService service = new AuthorService();
         List<Bookstore__c> bookstores = service.getBookstoresWithAuthorsBooks(author.Id);
+        Test.stopTest();
 
         // assert
         bookstoreBookSelectorMock.assertMethodExecutionCount('getBookstoreBooksWithAuthorsBooks', 1);

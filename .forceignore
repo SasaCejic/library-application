@@ -14,3 +14,8 @@ package.xml
 
 #Profiles
 **/profiles/Admin.profile-meta.xml
+**/profiles/Trial Customer Portal User.profile-meta.xml
+**/profiles/Library User.profile-meta.xml
+
+#Flexipages
+**/flexipages/Book_Review_Record_Page.flexipage-meta.xml

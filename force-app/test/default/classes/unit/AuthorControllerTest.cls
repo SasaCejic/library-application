@@ -33,7 +33,9 @@ public with sharing class AuthorControllerTest {
         );
 
         // execute
+        Test.startTest();
         List<Bookstore__c> bookstores = AuthorController.getBookstoresWithAuthorsBooks(author.Id);
+        Test.stopTest();
 
         // assert
         mock.assertMethodExecutionCount('getBookstoresWithAuthorsBooks', 1);

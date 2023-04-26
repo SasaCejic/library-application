@@ -79,17 +79,18 @@ public with sharing class TestFactory {
     }
      /*
     * @param forInsert - Boolean value representing if we want to insert the record or not
-    * @param authorId - Id of a Author__c ofbject which is connected with Book__c through lookup relationship
+    * @param authorId - Id of an Author__c bject which is connected with Book__c through lookup relationship
     * @param publisherId - Id of a Publisher__c object which is a parent in master-detail relationship to Book__c
     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
     */
-    public Book__c createBook(Id publisherId, Map<String, String> details,  Boolean forInsert, Boolean simulateInsert) {
+    public Book__c createBook(Id authorId, Id publisherId, Map<String, String> details,  Boolean forInsert, Boolean simulateInsert) {
         Book__c currentBook = new Book__c();
         currentBook.Name = details.get('name');
         currentBook.Description__c = details.get('description');
         currentBook.ISBN__c = details.get('ISBN');
         currentBook.Language__c = details.get('language');
         currentBook.Categories__c = details.get('categories');
+        currentBook.Author__c = authorId;
         currentBook.Publisher__c = publisherId;
         currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
         if(forInsert) {

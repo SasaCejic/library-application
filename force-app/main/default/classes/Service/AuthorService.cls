@@ -20,6 +20,10 @@ public with sharing class AuthorService implements CustomObject{
      * @return list of Bookstore__c object records
      */
     public List<Bookstore__c> getBookstoresWithAuthorsBooks(Id authorId){
+        if(authorId == null){
+            return null;
+        }
+
         BookstoreBookSelector bookstoreBookSelector = (BookstoreBookSelector) new ObjectFactory().createObject(BookstoreBookSelector.class);
         
         AggregateResult[] bookstoreBooks = bookstoreBookSelector.getBookstoreBooksWithAuthorsBooks(authorId);
