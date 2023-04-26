@@ -100,7 +100,8 @@ public with sharing class TestFactory {
         return currentBook;
     }
     /*
-    *
+    * @param forInsert - Boolean value representing if we want to insert the record or not
+    * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
     */
     public Author__c createAuthor(Map<String, String> details, Boolean forInsert, Boolean simulateInsert) {
         Author__c newAuthor = new Author__c();
@@ -113,4 +114,23 @@ public with sharing class TestFactory {
         newAuthor.Id = getFakeId(Author__c.SObjectType, simulateInsert);
         return newAuthor;
     }
+
+    /*
+    * @param authorId - Id of a Author__c which is a parent in master-detail relationship
+    * @param publisherId - Id of a Publisher__c which is a parent in master-detail relationship
+    * @param forInsert - Boolean value representing if we want to insert the record or not
+    * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+    */
+    public Author_Publisher__c createAuthorPublisher(Id authorId, Id publisherId, Boolean forInsert, Boolean simulateInsert) {
+        Author_Publisher__c newAuthorPublisher = new Author_Publisher__c();
+        newAuthorPublisher.Author__c=authorId;
+        newAuthorPublisher.Publisher__c=publisherId;
+        if(forInsert) {
+            insert newAuthorPublisher;
+            return newAuthorPublisher;
+        }
+        newAuthorPublisher.Id = getFakeId(Author_Publisher__c.SObjectType, simulateInsert);
+        return newAuthorPublisher;
+    }
+
 }
