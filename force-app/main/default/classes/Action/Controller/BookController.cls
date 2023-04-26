@@ -3,7 +3,7 @@
 */
 public with sharing class BookController {
     /*
-    * This method accepts bookstoreId and based on the id retrieves all the books not in the bookstore
+    * @param bookstoreId - Id of bookstore and based on the id retrieves all the books not in the bookstore
     */
     @AuraEnabled(cacheable=true)
     public static List<Book__c> getBooksNotInBookstore(Id bookstoreId) {

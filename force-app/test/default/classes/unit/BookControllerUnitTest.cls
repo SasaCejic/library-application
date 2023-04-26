@@ -34,11 +34,11 @@ public with sharing class BookControllerUnitTest {
     
         //Mock book selector so we don't depend on it
         Mocker getBooksNotInBookstoreServiceMock = new Mocker(getBooksNotInBookstoreService.class)
-        .setBehavior('getBooks', new List<Book__c>());
+        .setBehavior('getBooks', null);
         getBooksNotInBookstoreServiceMock.setBehavior('getResponse', new List<Book__c>{bookForTest});
         ObjectFactory.mocks.put(
             GetBooksNotInBookstoreService.class.getName(),
-            (GetBooksNotInBookstoreService)getBooksNotInBookstoreServiceMock.getMock()
+            (GetBooksNotInBookstoreService) getBooksNotInBookstoreServiceMock.getMock()
         );
         
         Test.startTest();

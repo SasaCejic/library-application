@@ -1,5 +1,5 @@
 /*
-* This class retrieves all the BookstoreBook records not in the bookstore provided by bookstoreID
+* This class retrieves all the Book records not in the bookstore provided by bookstoreID
 */
 public with sharing class GetBooksNotInBookstoreService implements CustomObject{
     private List<Book__c> response;

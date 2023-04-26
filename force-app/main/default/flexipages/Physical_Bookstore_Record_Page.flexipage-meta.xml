@@ -371,6 +371,12 @@
                 <identifier>c_booksNotInBookstoreList</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>publishersNotWorkingWithBookstoreList</componentName>
+                <identifier>c_publishersNotWorkingWithBookstoreList</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
