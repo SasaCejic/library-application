@@ -14,8 +14,8 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BookControllerUnitTest</apexClass>
-        <enabled>true</enabled>
+        <apexClass>BookControllerTest</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookSelector</apexClass>
@@ -90,8 +90,8 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PublisherControllerUnitTest</apexClass>
-        <enabled>true</enabled>
+        <apexClass>PublisherControllerTest</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PublisherSelector</apexClass>
