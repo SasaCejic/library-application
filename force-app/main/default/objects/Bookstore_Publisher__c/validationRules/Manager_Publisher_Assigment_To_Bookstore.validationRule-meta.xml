@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Manager_Publisher_Assigment_To_Bookstore</fullName>
+    <active>true</active>
+    <description>Bookstore managers can assign publishers only to the bookstore they are working for.</description>
+    <errorConditionFormula>AND(  $User.isBookstoreManager__c = true,  Bookstore__r.Manager__r.Id !=  $User.Id )</errorConditionFormula>
+    <errorMessage>You can&apos;t add publishers for bookstores you don&apos;t work for!</errorMessage>
+</ValidationRule>

@@ -1,0 +1,11 @@
+<template>
+    <div if:true={isManagerToBookstore}>
+        <lightning-card title="Publishers not working with your bookstore" icon-name="standard:contact">
+            <lightning-datatable
+                key-field="id"
+                columns={columns}
+                data={publishers}>
+            </lightning-datatable>
+        </lightning-card>
+    </div>
+</template>
