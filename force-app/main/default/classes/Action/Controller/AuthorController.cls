@@ -18,6 +18,8 @@ public with sharing class AuthorController {
     public static List<Bookstore__c> getBookstoresWithAuthorsBooks(Id authorId){
         AuthorService service = (AuthorService) new ObjectFactory().createObject(AuthorService.class);
 
-        return service.getBookstoresWithAuthorsBooks(authorId);
+        service.getBookstoresWithAuthorsBooks(authorId);
+
+        return service.getResponse();
     }
 }

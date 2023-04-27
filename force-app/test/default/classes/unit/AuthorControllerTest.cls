@@ -7,24 +7,19 @@
 public with sharing class AuthorControllerTest {
     @IsTest
     static void getBookstoresWithAuthorsBooks_WillUseService() {
-        //create Bookstore__c
+        //create TestFactory
         TestFactory testFactory = new TestFactory();
-        Map<String, String> bookstoreDetails = new Map<String, String>();
-        bookstoreDetails.put('name', 'TestBookstore');
-        bookstoreDetails.put('email', 'bookstore@gmail.com');
-        bookstoreDetails.put('storeId', '1234567');
-        Bookstore__c bookstore = testFactory.createBookstore(bookstoreDetails, false, true);
+
+        //create Bookstore__c
+        Bookstore__c bookstore = testFactory.createBookstore(false, true);
 
         //create Author__c
-        Map<String, String> authorDetails = new Map<String, String>();
-        authorDetails.put('name', 'Test Author');
-        authorDetails.put('firstName', 'Test');
-        authorDetails.put('lastName', 'Author');
-        Author__c author = testFactory.createAuthor(authorDetails, false, true);
+        Author__c author = testFactory.createAuthor(false, true);
 
         // create mock
-        Mocker mock = new Mocker(AuthorService.class)
-            .setBehavior('getBookstoresWithAuthorsBooks', new List<Bookstore__c>{bookstore});
+        Mocker mock = new Mocker(AuthorService.class);
+        mock.setBehavior('getBookstoresWithAuthorsBooks', null);
+        mock.setBehavior('getResponse', new List<Bookstore__c>{bookstore});
         
         // set mock
         ObjectFactory.mocks.put(
@@ -39,6 +34,7 @@ public with sharing class AuthorControllerTest {
 
         // assert
         mock.assertMethodExecutionCount('getBookstoresWithAuthorsBooks', 1);
+        mock.assertMethodExecutionCount('getResponse', 1);
         Assert.areEqual(1, bookstores.size());
         Assert.areEqual(bookstore.Id, bookstores[0].Id);
     }

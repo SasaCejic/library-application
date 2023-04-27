@@ -101,11 +101,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Book_Review__c.User__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Book__c.Categories__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -167,11 +162,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Publisher__c.Address__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Publisher__c.Hidden_Unique_Name_Field__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
@@ -290,7 +280,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Publisher__c</object>
-        <viewAllRecords>false</viewAllRecords>
+        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -327,7 +317,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Announcement__c</tab>
-        <visibility>Hidden</visibility>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Author__c</tab>
