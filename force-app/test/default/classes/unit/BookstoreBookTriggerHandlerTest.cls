@@ -1,11 +1,11 @@
 /*
-* This class is used to test logic in BookstoreBookTriggerHandler
-*/
+ * This class is used to test logic in BookstoreBookTriggerHandler
+ */
 @isTest
 public with sharing class BookstoreBookTriggerHandlerTest {
     /*
-    * No data needed because service will be mocked, just test if it is executed
-    */
+     * No data needed because service will be mocked, just test if it is executed
+     */
     @isTest
     public static void beforeInsert_willUseService() {
         Mocker bookstoreBookValidationServiceMock = new Mocker(BookstoreBookValidationService.class)

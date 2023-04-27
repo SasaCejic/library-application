@@ -1,6 +1,6 @@
 /*
-* This class tests book controller methods
-*/
+ * This class tests book controller methods
+ */
 @isTest
 public with sharing class BookControllerIntegrationTest {
     @isTest

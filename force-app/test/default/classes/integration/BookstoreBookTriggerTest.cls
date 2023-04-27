@@ -1,11 +1,11 @@
 /*
-* This class performs tests for Bookstore_Book__c trigger
-*/
+ * This class performs tests for Bookstore_Book__c trigger
+ */
 @isTest
 public with sharing class BookstoreBookTriggerTest {
     /*
-    * Method performs successfull Publisher validation because it is ran as Book Manager
-    */
+     * Method performs successfull Publisher validation because it is ran as Book Manager
+     */
     @isTest
     public static void onInsert_willAddError_whenBookstorePublisherIsNotAdded() {
         //Create data for mocks and test

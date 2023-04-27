@@ -1,9 +1,9 @@
 /*
-*This class performs unit tests for BookstoreBookValidationService class
-*Tests consist of 2 mocks where we mock selectors
-*Both single and multiple validations are tested
-*Method Execution count will always be the same regardless of the amount of records inserted
-*/
+ *This class performs unit tests for BookstoreBookValidationService class
+ *Tests consist of 2 mocks where we mock selectors
+ *Both single and multiple validations are tested
+ *Method Execution count will always be the same regardless of the amount of records inserted
+ */
 @isTest
 public with sharing class BookstoreBookValidationServiceTest {
     @isTest

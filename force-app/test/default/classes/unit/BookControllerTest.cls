@@ -1,6 +1,6 @@
 /*
-* Class that performs unit tests for book controller
-*/
+ * Class that performs unit tests for book controller
+ */
 @isTest
 public with sharing class BookControllerTest {
     @isTest

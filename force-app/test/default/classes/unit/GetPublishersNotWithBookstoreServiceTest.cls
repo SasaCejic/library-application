@@ -1,7 +1,7 @@
 /*
-* Class used to perform unit tests for this service
-* Class will perform 3 tests: 1 positive, 1 negative and one for asserting method execution count for mockers
-*/
+ * Class used to perform unit tests for this service
+ * Class will perform 3 tests: 1 positive, 1 negative and one for asserting method execution count for mockers
+ */
 @isTest
 public with sharing class GetPublishersNotWithBookstoreServiceTest {
     @isTest

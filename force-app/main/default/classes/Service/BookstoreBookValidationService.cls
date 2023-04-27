@@ -1,11 +1,11 @@
 /*
  * Validates if the Book that is being added to the bookstore(Via creating Bookstore_Book__c object) has the same publisher 
  * as the bookstore that it is being added too
-*/
+ */
 public with sharing class BookstoreBookValidationService implements CustomObject {
     /*
      * @param newBookstoreBooks - Books added to the bookstore
-    */
+     */
     public void validatePublisher(List<Bookstore_Book__c> newBookstoreBooks) {
         //Set of book ids corresponding to added bookstoreBooks Ids
         Set<Id> addedBookIds = new Set<Id>();
@@ -35,8 +35,6 @@ public with sharing class BookstoreBookValidationService implements CustomObject
         List<Bookstore_Publisher__c> bookstorePublishers = bookstorePublisherSelector.getList();
 
         //Find the Bookstore_Publisher__c objects corresponding to pairs of bookstores and publishers 
-        //If the corresponding Bookstore_Publisher__c is not found for the Bookstore_Book__c object Id
-        //Add that Id to the set of the Bookstore_Book__c objects to add an error to
         for(String key : publisherAndBookstoreIds.keySet()) {
             Boolean isFound =  false;
             List<Id> publisherAndBookstoreIdPair = publisherAndBookstoreIds.get(key);
