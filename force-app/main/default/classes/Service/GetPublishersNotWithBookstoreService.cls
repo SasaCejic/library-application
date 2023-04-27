@@ -1,5 +1,5 @@
 /*
-* This class retrieves all the Publisher records not in the bookstore provided by bookstoreID
+ * This class retrieves all the Publisher records not in the bookstore provided by bookstoreID
 */
 public with sharing class GetPublishersNotWithBookstoreService implements CustomObject{
     private List<Publisher__c> response;
@@ -15,9 +15,8 @@ public with sharing class GetPublishersNotWithBookstoreService implements Custom
     }
 
     /*
-    * @param bookstoreId - Id of the bookstore 
+     * @param bookstoreId - Id of the bookstore 
     */
-    
     public void getPublishers(Id bookstoreId) {
         //Set of book ids that are already in bookstore
         Set<Id> publishersWorkingWithBookstoreIds = new Set<Id>();

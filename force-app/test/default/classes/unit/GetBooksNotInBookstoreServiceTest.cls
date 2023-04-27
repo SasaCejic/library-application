@@ -53,6 +53,7 @@ public with sharing class GetBooksNotInBookstoreServiceTest {
             BookstoreBookSelector.class.getName(),
             (BookstoreBookSelector)BookstoreBookSelectorMock.getMock()
         );
+        
         //Mock Book selector
         Mocker BookSelectorMock = new Mocker(BookSelector.class)
         .setBehavior('getListNotInIds', new List<Book__c>{});

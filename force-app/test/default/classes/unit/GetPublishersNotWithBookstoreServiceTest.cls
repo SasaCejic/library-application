@@ -10,7 +10,6 @@ public with sharing class GetPublishersNotWithBookstoreServiceTest {
         TestFactory testFactory = new TestFactory();
         Publisher__c publisherForTest = testFactory.createPublisher(false, true);
         Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
-
         Bookstore_Publisher__c bookstorePublisherForTest = new Bookstore_Publisher__c();
 
         Mocker BookstorePublisherSelectorMock = new Mocker(BookstorePublisherSelector.class)

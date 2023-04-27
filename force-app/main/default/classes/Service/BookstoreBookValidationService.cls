@@ -1,12 +1,11 @@
 /*
-* Validates if the Book that is being added to the bookstore(Via creating Bookstore_Book__c object) has the same publisher
-* as the bookstore that it is being added too
+ * Validates if the Book that is being added to the bookstore(Via creating Bookstore_Book__c object) has the same publisher 
+ * as the bookstore that it is being added too
 */
 public with sharing class BookstoreBookValidationService implements CustomObject {
     /*
-    * @param newBookstoreBooks - Books added to the bookstore
+     * @param newBookstoreBooks - Books added to the bookstore
     */
-
     public void validatePublisher(List<Bookstore_Book__c> newBookstoreBooks) {
         //Set of book ids corresponding to added bookstoreBooks Ids
         Set<Id> addedBookIds = new Set<Id>();
@@ -14,8 +13,8 @@ public with sharing class BookstoreBookValidationService implements CustomObject
         Map<Id, List<Id>> publisherAndBookstoreIds = new Map<Id, List<Id>>();
         // Set of Ids used to store Bookstore_Book__c Ids that did not pass the validation
         Set<Id> nonValidatedBookstoreBooks = new Set<Id>(); 
+        
         //Loop through all new records and put all book ids into a set
-
         for(Bookstore_Book__c bookstoreBook : newBookstoreBooks) {
             addedBookIds.add(bookstoreBook.Book__c);
         }
