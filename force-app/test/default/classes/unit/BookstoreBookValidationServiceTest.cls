@@ -8,28 +8,26 @@
 public with sharing class BookstoreBookValidationServiceTest {
     @isTest
     public static void validatePublisher_willNotAddError_ifBookstorePublisherIsAdded() {
-        //Create data for mocks and test
+        // create data
         TestFactory testFactory = new TestFactory();
         Publisher__c publisherForTest = testFactory.createPublisher(false, true);
         Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
         Author__c authorForTest = testFactory.createAuthor(false, true);
         Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, true);
-
         Bookstore_Book__c bookstoreBookForTest = testFactory
         .createBookstoreBook(bookForTest.Id, bookstoreForTest.Id, false, true);
         Bookstore_Publisher__c bookStorePublisherForMock = testFactory
         .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false, true);
-        
-        Map<Id, Book__c> bookMapForMock = new Map<Id, Book__c>();
-        bookMapForMock.put(bookForTest.Id, bookForTest);
-        //Mock book selector so we don't depend on it
+
+        // create mocks
         Mocker bookSelectorMock = new Mocker(BookSelector.class)
-        .setBehavior('getMapByIds', bookMapForMock);
+        .setBehavior('getMapByIds', new Map<Id, Book__c>{
+            bookForTest.Id => bookForTest
+        });
         ObjectFactory.mocks.put(
             BookSelector.class.getName(),
             (BookSelector)bookSelectorMock.getMock()
         );
-        //Mock BookstoreBook selector so we don't depend on it
         Mocker bookStorePublisherSelectorMock = new Mocker(BookstorePublisherSelector.class)
         .setBehavior('getList', new List<Bookstore_Publisher__c>{bookStorePublisherForMock});
         ObjectFactory.mocks.put(
@@ -37,34 +35,34 @@ public with sharing class BookstoreBookValidationServiceTest {
             (BookstorePublisherSelector) bookStorePublisherSelectorMock.getMock()
         );
 
+        // execute
         BookstoreBookValidationService bookStoreBookValidation = new BookstoreBookValidationService();
         bookStoreBookValidation.validatePublisher(new List<Bookstore_Book__c>{bookstoreBookForTest});
 
+        // assert
         Assert.isTrue(bookstoreBookForTest.getErrors().size() == 0);
     }
     
     @isTest
     public static void validatePublisher_willAddError_ifBookstorePublisherIsNotAdded() {
-       //Create data for mocks and test
+       // create data
        TestFactory testFactory = new TestFactory();
        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
        Author__c authorForTest = testFactory.createAuthor(true, false);
        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, true);
-
        Bookstore_Book__c bookstoreBookForTest = testFactory
        .createBookstoreBook(bookForTest.Id, bookstoreForTest.Id, false, true);
        
-       Map<Id, Book__c> bookMapForMock = new Map<Id, Book__c>();
-       bookMapForMock.put(bookForTest.Id, bookForTest);
-       //Mock book selector so we don't depend on it
+       // create mocks
        Mocker bookSelectorMock = new Mocker(BookSelector.class)
-       .setBehavior('getMapByIds', bookMapForMock);
+       .setBehavior('getMapByIds', new Map<Id, Book__c>{
+           bookForTest.Id => bookForTest
+       });
        ObjectFactory.mocks.put(
            BookSelector.class.getName(),
            (BookSelector)bookSelectorMock.getMock()
        );
-       //Mock BookstoreBook selector so we don't depend on it
        Mocker bookStorePublisherSelectorMock = new Mocker(BookstorePublisherSelector.class)
        .setBehavior('getList', new List<Bookstore_Publisher__c>());
        ObjectFactory.mocks.put(
@@ -72,34 +70,34 @@ public with sharing class BookstoreBookValidationServiceTest {
            (BookstorePublisherSelector) bookStorePublisherSelectorMock.getMock()
        );
 
+       // execute
        BookstoreBookValidationService bookStoreBookValidation = new BookstoreBookValidationService();
        bookStoreBookValidation.validatePublisher(new List<Bookstore_Book__c>{bookstoreBookForTest});
 
+       // assert
        Assert.isTrue(bookstoreBookForTest.getErrors().size() == 1);
     }
     
     @isTest
     public static void validatePublisher_willUseCorrectSelectors() {
-        //Create data for mocks and test
+        // create data
         TestFactory testFactory = new TestFactory();
         Publisher__c publisherForTest = testFactory.createPublisher(false, true);
         Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
         Author__c authorForTest = testFactory.createAuthor(true, false);
         Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, true);
-
         Bookstore_Book__c bookstoreBookForTest = testFactory
         .createBookstoreBook(bookForTest.Id, bookstoreForTest.Id, false, true);
         
-        Map<Id, Book__c> bookMapForMock = new Map<Id, Book__c>();
-        bookMapForMock.put(bookForTest.Id, bookForTest);
-        //Mock book selector so we don't depend on it
+        // create mocks
         Mocker bookSelectorMock = new Mocker(BookSelector.class)
-        .setBehavior('getMapByIds', bookMapForMock);
+        .setBehavior('getMapByIds', new Map<Id, Book__c>{
+            bookForTest.Id => bookForTest
+        });
         ObjectFactory.mocks.put(
             BookSelector.class.getName(),
             (BookSelector)bookSelectorMock.getMock()
         );
-        //Mock BookstoreBook selector so we don't depend on it
         Mocker bookStorePublisherSelectorMock = new Mocker(BookstorePublisherSelector.class)
         .setBehavior('getList', new List<Bookstore_Publisher__c>());
         ObjectFactory.mocks.put(
@@ -107,9 +105,11 @@ public with sharing class BookstoreBookValidationServiceTest {
             (BookstorePublisherSelector) bookStorePublisherSelectorMock.getMock()
         );
 
+        // execute
         BookstoreBookValidationService bookStoreBookValidation = new BookstoreBookValidationService();
         bookStoreBookValidation.validatePublisher(new List<Bookstore_Book__c>{bookstoreBookForTest});
         
+        // assert
         bookSelectorMock.assertMethodExecutionCount('getMapByIds', 1);
         bookStorePublisherSelectorMock.assertMethodExecutionCount('getList', 1);
     }

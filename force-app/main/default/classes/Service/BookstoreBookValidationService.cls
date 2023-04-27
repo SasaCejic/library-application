@@ -31,7 +31,8 @@ public with sharing class BookstoreBookValidationService implements CustomObject
         }
 
         //Get all bookstore_publisher__c objects
-        BookstorePublisherSelector bookstorePublisherSelector = (BookstorePublisherSelector) new ObjectFactory().createObject(BookstorePublisherSelector.class);
+        BookstorePublisherSelector bookstorePublisherSelector = (BookstorePublisherSelector) new ObjectFactory()
+            .createObject(BookstorePublisherSelector.class);
         List<Bookstore_Publisher__c> bookstorePublishers = bookstorePublisherSelector.getList();
 
         //Find the Bookstore_Publisher__c objects corresponding to pairs of bookstores and publishers 

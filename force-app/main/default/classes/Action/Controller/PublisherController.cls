@@ -8,7 +8,7 @@ public with sharing class PublisherController {
     @AuraEnabled(cacheable=true)
     public static List<Publisher__c> getPublishersNotWorkingWithBookstore(Id bookstoreId) {
         GetPublishersNotWithBookstoreService service = (GetPublishersNotWithBookstoreService) new ObjectFactory()
-        .createObject(GetPublishersNotWithBookstoreService.class);
+            .createObject(GetPublishersNotWithBookstoreService.class);
         service.getPublishers(bookstoreId);
         return service.getResponse();
     }

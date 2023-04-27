@@ -8,7 +8,7 @@ public with sharing class BookController {
     @AuraEnabled(cacheable=true)
     public static List<Book__c> getBooksNotInBookstore(Id bookstoreId) {
         GetBooksNotInBookstoreService service = (GetBooksNotInBookstoreService) new ObjectFactory()
-        .createObject(GetBooksNotInBookstoreService.class);
+            .createObject(GetBooksNotInBookstoreService.class);
         service.getBooks(bookstoreId);
         return service.getResponse();
     }

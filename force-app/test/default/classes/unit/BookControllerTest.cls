@@ -5,7 +5,7 @@
 public with sharing class BookControllerTest {
     @isTest
     public static void getBooksNotInBookstore_willUseService() {
-        //Mock book selector so we don't depend on it
+        // create mock
         Mocker getBooksNotInBookstoreServiceMock = new Mocker(getBooksNotInBookstoreService.class)
         .setBehavior('getBooks', null);
         getBooksNotInBookstoreServiceMock.setBehavior('getResponse', new List<Book__c>{});
@@ -15,8 +15,10 @@ public with sharing class BookControllerTest {
             (GetBooksNotInBookstoreService) getBooksNotInBookstoreServiceMock.getMock()
         );
 
+        // execute
         List<Book__c> booksNotInBookstore = BookController.getBooksNotInBookstore(new TestFactory().getFakeId(Bookstore__c.SObjectType, true));
 
+        // assert
         getBooksNotInBookstoreServiceMock.assertMethodExecutionCount('getBooks', 1);
         getBooksNotInBookstoreServiceMock.assertMethodExecutionCount('getResponse', 1);
     }
