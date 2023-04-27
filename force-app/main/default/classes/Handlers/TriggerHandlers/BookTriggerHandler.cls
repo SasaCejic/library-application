@@ -3,14 +3,17 @@
 * disabled variable serves for disabling trigger during test
 */
 public with sharing class BookTriggerHandler extends TriggerHandler {
-@TestVisible
+    
+    @TestVisible
     private static Boolean triggerDisabled = false;
+
     /*
     * method used to disable trigger 
     */
     public override Boolean isDisabled() {
         return triggerDisabled;
     }
+
     /*
     * @param - newRecords - records being inserted
     */
