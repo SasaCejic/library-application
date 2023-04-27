@@ -22,6 +22,7 @@ public with sharing class GetPublishersNotWithBookstoreService implements Custom
         Set<Id> publishersWorkingWithBookstoreIds = new Set<Id>();
         BookstorePublisherSelector bookstorePublisherSelector = (BookstorePublisherSelector) new ObjectFactory()
             .createObject(BookstorePublisherSelector.class);
+            
         //Get all bookstoreBooks assigned to Bookstore by bookstore Id
         List<Bookstore_Publisher__c> bookstorePublishersInBookstore = bookstorePublisherSelector.getListByBookstoreId(bookstoreId);
 
