@@ -35,15 +35,7 @@ public with sharing class BookstoreBookSelector implements CustomObject {
             FROM
                 Bookstore_Book__c
             WHERE
-                Book__c
-            IN (
-                SELECT
-                    Id
-                FROM
-                    Book__c
-                WHERE
-                    Author__c = :authorId
-                )
+                Book__r.Author__c = :authorId
             GROUP BY
                 Bookstore__c
         ];
