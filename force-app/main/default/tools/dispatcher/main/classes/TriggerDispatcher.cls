@@ -1,17 +1,20 @@
 /*
-*Trigger dispatcher is a class that handles Logic for triggers based on their operationType and trigger handler
-*/
+ *Trigger dispatcher is a class that handles Logic for triggers based on their operationType and trigger handler
+ */
 public with sharing class TriggerDispatcher {
+
     TriggerOperation operationType;
     TriggerHandler handler;
+
     public TriggerDispatcher(TriggerOperation operation, TriggerHandler triggerHandler) {
         operationType = operation;
         handler = triggerHandler;
     }
+
     /*
-    * @param operationType - type of operration that started the trigge
-    * @param handler - Class of type TriggerHanlder that implements blogic of what happens with the trigger
-    */ 
+     * @param operationType - type of operration that started the trigge
+     * @param handler - Class of type TriggerHanlder that implements blogic of what happens with the trigger
+     */
     public void dispatch() {
         if(handler.isDisabled()) {
             return;
