@@ -1,13 +1,10 @@
 /*
-* This class performs tests for Bookstore_Book__c trigger
+* This class tests book controller methods
 */
 @isTest
-public with sharing class BookstoreBookTriggerTest {
-    /*
-    * Method performs successfull Publisher validation because it is ran as Book Manager
-    */
+public with sharing class BookControllerIntegrationTest {
     @isTest
-    public static void onInsert_willAddError_whenBookstorePublisherIsNotAdded() {
+    public static void getBooksNotInBookstore_willReturnOneBook_IfNoBookstoreBookRecordsAreCreated() {
         //Create data for mocks and test
         TestFactory testFactory = new TestFactory();
         Map<String, String> publisherDetails = new Map<String, String>();
@@ -35,13 +32,10 @@ public with sharing class BookstoreBookTriggerTest {
         bookDetails.put('categories', 'fantasy');
         Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, bookDetails, true, false);
 
-        Bookstore_Book__c bookstoreBookForTest = testFactory
-        .createBookstoreBook(bookForTest.Id, bookstoreForTest.Id, false, false);  
-
         Test.startTest();
-        Database.SaveResult insertResult = Database.insert(bookstoreBookForTest, false);
+        List<Book__c> booksNotInBookstore = BookController.getBooksNotInBookstore(bookstoreForTest.Id);
         Test.stopTest();
-
-        System.assert(insertResult.isSuccess() == false);
+        
+        System.assertEquals(1, booksNotInBookstore.size());
     }
 }

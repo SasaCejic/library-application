@@ -37,11 +37,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Book__c.Author__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Book__c.Categories__c</field>
         <readable>true</readable>
     </fieldPermissions>

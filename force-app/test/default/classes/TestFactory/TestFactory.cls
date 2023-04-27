@@ -82,7 +82,7 @@ public with sharing class TestFactory {
     * @param publisherId - Id of a Publisher__c object which is a parent in master-detail relationship to Book__c
     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
     */
-    public Book__c createBook(Id publisherId, Map<String, String> details,  Boolean forInsert, Boolean simulateInsert) {
+    public Book__c createBook(Id publisherId, Id authorId, Map<String, String> details,  Boolean forInsert, Boolean simulateInsert) {
         Book__c currentBook = new Book__c();
         currentBook.Name = details.get('name');
         currentBook.Description__c = details.get('description');
@@ -90,6 +90,7 @@ public with sharing class TestFactory {
         currentBook.Language__c = details.get('language');
         currentBook.Categories__c = details.get('categories');
         currentBook.Publisher__c = publisherId;
+        currentBook.Author__c = authorId;
         currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
         if(forInsert) {
             insert currentBook;
@@ -114,5 +115,19 @@ public with sharing class TestFactory {
         }
         newBookReview.Id = getFakeId(Book_Review__c.SObjectType, simulateInsert);
         return newBookReview;
+    }
+    /*
+    *
+    */
+    public Author__c createAuthor(Map<String, String> details, Boolean forInsert, Boolean simulateInsert) {
+        Author__c newAuthor = new Author__c();
+        newAuthor.First_Name__c = details.get('firstName');
+        newAuthor.Last_Name__c = details.get('lastName');
+        if(forInsert) {
+            insert newAuthor;
+            return newAuthor;
+        }
+        newAuthor.Id = getFakeId(Author__c.SObjectType, simulateInsert);
+        return newAuthor;
     }
 }

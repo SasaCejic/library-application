@@ -1,13 +1,10 @@
 /*
-* This class is used to test logic in BookstoreBookTriggerHandler
+* Class that performs unit tests for book controller
 */
 @isTest
-public with sharing class BookstoreBookTriggerHandlerTest {
-    /*
-    * Data used for creating objects is simple input for rquired fields, meaning it won't influence the test as we use mockers, it's just there to fulfill object creation
-    */
+public with sharing class BookControllerUnitTest {
     @isTest
-    public static void beforeInsert_willNotFindError_ifErrorNotAdded() {
+    public static void getBooksNotInBookstore_willUseService() {
         //Create data for mocks and test
         TestFactory testFactory = new TestFactory();
         Map<String, String> publisherDetails = new Map<String, String>();
@@ -25,7 +22,7 @@ public with sharing class BookstoreBookTriggerHandlerTest {
         Map<String, String> authorDetails = new Map<String, String>();
         authorDetails.put('firstName', 'Author');
         authorDetails.put('lastName', 'Author');
-        Author__c authorForTest = testFactory.createAuthor(authorDetails, true, false);
+        Author__c authorForTest = testFactory.createAuthor(authorDetails, false, true);
 
         Map<String, String> bookDetails = new Map<String, String>();
         bookDetails.put('name', 'book');
@@ -34,23 +31,22 @@ public with sharing class BookstoreBookTriggerHandlerTest {
         bookDetails.put('language', 'english');
         bookDetails.put('categories', 'fantasy');
         Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, bookDetails, false, true);
-
-        Bookstore_Book__c bookstoreBookForMock = testFactory
-        .createBookstoreBook(bookForTest.Id, bookstoreForTest.Id, false, true);
-
-        Mocker bookstoreBookValidationServiceMock = new Mocker(BookstoreBookValidationService.class)
-        .setBehavior('validatePublisher', bookstoreBookForMock);
+    
+        //Mock book selector so we don't depend on it
+        Mocker getBooksNotInBookstoreServiceMock = new Mocker(getBooksNotInBookstoreService.class)
+        .setBehavior('getBooks', null);
+        getBooksNotInBookstoreServiceMock.setBehavior('getResponse', new List<Book__c>{bookForTest});
         ObjectFactory.mocks.put(
-            BookstoreBookValidationService.class.getName(),
-            (BookstoreBookValidationService)bookstoreBookValidationServiceMock.getMock()
+            GetBooksNotInBookstoreService.class.getName(),
+            (GetBooksNotInBookstoreService) getBooksNotInBookstoreServiceMock.getMock()
         );
-
+        
         Test.startTest();
-        BookstoreBookTriggerHandler bookstoreBookTriggerHandler = new BookstoreBookTriggerHandler();
-        bookstoreBookTriggerHandler.beforeInsert(new List<Bookstore_Book__c>{bookstoreBookForMock});
+        List<Book__c> booksNotInBookstore = BookController.getBooksNotInBookstore(bookstoreForTest.Id);
         Test.stopTest();
 
-        System.assert(bookstoreBookForMock.getErrors().size() == 0);
-        bookstoreBookValidationServiceMock.assertMethodExecutionCount('validatePublisher', 1);
+        getBooksNotInBookstoreServiceMock.assertMethodExecutionCount('getBooks', 1);
+        getBooksNotInBookstoreServiceMock.assertMethodExecutionCount('getResponse', 1);
+        System.assertEquals(1, booksNotInBookstore.size());
     }
 }
