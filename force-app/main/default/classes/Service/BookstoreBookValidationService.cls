@@ -9,8 +9,10 @@ public with sharing class BookstoreBookValidationService implements CustomObject
     public void validatePublisher(List<Bookstore_Book__c> newBookstoreBooks) {
         //Set of book ids corresponding to added bookstoreBooks Ids
         Set<Id> addedBookIds = new Set<Id>();
+        
         //Map that holds pairs of publisher and bookstore Ids corresponding to the Bookstore_Book__c object Id
         Map<Id, List<Id>> publisherAndBookstoreIds = new Map<Id, List<Id>>();
+
         // Set of Ids used to store Bookstore_Book__c Ids that did not pass the validation
         Set<Id> nonValidatedBookstoreBooks = new Set<Id>(); 
         
