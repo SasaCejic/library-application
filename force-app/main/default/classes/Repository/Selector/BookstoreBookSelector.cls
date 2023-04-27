@@ -4,7 +4,21 @@
  * 
  * @see Bookstore_Book__c
  */
-public with sharing class BookstoreBookSelector implements CustomObject{
+
+public with sharing class BookstoreBookSelector implements CustomObject {
+    /*
+     * @param bookstoreId - Id of the bookstore we want to return all the books that are not in there
+     */
+    public List<Bookstore_Book__c> getListByBookstoreId(Id bookstoreId) {
+        return [
+            SELECT
+                Id,
+                Book__c,
+                Bookstore__c
+            FROM Bookstore_Book__c
+            WHERE Bookstore__c = :bookstoreId
+        ];
+    }
 
     /**
      * Get all Bookstore__c fields from Bookstore_Book__c junction
@@ -14,7 +28,7 @@ public with sharing class BookstoreBookSelector implements CustomObject{
      * 
      * @return Bookstore_Book__c records grouped by Bookstore__c field
      */
-    public AggregateResult[] getBookstoreBooksWithAuthorsBooks(Id authorId){
+    public List<AggregateResult> getListByAuthorId(Id authorId){
         return [
             SELECT
                 Bookstore__c

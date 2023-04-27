@@ -46,7 +46,7 @@ public with sharing class AuthorService implements CustomObject{
         }else{
             BookstoreBookSelector bookstoreBookSelector = (BookstoreBookSelector) new ObjectFactory().createObject(BookstoreBookSelector.class);
         
-            AggregateResult[] bookstoreBooks = bookstoreBookSelector.getBookstoreBooksWithAuthorsBooks(authorId);
+            List<AggregateResult> bookstoreBooks = bookstoreBookSelector.getListByAuthorId(authorId);
             Set<Id> bookstoreIds = new Set<Id>();
             for(AggregateResult ar : bookstoreBooks){
                 bookstoreIds.add((Id)ar.get('Bookstore__c'));
@@ -54,7 +54,7 @@ public with sharing class AuthorService implements CustomObject{
 
             BookstoreSelector bookstoreSelector = (BookstoreSelector) new ObjectFactory().createObject(BookstoreSelector.class);
 
-            this.response = bookstoreSelector.getBookstoresWithAuthorsBooks(bookstoreIds);
+            this.response = bookstoreSelector.getListByIds(bookstoreIds);
         }
     }
 }

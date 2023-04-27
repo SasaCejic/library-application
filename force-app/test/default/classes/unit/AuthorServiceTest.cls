@@ -18,7 +18,7 @@ public with sharing class AuthorServiceTest {
 
         // create mock
         Mocker bookstoreBookSelectorMock = new Mocker(BookstoreBookSelector.class)
-            .setBehavior('getBookstoreBooksWithAuthorsBooks', new AggregateResult[]{});
+            .setBehavior('getListByAuthorId', new AggregateResult[]{});
         // set mock
         ObjectFactory.mocks.put(
             BookstoreBookSelector.class.getName(),
@@ -27,7 +27,7 @@ public with sharing class AuthorServiceTest {
 
         //create mock
         Mocker bookstoreSelectorMock = new Mocker(BookstoreSelector.class)
-            .setBehavior('getBookstoresWithAuthorsBooks', new List<Bookstore__c>{bookstore});
+            .setBehavior('getListByIds', new List<Bookstore__c>{bookstore});
         // set mock
         ObjectFactory.mocks.put(
             BookstoreSelector.class.getName(),
@@ -42,8 +42,8 @@ public with sharing class AuthorServiceTest {
         Test.stopTest();
 
         // assert
-        bookstoreBookSelectorMock.assertMethodExecutionCount('getBookstoreBooksWithAuthorsBooks', 1);
-        bookstoreSelectorMock.assertMethodExecutionCount('getBookstoresWithAuthorsBooks', 1);
+        bookstoreBookSelectorMock.assertMethodExecutionCount('getListByAuthorId', 1);
+        bookstoreSelectorMock.assertMethodExecutionCount('getListByIds', 1);
         Assert.areEqual(1, bookstores.size());
         Assert.areEqual(bookstore.Id, bookstores[0].Id);
     }
