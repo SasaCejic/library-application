@@ -7,7 +7,7 @@ public with sharing class BookstoreBookTriggerHandlerTest {
     * Data used for creating objects is simple input for rquired fields, meaning it won't influence the test as we use mockers, it's just there to fulfill object creation
     */
     @isTest
-    public static void beforeInsert_willUseCorrectService_willNotFindError_ifErrorNotAdded() {
+    public static void beforeInsert_willNotFindError_ifErrorNotAdded() {
         //Create data for mocks and test
         TestFactory testFactory = new TestFactory();
         Map<String, String> publisherDetails = new Map<String, String>();
