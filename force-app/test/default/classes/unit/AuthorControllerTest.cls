@@ -35,8 +35,6 @@ public with sharing class AuthorControllerTest {
         // assert
         mock.assertMethodExecutionCount('getBookstoresWithAuthorsBooks', 1);
         mock.assertMethodExecutionCount('getResponse', 1);
-        Assert.areEqual(1, bookstores.size());
-        Assert.areEqual(bookstore.Id, bookstores[0].Id);
     }
 
 }

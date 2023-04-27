@@ -42,7 +42,7 @@ public with sharing class AuthorService implements CustomObject{
      */
     public void getBookstoresWithAuthorsBooks(Id authorId){
         if(authorId == null){
-            this.response = null;
+            this.setResponse(null);
         }else{
             BookstoreBookSelector bookstoreBookSelector = (BookstoreBookSelector) new ObjectFactory().createObject(BookstoreBookSelector.class);
         
@@ -54,7 +54,7 @@ public with sharing class AuthorService implements CustomObject{
 
             BookstoreSelector bookstoreSelector = (BookstoreSelector) new ObjectFactory().createObject(BookstoreSelector.class);
 
-            this.response = bookstoreSelector.getListByIds(bookstoreIds);
+            this.setResponse(bookstoreSelector.getListByIds(bookstoreIds));
         }
     }
 }
