@@ -8,7 +8,6 @@ public with sharing class BookReviewValidationService implements CustomObject {
     * @param newRecords - records being inserted into the database
     */
     public void validateReview(List<Book_Review__c> newBookReviews) {
-        
         // Check if in the new added reviews there are 2 same ones(CreatedById is not checked since it is not writeable and can only have the Id of current user)
         // Meaning that there can never be multiple new book reviews at once from different users
         Set<Id> booksIds = new Set<Id>();
