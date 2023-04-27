@@ -2,7 +2,7 @@
 * This class tests publisher controller methods
 */
 @isTest
-public with sharing class PublisherControllerUnitTest {
+public with sharing class PublisherControllerTest {
     @isTest
     public static void getPublishersNotWithBookstore_willUseService() {
         //Create data for mocks and test
@@ -28,9 +28,7 @@ public with sharing class PublisherControllerUnitTest {
             (GetPublishersNotWithBookstoreService) GetPublishersNotWithBookstoreServiceMock.getMock()
         );
 
-        Test.startTest();
         List<Publisher__c> publishersNotWorkingWithBookstore = PublisherController.getPublishersNotWorkingWithBookstore(bookstoreForTest.Id);
-        Test.stopTest();
 
         GetPublishersNotWithBookstoreServiceMock.assertMethodExecutionCount('getPublishers',1);
         GetPublishersNotWithBookstoreServiceMock.assertMethodExecutionCount('getResponse', 1);

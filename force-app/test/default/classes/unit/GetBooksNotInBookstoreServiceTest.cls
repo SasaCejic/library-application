@@ -48,11 +48,9 @@ public with sharing class GetBooksNotInBookstoreServiceTest {
             (BookSelector)BookSelectorMock.getMock()
         );
 
-        Test.startTest();
         GetBooksNotInBookstoreService service = new GetBooksNotInBookstoreService();
         service.getBooks(bookstoreForTest.Id);
         List<Book__c> booksNotInBookstore = service.getResponse();
-        Test.stopTest();
 
         System.assertEquals(1, booksNotInBookstore.size());
     }
@@ -104,11 +102,9 @@ public with sharing class GetBooksNotInBookstoreServiceTest {
             (BookSelector)BookSelectorMock.getMock()
         );
 
-        Test.startTest();
         GetBooksNotInBookstoreService service = new GetBooksNotInBookstoreService();
         service.getBooks(bookstoreForTest.Id);
         List<Book__c> booksNotInBookstore = service.getResponse();
-        Test.stopTest();
 
         System.assertEquals(0, booksNotInBookstore.size());
     }
@@ -160,11 +156,9 @@ public with sharing class GetBooksNotInBookstoreServiceTest {
             (BookSelector)BookSelectorMock.getMock()
         );
 
-        Test.startTest();
         GetBooksNotInBookstoreService service = new GetBooksNotInBookstoreService();
         service.getBooks(bookstoreForTest.Id);
         List<Book__c> booksNotInBookstore = service.getResponse();
-        Test.stopTest();
 
         BookSelectorMock.assertMethodExecutionCount('getBooksNotInSet', 1);
         BookstoreBookSelectorMock.assertMethodExecutionCount('getListByBookstoreId', 1);

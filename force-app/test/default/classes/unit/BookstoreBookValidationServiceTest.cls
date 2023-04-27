@@ -57,10 +57,8 @@ public with sharing class BookstoreBookValidationServiceTest {
             (BookstorePublisherSelector) bookStorePublisherSelectorMock.getMock()
         );
 
-        Test.startTest();
         BookstoreBookValidationService bookStoreBookValidation = new BookstoreBookValidationService();
         bookStoreBookValidation.validatePublisher(new List<Bookstore_Book__c>{bookstoreBookForTest});
-        Test.stopTest();
 
         System.assert(bookstoreBookForTest.getErrors().size() == 0);
     }
@@ -114,10 +112,8 @@ public with sharing class BookstoreBookValidationServiceTest {
            (BookstorePublisherSelector) bookStorePublisherSelectorMock.getMock()
        );
 
-       Test.startTest();
        BookstoreBookValidationService bookStoreBookValidation = new BookstoreBookValidationService();
        bookStoreBookValidation.validatePublisher(new List<Bookstore_Book__c>{bookstoreBookForTest});
-       Test.stopTest();
 
        System.assert(bookstoreBookForTest.getErrors().size() == 1);
     }
@@ -171,10 +167,9 @@ public with sharing class BookstoreBookValidationServiceTest {
             (BookstorePublisherSelector) bookStorePublisherSelectorMock.getMock()
         );
 
-        Test.startTest();
         BookstoreBookValidationService bookStoreBookValidation = new BookstoreBookValidationService();
         bookStoreBookValidation.validatePublisher(new List<Bookstore_Book__c>{bookstoreBookForTest});
-        Test.stopTest();
+        
         bookSelectorMock.assertMethodExecutionCount('getMapByIds', 1);
         bookStorePublisherSelectorMock.assertMethodExecutionCount('getList', 1);
     }
