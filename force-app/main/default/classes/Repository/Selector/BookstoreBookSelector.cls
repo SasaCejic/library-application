@@ -5,6 +5,7 @@ public with sharing class BookstoreBookSelector implements CustomObject {
     /*
     * @param bookstoreId - Id of the bookstore we want to return all the books that are not in there
     */
+    
     public List<Bookstore_Book__c> getListByBookstoreId(Id bookstoreId) {
         return [
             SELECT

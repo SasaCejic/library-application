@@ -5,6 +5,7 @@ public with sharing class BookstorePublisherSelector implements CustomObject {
     /*
     * Method fetches all Bookstore_Publisher__c objects
     */
+
     public List<Bookstore_Publisher__c> getList() {
         return [
             SELECT
@@ -14,10 +15,12 @@ public with sharing class BookstorePublisherSelector implements CustomObject {
             FROM Bookstore_Publisher__c
         ];
     }
+    
     /*
     * Method returns all Bookstore_Publisher__c records working with Bookstore
     * @param boosktoreId - id of Bookstore
     */
+
     public List<Bookstore_Publisher__c> getListByBookstoreId(Id bookstoreId) {
         return [
             SELECT
