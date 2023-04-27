@@ -52,3 +52,6 @@ jest.config.js
 .eslintignore
 OfflineSymbolTable.zip
 IlluminatedCloud
+
+#Profiles
+**/profiles/Admin.profile-meta.xml
