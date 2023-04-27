@@ -14,7 +14,7 @@ public with sharing class BookstoreSelector implements CustomObject{
      * 
      * @return list of Bookstore__c object records
      */
-    public List<Bookstore__c> getBookstoresWithAuthorsBooks(List<Id> bookstoreIds){
+    public List<Bookstore__c> getBookstoresWithAuthorsBooks(Set<Id> bookstoreIds){
         return [
             SELECT
                 Id,
