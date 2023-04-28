@@ -29,6 +29,12 @@ public with sharing class TestFactory {
         'categories' => 'fantasy'
     };
 
+    @TestVisible
+    public Map<String, String> bookReviewDetails = new Map<String, String>{
+        'name' => 'Good book',
+        'rating' => '4'
+    };
+
     static Integer s_num = 1;
 
     /*
@@ -138,6 +144,24 @@ public with sharing class TestFactory {
         }
         currentBook.Id = this.getFakeId(Book__c.SObjectType, simulateInsert);
         return currentBook;
+    }
+
+   /*
+    * @param forInsert - Boolean value representing if we want to insert the record or not
+    * @param bookId - Id of a Book__c object which is a parent in master-detail relationship to Book__c
+    * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+    */
+    public Book_Review__c createBookReview(Id bookId, Boolean forInsert, Boolean simulateInsert) {
+        Book_Review__c newBookReview = new Book_Review__c();
+        newBookReview.Book__c = bookId;
+        newBookReview.Name = bookReviewDetails.get('name');
+        newBookReview.Rating__c = bookReviewDetails.get('rating');
+        if(forInsert) {
+            insert newBookReview;
+            return newBookReview;
+        }
+        newBookReview.Id = getFakeId(Book_Review__c.SObjectType, simulateInsert);
+        return newBookReview;
     }
 
     /*
