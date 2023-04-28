@@ -1,7 +1,7 @@
 /*
-* This class handles what happens with Bookstore_Book__c object in triggers
-* triggerDisable variable serves for disabling trigger during test
-*/
+ * This class handles what happens with Bookstore_Book__c object in triggers
+ * triggerDisable variable serves for disabling trigger during test
+ */
 public with sharing class BookstoreBookTriggerHandler extends TriggerHandler {
     @TestVisible
     public static Boolean triggerDisabled = false;
