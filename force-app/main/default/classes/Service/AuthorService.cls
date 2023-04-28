@@ -35,7 +35,7 @@ public with sharing class AuthorService implements CustomObject{
      * records with certain author's books, transform the 
      * AggregateResult to a list of bookstore ids and then call the
      * BookstoreSelector to get all Bookstore__c records
-     * that match the passed ids
+     * that match the passed ids and assigns the response to response class property
      * 
      * @param authorId certain author id
      * 
