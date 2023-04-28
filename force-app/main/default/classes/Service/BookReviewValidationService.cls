@@ -10,7 +10,6 @@ public with sharing class BookReviewValidationService implements CustomObject {
     public void validateReview(List<Book_Review__c> newBookReviews) {
         //Set to store all bookIds present in new books
         Set<Id> booksIds = new Set<Id>();
-
         // Check if in the new added reviews there are 2 same ones(CreatedById is not checked since it is not writeable and can only have the Id of current user)
         // Meaning that there can never be multiple new book reviews at once from different users
         for(Book_Review__c newbookReview:newBookReviews) {
@@ -25,6 +24,7 @@ public with sharing class BookReviewValidationService implements CustomObject {
         BookReviewSelector bookReviewSelector = (BookReviewSelector) new ObjectFactory()
             .createObject(BookReviewSelector.class);
         List<Book_Review__c> allBookReviews = bookReviewSelector.getList();
+        System.debug(allBookReviews);
         for(Book_Review__c newBookReview:newBookReviews) {
             for(Book_Review__c bookReview:allBookReviews) {
                 if(newBookReview.Book__c == bookReview.Book__c && UserInfo.getUserId() == bookReview.CreatedById) {
