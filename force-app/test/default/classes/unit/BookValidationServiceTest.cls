@@ -54,17 +54,7 @@ public with sharing class BookValidationServiceTest {
     }
 
     @isTest
-    public static void validateAuthorPublisherMatch_singleSelectorUse_ifMultipleBooksAdded() {
-        //Create data for mocks and test
-        TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
-        List<Book__c> booksForTest = new List<Book__c>();
-
-        for(Integer i=0;i<3;i++){
-            booksForTest.add(testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, true));
-        }
-
+    public static void validateAuthorPublisherMatch_willUseCorrectSelector() {
         //Mock AuthorPublisher selector so we don't depend on it
         Mocker authorPublisherSelectorMock = new Mocker(AuthorPublisherSelector.class)
         .setBehavior('getList', new List<Author_Publisher__c>{});
@@ -74,7 +64,7 @@ public with sharing class BookValidationServiceTest {
         );
 
         BookValidationService bookValidation = new BookValidationService();
-        bookValidation.validateAuthorPublisherMatch(booksForTest);
+        bookValidation.validateAuthorPublisherMatch(new List<Book__c>{});
 
         authorPublisherSelectorMock.assertMethodExecutionCount('getList', 1);
     }

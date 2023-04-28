@@ -52,6 +52,7 @@ public with sharing class TestFactory {
         Bookstore_Book__c newBookstoreBook = new Bookstore_Book__c();
         newBookstoreBook.Book__c = bookId;
         newBookstoreBook.Bookstore__c = bookstoreId;
+        
         if(forInsert) {
             insert newBookstoreBook;
             return newBookstoreBook;
@@ -70,6 +71,7 @@ public with sharing class TestFactory {
         Bookstore_Publisher__c newBookstorePublisher = new Bookstore_Publisher__c();
         newBookstorePublisher.Publisher__c = publisherId;
         newBookstorePublisher.Bookstore__c = bookstoreId;
+
         if(forInsert) {
             insert newBookstorePublisher;
             return newBookstorePublisher;
@@ -87,6 +89,7 @@ public with sharing class TestFactory {
         newBookstore.Name = bookstoreDetails.get('name');
         newBookstore.Email__c = bookstoreDetails.get('email');
         newBookstore.Store_Identification_Code__c = bookstoreDetails.get('storeId');
+
         if(forInsert) {
             insert newBookstore;
             return newBookstore;
@@ -104,6 +107,7 @@ public with sharing class TestFactory {
         newPublisher.Name = publisherDetails.get('name');
         newPublisher.Email__c = publisherDetails.get('email');
         newPublisher.Phone__c = publisherDetails.get('phone');
+
         if(forInsert) {
             insert newPublisher;
             return newPublisher;
@@ -127,6 +131,7 @@ public with sharing class TestFactory {
         currentBook.Publisher__c = publisherId;
         currentBook.Author__c = authorId;
         currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
+
         if(forInsert) {
             insert currentBook;
             return currentBook;
@@ -144,6 +149,7 @@ public with sharing class TestFactory {
         Author__c newAuthor = new Author__c();
         newAuthor.First_Name__c = authorDetails.get('firstName');
         newAuthor.Last_Name__c = authorDetails.get('lastName');
+
         if(forInsert) {
             insert newAuthor;
             return newAuthor;
@@ -162,6 +168,7 @@ public with sharing class TestFactory {
         Author_Publisher__c newAuthorPublisher = new Author_Publisher__c();
         newAuthorPublisher.Author__c=authorId;
         newAuthorPublisher.Publisher__c=publisherId;
+
         if(forInsert) {
             insert newAuthorPublisher;
             return newAuthorPublisher;
