@@ -1,0 +1,11 @@
+<template>
+    <div if:true={isManagerToBookstore}>
+        <lightning-card title="Books not in your bookstore" icon-name="standard:contact">
+            <lightning-datatable
+                key-field="id"
+                columns={columns}
+                data={books}>
+            </lightning-datatable>
+        </lightning-card>
+    </div>
+</template>

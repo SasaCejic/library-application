@@ -49,7 +49,7 @@
                 <identifier>force_relatedListContainer</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-5f1b505b-73db-426b-b391-4160bd0f7a3f</name>
+        <name>Facet-967794a7-af22-4fe4-bd36-629b7975de2a</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -71,6 +71,30 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Store_Identification_Code__c</fieldItem>
                 <identifier>RecordStore_Identification_Code_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!$User.isBookstoreManager__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Store_Identification_Code_Formula__c</fieldItem>
+                <identifier>RecordStore_Identification_Code_Formula_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!$User.isBookstoreManager__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -295,7 +319,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-5f1b505b-73db-426b-b391-4160bd0f7a3f</value>
+                    <value>Facet-967794a7-af22-4fe4-bd36-629b7975de2a</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>title</name>
@@ -340,10 +364,26 @@
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>booksNotInBookstoreList</componentName>
+                <identifier>c_booksNotInBookstoreList</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>publishersNotWorkingWithBookstoreList</componentName>
+                <identifier>c_publishersNotWorkingWithBookstoreList</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>sidebar</name>
+        <type>Region</type>
+    </flexiPageRegions>
     <masterLabel>Physical Bookstore Record Page</masterLabel>
     <sobjectType>Bookstore__c</sobjectType>
     <template>
-        <name>flexipage:recordHomeSimpleViewTemplate</name>
+        <name>flexipage:recordHomeTemplateDesktop</name>
         <properties>
             <name>enablePageActionConfig</name>
             <value>false</value>

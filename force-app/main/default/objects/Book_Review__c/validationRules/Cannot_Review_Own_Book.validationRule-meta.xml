@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Review_Own_Book</fullName>
+    <active>true</active>
+    <errorConditionFormula>Book__r.CreatedById  =    $User.Id</errorConditionFormula>
+    <errorMessage>Cannot create review for own book</errorMessage>
+</ValidationRule>
