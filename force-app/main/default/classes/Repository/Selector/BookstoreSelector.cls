@@ -4,7 +4,7 @@
  * 
  * @see Bookstore__c
  */
-public with sharing class BookstoreSelector implements CustomObject{
+public with sharing class BookstoreSelector implements CustomObject {
 
     /**
      * Get all Bookstore__c object records with Id, Name and Email__c
@@ -14,7 +14,7 @@ public with sharing class BookstoreSelector implements CustomObject{
      * 
      * @return list of Bookstore__c object records
      */
-    public List<Bookstore__c> getListByIds(Set<Id> bookstoreIds){
+    public List<Bookstore__c> getListByIds(Set<Id> bookstoreIds) {
         return [
             SELECT
                 Id,

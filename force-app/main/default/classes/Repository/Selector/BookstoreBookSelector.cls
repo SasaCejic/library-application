@@ -28,7 +28,7 @@ public with sharing class BookstoreBookSelector implements CustomObject {
      * 
      * @return Bookstore_Book__c records grouped by Bookstore__c field
      */
-    public List<AggregateResult> getListByAuthorId(Id authorId){
+    public List<AggregateResult> getListByAuthorId(Id authorId) {
         return [
             SELECT
                 Bookstore__c

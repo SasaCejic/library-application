@@ -6,7 +6,7 @@
  * @see BookstoreBookSelector.cls
  * @see BookstoreSelector.cls
  */
-public with sharing class AuthorService implements CustomObject{
+public with sharing class AuthorService implements CustomObject {
     /**
      * List of Bookstores that will be returned to Controller as a response
      */
@@ -17,7 +17,7 @@ public with sharing class AuthorService implements CustomObject{
      * 
      * @return this class's response property value
      */
-    public List<Bookstore__c> getResponse(){
+    public List<Bookstore__c> getResponse() {
         return this.response;
     }
 
@@ -26,7 +26,7 @@ public with sharing class AuthorService implements CustomObject{
      * 
      * @param response List of Bookstores that we want to assign to response field
      */
-    public void setResponse(List<Bookstore__c> response){
+    public void setResponse(List<Bookstore__c> response) {
         this.response = response;
     }
 
@@ -40,15 +40,15 @@ public with sharing class AuthorService implements CustomObject{
      * @param authorId certain author id
      * 
      */
-    public void getBookstoresWithAuthorsBooks(Id authorId){
-        if(authorId == null){
+    public void getBookstoresWithAuthorsBooks(Id authorId) {
+        if (authorId == null) {
             this.setResponse(null);
-        }else{
+        } else {
             BookstoreBookSelector bookstoreBookSelector = (BookstoreBookSelector) new ObjectFactory().createObject(BookstoreBookSelector.class);
         
             List<AggregateResult> bookstoreBooks = bookstoreBookSelector.getListByAuthorId(authorId);
             Set<Id> bookstoreIds = new Set<Id>();
-            for(AggregateResult ar : bookstoreBooks){
+            for (AggregateResult ar : bookstoreBooks) {
                 bookstoreIds.add((Id)ar.get('Bookstore__c'));
             }
 

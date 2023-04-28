@@ -15,7 +15,7 @@ public with sharing class AuthorController {
      * @return list of Bookstore__c object records
      */
     @AuraEnabled(cacheable = true)
-    public static List<Bookstore__c> getBookstoresWithAuthorsBooks(Id authorId){
+    public static List<Bookstore__c> getBookstoresWithAuthorsBooks(Id authorId) {
         AuthorService service = (AuthorService) new ObjectFactory().createObject(AuthorService.class);
 
         service.getBookstoresWithAuthorsBooks(authorId);
