@@ -15,7 +15,31 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BookControllerTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookReviewSelector</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookReviewTriggerHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookReviewTriggerHandlerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookReviewTriggerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookReviewValidationService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookReviewValidationServiceTest</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookSelector</apexClass>
@@ -48,6 +72,30 @@
     <classAccesses>
         <apexClass>BookstorePublisherSelector</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorServiceTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreSelector</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ControllerIntegrationTest</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CustomObject</apexClass>
@@ -91,7 +139,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PublisherControllerTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PublisherSelector</apexClass>
@@ -111,7 +159,7 @@
     </classAccesses>
     <custom>true</custom>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Announcement__c.Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -132,18 +180,28 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Author__c.Is_Author_Dead__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Author__c.Number_Of_Published_Books__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Book_Review__c.Comment__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Book_Review__c.Rating__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Book_Review__c.Stars__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -224,9 +282,6 @@
         <layout>Announcement__c-Announcement Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Author_Publisher__c-Author_Publisher Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Author__c-Author Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -244,12 +299,6 @@
         <recordType>Book__c.Paper_Book</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Bookstore_Book__c-Bookstore_Book Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Bookstore_Publisher__c-Bookstore_Publisher Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Bookstore__c-Online Bookstore Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -261,10 +310,16 @@
         <recordType>Bookstore__c.Physical</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>CommunityMemberLayout-Community Member Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Publisher__c-Publisher Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Subscription__c-Subscription Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>User-User Layout</layout>
     </layoutAssignments>
     <objectPermissions>
         <allowCreate>false</allowCreate>
@@ -387,6 +442,10 @@
     <tabVisibilities>
         <tab>Author__c</tab>
         <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Book_Review__c</tab>
+        <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Book__c</tab>
