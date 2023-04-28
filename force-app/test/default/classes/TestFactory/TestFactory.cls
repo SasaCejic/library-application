@@ -58,6 +58,7 @@ public with sharing class TestFactory {
         Bookstore_Book__c newBookstoreBook = new Bookstore_Book__c();
         newBookstoreBook.Book__c = bookId;
         newBookstoreBook.Bookstore__c = bookstoreId;
+        
         if(forInsert) {
             insert newBookstoreBook;
             return newBookstoreBook;
@@ -76,6 +77,7 @@ public with sharing class TestFactory {
         Bookstore_Publisher__c newBookstorePublisher = new Bookstore_Publisher__c();
         newBookstorePublisher.Publisher__c = publisherId;
         newBookstorePublisher.Bookstore__c = bookstoreId;
+
         if(forInsert) {
             insert newBookstorePublisher;
             return newBookstorePublisher;
@@ -93,6 +95,7 @@ public with sharing class TestFactory {
         newBookstore.Name = bookstoreDetails.get('name');
         newBookstore.Email__c = bookstoreDetails.get('email');
         newBookstore.Store_Identification_Code__c = bookstoreDetails.get('storeId');
+
         if(forInsert) {
             insert newBookstore;
             return newBookstore;
@@ -110,6 +113,7 @@ public with sharing class TestFactory {
         newPublisher.Name = publisherDetails.get('name');
         newPublisher.Email__c = publisherDetails.get('email');
         newPublisher.Phone__c = publisherDetails.get('phone');
+
         if(forInsert) {
             insert newPublisher;
             return newPublisher;
@@ -133,6 +137,7 @@ public with sharing class TestFactory {
         currentBook.Publisher__c = publisherId;
         currentBook.Author__c = authorId;
         currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
+
         if(forInsert) {
             insert currentBook;
             return currentBook;
@@ -168,6 +173,7 @@ public with sharing class TestFactory {
         Author__c newAuthor = new Author__c();
         newAuthor.First_Name__c = authorDetails.get('firstName');
         newAuthor.Last_Name__c = authorDetails.get('lastName');
+
         if(forInsert) {
             insert newAuthor;
             return newAuthor;
@@ -175,4 +181,24 @@ public with sharing class TestFactory {
         newAuthor.Id = this.getFakeId(Author__c.SObjectType, simulateInsert);
         return newAuthor;
     }
+
+    /*
+    * @param authorId - Id of a Author__c which is a parent in master-detail relationship
+    * @param publisherId - Id of a Publisher__c which is a parent in master-detail relationship
+    * @param forInsert - Boolean value representing if we want to insert the record or not
+    * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+    */
+    public Author_Publisher__c createAuthorPublisher(Id authorId, Id publisherId, Boolean forInsert, Boolean simulateInsert) {
+        Author_Publisher__c newAuthorPublisher = new Author_Publisher__c();
+        newAuthorPublisher.Author__c=authorId;
+        newAuthorPublisher.Publisher__c=publisherId;
+
+        if(forInsert) {
+            insert newAuthorPublisher;
+            return newAuthorPublisher;
+        }
+        newAuthorPublisher.Id = getFakeId(Author_Publisher__c.SObjectType, simulateInsert);
+        return newAuthorPublisher;
+    }
+
 }

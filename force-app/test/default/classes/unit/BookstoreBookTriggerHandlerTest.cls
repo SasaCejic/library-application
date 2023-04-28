@@ -5,6 +5,8 @@
 public with sharing class BookstoreBookTriggerHandlerTest {
     @isTest
     public static void beforeInsert_willUseService() {
+        //disable triger unrelated to test
+        BookTriggerHandler.triggerDisabled=true;
         // create mock
         Mocker bookstoreBookValidationServiceMock = new Mocker(BookstoreBookValidationService.class)
         .setBehavior('validatePublisher', new List<Bookstore_Book__c>());

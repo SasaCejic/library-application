@@ -8,6 +8,8 @@ public with sharing class BookstoreBookTriggerTest {
      */
     @isTest
     public static void onInsert_willAddError_whenBookstorePublisherIsNotAdded() {
+        //disable triger unrelated to test
+        BookTriggerHandler.triggerDisabled=true;
         // create data
         TestFactory testFactory = new TestFactory();
         Publisher__c publisherForTest = testFactory.createPublisher(true, false);
