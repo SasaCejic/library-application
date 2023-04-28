@@ -20,6 +20,7 @@ export default class BooksNotInBookstoreList extends LightningElement {
     isManagerToBookstore;
     columns = COLUMNS;
     books;
+
     //If the Id of the bookstore manager matches, currently logged in user
     @wire(getRecord, { recordId:'$recordId', fields:[MANAGER_FIELD] })
     wiredBookstore(result) {

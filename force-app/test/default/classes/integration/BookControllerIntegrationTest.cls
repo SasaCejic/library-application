@@ -1,41 +1,23 @@
 /*
-* This class tests book controller methods
-*/
+ * This class tests book controller methods
+ */
 @isTest
 public with sharing class BookControllerIntegrationTest {
     @isTest
-    public static void getBooksNotInBookstore_willReturnOneBook_IfNoBookstoreBookRecordsAreCreated() {
-        //Create data for mocks and test
+    public static void getBooksNotInBookstore_willReturnOneBook_IfNoBookstoreBooksRecordsAreCreated() {
+        // create data
         TestFactory testFactory = new TestFactory();
-        Map<String, String> publisherDetails = new Map<String, String>();
-        publisherDetails.put('name', 'publisher');
-        publisherDetails.put('email', 'publisher@gmail.com');
-        publisherDetails.put('phone', '1241353');
-        Publisher__c publisherForTest = testFactory.createPublisher(publisherDetails, true, false);
-
-        Map<String, String> bookstoreDetails = new Map<String, String>();
-        bookstoreDetails.put('name', 'bookstore');
-        bookstoreDetails.put('email', 'bookstore@gmail.com');
-        bookstoreDetails.put('storeId', '1241353');
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(bookstoreDetails, true, false);
-
-        Map<String, String> authorDetails = new Map<String, String>();
-        authorDetails.put('firstName', 'Author');
-        authorDetails.put('lastName', 'Author');
-        Author__c authorForTest = testFactory.createAuthor(authorDetails, true, false);
-
-        Map<String, String> bookDetails = new Map<String, String>();
-        bookDetails.put('name', 'book');
-        bookDetails.put('description', 'bookdesc');
-        bookDetails.put('ISBN', '214215425');
-        bookDetails.put('language', 'english');
-        bookDetails.put('categories', 'fantasy');
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, bookDetails, true, false);
-
+        Publisher__c publisherForTest = testFactory.createPublisher(true, false);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true, false);
+        Author__c authorForTest = testFactory.createAuthor(true, false);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true, false);
+        
+        // execute
         Test.startTest();
         List<Book__c> booksNotInBookstore = BookController.getBooksNotInBookstore(bookstoreForTest.Id);
         Test.stopTest();
         
-        System.assertEquals(1, booksNotInBookstore.size());
+        // assert
+        Assert.areEqual(1, booksNotInBookstore.size());
     }
 }
