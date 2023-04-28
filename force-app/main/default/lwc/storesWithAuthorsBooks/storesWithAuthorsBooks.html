@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title = "Bookstores with this Author's books">
+        <template lwc:if={bookstores}>
+            <lightning-datatable
+                key-field="Id"
+                data={bookstores}
+                columns={columns}
+                onrowaction={handleRowAction}
+                hide-checkbox-column
+                show-row-number-column
+            >
+           </lightning-datatable>
+        </template>
+        <template lwc:else>
+            There Are No Bookstores with this Author's books.
+        </template>
+    </lightning-card>
+</template>

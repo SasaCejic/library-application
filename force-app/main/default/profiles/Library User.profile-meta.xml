@@ -74,6 +74,30 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AuthorController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorServiceTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreSelector</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ControllerIntegrationTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CustomObject</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -135,7 +159,7 @@
     </classAccesses>
     <custom>true</custom>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Announcement__c.Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -156,18 +180,28 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Author__c.Is_Author_Dead__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Author__c.Number_Of_Published_Books__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Book_Review__c.Comment__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Book_Review__c.Rating__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Book_Review__c.Stars__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -248,9 +282,6 @@
         <layout>Announcement__c-Announcement Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Author_Publisher__c-Author_Publisher Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Author__c-Author Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -266,12 +297,6 @@
     <layoutAssignments>
         <layout>Book__c-Book Layout</layout>
         <recordType>Book__c.Paper_Book</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Bookstore_Book__c-Bookstore_Book Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Bookstore_Publisher__c-Bookstore_Publisher Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Bookstore__c-Online Bookstore Layout</layout>
@@ -417,6 +442,10 @@
     <tabVisibilities>
         <tab>Author__c</tab>
         <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Book_Review__c</tab>
+        <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Book__c</tab>

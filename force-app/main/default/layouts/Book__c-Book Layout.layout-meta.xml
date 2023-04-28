@@ -164,7 +164,6 @@
         </quickActionListItems>
     </quickActionList>
     <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>NAME</fields>
         <fields>Stars__c</fields>
         <relatedList>Book_Review__c.Book__c</relatedList>
