@@ -5,6 +5,8 @@
 public with sharing class BookControllerIntegrationTest {
     @isTest
     public static void getBooksNotInBookstore_willReturnOneBook_IfNoBookstoreBooksRecordsAreCreated() {
+        //disable triger unrelated to test
+        BookTriggerHandler.triggerDisabled=true;
         // create data
         TestFactory testFactory = new TestFactory();
         Publisher__c publisherForTest = testFactory.createPublisher(true, false);
