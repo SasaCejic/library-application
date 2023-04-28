@@ -9,7 +9,7 @@ public with sharing class BookReviewValidationServiceTest {
      */
     @isTest
     public static void validateReview_willAddError_ifSameBookReviewsAreCreated() {
-        // create
+        // create data
         TestFactory testFactory = new TestFactory();
         Publisher__c publisherForTest = testFactory.createPublisher(false, true);
         Author__c authorForTest = testFactory.createAuthor(false, true);
@@ -51,7 +51,7 @@ public with sharing class BookReviewValidationServiceTest {
 
     @isTest
     public static void validateReview_willUseCorrectSelector() {
-        // create
+        // create data
         TestFactory testFactory = new TestFactory();
         Publisher__c publisherForTest = testFactory.createPublisher(false, true);
         Author__c authorForTest = testFactory.createAuthor(false, true);
