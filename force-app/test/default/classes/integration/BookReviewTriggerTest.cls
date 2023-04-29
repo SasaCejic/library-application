@@ -16,12 +16,7 @@ public with sharing class BookReviewTriggerTest {
         Book_Review__c bookReviewForInsert = testFactory.createBookReview(bookForTest.Id, false, false);
         
         // Run test as another user because of the validation rule
-        Profile p = [SELECT Id FROM Profile WHERE Name='Library User'];
-        User user = new User(Alias = 'testuser', Email='testuser@testorg.com',
-                          EmailEncodingKey='UTF-8', LastName='Testing',
-                          LanguageLocaleKey='en_US', LocaleSidKey='en_US',
-                          TimeZoneSidKey='America/Los_Angeles', UserName='user12562d53@testorg.com',
-                          ProfileId = p.Id);
+        User user = testFactory.createLibraryUser();
         system.runAs(user) {
              // execute
             Test.startTest();
