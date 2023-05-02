@@ -6,6 +6,9 @@
                 columns={columns}
                 data={publishers}>
             </lightning-datatable>
+            <div if:true={emptyPublishers}>
+                <p class="slds-align_absolute-center">No publishers to show.</p>
+            </div>
         </lightning-card>
     </div>
 </template>

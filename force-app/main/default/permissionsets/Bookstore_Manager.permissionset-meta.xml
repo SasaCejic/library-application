@@ -189,7 +189,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Bookstore__c.Address__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -211,6 +211,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Bookstore__c.Opening_Hour__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Bookstore__c.Store_Identification_Code_Formula__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Bookstore__c.Store_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -18,6 +18,7 @@ const COLUMNS = [
 export default class BooksNotInBookstoreList extends LightningElement {
     @api recordId;
     isManagerToBookstore;
+    emptyPublishers;
     columns = COLUMNS;
     publishers;
     
@@ -42,6 +43,11 @@ export default class BooksNotInBookstoreList extends LightningElement {
     @wire(getPublishersNotWorkingWithBookstore, { bookstoreId:'$recordId' })
     wiredPublishers(result) {
         if(result.data) {
+            if(result.data.length === 0) {
+                this.emptyPublishers = true;
+                this.publishers = undefined;
+                return;
+            }
             //Create new field that will hold the value of publisherId, so on click we can be redirected to that publisher view page
             let proccessedRecords = [];
             result.data.forEach(rec => {
