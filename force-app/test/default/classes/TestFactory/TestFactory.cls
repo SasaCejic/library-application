@@ -211,6 +211,7 @@ public with sharing class TestFactory {
                           LanguageLocaleKey='en_US', LocaleSidKey='en_US',
                           TimeZoneSidKey='America/Los_Angeles', UserName='user12562d53@testorg.com',
                           ProfileId = p.Id);
+        return user;
     }
 
 }
