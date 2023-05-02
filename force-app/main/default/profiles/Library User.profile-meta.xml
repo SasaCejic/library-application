@@ -219,11 +219,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Book_Review__c.Rating__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Book_Review__c.Stars__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -466,10 +461,6 @@
     <tabVisibilities>
         <tab>Author__c</tab>
         <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Book_Review__c</tab>
-        <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Book__c</tab>
