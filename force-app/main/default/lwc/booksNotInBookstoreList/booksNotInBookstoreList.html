@@ -6,6 +6,9 @@
                 columns={columns}
                 data={books}>
             </lightning-datatable>
+            <div class="slds-align_absolute-center" if:true={emptyBookList}>
+                <p >No books to show.</p>
+            </div>
         </lightning-card>
     </div>
 </template>
