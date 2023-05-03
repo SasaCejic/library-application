@@ -1,4 +1,4 @@
-import { LightningElement, api, wire } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import { CurrentPageReference, NavigationMixin } from 'lightning/navigation';
 import getBooksNotInBookstore from '@salesforce/apex/BookController.getBooksNotInBookstore';
 import ISBN_FIELD from '@salesforce/schema/Book__c.ISBN__c';
@@ -29,7 +29,6 @@ export default class DisplayRecordsInAList extends NavigationMixin(LightningElem
     getStateParameters(currentPageReference) {
         if(currentPageReference) {
             this.recordId = currentPageReference.state?.c__recordId;
-            console.log(this.recordId);
         }
     }
 
@@ -50,7 +49,7 @@ export default class DisplayRecordsInAList extends NavigationMixin(LightningElem
             })
             this.booksForShow = proccessedRecords;
         } else if(result.error) {
-            this.books = undefined;
+            this.booksForShow = undefined;
             const event = new ShowToastEvent({
                 title: 'Error while retrieving book information',
                 message: result.error.body.message,

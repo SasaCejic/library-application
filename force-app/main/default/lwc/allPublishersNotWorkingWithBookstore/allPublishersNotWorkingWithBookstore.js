@@ -29,7 +29,6 @@ export default class DisplayRecordsInAList extends NavigationMixin(LightningElem
     getStateParameters(currentPageReference) {
         if(currentPageReference) {
             this.recordId = currentPageReference.state?.c__recordId;
-            console.log(this.recordId);
         }
     }
 
@@ -50,7 +49,7 @@ export default class DisplayRecordsInAList extends NavigationMixin(LightningElem
             })
             this.publishersForShow = proccessedRecords;
         } else if(result.error) {
-            this.books = undefined;
+            this.publishersForShow = undefined;
             const event = new ShowToastEvent({
                 title: 'Error while retrieving publisher information',
                 message: result.error.body.message,
