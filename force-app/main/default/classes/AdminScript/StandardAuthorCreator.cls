@@ -6,12 +6,11 @@ global with sharing class StandardAuthorCreator {
 //method for creation
 //sets ids to custom metadata
 //in trigger checking if the ids match
-
-    webservice static Boolean create(){
+    public static void create(){
         List<Standard_Authors_Settting__c> stdAuthorSettings = Standard_Authors_Settting__c.getall().values();
 
         if (stdAuthorSettings.size()>0) {
-            return false;
+            return;
         }
         List<Author__c> authorsToCreate = new List<Author__c>();
         Author__c anonymousAuthor = new Author__c(First_Name__c='Anonymous', Last_Name__c='Author');
@@ -24,6 +23,5 @@ global with sharing class StandardAuthorCreator {
         stdAuthorSettingForInsert.AnonymousId__c=anonymousAuthor.Id;
         stdAuthorSettingForInsert.UnknownId__c=unknownAuthor.Id;
         insert stdAuthorSettingForInsert;
-        return true;
     }
 }
