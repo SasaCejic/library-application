@@ -23,7 +23,8 @@ public with sharing class BookSelector implements CustomObject {
         return [
             SELECT
                 Id,
-                Name
+                Name,
+                ISBN__c
             FROM Book__c
             WHERE Id NOT IN :bookIds
         ];

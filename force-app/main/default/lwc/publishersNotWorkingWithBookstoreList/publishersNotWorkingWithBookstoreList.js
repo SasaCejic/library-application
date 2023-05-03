@@ -1,9 +1,11 @@
 import { LightningElement, api, wire } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { NavigationMixin } from 'lightning/navigation';
 import getPublishersNotWorkingWithBookstore from '@salesforce/apex/PublisherController.getPublishersNotWorkingWithBookstore';
 import NAME_FIELD from '@salesforce/schema/Publisher__c.Name';
-import MANAGER_FIELD from '@salesforce/schema/Bookstore__c.Manager__c'
+import MANAGER_FIELD from '@salesforce/schema/Bookstore__c.Manager__c';
+import PHONE_FIELD from '@salesforce/schema/Publisher__c.Phone__c';
 import USER_ID from '@salesforce/user/Id';
 
 const COLUMNS = [
@@ -12,10 +14,15 @@ const COLUMNS = [
         fieldName:'linkToDetailView',
         type:'url',
         typeAttributes:{ label:{ fieldName:NAME_FIELD.fieldApiName } }
+    },
+    {
+        label:'Phone',
+        fieldName:PHONE_FIELD.fieldApiName,
+        type:'text',
     }
 ]
 
-export default class BooksNotInBookstoreList extends LightningElement {
+export default class BooksNotInBookstoreList extends NavigationMixin(LightningElement) {
     @api recordId;
     isManagerToBookstore;
     emptyPublishers;
@@ -55,7 +62,7 @@ export default class BooksNotInBookstoreList extends LightningElement {
                 currRec.linkToDetailView = '/' + currRec.Id;
                 proccessedRecords.push(currRec);
             })
-            this.publishers = proccessedRecords;
+            this.publishers = proccessedRecords.slice(0,3);
         } else if(result.error) {
             this.books = undefined;
             const event = new ShowToastEvent({
@@ -65,5 +72,17 @@ export default class BooksNotInBookstoreList extends LightningElement {
             });
             this.dispatchEvent(event);
         } 
+    }
+
+    viewAllButtonClick() {
+        this[NavigationMixin.Navigate]({
+            type: 'standard__navItemPage',
+            attributes: {
+                apiName: 'Publishers_not_working_with_bookstore'
+            },
+            state: {
+                c__recordId:this.recordId
+            }
+        });
     }
 }

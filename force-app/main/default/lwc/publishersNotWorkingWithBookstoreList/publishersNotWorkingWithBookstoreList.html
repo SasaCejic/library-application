@@ -4,11 +4,13 @@
             <lightning-datatable
                 key-field="id"
                 columns={columns}
+                hide-checkbox-column
                 data={publishers}>
             </lightning-datatable>
             <div if:true={emptyPublishers}>
                 <p class="slds-align_absolute-center">No publishers to show.</p>
             </div>
+            <lightning-button onclick={viewAllButtonClick} class="slds-align_absolute-center slds-m-top_small" variant="Neutral" label="View all"></lightning-button>
         </lightning-card>
     </div>
 </template>

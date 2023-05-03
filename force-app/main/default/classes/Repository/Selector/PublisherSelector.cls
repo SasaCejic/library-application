@@ -9,7 +9,8 @@ public with sharing class PublisherSelector implements CustomObject{
         return [
             SELECT
                 Id,
-                Name
+                Name,
+                Phone__c
             FROM Publisher__c
             WHERE Id NOT IN : publisherIds
         ];

@@ -6,8 +6,24 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>AuthorController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AuthorPublisherSelector</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorServiceTest</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookController</apexClass>
@@ -96,22 +112,6 @@
     <classAccesses>
         <apexClass>BookstorePublisherSelector</apexClass>
         <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>AuthorController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>AuthorControllerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>AuthorService</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>AuthorServiceTest</apexClass>
-        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookstoreSelector</apexClass>
@@ -224,6 +224,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Book_Review__c.User__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Book__c.Categories__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -301,6 +306,9 @@
         <layout>Announcement__c-Announcement Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Author_Publisher__c-Author_Publisher Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Author__c-Author Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -316,6 +324,12 @@
     <layoutAssignments>
         <layout>Book__c-Book Layout</layout>
         <recordType>Book__c.Paper_Book</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Bookstore_Book__c-Bookstore_Book Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Bookstore_Publisher__c-Bookstore_Publisher Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Bookstore__c-Online Bookstore Layout</layout>
@@ -467,11 +481,19 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>Books_not_in_bookstore</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Bookstore__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Publisher__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Publishers_not_working_with_bookstore</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Salesforce</userLicense>
