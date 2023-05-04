@@ -118,6 +118,26 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BookstoreTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreTriggerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreValidationService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreValidationServiceTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>ControllerIntegrationTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -280,11 +300,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Bookstore__c.Opening_Hour__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Bookstore__c.Related_User_Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

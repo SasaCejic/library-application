@@ -8,7 +8,7 @@ public with sharing class BookstoreSelector implements CustomObject {
 
     /**
      * Get all Bookstore__c object records with Id, Name, Email__c
-     * and Related_User_Id fields
+     * and Manager__c fields
      * 
      * @return list of Bookstore__c object records
      */
