@@ -12,7 +12,7 @@ public with sharing class PublisherControllerIntegrationTest {
 
         // execute
         Test.startTest();
-        List<Publisher__c> publishersNotWorkingWithBookstore = PublisherController.getPublishersNotWorkingWithBookstore(bookstoreForTest.Id);
+        List<Publisher__c> publishersNotWorkingWithBookstore = PublisherController.getPublishersNotWorkingWithBookstore(bookstoreForTest.Id, 5);
         Test.stopTest();
         
         // assert

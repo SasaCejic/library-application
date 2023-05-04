@@ -11,11 +11,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>AuthorControllerTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>AuthorPublisherSelector</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>AuthorService</apexClass>
@@ -23,7 +23,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>AuthorServiceTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookController</apexClass>
@@ -67,23 +67,23 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BookTriggerHandler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookTriggerHandlerTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookTriggerTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookValidationService</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookValidationServiceTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookstoreBookSelector</apexClass>
@@ -139,7 +139,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ControllerIntegrationTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CustomObject</apexClass>
@@ -240,11 +240,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Book_Review__c.Rating__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Book_Review__c.Stars__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -507,11 +502,11 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Book_Review__c</tab>
-        <visibility>Hidden</visibility>
+        <tab>Book__c</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Book__c</tab>
+        <tab>Books_not_in_bookstore</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -520,6 +515,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Publisher__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Publishers_not_working_with_bookstore</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Salesforce</userLicense>

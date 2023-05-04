@@ -17,7 +17,7 @@ public with sharing class GetPublishersNotWithBookstoreService implements Custom
     /*
      * @param bookstoreId - Id of the bookstore 
      */
-    public void getPublishers(Id bookstoreId) {
+    public void getPublishers(Id bookstoreId, Integer recordLimit) {
         //Set of book ids that are already in bookstore
         Set<Id> publishersWorkingWithBookstoreIds = new Set<Id>();
         BookstorePublisherSelector bookstorePublisherSelector = (BookstorePublisherSelector) new ObjectFactory()
@@ -34,7 +34,7 @@ public with sharing class GetPublishersNotWithBookstoreService implements Custom
         //Get all the books that are not in the bookstore
         PublisherSelector publisherSelector = (PublisherSelector) new ObjectFactory()
             .createObject(PublisherSelector.class);
-        List<Publisher__c> allPublishers = publisherSelector.getListNotInIds(publishersWorkingWithBookstoreIds);
+        List<Publisher__c> allPublishers = publisherSelector.getListNotInIds(publishersWorkingWithBookstoreIds, recordLimit);
         this.setResponse(allPublishers);
     }
 }
