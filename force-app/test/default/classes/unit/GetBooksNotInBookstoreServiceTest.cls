@@ -29,7 +29,7 @@ public with sharing class GetBooksNotInBookstoreServiceTest {
 
         // execute
         GetBooksNotInBookstoreService service = new GetBooksNotInBookstoreService();
-        service.getBooks(bookstoreForTest.Id);
+        service.getBooks(bookstoreForTest.Id, 5);
         List<Book__c> booksNotInBookstore = service.getResponse();
 
         // assert
@@ -63,7 +63,7 @@ public with sharing class GetBooksNotInBookstoreServiceTest {
 
         // execute
         GetBooksNotInBookstoreService service = new GetBooksNotInBookstoreService();
-        service.getBooks(bookstoreForTest.Id);
+        service.getBooks(bookstoreForTest.Id, 5);
         List<Book__c> booksNotInBookstore = service.getResponse();
 
         // assert
@@ -97,7 +97,7 @@ public with sharing class GetBooksNotInBookstoreServiceTest {
 
         // execute
         GetBooksNotInBookstoreService service = new GetBooksNotInBookstoreService();
-        service.getBooks(bookstoreForTest.Id);
+        service.getBooks(bookstoreForTest.Id, 5);
         List<Book__c> booksNotInBookstore = service.getResponse();
 
         // assert

@@ -16,7 +16,7 @@ public with sharing class BookControllerIntegrationTest {
         
         // execute
         Test.startTest();
-        List<Book__c> booksNotInBookstore = BookController.getBooksNotInBookstore(bookstoreForTest.Id);
+        List<Book__c> booksNotInBookstore = BookController.getBooksNotInBookstore(bookstoreForTest.Id, 5);
         Test.stopTest();
         
         // assert

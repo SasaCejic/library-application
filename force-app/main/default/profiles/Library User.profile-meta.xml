@@ -11,7 +11,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>AuthorControllerTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>AuthorPublisherSelector</apexClass>
@@ -23,7 +23,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>AuthorServiceTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookController</apexClass>
@@ -119,7 +119,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ControllerIntegrationTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CustomObject</apexClass>
@@ -220,11 +220,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Book_Review__c.Stars__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Book_Review__c.User__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
