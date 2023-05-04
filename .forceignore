@@ -11,3 +11,7 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
+
+#Profiles
+**/profiles/Admin.profile-meta.xml
+**/profiles/Trial Customer Portal User.profile-meta.xml

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Age__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+   NOT(ISBLANK( Date_Of_Birth__c )) &amp;&amp; NOT(ISBLANK( Date_Of_Death__c)),
+   &apos;Died at the age of &apos; &amp; TEXT(FLOOR(( ( Date_Of_Death__c - Date_Of_Birth__c ) / 365 ))),
+   IF(
+       NOT(ISBLANK( Date_Of_Birth__c)),
+       TEXT(FLOOR(( ( TODAY() - Date_Of_Birth__c) / 365 ))),
+       &apos;&apos;
+      )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Age</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

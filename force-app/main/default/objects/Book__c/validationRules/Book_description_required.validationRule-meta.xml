@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Book_description_required</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISBLANK(Description__c)</errorConditionFormula>
+    <errorDisplayField>Author__c</errorDisplayField>
+    <errorMessage>The book description cannot be blank</errorMessage>
+</ValidationRule>
