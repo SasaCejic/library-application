@@ -7,17 +7,19 @@ public with sharing class AuthorValidationService implements CustomObject {
      * @param changedAuthors - Author__c records being updated or deleted
      */
     public void validateNoStdAuthorChange(List<Author__c> changedAuthors){
-        //check weather out-ofthe-box Author__c records have been created at all, having their ids saved as custom setting
-        List<Standard_Authors_Settting__c> stdAuthorSettings = Standard_Authors_Settting__c.getall().values();
+        //get all records of Standard_Authors_Settting__c type
+        CustomSettingSelector customSettingSelector = new CustomSettingSelector();
+        List<Standard_Authors_Settting__c> stdAuthorSettings = customSettingSelector.getStdAuthorsSettingList();
 
-        if (stdAuthorSettings.size()==0) {
+        //if list is empty (no out-of-the box authors have been created), return
+        if (stdAuthorSettings.size() == 0) {
             return;
         }
 
-        //search for matching record ids among changed records
-        for (Author__c changedAuthor:changedAuthors){
+        //search for record ids that match out-of-the box author ids among changed records
+        for (Author__c changedAuthor : changedAuthors){
             //if matching records are found, add an error to them
-            if (changedAuthor.Id==stdAuthorSettings[0].AnonymousId__c || changedAuthor.Id==stdAuthorSettings[0].UnknownId__c){
+            if (changedAuthor.Id == stdAuthorSettings[0].AnonymousId__c || changedAuthor.Id == stdAuthorSettings[0].UnknownId__c){
                 changedAuthor.addError('Out-of-the-box authors (Unknown, Anonymous) cannot be edited or deleted');
             }
         }
