@@ -7,8 +7,9 @@ public with sharing class AuthorValidationService implements CustomObject {
      * @param changedAuthors - Author__c records being updated or deleted
      */
     public void validateNoStdAuthorChange(List<Author__c> changedAuthors){
-        //get all records of Standard_Authors_Settting__c type
-        CustomSettingSelector customSettingSelector = new CustomSettingSelector();
+        //get all records of Standard_Authors_Settting__c type 
+        CustomSettingSelector customSettingSelector = (CustomSettingSelector) new ObjectFactory()
+            .createObject(CustomSettingSelector.class);
         List<Standard_Authors_Settting__c> stdAuthorSettings = customSettingSelector.getStdAuthorsSettingList();
 
         //if list is empty (no out-of-the box authors have been created), return

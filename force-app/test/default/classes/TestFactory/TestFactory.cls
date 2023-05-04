@@ -35,6 +35,11 @@ public with sharing class TestFactory {
         'rating' => '4'
     };
 
+    @TestVisible
+    public Map<String, String> standardAuthorsSettingDetails = new Map<String, String>{
+        'name' => 'out-of-the-box authors setting'
+    };
+
     static Integer s_num = 1;
 
     /*
@@ -200,6 +205,26 @@ public with sharing class TestFactory {
         }
         newAuthorPublisher.Id = getFakeId(Author_Publisher__c.SObjectType, simulateInsert);
         return newAuthorPublisher;
+    }
+
+    /*
+     * @param anonymousId - Id of a Author__c object to be set as the standard Anonymous Author record
+     * @param unknownId - Id of a Author__c object to be set as the standard Unknown Author record
+     * @param forInsert - Boolean value representing if we want to insert the record or not
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+     */
+    public Standard_Authors_Settting__c createStandardAuthorsSettting(Id anonymousId, Id unknownId, Boolean forInsert, Boolean simulateInsert) {
+        Standard_Authors_Settting__c stdAuthorSetting = new Standard_Authors_Settting__c();
+        stdAuthorSetting.Name=standardAuthorsSettingDetails.get('name');
+        stdAuthorSetting.AnonymousId__c=anonymousId;
+        stdAuthorSetting.UnknownId__c=unknownId;
+
+        if(forInsert) {
+            insert stdAuthorSetting;
+            return stdAuthorSetting;
+        }
+        stdAuthorSetting.Id = this.getFakeId(Standard_Authors_Settting__c.SObjectType, simulateInsert);
+        return stdAuthorSetting;
     }
 
 }
