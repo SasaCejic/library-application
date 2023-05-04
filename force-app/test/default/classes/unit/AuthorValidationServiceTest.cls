@@ -1,5 +1,7 @@
 /*
  *This class performs unit tests for the AuthorValidationService class
+ *Tests consist of 1 mock where we mock a selector
+ * There is 1 positive, 1 negative and 1 mockerexecutioncount test
  */
 @isTest
 public with sharing class AuthorValidationServiceTest {
