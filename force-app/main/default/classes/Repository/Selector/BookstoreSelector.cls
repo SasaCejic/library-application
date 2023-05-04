@@ -18,7 +18,7 @@ public with sharing class BookstoreSelector implements CustomObject {
                 Id,
                 Name,
                 Email__c,
-                Related_User_Id__c
+                Manager__c
             FROM
                 Bookstore__c
         ];

@@ -23,12 +23,9 @@ public with sharing class BookstoreValidationService implements CustomObject {
          * Booktore to
          */
         for (Bookstore__c newBookstore:newBookstores) {
-            Boolean isFound=false;
-
             for (Bookstore__c bookstore:bookstores) {
-                if (String.isNotBlank(newBookstore.Related_User_Id__c) && String.isNotBlank(bookstore.Related_User_Id__c) && newBookstore.Related_User_Id__c.equals(bookstore.Related_User_Id__c)) {
+                if (newBookstore.Manager__c != null && bookstore.Manager__c != null && newBookstore.Manager__c == bookstore.Manager__c) {
                     newBookstore.addError('User is already a Bookstore Manager!');
-                    isFound = true;
                     break;
                 }
             }
