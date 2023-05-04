@@ -4,8 +4,23 @@
             <lightning-datatable
                 key-field="id"
                 columns={columns}
-                data={publishers}>
+                hide-checkbox-column
+                data={publishers}
+                load-more-offset="0"
+                enable-infinite-loading
+                onloadmore={loadMoreData}>
             </lightning-datatable>
+            <div if:true={isPublisherListEmpty}>
+                <p class="slds-align_absolute-center">No publishers to show.</p>
+            </div>
+            <div if:true={isButtonVisible}>
+                <lightning-button 
+                    onclick={viewAllButtonClick} 
+                    class="slds-align_absolute-center slds-m-top_small" 
+                    variant="Neutral" 
+                    label="View all">
+                </lightning-button>
+            </div>
         </lightning-card>
     </div>
 </template>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BookstoreManagerCanEditOwnBookstores</fullName>
+    <active>true</active>
+    <description>This validation rule stops bookstore manager from editing booksters other then their own</description>
+    <errorConditionFormula>AND(ISBLANK(CreatedById) = false ,  Manager__r.Id !=  $User.Id,  $User.isBookstoreManager__c = true )</errorConditionFormula>
+    <errorMessage>You can&apos;t edit bookstores you do not work for!</errorMessage>
+</ValidationRule>

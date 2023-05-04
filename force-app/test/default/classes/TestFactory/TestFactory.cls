@@ -202,4 +202,17 @@ public with sharing class TestFactory {
         return newAuthorPublisher;
     }
 
+    /*
+     * Method creates a library user for testing
+     */
+    public User createLibraryUser() {
+        Profile p = [SELECT Id FROM Profile WHERE Name='Library User'];
+        User user = new User(Alias = 'testuser', Email='testuser@testorg.com',
+                          EmailEncodingKey='UTF-8', LastName='Testing',
+                          LanguageLocaleKey='en_US', LocaleSidKey='en_US',
+                          TimeZoneSidKey='America/Los_Angeles', UserName='user12562d53@testorg.com',
+                          ProfileId = p.Id);
+        return user;
+    }
+
 }

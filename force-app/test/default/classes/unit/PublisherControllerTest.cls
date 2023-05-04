@@ -16,7 +16,7 @@ public with sharing class PublisherControllerTest {
         );
         
         // execute
-        List<Publisher__c> publishersNotWorkingWithBookstore = PublisherController.getPublishersNotWorkingWithBookstore(new TestFactory().getFakeId(Publisher__c.SObjectType, true));
+        List<Publisher__c> publishersNotWorkingWithBookstore = PublisherController.getPublishersNotWorkingWithBookstore(new TestFactory().getFakeId(Publisher__c.SObjectType, true), 5);
 
         // assert
         GetPublishersNotWithBookstoreServiceMock.assertMethodExecutionCount('getPublishers',1);
