@@ -1,16 +1,27 @@
 <template>
+    
     <div if:true={isManagerToBookstore}>
-        <lightning-card title="Books not in your bookstore" icon-name="standard:contact">
-            <lightning-datatable
-                key-field="id"
-                hide-checkbox-column
-                columns={columns}
-                data={booksForShow}>
-            </lightning-datatable>
-            <div class="slds-align_absolute-center" if:true={emptyBookList}>
+        <lightning-card  title="Books not in your bookstore" icon-name="standard:contact">
+                <lightning-datatable
+                    key-field="id"
+                    hide-checkbox-column
+                    columns={columns}
+                    data={books}
+                    load-more-offset="0"
+                    enable-infinite-loading
+                    onloadmore={loadMoreData}>
+                </lightning-datatable>
+            <div class="slds-align_absolute-center" if:true={isBookListEmpty}>
                 <p >No books to show.</p>
             </div>
-            <lightning-button onclick={viewAllButtonClick} class="slds-align_absolute-center slds-m-top_small" variant="Neutral" label="View all"></lightning-button>
+            <div if:true={isButtonVisible}>
+                <lightning-button 
+                    onclick={viewAllButtonClick} 
+                    class="slds-align_absolute-center slds-m-top_small" 
+                    variant="Neutral" 
+                    label="View all">
+                </lightning-button>
+            </div>
         </lightning-card>
     </div>
 </template>

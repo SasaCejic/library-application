@@ -13,10 +13,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BookstoreSelector</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>BookController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -82,6 +78,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BookstorePublisherSelector</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreSelector</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -361,11 +361,19 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Books_not_in_bookstore</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Bookstore__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>Publisher__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Publishers_not_working_with_bookstore</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>

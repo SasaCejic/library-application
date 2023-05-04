@@ -3,8 +3,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>allBooksNotInBookstoreList</componentName>
-                <identifier>c_allBooksNotInBookstoreList</identifier>
+                <componentName>booksNotInBookstoreList</componentName>
+                <identifier>c_booksNotInBookstoreList</identifier>
             </componentInstance>
         </itemInstances>
         <name>main</name>
