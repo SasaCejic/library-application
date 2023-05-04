@@ -4,6 +4,10 @@
         <application>Library_Application</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>IsBookManager</name>
+    </customPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Book_Review__c.Comment__c</field>
