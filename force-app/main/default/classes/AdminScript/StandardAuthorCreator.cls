@@ -20,7 +20,7 @@ global with sharing class StandardAuthorCreator {
         insert authorsToCreate;
 
         //Saves the ids of inserted records as a custom setting as a means of differentiating them from custom Author__c records
-        Standard_Authors_Settting__c stdAuthorSettingForInsert = new Standard_Authors_Settting__c();
+        Standard_Authors_Settting__c stdAuthorSettingForInsert = new Standard_Authors_Settting__c(Name='out-of-the-box author ids');
         stdAuthorSettingForInsert.AnonymousId__c=anonymousAuthor.Id;
         stdAuthorSettingForInsert.UnknownId__c=unknownAuthor.Id;
         insert stdAuthorSettingForInsert;
