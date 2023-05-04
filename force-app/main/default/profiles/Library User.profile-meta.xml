@@ -249,6 +249,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Book_Review__c.Stars__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Book__c.Categories__c</field>
         <readable>true</readable>
     </fieldPermissions>
