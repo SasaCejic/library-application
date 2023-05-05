@@ -16,7 +16,7 @@ public with sharing class BookTriggerTest {
         Database.SaveResult insertResult = Database.insert(bookForTest, false);
         Test.stopTest();
 
-        Assert.isTrue(BookForTest.getErrors().size() == 0,'Errors should not have been added to book record');
+        Assert.isTrue(insertResult.getErrors().size() == 1,'Errors should have been added to book record');
     }
 
     @isTest
