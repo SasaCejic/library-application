@@ -28,7 +28,7 @@ public with sharing class GetPublishersNotWithBookstoreServiceTest {
 
         // execute
         GetPublishersNotWithBookstoreService service = new GetPublishersNotWithBookstoreService();
-        service.getPublishers(bookstoreForTest.Id);
+        service.getPublishers(bookstoreForTest.Id, 5);
         List<Publisher__c> publishersNotWorkingWithBookstore = service.getResponse();
 
         //assert
@@ -59,7 +59,7 @@ public with sharing class GetPublishersNotWithBookstoreServiceTest {
 
         // execute
         GetPublishersNotWithBookstoreService service = new GetPublishersNotWithBookstoreService();
-        service.getPublishers(bookstoreForTest.Id);
+        service.getPublishers(bookstoreForTest.Id, 5);
         List<Publisher__c> publishersNotWorkingWithBookstore = service.getResponse();
 
         //assert
@@ -90,7 +90,7 @@ public with sharing class GetPublishersNotWithBookstoreServiceTest {
 
         // execute
         GetPublishersNotWithBookstoreService service = new GetPublishersNotWithBookstoreService();
-        service.getPublishers(bookstoreForTest.Id);
+        service.getPublishers(bookstoreForTest.Id, 5);
 
         // assert
         PublisherSelectorMock.assertMethodExecutionCount('getListNotInIds', 1);

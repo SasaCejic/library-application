@@ -19,13 +19,15 @@ public with sharing class BookSelector implements CustomObject {
     /*
      * @param bookIds - set of book Ids which should not be retrieved
      */
-    public List<Book__c> getListNotInIds(Set<Id> bookIds) {
+    public List<Book__c> getListNotInIds(Set<Id> bookIds, Integer recordLimit) {
         return [
             SELECT
                 Id,
-                Name
+                Name,
+                ISBN__c
             FROM Book__c
             WHERE Id NOT IN :bookIds
+            LIMIT :recordLimit
         ];
     }
 }

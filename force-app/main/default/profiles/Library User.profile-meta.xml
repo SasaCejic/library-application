@@ -6,6 +6,26 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>AuthorController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorPublisherSelector</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorServiceTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BookController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -46,6 +66,26 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BookTriggerHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookTriggerHandlerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookTriggerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookValidationService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookValidationServiceTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BookstoreBookSelector</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -74,28 +114,12 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>AuthorController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>AuthorControllerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>AuthorService</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>AuthorServiceTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>BookstoreSelector</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>ControllerIntegrationTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CustomObject</apexClass>
@@ -195,11 +219,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Book_Review__c.Rating__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Book_Review__c.Stars__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -282,6 +301,9 @@
         <layout>Announcement__c-Announcement Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Author_Publisher__c-Author_Publisher Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Author__c-Author Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -297,6 +319,12 @@
     <layoutAssignments>
         <layout>Book__c-Book Layout</layout>
         <recordType>Book__c.Paper_Book</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Bookstore_Book__c-Bookstore_Book Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Bookstore_Publisher__c-Bookstore_Publisher Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Bookstore__c-Online Bookstore Layout</layout>
@@ -444,11 +472,11 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Book_Review__c</tab>
-        <visibility>Hidden</visibility>
+        <tab>Book__c</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Book__c</tab>
+        <tab>Books_not_in_bookstore</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -457,6 +485,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Publisher__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Publishers_not_working_with_bookstore</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Salesforce</userLicense>

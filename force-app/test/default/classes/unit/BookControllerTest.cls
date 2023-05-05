@@ -16,7 +16,7 @@ public with sharing class BookControllerTest {
         );
 
         // execute
-        List<Book__c> booksNotInBookstore = BookController.getBooksNotInBookstore(new TestFactory().getFakeId(Bookstore__c.SObjectType, true));
+        List<Book__c> booksNotInBookstore = BookController.getBooksNotInBookstore(new TestFactory().getFakeId(Bookstore__c.SObjectType, true), 5);
 
         // assert
         getBooksNotInBookstoreServiceMock.assertMethodExecutionCount('getBooks', 1);
