@@ -20,7 +20,7 @@ public with sharing class AuthorTriggerHandler extends TriggerHandler{
     public override void beforeUpdate(List<sObject> oldRecords,List<sObject> newRecords) {
         AuthorValidationService authorValidationServ = (AuthorValidationService) new ObjectFactory()
         .createObject(AuthorValidationService.class);
-        authorValidationServ.validateNoStdAuthorChange((List<Author__c>) oldRecords);
+        authorValidationServ.validateAuthorUpdate((List<Author__c>) oldRecords,(List<Author__c>) newRecords);
     }
 
     /*
@@ -29,6 +29,6 @@ public with sharing class AuthorTriggerHandler extends TriggerHandler{
     public override void beforeDelete(List<sObject> oldRecords) {
         AuthorValidationService authorValidationServ = (AuthorValidationService) new ObjectFactory()
         .createObject(AuthorValidationService.class);
-        authorValidationServ.validateNoStdAuthorChange((List<Author__c>) oldRecords);
+        authorValidationServ.validateAuthorDelete((List<Author__c>) oldRecords);
     }
 }

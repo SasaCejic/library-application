@@ -9,6 +9,7 @@ public with sharing class AuthorTriggerTest {
         TestFactory testFactory = new TestFactory();
         Author__c anonAuthor= testFactory.createAuthor(true, false);
         Author__c unknownAuthor= testFactory.createAuthor(true, false);
+        anonAuthor.First_Name__c='Changed';
         Standard_Authors_Settting__c stdAuthorSetting = testFactory
             .createStandardAuthorsSettting(anonAuthor.Id, unknownAuthor.Id, true, false);
 

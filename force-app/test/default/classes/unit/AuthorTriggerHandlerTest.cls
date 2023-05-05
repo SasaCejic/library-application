@@ -7,7 +7,7 @@ public with sharing class AuthorTriggerHandlerTest {
     public static void beforeUpdate_willUseCorrectService() {
         // create mock
         Mocker AuthorValidationServiceMocker = new Mocker(AuthorValidationService.class)
-        .setBehavior('validateNoStdAuthorChange', new List<Author__c>{});
+        .setBehavior('validateAuthorUpdate', new List<Author__c>{});
         ObjectFactory.mocks.put(
             AuthorValidationService.class.getName(),
             (AuthorValidationService)AuthorValidationServiceMocker.getMock()
@@ -18,14 +18,14 @@ public with sharing class AuthorTriggerHandlerTest {
         triggerHandler.beforeUpdate(new List<Author__c>{}, new List<Author__c>{});
         
         // assert
-        AuthorValidationServiceMocker.assertMethodExecutionCount('validateNoStdAuthorChange', 1);
+        AuthorValidationServiceMocker.assertMethodExecutionCount('validateAuthorUpdate', 1);
     }
 
     @isTest
     public static void beforeDelete_willUseCorrectService() {
         // create mock
         Mocker AuthorValidationServiceMocker = new Mocker(AuthorValidationService.class)
-        .setBehavior('validateNoStdAuthorChange', new List<Author__c>{});
+        .setBehavior('validateAuthorDelete', new List<Author__c>{});
         ObjectFactory.mocks.put(
             AuthorValidationService.class.getName(),
             (AuthorValidationService)AuthorValidationServiceMocker.getMock()
@@ -36,6 +36,6 @@ public with sharing class AuthorTriggerHandlerTest {
         triggerHandler.beforeDelete(new List<Author__c>{});
         
         // assert
-        AuthorValidationServiceMocker.assertMethodExecutionCount('validateNoStdAuthorChange', 1);
+        AuthorValidationServiceMocker.assertMethodExecutionCount('validateAuthorDelete', 1);
     }
 }
