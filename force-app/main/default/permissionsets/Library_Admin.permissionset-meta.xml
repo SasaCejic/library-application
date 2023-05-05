@@ -377,6 +377,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>standard-ProcessInstanceWorkitem</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>standard-home</tab>
         <visibility>Visible</visibility>
     </tabSettings>
