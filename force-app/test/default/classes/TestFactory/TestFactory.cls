@@ -237,8 +237,8 @@ public with sharing class TestFactory {
     public User createUser(Boolean forInsert, Boolean simulateInsert) {
         User newUser = new User();
         String orgId = UserInfo.getOrganizationId();
-        String dateString = String.valueof(Datetime.now()).replace(' ','').replace(':','').replace('-','');
-        Integer randomInt = Integer.valueOf(math.rint(math.random()*1000000));
+        String dateString = String.valueof(Datetime.now()).replace(' ', '').replace(':', '').replace('-', '');
+        Integer randomInt = Integer.valueOf(math.rint(math.random() * 1000000));
         String uniqueName = orgId + dateString + randomInt;
         uniqueName = (uniqueName.length() > 51) ? uniqueName.substring(0,51) : uniqueName;
         newUser.Username = uniqueName + '@test' + orgId + '.org';

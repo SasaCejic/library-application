@@ -16,7 +16,7 @@ public with sharing class BookstoreValidationServiceTest {
 
         // create mocks
         Mocker bookstoreSelectorMock = new Mocker(BookstoreSelector.class)
-        .setBehavior('getList', new List<Bookstore__c>{
+        .setBehavior('getListByManagers', new List<Bookstore__c>{
             bookstoreForTest
         });
         ObjectFactory.mocks.put(
@@ -29,7 +29,7 @@ public with sharing class BookstoreValidationServiceTest {
         bookstoreValidationService.validateBookstoreManagerMatch(new List<Bookstore__c>{bookstoreForTest});
 
         // assert
-        bookstoreSelectorMock.assertMethodExecutionCount('getList', 1);
+        bookstoreSelectorMock.assertMethodExecutionCount('getListByManagers', 1);
     }
 
     @isTest
@@ -43,7 +43,7 @@ public with sharing class BookstoreValidationServiceTest {
 
         // create mocks
         Mocker bookstoreSelectorMock = new Mocker(BookstoreSelector.class)
-        .setBehavior('getList', new List<Bookstore__c>{});
+        .setBehavior('getListByManagers', new List<Bookstore__c>{});
         ObjectFactory.mocks.put(
             BookstoreSelector.class.getName(),
             (BookstoreSelector)bookstoreSelectorMock.getMock()
@@ -71,7 +71,7 @@ public with sharing class BookstoreValidationServiceTest {
 
        // create mocks
        Mocker bookstoreSelectorMock = new Mocker(BookstoreSelector.class)
-       .setBehavior('getList', new List<Bookstore__c>{
+       .setBehavior('getListByManagers', new List<Bookstore__c>{
            bookstore1
        });
        ObjectFactory.mocks.put(
@@ -85,5 +85,6 @@ public with sharing class BookstoreValidationServiceTest {
 
        // assert
        Assert.isTrue(bookstore2.getErrors().size() == 1);
+       Assert.areEqual('User is already a Bookstore Manager!', bookstore2.getErrors()[0].getMessage());
     }
 }
