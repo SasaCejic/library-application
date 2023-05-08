@@ -1,0 +1,24 @@
+<template>
+    <div class="container">
+        <lightning-card>
+            <div class="slds-modal__header header">
+                <h1>Buy a digital book</h1>
+            </div>
+            <c-combobox-autocomplete 
+                label="Select Option"
+                options={options}
+                placeholder="Select an Option"
+                classes="slds-p-horizontal_xx-large slds-p-vertical_medium"
+                value={searchValue}
+                onselectoption={handleSelectOption}
+                onsearch={handleSearch}>
+            </c-combobox-autocomplete>
+            <p class="slds-p-horizontal_xx-large">Price: {price}$</p>
+            <lightning-input value={email} class="slds-p-horizontal_xx-large slds-p-vertical_medium" label="Email"></lightning-input>
+            <div class="button-container slds-m-top_xx-large">
+                <lightning-button onclick={handleCancelBtn} label="Cancel"></lightning-button>
+                <lightning-button class="slds-m-left_xx-large" label="Confirm"></lightning-button>
+            </div>
+        </lightning-card>
+    </div>
+</template>

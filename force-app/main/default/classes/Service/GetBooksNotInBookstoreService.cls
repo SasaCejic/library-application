@@ -15,7 +15,7 @@ public with sharing class GetBooksNotInBookstoreService implements CustomObject{
     }
 
     /*
-     * @param bookstoreId - Id of the bookstore 
+     * @param bookstoreId - Id of the bookstore
      */
     public void getBooks(Id bookstoreId, Integer recordLimit) {
         //Set of book ids that are already in bookstore

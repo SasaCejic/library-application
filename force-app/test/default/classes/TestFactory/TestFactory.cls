@@ -26,7 +26,9 @@ public with sharing class TestFactory {
         'description' => 'bookdesc',
         'ISBN' => '214215425',
         'language' => 'english',
-        'categories' => 'fantasy'
+        'categories' => 'fantasy',
+        'price' => '20',
+        'hoursOfListening' => '20'
     };
 
     @TestVisible
@@ -135,6 +137,7 @@ public with sharing class TestFactory {
         currentBook.ISBN__c = bookDetails.get('ISBN');
         currentBook.Language__c = bookDetails.get('language');
         currentBook.Categories__c = bookDetails.get('categories');
+        currentBook.Price__c = Decimal.valueOf(bookDetails.get('price'));
         currentBook.Publisher__c = publisherId;
         currentBook.Author__c = authorId;
         currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
@@ -146,6 +149,29 @@ public with sharing class TestFactory {
         currentBook.Id = this.getFakeId(Book__c.SObjectType, simulateInsert);
         return currentBook;
     }
+
+    public Book__c createDigitalBook(Id publisherId, Id authorId, Boolean forInsert, Boolean simulateInsert) {
+        Book__c currentBook = new Book__c();
+        currentBook.Name = bookDetails.get('name');
+        currentBook.Description__c = bookDetails.get('description');
+        currentBook.ISBN__c = bookDetails.get('ISBN');
+        currentBook.Language__c = bookDetails.get('language');
+        currentBook.Categories__c = bookDetails.get('categories');
+        currentBook.Hours_Of_Listening__c = Integer.valueOf(bookDetails.get('hoursOfListening'));
+        currentBook.Price__c = Decimal.valueOf(bookDetails.get('price'));
+        currentBook.Publisher__c = publisherId;
+        currentBook.Author__c = authorId;
+        currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
+        currentBook.RecordTypeId = Schema.SObjectType.Book__c.getRecordTypeInfosByName()
+            .get('Digital Book').getRecordTypeId();
+
+        if(forInsert) {
+            insert currentBook;
+            return currentBook;
+        }
+        currentBook.Id = this.getFakeId(Book__c.SObjectType, simulateInsert);
+        return currentBook;
+    }   
 
    /*
     * @param forInsert - Boolean value representing if we want to insert the record or not

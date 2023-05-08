@@ -22,4 +22,23 @@ public with sharing class BookControllerIntegrationTest {
         // assert
         Assert.areEqual(1, booksNotInBookstore.size());
     }
+
+    @isTest
+    public static void getDigitalBooks_willReturnOneBook_ifSearchTermIsEmpty() {
+        BookTriggerHandler.triggerDisabled=true;
+        // create data
+        TestFactory testFactory = new TestFactory();
+        Publisher__c publisherForTest = testFactory.createPublisher(true, false);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true, false);
+        Author__c authorForTest = testFactory.createAuthor(true, false);
+        Book__c bookForTest = testFactory.createDigitalBook(publisherForTest.Id, authorForTest.Id, true, false);
+        
+        // execute
+        Test.startTest();
+        List<Book__c> digitalBooks = BookController.getDigitalBooks('');
+        Test.stopTest();
+        
+        // assert
+        Assert.areEqual(1, digitalBooks.size());
+    }
 }

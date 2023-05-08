@@ -13,4 +13,29 @@ public with sharing class BookController {
         service.getBooks(bookstoreId, recordLimit);
         return service.getResponse();
     }
+
+    /*
+     * Method returns searched digital books
+     * @param searchTerm - Name of the searched book
+     */
+    @AuraEnabled(cacheable=true)
+    public static List<Book__c> getDigitalBooks(String searchTerm) {
+        GetDigitalBooksService digitalBooksService = (GetDigitalBooksService) new ObjectFactory()
+            .createObject(GetDigitalBooksService.class);
+        digitalBooksService.getBooks(searchTerm);
+        return digitalBooksService.getResponse();
+    }
+
+    /*
+     * Method sends email to the user that bought the book
+     * @param emailAddress - email address of the user that bought the book
+     * @param bookName - name of the book user bought
+     * @param bookPrice - price of the book user bought
+     */
+    @AuraEnabled
+    public static void sendPurchaseMailConfirmation(String emailAddress, string bookName, String bookPrice) {
+        SendPurchaseEmailConfirmationService service = (SendPurchaseEmailConfirmationService) new ObjectFactory()
+            .createObject(SendPurchaseEmailConfirmationService.class);
+        service.sendMail(emailAddress, bookName, bookPrice);
+    }
 }

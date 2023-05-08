@@ -1,0 +1,14 @@
+h1 {
+    font-size: 20px;
+}
+.container {
+    height: 50vh;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+.button-container lightning-button {
+    margin-right: 0.5rem;
+    padding: 1rem;
+}
