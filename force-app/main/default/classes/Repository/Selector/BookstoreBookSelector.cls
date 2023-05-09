@@ -9,7 +9,7 @@ public with sharing class BookstoreBookSelector implements CustomObject {
     /*
      * @param bookstoreId - Id of the bookstore we want to return all the books that are not in there
      */
-    public List<Bookstore_Book__c> getListByBookstoreId(Id bookstoreId) {
+    public List<Bookstore_Book__c> getListByBookstoreId (Id bookstoreId) {
         return [
             SELECT
                 Id,
@@ -28,7 +28,7 @@ public with sharing class BookstoreBookSelector implements CustomObject {
      * 
      * @return Bookstore_Book__c records grouped by Bookstore__c field
      */
-    public List<AggregateResult> getListByAuthorId(Id authorId) {
+    public List<AggregateResult> getListByAuthorId (Id authorId) {
         return [
             SELECT
                 Bookstore__c
@@ -38,6 +38,27 @@ public with sharing class BookstoreBookSelector implements CustomObject {
                 Book__r.Author__c = :authorId
             GROUP BY
                 Bookstore__c
+        ];
+    }
+
+    /**
+     * Get Bookstore_Book__c object records with quantity field
+     * for given Bookstore and Book
+     * 
+     * @param concatanatedIds - concatanated Bookstore and Book ids
+     * 
+     * @return Bookstore_Book__c records with book quantity, Bookstore and Book values
+     */
+    public List<Bookstore_Book__c> getListByUniqueConcatanatedIds (Set<String> concatanatedIds) {
+        return [
+            SELECT
+                Quantity__c,
+                Bookstore__c,
+                Book__c
+            FROM 
+                Bookstore_Book__c
+            WHERE 
+                Unique_Concatanated_Ids__c = :concatanatedIds
         ];
     }
 }

@@ -249,6 +249,16 @@
                 <identifier>RecordPrint_Length_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Price__c</fieldItem>
+                <identifier>RecordPrice_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-2dc2cda8-e741-43c4-93f8-9f57f5446877</name>
         <type>Facet</type>
     </flexiPageRegions>
