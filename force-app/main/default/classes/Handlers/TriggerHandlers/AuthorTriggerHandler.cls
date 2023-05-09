@@ -18,8 +18,8 @@ public with sharing class AuthorTriggerHandler extends TriggerHandler{
     * @param - newRecords - records containing updated field values
     */ 
     public override void beforeUpdate(List<sObject> oldRecords,List<sObject> newRecords) {
-        AuthorValidationService authorValidationServ = (AuthorValidationService) new ObjectFactory()
-        .createObject(AuthorValidationService.class);
+        AuthorUpdateValidationService authorValidationServ = (AuthorUpdateValidationService) new ObjectFactory()
+        .createObject(AuthorUpdateValidationService.class);
         authorValidationServ.validateAuthorUpdate((List<Author__c>) oldRecords,(List<Author__c>) newRecords);
     }
 
@@ -27,8 +27,8 @@ public with sharing class AuthorTriggerHandler extends TriggerHandler{
     * @param - oldRecords - records containing old field values 
     */ 
     public override void beforeDelete(List<sObject> oldRecords) {
-        AuthorValidationService authorValidationServ = (AuthorValidationService) new ObjectFactory()
-        .createObject(AuthorValidationService.class);
+        AuthorDeleteValidationService authorValidationServ = (AuthorDeleteValidationService) new ObjectFactory()
+        .createObject(AuthorDeleteValidationService.class);
         authorValidationServ.validateAuthorDelete((List<Author__c>) oldRecords);
     }
 }

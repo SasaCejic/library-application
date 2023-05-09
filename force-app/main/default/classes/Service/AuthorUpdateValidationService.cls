@@ -1,8 +1,8 @@
 /*
- * Class used to validate weather edit or delete of standard Author__c records (Unknown, Anonymous) has been attempted
+ * Class used to validate weather update standard Author__c records (Unknown, Anonymous) has been attempted
  * If any change has been made to them, the validation will result in an error
  */
-public with sharing class AuthorValidationService implements CustomObject {
+public with sharing class AuthorUpdateValidationService implements CustomObject {
     /*
      * @param oldAuthors - Author__c records before update
      * @param newAuthors - Author__c records after update
@@ -41,28 +41,4 @@ public with sharing class AuthorValidationService implements CustomObject {
             }
         }
     }
-
-    /*
-     * @param oldAuthors - Author__c records before delete
-     */
-    public void validateAuthorDelete(List<Author__c> oldAuthors){
-        //get all records of Standard_Authors_Settting__c type 
-        CustomSettingSelector customSettingSelector = (CustomSettingSelector) new ObjectFactory()
-            .createObject(CustomSettingSelector.class);
-        List<Standard_Authors_Settting__c> stdAuthorSettings = customSettingSelector.getStdAuthorsSettingList();
-
-        //if list is empty (no out-of-the box authors have been created), return
-        if (stdAuthorSettings.size() == 0) {
-            return;
-        }
-
-        //search for record ids that match out-of-the box author ids among changed records
-        for (Author__c oldAuthor : oldAuthors){
-            //if matching records are found, add an error to them
-            if (oldAuthor.Id == stdAuthorSettings[0].AnonymousId__c || oldAuthor.Id == stdAuthorSettings[0].UnknownId__c){
-                oldAuthor.addError('Out-of-the-box authors (Unknown, Anonymous) cannot be deleted');
-            }
-        }
-    }
-
 }

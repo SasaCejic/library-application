@@ -1,11 +1,11 @@
 /*
- * This class performs unit tests for the AuthorValidationService class
+ * This class performs unit tests for the AuthorUpdateValidationService class
  * Tests consist of 1 mock where we mock a selector
- * There is 1 positive, 1 negative and 1 mockerexecutioncount test for each method, along with
+ * There is 1 positive, 1 negative and 1 mockerexecutioncount test, along with
  * an added test for validateAuthorUpdate in the scenario where only a field that should allow edit on standard authors is updated
  */
 @isTest
-public with sharing class AuthorValidationServiceTest {
+public with sharing class AuthorUpdateValidationServiceTest {
 
     @isTest
     public static void validateAuthorUpdate_willAddError_ifStdAuthorUpdated(){
@@ -28,7 +28,7 @@ public with sharing class AuthorValidationServiceTest {
         );
 
         //execute
-        AuthorValidationService authorValidationService = new AuthorValidationService();
+        AuthorUpdateValidationService authorValidationService = new AuthorUpdateValidationService();
         authorValidationService.validateAuthorUpdate(new List<Author__c>{unknownAuthor}, new List<Author__c>{editedUnknownAuthor});
 
         //assert errors have been added to edited standard author record
@@ -56,7 +56,7 @@ public with sharing class AuthorValidationServiceTest {
         );
 
         //execute
-        AuthorValidationService authorValidationService = new AuthorValidationService();
+        AuthorUpdateValidationService authorValidationService = new AuthorUpdateValidationService();
         authorValidationService.validateAuthorUpdate(new List<Author__c>{unknownAuthor}, new List<Author__c>{editedUnknownAuthor});
 
         //assert errors have been added to edited standard author record
@@ -85,7 +85,7 @@ public with sharing class AuthorValidationServiceTest {
         );
 
         //execute
-        AuthorValidationService authorValidationService = new AuthorValidationService();
+        AuthorUpdateValidationService authorValidationService = new AuthorUpdateValidationService();
         authorValidationService.validateAuthorUpdate(new List<Author__c>{nonStdAuthor}, new List<Author__c>{editedNonStdAuthor});
 
         //assert errors have been added to edited standard author record
@@ -104,81 +104,8 @@ public with sharing class AuthorValidationServiceTest {
         );
 
         //execute
-        AuthorValidationService authorValidationService = new AuthorValidationService();
+        AuthorUpdateValidationService authorValidationService = new AuthorUpdateValidationService();
         authorValidationService.validateAuthorUpdate(new List<Author__c>{},new List<Author__c>{});
-
-        //assert correct selector has been used
-        customSettingSelectorMock.assertMethodExecutionCount('getStdAuthorsSettingList', 1);
-    }
-
-    @isTest
-    public static void validateAuthorDelete_willAddErrors_ifStdAuthorsDeleted(){
-        //create test data
-        TestFactory testFactory = new TestFactory();
-        Author__c anonAuthor= testFactory.createAuthor(false, true);
-        Author__c unknownAuthor= testFactory.createAuthor(false, true);
-        Standard_Authors_Settting__c stdAuthorSetting = testFactory
-            .createStandardAuthorsSettting(anonAuthor.Id, unknownAuthor.Id, false, true);
-        
-        // create mock
-        Mocker customSettingSelectorMock = new Mocker(CustomSettingSelector.class)
-            .setBehavior('getStdAuthorsSettingList', new List<Standard_Authors_Settting__c>{stdAuthorSetting});
-        // set mock
-        ObjectFactory.mocks.put(
-            CustomSettingSelector.class.getName(),
-            (CustomSettingSelector) customSettingSelectorMock.getMock()
-        );
-
-        //execute
-        AuthorValidationService authorValidationService = new AuthorValidationService();
-        authorValidationService.validateAuthorDelete(new List<Author__c>{unknownAuthor, anonAuthor});
-
-        //assert errors have been added to edited standard author record
-        Assert.isTrue(unknownAuthor.getErrors().size() == 1,'Errors should have been added to deleted unknown author record');
-        Assert.isTrue(anonAuthor.getErrors().size() == 1,'Errors should have been added to deleted anonymous author record');
-    }
-
-    @isTest
-    public static void validateAuthorDelete_willNotAddError_ifStdAuthorNotDeleted(){
-        //create test data
-        TestFactory testFactory = new TestFactory();
-        Author__c anonAuthor= testFactory.createAuthor(false, true);
-        Author__c unknownAuthor= testFactory.createAuthor(false, true);
-        Standard_Authors_Settting__c stdAuthorSetting = testFactory
-            .createStandardAuthorsSettting(anonAuthor.Id, unknownAuthor.Id, false, true);
-        
-        // create mock
-        Mocker customSettingSelectorMock = new Mocker(CustomSettingSelector.class)
-            .setBehavior('getStdAuthorsSettingList', new List<Standard_Authors_Settting__c>{stdAuthorSetting});
-        // set mock
-        ObjectFactory.mocks.put(
-            CustomSettingSelector.class.getName(),
-            (CustomSettingSelector) customSettingSelectorMock.getMock()
-        );
-
-        //execute
-        AuthorValidationService authorValidationService = new AuthorValidationService();
-        authorValidationService.validateAuthorDelete(new List<Author__c>{});
-
-        //assert errors have been added to edited standard author record
-        Assert.isTrue(unknownAuthor.getErrors().size() == 0,'Errors should have been added to deleted unknown author record');
-        Assert.isTrue(anonAuthor.getErrors().size() == 0,'Errors should have been added to deleted anonnymous author record');
-    }
-
-    @isTest
-    public static void validateAuthorDelete_willUseCorrectSelector(){
-        // create mock
-        Mocker customSettingSelectorMock = new Mocker(CustomSettingSelector.class)
-            .setBehavior('getStdAuthorsSettingList', new List<Standard_Authors_Settting__c>{});
-        // set mock
-        ObjectFactory.mocks.put(
-            CustomSettingSelector.class.getName(),
-            (CustomSettingSelector) customSettingSelectorMock.getMock()
-        );
-
-        //execute
-        AuthorValidationService authorValidationService = new AuthorValidationService();
-        authorValidationService.validateAuthorDelete(new List<Author__c>{});
 
         //assert correct selector has been used
         customSettingSelectorMock.assertMethodExecutionCount('getStdAuthorsSettingList', 1);

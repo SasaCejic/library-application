@@ -6,11 +6,11 @@ public with sharing class AuthorTriggerHandlerTest {
      @isTest
     public static void beforeUpdate_willUseCorrectService() {
         // create mock
-        Mocker AuthorValidationServiceMocker = new Mocker(AuthorValidationService.class)
+        Mocker AuthorValidationServiceMocker = new Mocker(AuthorUpdateValidationService.class)
         .setBehavior('validateAuthorUpdate', new List<Author__c>{});
         ObjectFactory.mocks.put(
-            AuthorValidationService.class.getName(),
-            (AuthorValidationService)AuthorValidationServiceMocker.getMock()
+            AuthorUpdateValidationService.class.getName(),
+            (AuthorUpdateValidationService)AuthorValidationServiceMocker.getMock()
         );
 
         // execute
@@ -24,11 +24,11 @@ public with sharing class AuthorTriggerHandlerTest {
     @isTest
     public static void beforeDelete_willUseCorrectService() {
         // create mock
-        Mocker AuthorValidationServiceMocker = new Mocker(AuthorValidationService.class)
+        Mocker AuthorValidationServiceMocker = new Mocker(AuthorDeleteValidationService.class)
         .setBehavior('validateAuthorDelete', new List<Author__c>{});
         ObjectFactory.mocks.put(
-            AuthorValidationService.class.getName(),
-            (AuthorValidationService)AuthorValidationServiceMocker.getMock()
+            AuthorDeleteValidationService.class.getName(),
+            (AuthorDeleteValidationService)AuthorValidationServiceMocker.getMock()
         );
 
         // execute
