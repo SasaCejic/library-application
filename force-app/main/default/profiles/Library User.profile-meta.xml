@@ -214,6 +214,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Book_Reservation__c.User__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Book_Review__c.Comment__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -239,8 +244,18 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Book__c.ISBN_Uneditable__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Book__c.Print_Length__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Book__c.Record_Type_Uneditable__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -305,6 +320,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Author__c-Author Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Book_Reservation__c-Book Reservation Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Book_Review__c-Book Review Layout</layout>
