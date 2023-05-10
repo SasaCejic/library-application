@@ -41,6 +41,6 @@ public with sharing class BookstoreTriggerHandler extends TriggerHandler {
     public override void beforeUpdate (List<sObject> oldRecords,List<sObject> newRecords) {
         BookstoreValidationService bookstoreValidationService = (BookstoreValidationService) new ObjectFactory()
         .createObject(BookstoreValidationService.class);
-        bookstoreValidationService.validateBookstoreManagerMatch((List<Bookstore__c>) newRecords);
+        bookstoreValidationService.validateBookstoreManagerMatch((List<Bookstore__c>) oldRecords, (List<Bookstore__c>) newRecords);
     }
 }
