@@ -25,7 +25,7 @@ public with sharing class SendPurchaseEmailConfirmationServiceTest {
         service.sendMail(true, 'testaddress@gmail.com', 'testname', 'testprice');
 
         // assert
-        System.assertEquals(0, service.getResponse().size());
+        Assert.areEqual(0, service.getResponse().size());
     }
 
     @isTest

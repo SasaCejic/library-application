@@ -12,7 +12,7 @@ public with sharing class SendEmailsServiceTest {
         List<Messaging.SendEmailResult> result = new SendEmailsService().sendMails(new List<Messaging.SingleEmailMessage>{mail});
 
         // assert
-        System.assertEquals(1, result.size());
+        Assert.areEqual(1, result.size());
     }
 
     @isTest
@@ -21,6 +21,6 @@ public with sharing class SendEmailsServiceTest {
         List<Messaging.SendEmailResult> result = new SendEmailsService().sendMails(new List<Messaging.SingleEmailMessage>{});
 
         // assert
-        System.assertEquals(0, result.size());
+        Assert.areEqual(0, result.size());
     }
 }

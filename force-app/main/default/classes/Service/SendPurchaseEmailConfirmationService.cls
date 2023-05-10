@@ -15,16 +15,16 @@ public with sharing class SendPurchaseEmailConfirmationService implements Custom
     }
 
     /*
+     * @param isPurchaseInserted - Boolean indicating if the purchase that the email should be sent for was inserted into the database(if not don't send the email)
      * @param emailAddress - Email address of the user that bought the book
      * @param bookName - Name of the bought book
      * @param bookPrice - Price of the bought book
      */
     public void sendMail(Boolean isPurchaseInserted, String emailAddress, String bookName, String bookPrice) {
-        System.debug('USLO 4');
-        System.debug(isPurchaseInserted);
         if(!isPurchaseInserted) {
             return;
         }
+
         List<Messaging.SingleEmailMessage> emailList = new List<Messaging.SingleEmailMessage>();
         // create the mail
         String emailSubject = 'Purchased book information';
@@ -34,6 +34,7 @@ public with sharing class SendPurchaseEmailConfirmationService implements Custom
         Messaging.SingleEmailMessage mail = createEmailService.createMail(emailSubject,emailBody,emailAddress);
         // add it to the list to be sent
         emailList.add(mail);
+
         // Send the email
         if (emailList.size() !=0 ) {
             SendEmailsService sendMailService = (SendEmailsService) new ObjectFactory()

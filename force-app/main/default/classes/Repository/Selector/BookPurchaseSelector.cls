@@ -5,7 +5,7 @@ public with sharing class BookPurchaseSelector implements CustomObject{
     /*
      * @param bookIds - set of book Ids that were bought
      */
-    public List<Book_Purchase__c> getList(Set<Id> bookIds) {
+    public List<Book_Purchase__c> getList() {
         return [
             SELECT
                 Id,

@@ -13,6 +13,7 @@ public with sharing class InsertBookPurchaseRecordService implements CustomObjec
     public void setResponse(Database.SaveResult purchaseInsert) {
         this.response = purchaseInsert;
     }
+    
     /*
      * @param bookId - Id of the book purchased
      * The id of the user will be documented as createdById since only the users that are buying the book can insert this object
@@ -20,9 +21,7 @@ public with sharing class InsertBookPurchaseRecordService implements CustomObjec
     public void insertPurchase(Id bookId) { 
         Book_Purchase__c purchase = new Book_Purchase__c();
         purchase.Book__c = bookId;
-        System.debug('Uslo 2');
         Database.SaveResult insertResult = Database.insert(purchase);
-        System.debug(insertResult);
         this.setResponse(insertResult);
     }
 }

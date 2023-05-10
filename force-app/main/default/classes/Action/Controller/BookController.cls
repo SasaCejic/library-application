@@ -31,17 +31,15 @@ public with sharing class BookController {
      * @param emailAddress - email address of the user that bought the book
      * @param bookName - name of the book user bought
      * @param bookPrice - price of the book user bought
+     * @param bookId - Id of the book user bought
      */
     @AuraEnabled
     public static void confirmDigitalBookPurchase(String emailAddress, string bookName, String bookPrice, Id bookId) {
-        System.debug('USlO 1');
         //Insert purchase record into database
         InsertBookPurchaseRecordService insertService = (InsertBookPurchaseRecordService) new ObjectFactory()
             .createObject(InsertBookPurchaseRecordService.class);
         insertService.insertPurchase(bookId);
         // Send email to user
-        System.debug('Uslo 3');
-        System.debug(insertService.getResponse().isSuccess());
         SendPurchaseEmailConfirmationService service = (SendPurchaseEmailConfirmationService) new ObjectFactory()
             .createObject(SendPurchaseEmailConfirmationService.class);
         service.sendMail(insertService.getResponse().isSuccess(), emailAddress, bookName, bookPrice);

@@ -23,7 +23,7 @@
                     value={searchValue}>
                 </lightning-input>
             </div>
-            <p class="slds-p-horizontal_xx-large">Price: {price}$</p>
+            <p class="slds-p-horizontal_xx-large">Price: {price} <span if:true={price}>RSD</span></p>
             <lightning-input
                 value={email} 
                 onchange={handleEmailInput} 

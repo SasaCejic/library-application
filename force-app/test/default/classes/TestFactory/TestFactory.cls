@@ -229,6 +229,21 @@ public with sharing class TestFactory {
     }
 
     /*
+     * @param bookId - Id of the book that was purchased
+     */
+    public Book_Purchase__c createBookPurchase(Id bookId, Boolean forInsert, Boolean simulateInsert) {
+        Book_Purchase__c newBookPurchase = new Book_Purchase__c();
+        newBookPurchase.Book__c = bookId;
+
+        if(forInsert) {
+            insert newBookPurchase;
+            return newBookPurchase;
+        }
+        newBookPurchase.Id = getFakeId(Book_Purchase__c.SObjectType, simulateInsert);
+        return newBookPurchase;
+    }
+
+    /*
      * Method creates a library user for testing
      */
     public User createLibraryUser() {

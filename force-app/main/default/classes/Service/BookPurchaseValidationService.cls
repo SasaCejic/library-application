@@ -22,7 +22,7 @@ public with sharing class BookPurchaseValidationService implements CustomObject 
         // Now check if there are any same purchases in the database
         BookPurchaseSelector bookPurchaseSelector = (BookPurchaseSelector) new ObjectFactory()
             .createObject(BookPurchaseSelector.class);
-        List<Book_Purchase__c> existingBookPurchases = bookPurchaseSelector.getList(booksIds);
+        List<Book_Purchase__c> existingBookPurchases = bookPurchaseSelector.getList();
         for(Book_Purchase__c purchase: existingBookPurchases) {
             for(Book_Purchase__c newPurchase: newPurchases) {
                 if(newPurchase.Book__c == purchase.Book__c && UserInfo.getUserId() == purchase.CreatedById) {

@@ -166,7 +166,7 @@ export default class BuyDigitalBook extends LightningElement {
      * @param title - title of toast message
      * @param message - message of toast message
      * @param varian - varian of toast message
-    */
+     */
     showToast(title, message, variant) {
         const event = new ShowToastEvent({
             title: title,
