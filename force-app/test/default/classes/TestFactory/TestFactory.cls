@@ -150,12 +150,6 @@ public with sharing class TestFactory {
         return currentBook;
     }
 
-    /*
-     * @param forInsert - Boolean value representing if we want to insert the record or not
-     * @param publisherId - Id of a Publisher__c object which is a parent in master-detail relationship to Book__c
-     * @param authorId - Id of an Author__c which is connected through lookup relationship with Book__c
-     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
-     */
     public Book__c createDigitalBook(Id publisherId, Id authorId, Boolean forInsert, Boolean simulateInsert) {
         Book__c currentBook = new Book__c();
         currentBook.Name = bookDetails.get('name');
