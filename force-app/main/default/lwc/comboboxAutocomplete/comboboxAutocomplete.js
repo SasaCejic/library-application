@@ -50,7 +50,6 @@ export default class ComboboxAutocomplete extends LightningElement {
             }
         );
         this.dispatchEvent(customEvent);
-
         // Close the picklist options
         this.isFocussed = false;
         this.isOpen = false;
@@ -61,24 +60,18 @@ export default class ComboboxAutocomplete extends LightningElement {
     }
 
     get dropdownClasses() {
-        
         let dropdownClasses = 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click';
-        
         // Show dropdown list on focus
         if (this.isOpen) {
             dropdownClasses += ' slds-is-open';
         }
-
-    return dropdownClasses;
+        return dropdownClasses;
     }
 
     handleOutsideClick(event) {
-
         if ((!this.isFocussed) && (this.isOpen)) { 
-
             //Fetch the dropdown DOM node
             let domElement = this.template.querySelector('div[data-id="resultBox"]');
-
             //Is the clicked element within the dropdown 
             if (domElement && !domElement.contains(event.target)) {
                 this.isOpen = false;

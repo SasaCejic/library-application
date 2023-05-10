@@ -2,12 +2,29 @@
  * Class used for sending email after user purchases Digital book
  */
 public with sharing class SendPurchaseEmailConfirmationService implements CustomObject{
+    private List<Messaging.SendEmailResult> response;
+
+    //Getter
+    public List<Messaging.SendEmailResult> getResponse() {
+        return this.response;
+    }
+
+    //Setter
+    public void setResponse(List<Messaging.SendEmailResult> emailResults) {
+        this.response = emailResults;
+    }
+
     /*
      * @param emailAddress - Email address of the user that bought the book
      * @param bookName - Name of the bought book
      * @param bookPrice - Price of the bought book
      */
-    public void sendMail(String emailAddress, String bookName, String bookPrice) {
+    public void sendMail(Boolean isPurchaseInserted, String emailAddress, String bookName, String bookPrice) {
+        System.debug('USLO 4');
+        System.debug(isPurchaseInserted);
+        if(!isPurchaseInserted) {
+            return;
+        }
         List<Messaging.SingleEmailMessage> emailList = new List<Messaging.SingleEmailMessage>();
         // create the mail
         String emailSubject = 'Purchased book information';
@@ -21,13 +38,12 @@ public with sharing class SendPurchaseEmailConfirmationService implements Custom
         if (emailList.size() !=0 ) {
             SendEmailsService sendMailService = (SendEmailsService) new ObjectFactory()
                 .createObject(SendEmailsService.class);
-            List<Messaging.SendEmailResult> results = sendMailService.sendMails(emailList);
-            for (Messaging.SendEmailResult result:results) {
-                if (result.isSuccess()) {
-                    System.debug('The email was sent successfully.');
-                } else {
-                    System.debug('An error occurred while sending the email: ' + result.getErrors());
-                }
+            try{
+                List<Messaging.SendEmailResult> results = sendMailService.sendMails(emailList);
+                this.setResponse(results);
+            } catch (EmailException e){
+                String errorMsg = e.getMessage();
+                throw new AuraHandledException('Email is invalid, please check your information again.');
             }
         }
     }

@@ -35,6 +35,12 @@
                 <identifier>flexipage_filterListCard</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>buyDigitalBook</componentName>
+                <identifier>c_buyDigitalBook</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>left</name>
         <type>Region</type>
     </flexiPageRegions>
