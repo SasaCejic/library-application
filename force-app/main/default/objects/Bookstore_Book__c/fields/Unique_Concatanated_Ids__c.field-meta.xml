@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Unique_Concatanated_Ids__c</fullName>
     <externalId>false</externalId>
-    <formula>Bookstore__r.Id &amp;  Book__r.Id</formula>
+    <formula>CASESAFEID(Bookstore__r.Id) &amp; CASESAFEID(Book__r.Id)</formula>
     <label>Unique Concatanated Ids</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
