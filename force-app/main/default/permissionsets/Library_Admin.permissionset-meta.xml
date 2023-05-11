@@ -370,6 +370,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Books_not_in_bookstore</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Bookstore__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
