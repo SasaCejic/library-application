@@ -3,6 +3,6 @@
     <fullName>Book_description_required</fullName>
     <active>true</active>
     <errorConditionFormula>ISBLANK(Description__c)</errorConditionFormula>
-    <errorDisplayField>Author__c</errorDisplayField>
+    <errorDisplayField>Description__c</errorDisplayField>
     <errorMessage>The book description cannot be blank</errorMessage>
 </ValidationRule>
