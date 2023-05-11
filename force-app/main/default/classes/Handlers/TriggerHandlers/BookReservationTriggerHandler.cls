@@ -41,6 +41,6 @@ public with sharing class BookReservationTriggerHandler extends TriggerHandler {
     public override void beforeUpdate (List<sObject> oldRecords,List<sObject> newRecords) {
         BookReservationValidationService bookReservationValidationService = (BookReservationValidationService) new ObjectFactory()
         .createObject(BookReservationValidationService.class);
-        bookReservationValidationService.validateSelectedBook((List<Book_Reservation__c>) newRecords);
+        bookReservationValidationService.validateSelectedBook((List<Book_Reservation__c>) oldRecords, (List<Book_Reservation__c>) newRecords);
     }
 }

@@ -52,6 +52,7 @@ public with sharing class BookstoreBookSelector implements CustomObject {
     public List<Bookstore_Book__c> getListByUniqueConcatanatedIds (Set<String> concatanatedIds) {
         return [
             SELECT
+                Id,
                 Quantity__c,
                 Bookstore__c,
                 Book__c
