@@ -381,7 +381,7 @@
         <recordType>Bookstore__c.Online</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Bookstore__c-Online Bookstore Layout</layout>
+        <layout>Bookstore__c-Physical Bookstore Layout</layout>
         <recordType>Bookstore__c.Physical</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -529,6 +529,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Book__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Books_not_in_bookstore</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
