@@ -82,6 +82,34 @@
             label="Minimum Review Score"
             type="number">
         </lightning-input>
+        <lightning-input
+            value={term} 
+            onchange={handleTermInput} 
+            class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+            label="Term">
+        </lightning-input>
+
+        <div style="height: 300px" class="slds-var-m-around_medium">
+            <template lwc:if={books}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={books}
+                    columns={columns}
+                    onrowaction={handleRowAction}
+                    hide-checkbox-column
+                    onloadmore={handleLoadMore}
+                    enable-infinite-loading={moreToLoad}
+                    show-row-number-column
+                    load-more-offset="5"
+                >
+                </lightning-datatable>
+            </template>
+            <template lwc:elseif={error}>
+                <div class="slds-text-color_error">
+                    {error.body.message}
+                </div>
+            </template>
+        </div>
 
         <lightning-button onclick={handleBookSearch} label="Cancel"></lightning-button>
     </lightning-card>
