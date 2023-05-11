@@ -1,0 +1,88 @@
+<template>
+    <lightning-card>
+        <lightning-input
+            value={name} 
+            onchange={handleNameInput} 
+            class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+            label="Name">
+        </lightning-input>
+        <lightning-input
+            value={ISBN} 
+            onchange={handleISBNInput} 
+            class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+            label="ISBN">
+        </lightning-input>
+        <c-combobox-autocomplete 
+            label="Author"
+            options={authorOptions}
+            placeholder="Select an Author"
+            classes="slds-p-horizontal_xx-large slds-p-vertical_medium"
+            value={searchAuthorValue}
+            onselectoption={handleAuthorSelectOption}
+            onsearch={handleAuthorSearch}>
+        </c-combobox-autocomplete>
+        <lightning-input
+            value={publishDate} 
+            onchange={handlePublishDateInput} 
+            class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+            label="Publish Date">
+        </lightning-input>
+        <c-combobox-autocomplete 
+            label="Publisher"
+            options={publisherOptions}
+            placeholder="Select a Publisher"
+            classes="slds-p-horizontal_xx-large slds-p-vertical_medium"
+            value={searchPublisherValue}
+            onselectoption={handlePublisherSelectOption}
+            onsearch={handlePublisherSearch}>
+        </c-combobox-autocomplete>
+        <c-combobox-autocomplete 
+            label="Bookstore"
+            options={bookstoreOptions}
+            placeholder="Select a Bookstore"
+            classes="slds-p-horizontal_xx-large slds-p-vertical_medium"
+            value={searchBookstoreValue}
+            onselectoption={handleBookstoreSelectOption}
+            onsearch={handleBookstoreSearch}>
+        </c-combobox-autocomplete>
+        <lightning-dual-listbox 
+            label="Select Categories"
+            source-label="Available"
+            selected-label="Selected"
+            field-level-help="Select Categories"
+            options={categoriesOptions}
+            onchange={handleCategoriesChange}>
+        </lightning-dual-listbox>
+        <lightning-dual-listbox 
+            label="Select Laguages"
+            source-label="Available"
+            selected-label="Selected"
+            field-level-help="Select Laguages"
+            options={languagesOptions}
+            onchange={handleLanguagesChange}>
+        </lightning-dual-listbox>
+        <lightning-input
+            value={minPrice} 
+            onchange={handleMinPriceInput} 
+            class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+            label="Minimum Price"
+            type="number">
+        </lightning-input>
+        <lightning-input
+            value={maxPrice} 
+            onchange={handleMaxPriceInput} 
+            class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+            label="Maximum Price"
+            type="number">
+        </lightning-input>
+        <lightning-input
+            value={reviewScore} 
+            onchange={handlereviewScoreInput} 
+            class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+            label="Minimum Review Score"
+            type="number">
+        </lightning-input>
+
+        <lightning-button onclick={handleBookSearch} label="Cancel"></lightning-button>
+    </lightning-card>
+</template>
