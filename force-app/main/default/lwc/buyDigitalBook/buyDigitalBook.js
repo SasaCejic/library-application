@@ -6,8 +6,9 @@ import Id from '@salesforce/user/Id';
 import userEmailFIELD from '@salesforce/schema/User.Email';
 import getDigitalBooks from '@salesforce/apex/BookController.getDigitalBooks';
 import confirmDigitalBookPurchase from '@salesforce/apex/BookController.confirmDigitalBookPurchase';
+import { NavigationMixin } from 'lightning/navigation';
 
-export default class BuyDigitalBook extends LightningElement {
+export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
     // List that holds objects with label and values for the pickist
     options = [];
     // Calue of the search input
@@ -134,8 +135,12 @@ export default class BuyDigitalBook extends LightningElement {
             if(error) {
                 return;
             }
-            const closeEvent = new CloseActionScreenEvent();
-            this.dispatchEvent(closeEvent);
+            if(this.recordId) {
+                const closeEvent = new CloseActionScreenEvent();
+                this.dispatchEvent(closeEvent);
+            } else {
+                this.redirectToBookPage();
+            }
         })
     }
 
@@ -158,8 +163,12 @@ export default class BuyDigitalBook extends LightningElement {
      * Closes the screen
      */
     handleCancelBtn() {
-        const closeEvent = new CloseActionScreenEvent();
-        this.dispatchEvent(closeEvent);
+        if(this.recordId) {
+            const closeEvent = new CloseActionScreenEvent();
+            this.dispatchEvent(closeEvent);
+        } else {
+            this.redirectToBookPage();
+        }
     }
 
     /*
@@ -174,5 +183,21 @@ export default class BuyDigitalBook extends LightningElement {
             variant: variant
         });
         this.dispatchEvent(event);
+    }
+
+    /*
+     * Method used to redriect to book page once the purchase is bought/canceled from list view page
+     */
+    redirectToBookPage() {
+        this[NavigationMixin.Navigate]({
+            type: 'standard__objectPage',
+            attributes: {
+                objectApiName: 'Book__c',
+                actionName: 'list'
+            },
+            state: {
+                filterName: 'Recent'
+            }
+        });
     }
 }

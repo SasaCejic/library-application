@@ -120,6 +120,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.Price__c</fieldItem>
+                <identifier>RecordPrice_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.RecordTypeId</fieldItem>
                 <identifier>RecordRecordTypeIdField</identifier>
                 <visibilityRule>
@@ -348,6 +358,10 @@
                     <value>Facet-2d80d061-4606-43d9-a4d2-f710d2b9a323</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Information</value>
                 </componentInstanceProperties>
@@ -360,6 +374,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-1f2b64f2-7301-4204-ae9a-889157f951ec</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
