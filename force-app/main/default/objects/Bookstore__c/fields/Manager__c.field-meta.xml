@@ -4,6 +4,16 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Manager</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>User must be marked as a bookstore manager</errorMessage>
+        <filterItems>
+            <field>User.isBookstoreManager__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>User</referenceTo>
     <relationshipName>Bookstores</relationshipName>
     <required>false</required>
