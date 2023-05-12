@@ -9,9 +9,7 @@ public with sharing class TestFactory {
 
     @TestVisible
     public Map<String, String> bookstoreDetails = new Map<String, String>{
-        'name' => 'bookstore',
-        'email' => 'bookstore@gmail.com',
-        'storeId' => '21413523'
+        'name' => 'bookstore'
     };
 
     @TestVisible
@@ -38,6 +36,19 @@ public with sharing class TestFactory {
     @TestVisible
     public Map<String, String> standardAuthorsSettingDetails = new Map<String, String>{
         'name' => 'out-of-the-box authors setting'
+    };
+    
+    @TestVisible
+    public Map<String, String> userDetails = new Map<String, String>{
+        'lastName' => 'User',
+        'alias' => 'testuser',
+        'email' => 'testuser123@gmail.com',
+        'emailEncodingKey' => 'ISO-8859-1',
+        'communityNickName' => 'testuser1234',
+        'localeSidKey' => 'en_US',
+        'timeZoneSidKey' => 'GMT',
+        'languageLocaleKey' => 'en_US',
+        'profileId' => [SELECT Id FROM Profile WHERE Name=:'Standard User' LIMIT 1].Id
     };
 
     static Integer s_num = 1;
@@ -98,8 +109,10 @@ public with sharing class TestFactory {
     public Bookstore__c createBookstore(Boolean forInsert, Boolean simulateInsert) {
         Bookstore__c newBookstore = new Bookstore__c();
         newBookstore.Name = bookstoreDetails.get('name');
-        newBookstore.Email__c = bookstoreDetails.get('email');
-        newBookstore.Store_Identification_Code__c = bookstoreDetails.get('storeId');
+        Integer randomEmailNumber = (Integer)Math.floor(Math.random() * 9000) + 1000;
+        newBookstore.Email__c = 'bookstore' + String.valueOf(randomEmailNumber) + '@gmail.com';
+        Integer randomIdentificationCode = (Integer)Math.floor(Math.random() * 90000000) + 10000000;
+        newBookstore.Store_Identification_Code__c = String.valueOf(randomIdentificationCode);
 
         if(forInsert) {
             insert newBookstore;
@@ -239,4 +252,36 @@ public with sharing class TestFactory {
                           ProfileId = p.Id);
         return user;
     }
+
+    /**
+     * Method for creating a new User
+     * 
+     * @param forInsert Boolean value representing if we want to insert the record or not
+     * @param simulateInsert Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+     */
+    public User createUser(Boolean forInsert, Boolean simulateInsert) {
+        User newUser = new User();
+        String orgId = UserInfo.getOrganizationId();
+        String dateString = String.valueof(Datetime.now()).replace(' ', '').replace(':', '').replace('-', '');
+        Integer randomInt = Integer.valueOf(math.rint(math.random() * 1000000));
+        String uniqueName = orgId + dateString + randomInt;
+        uniqueName = (uniqueName.length() > 51) ? uniqueName.substring(0,51) : uniqueName;
+        newUser.Username = uniqueName + '@test' + orgId + '.org';
+        newUser.LastName = userDetails.get('lastName');
+        newUser.Email = userDetails.get('email');
+        newUser.EmailEncodingKey  = userDetails.get('emailEncodingKey');
+        newUser.Alias = userDetails.get('alias');
+        newUser.TimeZoneSidKey = userDetails.get('timeZoneSidKey');
+        newUser.LocaleSidKey = userDetails.get('localeSidKey');
+        newUser.LanguageLocaleKey = userDetails.get('languageLocaleKey');
+        newUser.ProfileId = userDetails.get('profileId');
+
+        if(forInsert) {
+            insert newUser;
+            return newUser;
+        }
+        newUser.Id = this.getFakeId(User.SObjectType, simulateInsert);
+        return newUser;
+    }
+
 }
