@@ -98,6 +98,7 @@
     <tabs>Author__c</tabs>
     <tabs>Publisher__c</tabs>
     <tabs>Advanced_Book_Search</tabs>
+    <tabs>Book_Reservation__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Library_Application_UtilityBar</utilityBar>
 </CustomApplication>

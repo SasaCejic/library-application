@@ -55,7 +55,8 @@ public with sharing class BookstoreBookSelector implements CustomObject {
                 Id,
                 Quantity__c,
                 Bookstore__c,
-                Book__c
+                Book__c,
+                Number_Of_Active_Reservations__c
             FROM 
                 Bookstore_Book__c
             WHERE 
