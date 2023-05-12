@@ -10,6 +10,8 @@ public with sharing class BookstoreTriggerTest {
         // create data
         TestFactory testFactory = new TestFactory();
         User userForTest = testFactory.createUser(true, false);
+        userForTest.isBookstoreManager__c = true;
+        update userForTest;
         Bookstore__c bookstore1 = testFactory.createBookstore(true, false);
         //make user manager of the bookstore
         bookstore1.Manager__c = userForTest.Id;
@@ -31,6 +33,8 @@ public with sharing class BookstoreTriggerTest {
         // create data
         TestFactory testFactory = new TestFactory();
         User userForTest = testFactory.createUser(true, false);
+        userForTest.isBookstoreManager__c = true;
+        update userForTest;
         Bookstore__c bookstore1 = testFactory.createBookstore(true, false);
         //make user manager of the bookstore
         bookstore1.Manager__c = userForTest.Id;
@@ -52,8 +56,14 @@ public with sharing class BookstoreTriggerTest {
         // create data
         TestFactory testFactory = new TestFactory();
         User user1 = testFactory.createUser(true, false);
+        user1.isBookstoreManager__c = true;
+        update user1;
         User user2 = testFactory.createUser(true, false);
+        user2.isBookstoreManager__c = true;
+        update user2;
         User user3 = testFactory.createUser(true, false);
+        user3.isBookstoreManager__c = true;
+        update user3;
         Bookstore__c bookstore1 = testFactory.createBookstore(true, false);
         //make user manager of the bookstore
         bookstore1.Manager__c = user1.Id;
@@ -86,8 +96,14 @@ public with sharing class BookstoreTriggerTest {
         // create data
         TestFactory testFactory = new TestFactory();
         User user1 = testFactory.createUser(true, false);
+        user1.isBookstoreManager__c = true;
+        update user1;
         User user2 = testFactory.createUser(true, false);
+        user2.isBookstoreManager__c = true;
+        update user2;
         User user3 = testFactory.createUser(true, false);
+        user3.isBookstoreManager__c = true;
+        update user3;
         Bookstore__c bookstore1 = testFactory.createBookstore(true, false);
         //make user manager of the bookstore
         bookstore1.Manager__c = user1.Id;
@@ -119,8 +135,14 @@ public with sharing class BookstoreTriggerTest {
         // create data
         TestFactory testFactory = new TestFactory();
         User user1 = testFactory.createUser(true, false);
+        user1.isBookstoreManager__c = true;
+        update user1;
         User user2 = testFactory.createUser(true, false);
+        user2.isBookstoreManager__c = true;
+        update user2;
         User user3 = testFactory.createUser(true, false);
+        user3.isBookstoreManager__c = true;
+        update user3;
         Bookstore__c bookstore1 = testFactory.createBookstore(true, false);
         //make user manager of the bookstore
         bookstore1.Manager__c = user1.Id;
@@ -159,8 +181,14 @@ public with sharing class BookstoreTriggerTest {
         // create data
         TestFactory testFactory = new TestFactory();
         User user1 = testFactory.createUser(true, false);
+        user1.isBookstoreManager__c = true;
+        update user1;
         User user2 = testFactory.createUser(true, false);
+        user2.isBookstoreManager__c = true;
+        update user2;
         User user3 = testFactory.createUser(true, false);
+        user3.isBookstoreManager__c = true;
+        update user3;
         Bookstore__c bookstore1 = testFactory.createBookstore(true, false);
         //make user manager of the bookstore
         bookstore1.Manager__c = user1.Id;
