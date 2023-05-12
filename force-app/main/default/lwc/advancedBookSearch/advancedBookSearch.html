@@ -1,51 +1,83 @@
 <template>
     <lightning-card>
-        <lightning-input
-            value={name} 
-            onchange={handleNameInput} 
-            class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
-            label="Name">
-        </lightning-input>
-        <lightning-input
-            value={ISBN} 
-            onchange={handleISBNInput} 
-            class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
-            label="ISBN">
-        </lightning-input>
-        <c-combobox-autocomplete 
-            label="Author"
-            options={authorOptions}
-            placeholder="Select an Author"
-            classes="slds-p-horizontal_xx-large slds-p-vertical_medium"
-            value={searchAuthorValue}
-            onselectoption={handleAuthorSelectOption}
-            onsearch={handleAuthorSearch}>
-        </c-combobox-autocomplete>
-        <lightning-input
-            value={publishDate} 
-            onchange={handlePublishDateInput} 
-            class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
-            label="Publish Date">
-        </lightning-input>
-        <c-combobox-autocomplete 
-            label="Publisher"
-            options={publisherOptions}
-            placeholder="Select a Publisher"
-            classes="slds-p-horizontal_xx-large slds-p-vertical_medium"
-            value={searchPublisherValue}
-            onselectoption={handlePublisherSelectOption}
-            onsearch={handlePublisherSearch}>
-        </c-combobox-autocomplete>
-        <c-combobox-autocomplete 
-            label="Bookstore"
-            options={bookstoreOptions}
-            placeholder="Select a Bookstore"
-            classes="slds-p-horizontal_xx-large slds-p-vertical_medium"
-            value={searchBookstoreValue}
-            onselectoption={handleBookstoreSelectOption}
-            onsearch={handleBookstoreSearch}>
-        </c-combobox-autocomplete>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <lightning-input
+                    value={name} 
+                    onchange={handleNameInput} 
+                    class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+                    label="Name">
+                </lightning-input>
+                <lightning-input
+                    value={ISBN} 
+                    onchange={handleISBNInput} 
+                    class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+                    label="ISBN">
+                </lightning-input>
+                <c-combobox-autocomplete 
+                    label="Author"
+                    options={authorOptions}
+                    placeholder="Select an Author"
+                    classes="slds-p-horizontal_xx-large slds-p-vertical_medium"
+                    value={searchAuthorValue}
+                    onselectoption={handleAuthorSelectOption}
+                    onsearch={handleAuthorSearch}>
+                </c-combobox-autocomplete>
+                <lightning-input
+                    value={publishDate} 
+                    onchange={handlePublishDateInput} 
+                    class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+                    label="Publish Date">
+                </lightning-input>
+            </div>
+            <div class="slds-col">
+                <c-combobox-autocomplete 
+                    label="Publisher"
+                    options={publisherOptions}
+                    placeholder="Select a Publisher"
+                    classes="slds-p-horizontal_xx-large slds-p-vertical_medium"
+                    value={searchPublisherValue}
+                    onselectoption={handlePublisherSelectOption}
+                    onsearch={handlePublisherSearch}>
+                </c-combobox-autocomplete>
+                <c-combobox-autocomplete 
+                    label="Bookstore"
+                    options={bookstoreOptions}
+                    placeholder="Select a Bookstore"
+                    classes="slds-p-horizontal_xx-large slds-p-vertical_medium"
+                    value={searchBookstoreValue}
+                    onselectoption={handleBookstoreSelectOption}
+                    onsearch={handleBookstoreSearch}>
+                </c-combobox-autocomplete>
+                <lightning-input
+                    value={reviewScore} 
+                    onchange={handlereviewScoreInput} 
+                    class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+                    label="Minimum Review Score"
+                    type="number">
+                </lightning-input>
+                <lightning-input
+                    value={term} 
+                    onchange={handleTermInput} 
+                    class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+                    label="Term">
+                </lightning-input>
+            </div>
+        </div>
+        
+        
+        <div class="slds-card slds-p-horizontal_xx-large slds-p-vertical_medium">
+            <lightning-slider
+                classes="slds-p-horizontal_xx-large slds-p-vertical_medium"
+                label="Price Maximum"
+                value={price}
+                onchange={handlePriceChange}
+                max={priceRangeMaximum}
+                min="1">
+            </lightning-slider>
+        </div>
         <lightning-dual-listbox 
+            class="slds-p-horizontal_xx-large slds-p-vertical_medium"
             label="Select Categories"
             source-label="Available"
             selected-label="Selected"
@@ -54,6 +86,7 @@
             onchange={handleCategoriesChange}>
         </lightning-dual-listbox>
         <lightning-dual-listbox 
+            class="slds-p-horizontal_xx-large slds-p-vertical_medium"
             label="Select Laguages"
             source-label="Available"
             selected-label="Selected"
@@ -61,33 +94,12 @@
             options={languagesOptions}
             onchange={handleLanguagesChange}>
         </lightning-dual-listbox>
-        <lightning-input
-            value={minPrice} 
-            onchange={handleMinPriceInput} 
-            class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
-            label="Minimum Price"
-            type="number">
-        </lightning-input>
-        <lightning-input
-            value={maxPrice} 
-            onchange={handleMaxPriceInput} 
-            class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
-            label="Maximum Price"
-            type="number">
-        </lightning-input>
-        <lightning-input
-            value={reviewScore} 
-            onchange={handlereviewScoreInput} 
-            class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
-            label="Minimum Review Score"
-            type="number">
-        </lightning-input>
-        <lightning-input
-            value={term} 
-            onchange={handleTermInput} 
-            class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
-            label="Term">
-        </lightning-input>
+
+        <div class="slds-card slds-p-horizontal_xx-large slds-p-vertical_medium slds-clearfix">
+            <lightning-button onclick={handleBookSearch} label="Search" class="slds-float_right"></lightning-button>
+        </div>
+
+        
 
         <div style="height: 300px" class="slds-var-m-around_medium">
             <template lwc:if={books}>
@@ -95,8 +107,10 @@
                     key-field="Id"
                     data={books}
                     columns={columns}
-                    onrowaction={handleRowAction}
                     hide-checkbox-column
+                    sorted-by={sortBy}
+                    sorted-direction={sortDirection}
+                    onsort={handleSorting}
                     onloadmore={handleLoadMore}
                     enable-infinite-loading={moreToLoad}
                     show-row-number-column
@@ -110,7 +124,5 @@
                 </div>
             </template>
         </div>
-
-        <lightning-button onclick={handleBookSearch} label="Cancel"></lightning-button>
     </lightning-card>
 </template>
