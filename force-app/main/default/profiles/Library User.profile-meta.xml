@@ -469,6 +469,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Publisher__c.Hidden_Unique_Name_Field__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>User.approver__c</field>
         <readable>true</readable>
     </fieldPermissions>
