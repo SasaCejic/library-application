@@ -35,7 +35,7 @@ public with sharing class BookPurchaseValidationServiceTest {
         
         // create mock
         Mocker BookPurchaseSelectorMock = new Mocker(BookPurchaseSelector.class)
-        .setBehavior('getList', new List<Book_Purchase__c>());
+            .setBehavior('getList', new List<Book_Purchase__c>());
         ObjectFactory.mocks.put(
             BookPurchaseSelector.class.getName(),
             (BookPurchaseSelector) BookPurchaseSelectorMock.getMock()
@@ -60,7 +60,7 @@ public with sharing class BookPurchaseValidationServiceTest {
         
         // create mock
         Mocker BookPurchaseSelectorMock = new Mocker(BookPurchaseSelector.class)
-        .setBehavior('getList', new List<Book_Purchase__c>());
+            .setBehavior('getList', new List<Book_Purchase__c>());
         ObjectFactory.mocks.put(
             BookPurchaseSelector.class.getName(),
             (BookPurchaseSelector) BookPurchaseSelectorMock.getMock()

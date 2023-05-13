@@ -14,7 +14,7 @@ public with sharing class GetDigitalBooksServiceTest {
         
         // create mock
         Mocker BookSelectorMock = new Mocker(BookSelector.class)
-        .setBehavior('getDigitalBooksList', new List<Book__c>{bookForTest});
+            .setBehavior('getDigitalBooksList', new List<Book__c>{bookForTest});
         ObjectFactory.mocks.put(
             BookSelector.class.getName(),
             (BookSelector)BookSelectorMock.getMock()
@@ -33,7 +33,7 @@ public with sharing class GetDigitalBooksServiceTest {
     public static void getBooks_willNotReturnAnything_ifNoDigitalBooksWereCreated() {
         // create  mock
         Mocker BookSelectorMock = new Mocker(BookSelector.class)
-        .setBehavior('getDigitalBooksList', new List<Book__c>{});
+            .setBehavior('getDigitalBooksList', new List<Book__c>{});
         ObjectFactory.mocks.put(
             BookSelector.class.getName(),
             (BookSelector)BookSelectorMock.getMock()
@@ -52,7 +52,7 @@ public with sharing class GetDigitalBooksServiceTest {
     public static void getBooks_willUseCorrectSelector() {
         // create  mock
         Mocker BookSelectorMock = new Mocker(BookSelector.class)
-        .setBehavior('getDigitalBooksList', new List<Book__c>{});
+            .setBehavior('getDigitalBooksList', new List<Book__c>{});
         ObjectFactory.mocks.put(
             BookSelector.class.getName(),
             (BookSelector)BookSelectorMock.getMock()

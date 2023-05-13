@@ -6,7 +6,8 @@ public with sharing class SendEmailsServiceTest {
     @isTest
     public static void sendMails_willSendMail_ifMailListIsNotEmpty() {
         // create mail
-        Messaging.SingleEmailMessage mail = new CreateEmailWithoutTemplateService().createMail( 'testsubject', 'testbody', 'testmail@gmail.com');
+        TestFactory testFactory = new TestFactory();
+        Messaging.SingleEmailMessage mail = testFactory.createMail();
 
         // execute
         List<Messaging.SendEmailResult> result = new SendEmailsService().sendMails(new List<Messaging.SingleEmailMessage>{mail});

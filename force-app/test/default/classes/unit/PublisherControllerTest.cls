@@ -7,7 +7,7 @@ public with sharing class PublisherControllerTest {
     public static void getPublishersNotWithBookstore_willUseService() {
         // create mock
         Mocker GetPublishersNotWithBookstoreServiceMock = new Mocker(GetPublishersNotWithBookstoreService.class)
-        .setBehavior('getPublishers', null);
+            .setBehavior('getPublishers', null);
         GetPublishersNotWithBookstoreServiceMock.setBehavior('getResponse', new List<Publisher__c>{});
         GetPublishersNotWithBookstoreServiceMock.setBehavior('getPublishers', null);
         ObjectFactory.mocks.put(

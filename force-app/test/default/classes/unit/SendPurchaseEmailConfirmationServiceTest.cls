@@ -33,7 +33,7 @@ public with sharing class SendPurchaseEmailConfirmationServiceTest {
          // create mocks
         Messaging.SingleEmailMessage mailForMock = new  Messaging.SingleEmailMessage();
         Mocker CreateEmailWithoutTemplateServiceMocker = new Mocker(CreateEmailWithoutTemplateService.class)
-        .setBehavior('createMail', mailForMock);
+            .setBehavior('createMail', mailForMock);
         ObjectFactory.mocks.put(
             CreateEmailWithoutTemplateService.class.getName(),
             (CreateEmailWithoutTemplateService)CreateEmailWithoutTemplateServiceMocker.getMock()

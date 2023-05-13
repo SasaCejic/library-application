@@ -138,7 +138,8 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
     searchBooks(searchValue) {
         this.isPicklistLoading = true;
         searchValue = searchValue == null? '' : searchValue;
-        searchDigitalBooks({ searchTerm: searchValue}).then((result) => {
+
+        searchDigitalBooks({ searchTerm: searchValue }).then((result) => {
             this.books = result;
             this.options = [];
             result.forEach(book => {
@@ -154,8 +155,7 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
     }
 
     /*
-     * Catches event from comboboxAutoComplete component
-     * @param event - Value of the picklist from ComboboxAutocomplete
+     * @param event - div event representing picklist
      */
     handleSelectOption(event) {
         this.searchValue = event.currentTarget.dataset.label;
@@ -211,7 +211,7 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
 
     /*
      * Sets the search value to the value of the input field
-     * @param event - event propagated from ComboboxAutoComplete component that holds value of the input
+     * @param event - event form search input
      */
     handleSearch(event) {
         window.clearTimeout(this.delay)

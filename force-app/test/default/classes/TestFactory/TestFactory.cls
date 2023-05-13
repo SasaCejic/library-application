@@ -37,6 +37,13 @@ public with sharing class TestFactory {
         'rating' => '4'
     };
 
+    @TestVisible
+    public Map<String, String> mailDetails = new Map<String, String> {
+        'subject' => 'Test subject',
+        'body' => 'Test body',
+        'address' => 'testaddress@gmail.com'
+    };
+
     static Integer s_num = 1;
 
     /*
@@ -263,11 +270,21 @@ public with sharing class TestFactory {
     }
 
     /*
+     * Create mail for testing
+     */
+    public Messaging.SingleEmailMessage createMail() {
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        mail.setSubject(mailDetails.get('subject'));
+        mail.setPlainTextBody(mailDetails.get('body'));
+        mail.setToAddresses(new String[] {mailDetails.get('address')});
+        return mail;
+    }
+
+    /*
      * Method creates a fake Database.SaveResult for testing
      */
     public Database.SaveResult createSuccessDatabaseSaveResult() {
-        Database.SaveResult sr = (Database.SaveResult)
-        JSON.deserialize('{"success":true,"id":"0013000000abcde"}', Database.SaveResult.class);
+        Database.SaveResult sr = (Database.SaveResult) JSON.deserialize('{"success":true,"id":"0013000000abcde"}', Database.SaveResult.class);
         return sr;
     }
 }
