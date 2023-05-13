@@ -43,20 +43,20 @@ public with sharing class BookstoreBookValidationService implements CustomObject
             List<Id> publisherAndBookstoreIdPair = publisherAndBookstoreIds.get(key);
 
             for(Bookstore_Publisher__c bookstorePublisher:bookstorePublishers) {
-                if(publisherAndBookstoreIdPair[0] == bookstorePublisher.Publisher__c && publisherAndBookstoreIdPair[1] == bookstorePublisher.Bookstore__c) {
+                if (publisherAndBookstoreIdPair[0] == bookstorePublisher.Publisher__c && publisherAndBookstoreIdPair[1] == bookstorePublisher.Bookstore__c) {
                         isFound = true;
                         break;
                 }
             }
             
-            if(!isFound) {
+            if (!isFound) {
                 nonValidatedBookstoreBooks.add(key);
             }
         }
 
         //Add error to all the Bookstore_Book__c objects that did not have the corresponding Bookstore_Publisher__c object
         for(Bookstore_Book__c bookstoreBook:newBookstoreBooks) {
-            if(nonValidatedBookstoreBooks.contains(bookstoreBook.Id)) {
+            if (nonValidatedBookstoreBooks.contains(bookstoreBook.Id)) {
                 bookstoreBook.addError('Book and bookstore must work with the same publisher!');
             }
         }

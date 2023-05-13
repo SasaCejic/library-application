@@ -43,7 +43,7 @@ public with sharing class TestFactory {
      * @param sObjecType- SObjectType of an object which we are creating fake Id for 
      */
     public String getFakeId(Schema.SObjectType sObjecType, Boolean simulateInsert) {
-        if(simulateInsert) {
+        if (simulateInsert) {
             String result = String.valueOf(s_num++);
             return sObjecType.getDescribe().getKeyPrefix() + '0'.repeat(12-result.length()) + result;
         }
@@ -61,7 +61,7 @@ public with sharing class TestFactory {
         newBookstoreBook.Book__c = bookId;
         newBookstoreBook.Bookstore__c = bookstoreId;
         
-        if(forInsert) {
+        if (forInsert) {
             insert newBookstoreBook;
             return newBookstoreBook;
         }
@@ -80,7 +80,7 @@ public with sharing class TestFactory {
         newBookstorePublisher.Publisher__c = publisherId;
         newBookstorePublisher.Bookstore__c = bookstoreId;
 
-        if(forInsert) {
+        if (forInsert) {
             insert newBookstorePublisher;
             return newBookstorePublisher;
         }
@@ -98,7 +98,7 @@ public with sharing class TestFactory {
         newBookstore.Email__c = bookstoreDetails.get('email');
         newBookstore.Store_Identification_Code__c = bookstoreDetails.get('storeId');
 
-        if(forInsert) {
+        if (forInsert) {
             insert newBookstore;
             return newBookstore;
         }
@@ -116,7 +116,7 @@ public with sharing class TestFactory {
         newPublisher.Email__c = publisherDetails.get('email');
         newPublisher.Phone__c = publisherDetails.get('phone');
 
-        if(forInsert) {
+        if (forInsert) {
             insert newPublisher;
             return newPublisher;
         }
@@ -142,7 +142,7 @@ public with sharing class TestFactory {
         currentBook.Author__c = authorId;
         currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
 
-        if(forInsert) {
+        if (forInsert) {
             insert currentBook;
             return currentBook;
         }
@@ -171,7 +171,7 @@ public with sharing class TestFactory {
         currentBook.RecordTypeId = Schema.SObjectType.Book__c.getRecordTypeInfosByName()
             .get('Digital Book').getRecordTypeId();
 
-        if(forInsert) {
+        if (forInsert) {
             insert currentBook;
             return currentBook;
         }
@@ -189,7 +189,7 @@ public with sharing class TestFactory {
         newBookReview.Book__c = bookId;
         newBookReview.Name = bookReviewDetails.get('name');
         newBookReview.Rating__c = bookReviewDetails.get('rating');
-        if(forInsert) {
+        if (forInsert) {
             insert newBookReview;
             return newBookReview;
         }
@@ -207,7 +207,7 @@ public with sharing class TestFactory {
         newAuthor.First_Name__c = authorDetails.get('firstName');
         newAuthor.Last_Name__c = authorDetails.get('lastName');
 
-        if(forInsert) {
+        if (forInsert) {
             insert newAuthor;
             return newAuthor;
         }
@@ -226,7 +226,7 @@ public with sharing class TestFactory {
         newAuthorPublisher.Author__c=authorId;
         newAuthorPublisher.Publisher__c=publisherId;
 
-        if(forInsert) {
+        if (forInsert) {
             insert newAuthorPublisher;
             return newAuthorPublisher;
         }
@@ -241,7 +241,7 @@ public with sharing class TestFactory {
         Book_Purchase__c newBookPurchase = new Book_Purchase__c();
         newBookPurchase.Book__c = bookId;
 
-        if(forInsert) {
+        if (forInsert) {
             insert newBookPurchase;
             return newBookPurchase;
         }
@@ -262,4 +262,12 @@ public with sharing class TestFactory {
         return user;
     }
 
+    /*
+     * Method creates a fake Database.SaveResult for testing
+     */
+    public Database.SaveResult createSuccessDatabaseSaveResult() {
+        Database.SaveResult sr = (Database.SaveResult)
+        JSON.deserialize('{"success":true,"id":"0013000000abcde"}', Database.SaveResult.class);
+        return sr;
+    }
 }

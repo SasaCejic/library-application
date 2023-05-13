@@ -21,7 +21,7 @@ public with sharing class SendPurchaseEmailConfirmationService implements Custom
      * @param bookPrice - Price of the bought book
      */
     public void sendMail(Boolean isPurchaseInserted, String emailAddress, String bookName, String bookPrice) {
-        if(!isPurchaseInserted) {
+        if (!isPurchaseInserted) {
             return;
         }
 
@@ -39,7 +39,7 @@ public with sharing class SendPurchaseEmailConfirmationService implements Custom
         if (emailList.size() !=0 ) {
             SendEmailsService sendMailService = (SendEmailsService) new ObjectFactory()
                 .createObject(SendEmailsService.class);
-            try{
+            try {
                 List<Messaging.SendEmailResult> results = sendMailService.sendMails(emailList);
                 this.setResponse(results);
             } catch (EmailException e){

@@ -25,7 +25,7 @@ public with sharing class BookControllerIntegrationTest {
     }
 
     @isTest
-    public static void getDigitalBooks_willReturnOneBook_ifSearchTermIsEmpty() {
+    public static void searchDigitalBooks_willReturnOneBook_ifSearchTermIsEmpty() {
         //disable triger unrelated to test
         BookTriggerHandler.triggerDisabled=true;
 
@@ -37,7 +37,7 @@ public with sharing class BookControllerIntegrationTest {
         
         // execute
         Test.startTest();
-        List<Book__c> digitalBooks = BookController.getDigitalBooks('');
+        List<Book__c> digitalBooks = BookController.searchDigitalBooks('');
         Test.stopTest();
         
         // assert

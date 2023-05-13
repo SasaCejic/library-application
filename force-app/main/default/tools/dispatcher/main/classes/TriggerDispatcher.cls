@@ -16,7 +16,7 @@ public with sharing class TriggerDispatcher {
      * @param handler - Class of type TriggerHanlder that implements blogic of what happens with the trigger
      */
     public void dispatch() {
-        if(handler.isDisabled()) {
+        if (handler.isDisabled()) {
             return;
         }
         
