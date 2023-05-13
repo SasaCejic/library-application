@@ -16,5 +16,5 @@ package.xml
 **/profiles/Admin.profile-meta.xml
 **/profiles/Trial Customer Portal User.profile-meta.xml
 
-#Custom indexes
-**/customindex/Publisher__c.Hidden_Unique_Name_Field__c.indx-meta.xml
+#CustomIndexes
+**/customIndex/Publisher__c.Hidden_Unique_Name_Field__c.indx-meta.xml

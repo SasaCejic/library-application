@@ -37,6 +37,9 @@ public with sharing class BookReservationValidationService implements CustomObje
                         } else {
                             bookstoreBook.Number_Of_Active_Reservations__c += bookReservation.Quantity__c;
                             bookstoreBooksToUpdate.add(bookstoreBook);
+                            //Send confirmation email
+                            SendReservationEmailConfirmationService confirmationEmail = (SendReservationEmailConfirmationService) new ObjectFactory().createObject(SendReservationEmailConfirmationService.class);
+                            confirmationEmail.sendMail('cejicsasa17@gmail.com', 'Above the Sky', 7, 25.0);
                         }
                     }
                 }
@@ -103,6 +106,7 @@ public with sharing class BookReservationValidationService implements CustomObje
                             } else {
                                 bookstoreBook.Number_Of_Active_Reservations__c += bookReservation.Quantity__c;
                                 bookstoreBooksToUpdate.add(bookstoreBook);
+                                //SEND CONFIRMATION MAIL
                             }
                         }
                     }
