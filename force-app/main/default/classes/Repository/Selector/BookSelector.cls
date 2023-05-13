@@ -32,8 +32,9 @@ public with sharing class BookSelector implements CustomObject {
     }
     
     /*
-     * Method returns all digital books
+     * Method returns searched digital books
      * @param digitalBookRecordTypeId - id of digital book record type
+     * @param searchTerm - search value 
      */
     public List<Book__c> getDigitalBooksList(Id digitalBookRecordTypeId, String searchTerm) {
         return [
