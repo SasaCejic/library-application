@@ -53,7 +53,7 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
      * Returns the type of input depending if it is on detail view page or not
      */
     get isSearchInput() {
-        return this.isOnViewPage?'':'Search'; 
+        return this.isOnViewPage? '' : 'Search'; 
     }
 
     /*
