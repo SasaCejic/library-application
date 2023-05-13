@@ -20,11 +20,9 @@ public with sharing class BookController {
      */
     @AuraEnabled(cacheable=true)
     public static List<Book__c> searchDigitalBooks(String searchTerm) {
-        System.debug(searchTerm);
         GetDigitalBooksService digitalBooksService = (GetDigitalBooksService) new ObjectFactory()
             .createObject(GetDigitalBooksService.class);
         digitalBooksService.getBooks(searchTerm);
-        System.debug('uslo2');
         return digitalBooksService.getResponse();
     }
 
