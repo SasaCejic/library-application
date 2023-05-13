@@ -60,7 +60,7 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
      * Returns true if there are no options to display
      */
     get noOptions() {
-    return this.options.length === 0;
+        return this.options.length === 0;
     }
 
     /*
