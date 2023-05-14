@@ -131,14 +131,14 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
     }
 
     /*
-     * Apex method that triggers every time searchValue is changed
      * Returns books which names correspond to searched value
      * @param searchValue - value in the input field
      */
     searchBooks(searchValue) {
         this.isPicklistLoading = true;
         searchValue = searchValue == null? '' : searchValue;
-
+        
+        // Apex call
         searchDigitalBooks({ searchTerm: searchValue }).then((result) => {
             this.books = result;
             this.options = [];
