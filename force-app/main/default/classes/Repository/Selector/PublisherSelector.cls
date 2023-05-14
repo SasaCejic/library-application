@@ -16,4 +16,19 @@ public with sharing class PublisherSelector implements CustomObject{
             LIMIT :recordLimit
         ];
     }
+
+    /*
+     * Method returns publishers from the database based on name match
+     * @param searchKey - search value 
+     */
+    public List<Publisher__c> getListByName(String searchKey) {
+        return [
+            SELECT
+                Id,
+                Name
+            FROM Publisher__c
+            WHERE Name like :searchKey
+            LIMIT 2000
+        ];
+    }
 }

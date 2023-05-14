@@ -17,7 +17,7 @@ public with sharing class GetPublishersNotWithBookstoreService implements Custom
     /*
      * @param bookstoreId - Id of the bookstore 
      */
-    public void getPublishers(Id bookstoreId, Integer recordLimit) {
+    public void getPublishers(Id bookstoreId, Integer recordLimit) { 
         //Set of book ids that are already in bookstore
         Set<Id> publishersWorkingWithBookstoreIds = new Set<Id>();
         BookstorePublisherSelector bookstorePublisherSelector = (BookstorePublisherSelector) new ObjectFactory()

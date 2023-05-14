@@ -5,20 +5,20 @@
                 <lightning-input
                     value={name} 
                     onchange={handleNameInput} 
-                    class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+                    class="slds-p-horizontal_x-large slds-p-vertical_medium" 
                     label="Name">
                 </lightning-input>
                 <lightning-input
                     value={ISBN} 
                     onchange={handleISBNInput} 
-                    class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+                    class="slds-p-horizontal_x-large slds-p-vertical_medium" 
                     label="ISBN">
                 </lightning-input>
                 <c-combobox-autocomplete 
                     label="Author"
                     options={authorOptions}
                     placeholder="Select an Author"
-                    classes="slds-p-horizontal_xx-large slds-p-vertical_medium"
+                    classes="slds-p-horizontal_x-large slds-p-vertical_medium"
                     value={searchAuthorValue}
                     onselectoption={handleAuthorSelectOption}
                     onsearch={handleAuthorSearch}>
@@ -26,7 +26,7 @@
                 <lightning-input
                     value={publishDate} 
                     onchange={handlePublishDateInput} 
-                    class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+                    class="slds-p-horizontal_x-large slds-p-vertical_medium" 
                     label="Publish Date">
                 </lightning-input>
             </div>
@@ -35,7 +35,7 @@
                     label="Publisher"
                     options={publisherOptions}
                     placeholder="Select a Publisher"
-                    classes="slds-p-horizontal_xx-large slds-p-vertical_medium"
+                    classes="slds-p-horizontal_x-large slds-p-vertical_medium"
                     value={searchPublisherValue}
                     onselectoption={handlePublisherSelectOption}
                     onsearch={handlePublisherSearch}>
@@ -44,7 +44,7 @@
                     label="Bookstore"
                     options={bookstoreOptions}
                     placeholder="Select a Bookstore"
-                    classes="slds-p-horizontal_xx-large slds-p-vertical_medium"
+                    classes="slds-p-horizontal_x-large slds-p-vertical_medium"
                     value={searchBookstoreValue}
                     onselectoption={handleBookstoreSelectOption}
                     onsearch={handleBookstoreSearch}>
@@ -52,23 +52,21 @@
                 <lightning-input
                     value={reviewScore} 
                     onchange={handlereviewScoreInput} 
-                    class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+                    class="slds-p-horizontal_x-large slds-p-vertical_medium" 
                     label="Minimum Review Score"
                     type="number">
                 </lightning-input>
                 <lightning-input
                     value={term} 
                     onchange={handleTermInput} 
-                    class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+                    class="slds-p-horizontal_x-large slds-p-vertical_medium" 
                     label="Term">
                 </lightning-input>
             </div>
         </div>
-        
-        
-        <div class="slds-card slds-p-horizontal_xx-large slds-p-vertical_medium">
+        <div class="slds-card slds-p-horizontal_x-large slds-p-vertical_medium">
             <lightning-slider
-                classes="slds-p-horizontal_xx-large slds-p-vertical_medium"
+                classes="slds-p-horizontal_x-large slds-p-vertical_medium"
                 label="Price Maximum"
                 value={price}
                 onchange={handlePriceChange}
@@ -77,7 +75,7 @@
             </lightning-slider>
         </div>
         <lightning-dual-listbox 
-            class="slds-p-horizontal_xx-large slds-p-vertical_medium"
+            class="slds-p-horizontal_x-large slds-p-vertical_medium"
             label="Select Categories"
             source-label="Available"
             selected-label="Selected"
@@ -86,7 +84,7 @@
             onchange={handleCategoriesChange}>
         </lightning-dual-listbox>
         <lightning-dual-listbox 
-            class="slds-p-horizontal_xx-large slds-p-vertical_medium"
+            class="slds-p-horizontal_x-large slds-p-vertical_medium"
             label="Select Laguages"
             source-label="Available"
             selected-label="Selected"
