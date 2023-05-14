@@ -12,7 +12,7 @@ public with sharing class BookPurchaseValidationService implements CustomObject 
         Set<Id> booksIds = new Set<Id>();
         // Check if in the new added purchases there are 2 same ones(CreatedById is not checked since it is not writeable and can only have the Id of current user)
         // Meaning that there can never be multiple new purchases at once from different users
-        for(Book_Purchase__c purchase:newPurchases) {
+        for (Book_Purchase__c purchase:newPurchases) {
             if (booksIds.contains(purchase.Book__c)) {
                 purchase.addError('You can only purchase the book once!');
                 return;
@@ -23,8 +23,8 @@ public with sharing class BookPurchaseValidationService implements CustomObject 
         BookPurchaseSelector bookPurchaseSelector = (BookPurchaseSelector) new ObjectFactory()
             .createObject(BookPurchaseSelector.class);
         List<Book_Purchase__c> existingBookPurchases = bookPurchaseSelector.getList();
-        for(Book_Purchase__c purchase: existingBookPurchases) {
-            for(Book_Purchase__c newPurchase: newPurchases) {
+        for (Book_Purchase__c purchase: existingBookPurchases) {
+            for (Book_Purchase__c newPurchase: newPurchases) {
                 if (newPurchase.Book__c == purchase.Book__c && UserInfo.getUserId() == purchase.CreatedById) {
                     newPurchase.addError('You can only buy one digital copy of a book!');
                 }
