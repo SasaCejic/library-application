@@ -456,6 +456,7 @@
     </objectPermissions>
     <recordTypeVisibilities>
         <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>Book__c.Digital_Book</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
