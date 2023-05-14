@@ -469,12 +469,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>User.approver__c</field>
-        <readable>true</readable>
+        <field>Publisher__c.Hidden_Unique_Name_Field__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>User.isBookstoreManager__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.approver__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
