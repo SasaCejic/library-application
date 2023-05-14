@@ -20,7 +20,7 @@ public with sharing class BookValidationService implements CustomObject{
         for (Book__c newBook:newBooks){
             Boolean isFound=false;
 
-            for(Author_Publisher__c authorPublisher:authorPublishers){
+            for (Author_Publisher__c authorPublisher:authorPublishers){
                 if (newBook.Author__c==authorPublisher.Author__c && newBook.Publisher__c==authorPublisher.Publisher__c){
                     isFound=true;
                     break;
