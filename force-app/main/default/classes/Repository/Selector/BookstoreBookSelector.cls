@@ -21,6 +21,21 @@ public with sharing class BookstoreBookSelector implements CustomObject {
     }
 
     /**
+     * @param bookstoreIds - Ids of the bookstores that Bookstore_Book__c records are assigned to
+     */
+    public List<Bookstore_Book__c> getListByBookstoreIds(Set<Id> bookstoreIds) {
+        return [
+            SELECT
+                Id,
+                Book__c,
+                Book__r.Publisher__c,
+                Bookstore__c
+            FROM Bookstore_Book__c
+            WHERE Bookstore__c IN :bookstoreIds
+        ];
+    }
+
+    /**
      * Get all Bookstore__c fields from Bookstore_Book__c junction
      * object records where the book is written by a certain author
      * 

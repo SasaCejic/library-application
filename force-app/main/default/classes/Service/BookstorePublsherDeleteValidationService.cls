@@ -6,12 +6,25 @@ public with sharing class BookstorePublsherDeleteValidationService {
      * @param deletedRecords - Bookstore_Publisher__c records being deleted
      */
     public void validateBookstorePublisher(List<Bookstore_Publisher__c> deletedRecords) {
-        // Set that holds Ids of deleted Bookstore_Publisher__c records
-        Set<Id> bookstorePublisherIds = new Set<Id>();
+        // Set that holds Ids of Bookstore__c records that correspond to the bookstores of deleted records
+        Set<Id> bookstoreIds = new Set<Id>();
         // Loop through deleted records and add their Ids to the set
         for (Bookstore_Publisher__c bookstorePublisher : deletedRecords) {
-            bookstorePublisherIds.add(bookstorePublisher.Id);
+            bookstoreIds.add(bookstorePublisher.Bookstore__c);
         }
-        
+
+        // Retrieve all the Bookstore_Book__c records that correspond to the same bookstores as deleted records
+        BookstoreBookSelector bookstoreBookSelector = (BookstoreBookSelector) new ObjectFactory()
+            .createObject(BookstoreBookSelector.class);
+        List<Bookstore_Book__c> bookstoreBooks = bookstoreBookSelector.getListByBookstoreIds(bookstoreIds);
+
+        // Loop through deleted record and retrieved Bookstore__Book__c and check if the Publisher corresponds to the deleted records
+        for (Bookstore_Publisher__c bookstorePublisher : deletedRecords) {
+            for (Bookstore_Book__c bookstoreBook : bookstoreBooks) {
+                if (bookstoreBook.Book__r.Publisher__c == bookstorePublisher.Id) {
+                    //bookstorePublisher.addError('You have to delete the associated books first');
+                }
+            }
+        }
     }
 }

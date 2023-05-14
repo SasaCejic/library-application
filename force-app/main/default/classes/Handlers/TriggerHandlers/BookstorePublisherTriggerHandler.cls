@@ -17,6 +17,8 @@ public with sharing class BookstorePublisherTriggerHandler extends TriggerHandle
      * @param - newRecords - records being inserted
      */
     public override void beforeDelete(List<sObject> oldRecords) {
-        //
+        BookstorePublsherDeleteValidationService service = (BookstorePublsherDeleteValidationService) new ObjectFactory()
+            .createObject(BookstorePublsherDeleteValidationService.class);
+        service.validateBookstorePublisher((List<Bookstore_Publisher__c>) oldRecords);
     }
 }
