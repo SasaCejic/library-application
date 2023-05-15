@@ -3,39 +3,30 @@ import { CloseActionScreenEvent } from 'lightning/actions';
 import { getRecord } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { NavigationMixin } from 'lightning/navigation';
+import { CurrentPageReference } from 'lightning/navigation';
 import Id from '@salesforce/user/Id';
 import userEmailFIELD from '@salesforce/schema/User.Email';
+import BOOK_API_NAME from '@salesforce/schema/Book__c';
 import confirmDigitalBookPurchase from '@salesforce/apex/BookController.confirmDigitalBookPurchase';
-import getOrganizationDefaultCurrency from '@salesforce/apex/OrganizationController.getOrganizationDefaultCurrency';
-import searchDigitalBooks from '@salesforce/apex/BookController.searchDigitalBooks';
 
 export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
+    bookApiName = BOOK_API_NAME.objectApiName;
     // List that holds objects with label and values for the pickist
     options = [];
-    // Value of the search input
-    searchValue = '';
     // Price of the book
     price = '';
     // Id of the selected book from picklist
     selectedValue;
     // Name of the selected book from picklist 
     selectedName;
-    // Boolean indicating if the component is on detail view page
-    isOnViewPage = true;
+    // Boolean indicating if the component is on record detail page
+    isOnViewPage = false;
     // Id of the book record if on detail view page
     _recordId;
     // All books currently searched
     books;
     // Email of the user
     email;
-    // default currency of the org
-    defaultCurrency;
-    // Boolean indicating if input is focused
-    isFocussed = false;
-    // Boolean indicating if picklist is open
-    isOpen = false;
-    // Boolean indicating if the picklist is loading
-    isPicklistLoading = true;
     // Boolean indicating if the email input is loading
     isEmailInputLoading = true;
 
@@ -49,38 +40,13 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
         return this._recordId;
     }
 
-    /*
-     * Returns the type of input depending if it is on detail view page or not
-     */
-    get isSearchInput() {
-        return this.isOnViewPage? '' : 'Search'; 
-    }
-
-    /*
-     * Returns true if there are no options to display
-     */
-    get noOptions() {
-        return this.options.length === 0;
-    }
-
-    /*
-     * Returns classes depending if picklis is open or not
-     */
-    get dropdownClasses() {
-        let dropdownClasses = 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click';
-        // Show dropdown list on focus
-        if (this.isOpen) {
-            dropdownClasses += ' slds-is-open';
+    @wire(CurrentPageReference)
+    currentPageReference(currentPageReference) {
+        if (currentPageReference) {
+            if (currentPageReference.type === 'standard__quickAction') {
+                this.isOnViewPage = true;
+            }
         }
-        return dropdownClasses;
-    }
-
-    /*
-     * Returns organization default currency
-     */
-    renderedCallback() {
-        this.getCurrency();
-        this.isOnViewPage = this.recordId? true : false;
     }
 
     /*
@@ -91,19 +57,18 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
     @wire(getRecord, { recordId: '$_recordId', layoutTypes: ['Full'] })
     wireRecord(result) {
         if (result.data) {
-            // Set default search value to that of the record fetched
-            this.searchValue = result.data.fields.Name.value;
+            console.log(result.data);
             // Format the price to include currency
-            this.price = result.data.fields.Price__c.value + ' ' + this.defaultCurrency;
+            this.price = result.data.fields.Price__c.displayValue;
             // Set selected value and name to that of the fetched record
             this.selectedValue = result.data.id;
-            this.selectedName = this.searchValue;
+            this.selectedName = result.data.fields.Name.value;;
         } else if (result.error) {
             this.showToast('Error', 'Error while retrieving book information', 'error');
         }
     }
 
-    /*
+    /**
      * Gets the details of user currently logged in
      * @param recordId - Id of the user
      * @param fields - list of fields to be retrieved
@@ -118,54 +83,12 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
         }
         this.isEmailInputLoading = false;
     }
-    
-    /*
-     * Performs apex call of getting default currency
-     */
-    getCurrency() {
-        getOrganizationDefaultCurrency().then((result) => {
-            this.defaultCurrency = result;
-        }).catch(() => {
-            this.showToast('Error', 'Error while retrieving the organization currency', 'error'); 
-        })
-    }
 
-    /*
-     * Returns books which names correspond to searched value
-     * @param searchValue - value in the input field
-     */
-    searchBooks(searchValue) {
-        this.isPicklistLoading = true;
-        searchValue = searchValue == null? '' : searchValue;
-        
-        // Apex call
-        searchDigitalBooks({ searchTerm: searchValue }).then((result) => {
-            this.books = result;
-            this.options = [];
-            result.forEach(book => {
-                this.options.push({
-                    label: book.Name,
-                    value: book.Id
-                })
-            })
-            this.isPicklistLoading = false;
-        }).catch(() => {
-            this.showToast('Error', 'Error while retrieving user books information', 'error');
-        })
-    }
-
-    /*
+    /**
      * @param event - div event representing picklist
      */
     handleSelectOption(event) {
-        this.searchValue = event.currentTarget.dataset.label;
-        this.selectedValue = event.currentTarget.dataset.value;
-        this.books.forEach(book => {
-            if (book.Id === this.selectedValue) {
-                this.price = book.Price__c + ' ' + this.defaultCurrency;
-            }
-        })
-        this.isOpen = false;
+        this.recordId = event.detail.value;
     }
 
     /*
@@ -210,18 +133,6 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
     }
 
     /*
-     * Sets the search value to the value of the input field
-     * @param event - event form search input
-     */
-    handleSearch(event) {
-        window.clearTimeout(this.delay)
-        this.searchValue = event.detail.value;
-        this.delay = setTimeout(() => {
-            this.searchBooks(this.searchValue);
-        }, 300);
-    }
-
-    /*
      * Sets the value of the email to the value of the email input field
      */
     handleEmailInput(event) {
@@ -232,7 +143,7 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
      * Closes the screen
      */
     handleCancelBtn() {
-        if (this.recordId) {
+        if (this.isOnViewPage) {
             const closeEvent = new CloseActionScreenEvent();
             this.dispatchEvent(closeEvent);
         } else {
@@ -240,37 +151,7 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
         }
     }
 
-    /*
-     * When clicked outside of input or picklist will close the picklist and unfocs input
-     */
-    handleOutsideClick(event) {
-        if ((!this.isFocussed) && (this.isOpen)) { 
-            //Fetch the dropdown DOM node
-            let domElement = this.template.querySelector('div[data-id="resultBox"]');
-            //Is the clicked element within the dropdown 
-            if (domElement && !domElement.contains(event.target)) {
-                this.isOpen = false;
-            }
-        }
-    }
-
-    /*
-     * When input is focused sends event to parent container to filter based on what is in input field
-     */
-    handleFocus() {
-        this.searchBooks(this.searchValue);
-        this.isFocussed = true;
-        this.isOpen = true;
-    }
-
-    /*
-     * Handles onblur property by unfocusing
-     */
-    handleBlur() {
-        this.isFocussed = false;
-    }
-
-    /*
+    /**
      * @param title - title of toast message
      * @param message - message of toast message
      * @param varian - varian of toast message
@@ -284,7 +165,7 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
         this.dispatchEvent(event);
     }
 
-    /*
+    /**
      * Method used to redriect to book page once the purchase is bought/canceled from list view page
      */
     redirectToBookPage() {

@@ -170,18 +170,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>GetDigitalBooksService</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>GetDigitalBooksServiceTest</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>GetOrganizationDefaultCurrencyService</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>GetPublishersNotWithBookstoreService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -206,15 +194,19 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>OrganizationController</apexClass>
+        <apexClass>ObjectSearchController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>OgranizationControllerTest</apexClass>
+        <apexClass>ObjectSearchControllerIntegrationTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>OgranizationControllerIntegrationTest</apexClass>
+        <apexClass>ObjectSearchService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ObjectSearchServiceTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>

@@ -4,48 +4,21 @@
             <div class="slds-modal__header slds-text-heading_medium">
                 <h1>Buy a digital book</h1>
             </div>
-            <div class="slds-p-horizontal_xx-large slds-p-vertical_large">
-                <div class="slds-form-element__control">
-                    <div class="slds-combobox_container">
-                        <div class={dropdownClasses} data-id="resultBox" aria-expanded="false" aria-haspopup="listbox" role="combobox">
-                            <div class="slds-form-element__control" role="none">
-                                <lightning-input
-                                    label="Book"
-                                    type={isSearchInput}
-                                    value={searchValue}
-                                    placeholder="Search books"
-                                    onchange={handleSearch}
-                                    onfocus={handleFocus}
-                                    onblur={handleBlur}
-                                    disabled={isOnViewPage}>
-                                </lightning-input>
-                            </div>
-                            <div if:false={isOnViewPage} id="searchResults" class="picklist slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
-                                <div if:true={isPicklistLoading}>
-                                    <lightning-spinner alternative-text="Loading"></lightning-spinner>
-                                </div>
-                                <ul class="slds-listbox slds-listbox_vertical" role="presentation">
-                                    <template if:true={options.length}>
-                                        <template for:each={options} for:item="option">
-                                            <li role="presentation" class="slds-listbox__item" key={option.value}>
-                                                <div data-value={option.value} data-label={option.label} onclick={handleSelectOption} class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
-                                                    <span class="slds-listbox__option-text slds-listbox__option-text_entity slds-p-around--xx-small">{option.label}</span>
-                                                </div>
-                                            </li>
-                                        </template>
-                                    </template>
-                                    <template if:true={noOptions}>
-                                        <li role="presentation" class="slds-align--absolute-center slds-listbox__item">
-                                            <div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
-                                                <span class="slds-listbox__option-text slds-listbox__option-text_entity slds-p-around--xx-small">No options found.</span>
-                                            </div>
-                                        </li>
-                                    </template>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div if:false={isOnViewPage} class="slds-p-horizontal_xx-large slds-p-vertical_large">
+                <c-combobox-autocomplete-wrapper
+                object-name="Book__c"
+                record-type-id="0121w000000GPQsAAO"
+                label="Search Books"
+                placeholder="Search"
+                onselectoption={handleSelectOption}>
+                </c-combobox-autocomplete-wrapper>
+            </div>
+            <div class="slds-p-horizontal_xx-large slds-p-vertical_large" if:true={isOnViewPage}>
+                <lightning-input
+                    label="Book"
+                    value={selectedName}
+                    disabled="true">
+                </lightning-input>
             </div>
             <p class="slds-p-horizontal_xx-large">Price: {price}</p>
             <div if:true={isEmailInputLoading}>

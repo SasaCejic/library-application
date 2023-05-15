@@ -30,24 +30,4 @@ public with sharing class BookSelector implements CustomObject {
             LIMIT :recordLimit
         ];
     }
-    
-    /*
-     * Method returns searched digital books
-     * @param digitalBookRecordTypeId - id of digital book record type
-     * @param searchTerm - search value 
-     */
-    public List<Book__c> getDigitalBooksList(Id digitalBookRecordTypeId, String searchTerm) {
-        return [
-            SELECT
-                Id,
-                Name,
-                ISBN__c,
-                Price__c
-            FROM Book__c
-            WHERE RecordTypeId =: digitalBookRecordTypeId
-            AND 
-            NAME LIKE :searchTerm
-            LIMIT 2000
-        ];
-    }
 }

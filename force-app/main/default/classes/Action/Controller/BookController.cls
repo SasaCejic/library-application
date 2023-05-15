@@ -15,18 +15,6 @@ public with sharing class BookController {
     }
 
     /*
-     * Method returns searched digital books
-     * @param searchTerm - Name of the searched book
-     */
-    @AuraEnabled(cacheable=true)
-    public static List<Book__c> searchDigitalBooks(String searchTerm) {
-        GetDigitalBooksService digitalBooksService = (GetDigitalBooksService) new ObjectFactory()
-            .createObject(GetDigitalBooksService.class);
-        digitalBooksService.getBooks(searchTerm);
-        return digitalBooksService.getResponse();
-    }
-
-    /*
      * Method sends email to the user that bought the book
      * @param emailAddress - email address of the user that bought the book
      * @param bookName - name of the book user bought
