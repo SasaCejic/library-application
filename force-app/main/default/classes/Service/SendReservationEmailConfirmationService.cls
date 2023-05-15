@@ -25,7 +25,7 @@ public with sharing class SendReservationEmailConfirmationService implements Cus
         List<Messaging.SingleEmailMessage> emailList = new List<Messaging.SingleEmailMessage>();
         // create the mail
         String emailSubject = 'Book Reservation confirmation mail';
-        String emailBody = 'Dear ' + UserInfo.getFirstName() + '\n' + 'You made a reservation for ' + bookName + '\n' + 'Quantity: ' + quantity + '\n' + 'Total price: ' + totalPrice + '$';
+        String emailBody = 'Dear ' + UserInfo.getFirstName() + '\n' + 'You made a reservation for \'' + bookName + '\'\n' + 'Quantity: ' + quantity + '\n' + 'Total price: ' + totalPrice + ' ' + UserInfo.getDefaultCurrency();
         CreateEmailWithoutTemplateService createEmailService = (CreateEmailWithoutTemplateService) new ObjectFactory()
             .createObject(CreateEmailWithoutTemplateService.class);
         Messaging.SingleEmailMessage mail = createEmailService.createMail(emailSubject,emailBody,emailAddress);

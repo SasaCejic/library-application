@@ -150,6 +150,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CreateEmailWithoutTemplateService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CustomObject</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -198,6 +202,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>SendEmailsService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SendReservationEmailConfirmationService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>TestFactory</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -238,6 +250,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Author__c.Number_Of_Published_Books__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Book_Reservation__c.Price__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
