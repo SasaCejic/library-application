@@ -8,14 +8,7 @@ export default class ComboboxAutocompleteWrapper extends LightningElement {
     @api placeholder;
     @api objectName;
     @api recordTypeId;
-    isLoading = true;
-
-    /**
-     * Performs search as soon as the component loads, so when it is clicked it shows options automatically
-     */
-    connectedCallback() {
-        this.search(this.objectName, this.recordTypeId, '');
-    }
+    isLoading = false;
 
     /**
      * @param event - event propagated from comboboxautocomplete component holding search value
@@ -24,6 +17,9 @@ export default class ComboboxAutocompleteWrapper extends LightningElement {
         window.clearTimeout(this.delay)
         this.searchTerm = event.detail.searchTerm;
         this.delay = setTimeout(() => {
+            if (this.searchTerm === '') {
+                return;
+            }
             this.search(this.objectName, this.recordTypeId, this.searchTerm);
         }, 300);
     }

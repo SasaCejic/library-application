@@ -20,13 +20,13 @@ public with sharing class ObjectSearchService implements CustomObject {
      * @param searchTerm - String representing the name being searched
      */
     public void search(String objectName, Id recordType, String searchTerm) {
-        String query = 'SELECT Id, Name FROM ' + objectName;
+        String query = '';
         // If record type is null, meaning it wasn't specified, don't include recordTypeId in query
         if (recordType != null) {
-            query += ' WHERE RecordTypeId = \'' + recordType + '\'' + ' AND Name LIKE \'%' + searchTerm + '%\'' + 'LIMIT 2000';
-        } else {
-            query += ' WHERE Name LIKE \'%' + searchTerm + '%\'' + 'LIMIT 2000';
+            query += ' RecordTypeId = \'' + recordType + '\'' + ' AND';
         }
-        this.setResponse(Database.query(query));
+        ObjectSelector selector = (ObjectSelector) new ObjectFactory()
+            .createObject(ObjectSelector.class);
+        this.setResponse(selector.searchObjects(objectName, query, searchTerm));
     }
 }

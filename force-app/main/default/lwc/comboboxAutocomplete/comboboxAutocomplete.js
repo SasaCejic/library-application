@@ -30,6 +30,9 @@ export default class ComboboxAutocomplete extends LightningElement {
 
     filterOptions(event) {
         const filterText = event.detail.value;
+        if (filterText === '') {
+            this.options = [];
+        } 
         const custEvent = new CustomEvent(
             'search', {
                 detail: {

@@ -6,8 +6,8 @@
             </div>
             <div if:false={isOnViewPage} class="slds-p-horizontal_xx-large slds-p-vertical_large">
                 <c-combobox-autocomplete-wrapper
-                object-name="Book__c"
-                record-type-id="0121w000000GPQsAAO"
+                object-name={bookApiName}
+                record-type-id={bookRecordTypeId}
                 label="Search Books"
                 placeholder="Search"
                 onselectoption={handleSelectOption}>

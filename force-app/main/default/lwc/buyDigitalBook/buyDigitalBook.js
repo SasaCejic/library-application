@@ -4,12 +4,14 @@ import { getRecord } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { NavigationMixin } from 'lightning/navigation';
 import { CurrentPageReference } from 'lightning/navigation';
+import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import Id from '@salesforce/user/Id';
 import userEmailFIELD from '@salesforce/schema/User.Email';
 import BOOK_API_NAME from '@salesforce/schema/Book__c';
 import confirmDigitalBookPurchase from '@salesforce/apex/BookController.confirmDigitalBookPurchase';
 
 export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
+    bookRecordTypeId;
     bookApiName = BOOK_API_NAME.objectApiName;
     // List that holds objects with label and values for the pickist
     options = [];
@@ -39,6 +41,18 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
     get recordId() {
         return this._recordId;
     }
+
+    @wire(getObjectInfo, { objectApiName: BOOK_API_NAME })
+    handleObjectInfo({ error, data }) {
+        if (data) {
+            const recordTypes = data.recordTypeInfos;
+            this.bookRecordTypeId = Object.keys(recordTypes).find(
+                (key) => recordTypes[key].name === 'Digital Book'
+            );
+        } else if (error) {
+            this.showToast('Error', 'Error while retrieving book object info')
+        }
+}
 
     @wire(CurrentPageReference)
     currentPageReference(currentPageReference) {

@@ -34,4 +34,26 @@ public with sharing class ObjectSearchServiceTest {
         // assert
         Assert.areEqual(1, service.getResponse().size());
     }
+
+    @isTest
+    public static void search_willUseCorrectSelector() {
+        // create data
+        TestFactory testFactory = new TestFactory();
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true, false);
+
+        // create mock
+        Mocker objectSelectorMocker = new Mocker(ObjectSelector.class)
+            .setBehavior('searchObjects', (List<SObject>) new List<Bookstore__c>{bookstoreForTest});
+        ObjectFactory.mocks.put(
+            ObjectSelector.class.getName(),
+            (ObjectSelector) objectSelectorMocker.getMock()
+        );
+
+        // execute
+        ObjectSearchService service = new ObjectSearchService();
+        service.search('Bookstore__c', bookstoreForTest.Id, '');
+
+        // assert
+        objectSelectorMocker.assertMethodExecutionCount('searchObjects', 1);
+    }
 }
