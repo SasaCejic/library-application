@@ -71,7 +71,6 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
     @wire(getRecord, { recordId: '$_recordId', layoutTypes: ['Full'] })
     wireRecord(result) {
         if (result.data) {
-            console.log(result.data);
             // Format the price to include currency
             this.price = result.data.fields.Price__c.displayValue;
             // Set selected value and name to that of the fetched record
@@ -91,7 +90,6 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
     wireUserRecord(result) {
         if (result.data) {
             this.email = result.data.fields.Email.value;
-            
         } else if (result.error) {
             this.showToast('Error', 'Error while retrieving user information', 'error');
         }
