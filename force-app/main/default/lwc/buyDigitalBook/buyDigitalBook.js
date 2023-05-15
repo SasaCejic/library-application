@@ -52,7 +52,7 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
         } else if (error) {
             this.showToast('Error', 'Error while retrieving book object info')
         }
-}
+    }
 
     @wire(CurrentPageReference)
     currentPageReference(currentPageReference) {

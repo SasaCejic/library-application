@@ -8,8 +8,8 @@ public with sharing class ObjectSelector implements CustomObject{
      * @param searchTerm - value being searched
      */
     public List<SObject> searchObjects(String objectName, String middleQuery, String searchTerm) {
-        String query = 'SELECT Id, Name FROM ' + objectName + ' WHERE';
-        query += middleQuery + ' Name LIKE \'%' + searchTerm + '%\''+ ' LIMIT 2000';
+        String query = 'SELECT Id, Name FROM ' + objectName + ' WHERE' +
+            middleQuery + ' Name LIKE \'%' + searchTerm + '%\'' + ' LIMIT 2000';
         return Database.query(query);
     }
 }
