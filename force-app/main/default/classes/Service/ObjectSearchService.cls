@@ -21,6 +21,8 @@ public with sharing class ObjectSearchService implements CustomObject {
      */
     public void search(String objectName, Id recordType, String searchTerm) {
         String query = '';
+        objectName = String.escapeSingleQuotes(objectName);
+        searchTerm = String.escapeSingleQuotes(searchTerm);
         // If record type is null, meaning it wasn't specified, don't include recordTypeId in query
         if (recordType != null) {
             query += ' RecordTypeId = \'' + recordType + '\'' + ' AND';
