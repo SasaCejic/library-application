@@ -13,4 +13,16 @@ public with sharing class BookController {
         service.getBooks(bookstoreId, recordLimit);
         return service.getResponse();
     }
+
+    /*
+     * @param bookstoreId - Id of bookstore and based on the id retrieves all the books not in the bookstore
+     * @param limit - Maximum number of records to return
+     */
+    @AuraEnabled(cacheable=true)
+    public static List<AggregateResult> getBooksFromSearchDTO(BookSearchDTO bookSearchDTO, Integer limitSize, Integer offset) {
+        BookSearchService service = (BookSearchService) new ObjectFactory()
+            .createObject(BookSearchService.class);
+        service.getBooksFromSearchDTO(bookSearchDTO, limitSize, offset);
+        return service.getResponse();
+    }
 }
