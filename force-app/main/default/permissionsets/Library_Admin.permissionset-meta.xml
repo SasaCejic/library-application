@@ -378,11 +378,19 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Buy_Digital_Book</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Publisher__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>Publishers_not_working_with_bookstore</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-ProcessInstanceWorkitem</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>

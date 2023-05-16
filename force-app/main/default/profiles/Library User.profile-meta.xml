@@ -46,8 +46,20 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BookPurchaseTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookPurchaseTriggerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BookPurchaseValidationService</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookPurchaseValidationServiceTest</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookReviewSelector</apexClass>
@@ -182,6 +194,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>InsertBookPurchaseRecordServiceTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Mocker</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -206,11 +222,11 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ObjectSelector</apexClass>
+        <apexClass>ObjectSearchServiceTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ObjectSearchServiceTest</apexClass>
+        <apexClass>ObjectSelector</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -315,8 +331,18 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Book__c.ISBN_Uneditable__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Book__c.Print_Length__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Book__c.Record_Type_Uneditable__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -461,6 +487,15 @@
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
+        <object>Book_Purchase__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>Book_Review__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
@@ -518,15 +553,6 @@
         <object>Subscription__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
-        <object>Book_Purchase__c</object>
-        <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>
     <recordTypeVisibilities>
         <default>true</default>
         <recordType>Book__c.Digital_Book</recordType>
@@ -569,6 +595,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Bookstore__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Buy_Digital_Book</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>

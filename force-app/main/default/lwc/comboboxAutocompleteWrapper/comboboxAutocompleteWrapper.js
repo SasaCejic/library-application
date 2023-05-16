@@ -40,6 +40,8 @@ export default class ComboboxAutocompleteWrapper extends LightningElement {
                     value: book.Id
                 })
             });
+            // sort options
+            this.options.sort((a, b) => a.label.localeCompare(b.label));
         }).catch(() => {
             this.showToast('Error', 'Error while performing search', 'error');
         }).finally(() => {

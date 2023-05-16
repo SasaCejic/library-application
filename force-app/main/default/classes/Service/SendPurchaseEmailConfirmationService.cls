@@ -36,13 +36,13 @@ public with sharing class SendPurchaseEmailConfirmationService implements Custom
         emailList.add(mail);
 
         // Send the email
-        if (emailList.size() !=0 ) {
+        if (emailList.size() != 0) {
             SendEmailsService sendMailService = (SendEmailsService) new ObjectFactory()
                 .createObject(SendEmailsService.class);
             try {
                 List<Messaging.SendEmailResult> results = sendMailService.sendMails(emailList);
                 this.setResponse(results);
-            } catch (EmailException e){
+            } catch (EmailException e) {
                 String errorMsg = e.getMessage();
                 throw new AuraHandledException('Email is invalid, please check your information again.');
             }

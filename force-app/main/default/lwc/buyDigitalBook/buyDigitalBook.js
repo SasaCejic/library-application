@@ -25,8 +25,6 @@ export default class BuyDigitalBook extends NavigationMixin(LightningElement) {
     isOnViewPage = false;
     // Id of the book record if on detail view page
     _recordId;
-    // All books currently searched
-    books;
     // Email of the user
     email;
     // Boolean indicating if the email input is loading
