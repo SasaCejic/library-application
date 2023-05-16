@@ -10,8 +10,16 @@ import CATEGORIES_FIELD from '@salesforce/schema/Book__c.Categories__c';
 import LANGUAGE_FIELD from '@salesforce/schema/Book__c.Language__c';
 import DESCRIPTION_FIELD from '@salesforce/schema/Book__c.Description__c';
 //import PRICE_FIELD from '@salesforce/schema/Book__c.Price__c';
+import AUTHOR_OBJECT from '@salesforce/schema/Author__c';
+import BOOKSTORE_OBJECT from '@salesforce/schema/Bookstore__c';
+import PUBLISHER_OBJECT from '@salesforce/schema/Publisher__c';
 
 export default class AdvancedBookSearch extends LightningElement {
+    //object api names for autocompleteComoboxWrappers
+    authorApiName=AUTHOR_OBJECT.objectApiName
+    bookstoreApiName=BOOKSTORE_OBJECT.objectApiName
+    publisherApiName=PUBLISHER_OBJECT.objectApiName
+
     // Columns to be displayed in book record table
     columns=[
         {
@@ -148,18 +156,6 @@ export default class AdvancedBookSearch extends LightningElement {
     }
     handleTermInput(event){
         this.term=event.target.value;
-    }
-
-    handleAuthorSearch(){
-        
-    }
-
-    handlePublisherSearch(){
-
-    }
-
-    handleBookstoreSearch(){
-
     }
 
     handleSorting(){

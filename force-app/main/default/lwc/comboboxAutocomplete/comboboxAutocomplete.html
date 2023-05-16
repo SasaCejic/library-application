@@ -15,7 +15,11 @@
                         >
                         </lightning-input>
                     </div>
-                    <div id="searchResults" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
+                    <!-- Display option Results -->
+                    <div style="max-height:150px;" id="searchResults" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
+                        <div if:true={isLoading}>
+                            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                        </div>
                         <ul class="slds-listbox slds-listbox_vertical" role="presentation">
                             <template if:true={options.length}>
                                 <template for:each={options} for:item="option">
