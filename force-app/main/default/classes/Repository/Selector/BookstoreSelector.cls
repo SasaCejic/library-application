@@ -46,19 +46,4 @@ public with sharing class BookstoreSelector implements CustomObject {
                 Id IN :bookstoreIds
         ];
     }
-
-    /*
-     * Method returns bookstores from the database based on name match
-     * @param searchKey - search value 
-     */
-    public List<Bookstore__c> getListByName(String searchKey) {
-        return [
-            SELECT
-                Id,
-                Name
-            FROM Bookstore__c
-            WHERE Name like :searchKey
-            LIMIT 2000
-        ];
-    }
 }

@@ -22,21 +22,4 @@ public with sharing class AuthorController {
 
         return service.getResponse();
     }
-
-    /**
-     * Call AuthorSearchService class method to get
-     * all Author__c records with names containing the specified searchKey
-     * 
-     * @param searchKey string value to search names by
-     * 
-     * @return list of Author__c object records
-     */
-    @AuraEnabled(cacheable = true)
-    public static List<Author__c> getAuthorsByName(Id searchKey) {
-        AuthorSearchService service = (AuthorSearchService) new ObjectFactory().createObject(AuthorSearchService.class);
-
-        service.getAuthorsByName(searchKey);
-
-        return service.getResponse();
-    }
 }
