@@ -1,7 +1,7 @@
 /*
  * Class responsible for stopping delete of Bookstore_Publisher__c record if Bookstore__Book__c record exist assigned to the same Bookstore__c record
  */
-public with sharing class BookstorePublsherDeleteValidationService {
+public with sharing class BookstorePublsherDeleteValidationService implements CustomObject {
     /*
      * @param deletedRecords - Bookstore_Publisher__c records being deleted
      */
@@ -17,12 +17,12 @@ public with sharing class BookstorePublsherDeleteValidationService {
         BookstoreBookSelector bookstoreBookSelector = (BookstoreBookSelector) new ObjectFactory()
             .createObject(BookstoreBookSelector.class);
         List<Bookstore_Book__c> bookstoreBooks = bookstoreBookSelector.getListByBookstoreIds(bookstoreIds);
-
+        
         // Loop through deleted record and retrieved Bookstore__Book__c and check if the Publisher corresponds to the deleted records
         for (Bookstore_Publisher__c bookstorePublisher : deletedRecords) {
             for (Bookstore_Book__c bookstoreBook : bookstoreBooks) {
-                if (bookstoreBook.Book__r.Publisher__c == bookstorePublisher.Id) {
-                    //bookstorePublisher.addError('You have to delete the associated books first');
+                if (bookstoreBook.Book__r.Publisher__c == bookstorePublisher.Publisher__c) {
+                    bookstorePublisher.addError('You have to delete the associated books first');
                 }
             }
         }
