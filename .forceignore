@@ -19,3 +19,6 @@ package.xml
 
 #CustomIndexes
 **/customIndex/Publisher__c.Hidden_Unique_Name_Field__c.indx-meta.xml
+
+#Approval Processes
+**/approvalProcesses/Book__c.Book_create_approval.approvalProcess-meta.xml

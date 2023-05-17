@@ -75,6 +75,196 @@
     <navType>Standard</navType>
     <profileActionOverrides>
         <actionName>View</actionName>
+        <content>Online_Bookstore_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Bookstore__c</pageOrSobjectType>
+        <recordType>Bookstore__c.Online</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Online_Bookstore_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Bookstore__c</pageOrSobjectType>
+        <recordType>Bookstore__c.Online</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Online_Bookstore_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Bookstore__c</pageOrSobjectType>
+        <recordType>Bookstore__c.Online</recordType>
+        <type>Flexipage</type>
+        <profile>Library User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Online_Bookstore_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Bookstore__c</pageOrSobjectType>
+        <recordType>Bookstore__c.Online</recordType>
+        <type>Flexipage</type>
+        <profile>Library User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Physical_Bookstore_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Bookstore__c</pageOrSobjectType>
+        <recordType>Bookstore__c.Physical</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Physical_Bookstore_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Bookstore__c</pageOrSobjectType>
+        <recordType>Bookstore__c.Physical</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Physical_Bookstore_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Bookstore__c</pageOrSobjectType>
+        <recordType>Bookstore__c.Physical</recordType>
+        <type>Flexipage</type>
+        <profile>Library User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Physical_Bookstore_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Bookstore__c</pageOrSobjectType>
+        <recordType>Bookstore__c.Physical</recordType>
+        <type>Flexipage</type>
+        <profile>Library User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Digital_Book_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Book__c</pageOrSobjectType>
+        <recordType>Book__c.Digital_Book</recordType>
+        <type>Flexipage</type>
+        <profile>Library User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Digital_Book_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Book__c</pageOrSobjectType>
+        <recordType>Book__c.Digital_Book</recordType>
+        <type>Flexipage</type>
+        <profile>Library User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Digital_Book_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Book__c</pageOrSobjectType>
+        <recordType>Book__c.Digital_Book</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Digital_Book_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Book__c</pageOrSobjectType>
+        <recordType>Book__c.Digital_Book</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Paper_Book_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Book__c</pageOrSobjectType>
+        <recordType>Book__c.Paper_Book</recordType>
+        <type>Flexipage</type>
+        <profile>Library User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Paper_Book_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Book__c</pageOrSobjectType>
+        <recordType>Book__c.Paper_Book</recordType>
+        <type>Flexipage</type>
+        <profile>Library User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Author_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Author__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Author_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Author__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Author_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Author__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Library User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Author_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Author__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Library User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Publisher_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Publisher__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Library User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Publisher_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Publisher__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Library User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Publisher_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Publisher__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Publisher_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Publisher__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
         <content>Paper_Book_Record_Page</content>
         <formFactor>Small</formFactor>
         <pageOrSobjectType>Book__c</pageOrSobjectType>
@@ -99,6 +289,7 @@
     <tabs>Publisher__c</tabs>
     <tabs>Advanced_Book_Search</tabs>
     <tabs>Book_Reservation__c</tabs>
+    <tabs>standard-ProcessInstanceWorkitem</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Library_Application_UtilityBar</utilityBar>
 </CustomApplication>

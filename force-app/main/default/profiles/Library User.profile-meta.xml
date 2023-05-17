@@ -262,10 +262,20 @@
         <field>Book_Review__c.Comment__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <!-- <fieldPermissions>
+        <editable>false</editable>
+        <field>Book_Review__c.User__c</field>
+        <readable>false</readable>
+    </fieldPermissions> -->
     <fieldPermissions>
         <editable>false</editable>
-        <field>Book_Review__c.Stars__c</field>
-        <readable>false</readable>
+        <field>Book__c.Approval_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Book__c.Approval_Status__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -296,11 +306,6 @@
         <editable>false</editable>
         <field>Book__c.Record_Type_Uneditable__c</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Bookstore_Book__c.Number_Of_Active_Reservations__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -509,6 +514,7 @@
     </objectPermissions>
     <recordTypeVisibilities>
         <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>Book__c.Digital_Book</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
