@@ -316,6 +316,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Book__c.Approval_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Book__c.Categories__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -555,6 +560,7 @@
     </objectPermissions>
     <recordTypeVisibilities>
         <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>Book__c.Digital_Book</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
