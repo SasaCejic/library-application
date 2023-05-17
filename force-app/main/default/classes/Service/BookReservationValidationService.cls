@@ -71,7 +71,7 @@ public with sharing class BookReservationValidationService implements CustomObje
 
         for (Book_Reservation__c oldReservation : oldBookReservations) {
             for (Book_Reservation__c newReservation : newBookReservations) {
-                if (oldReservation.Quantity__c != newReservation.Quantity__c || oldReservation.Bookstore__c != newReservation.Bookstore__c || oldReservation.Book__c != newReservation.Book__c) {
+                if (oldReservation.Id == newReservation.Id && (oldReservation.Quantity__c != newReservation.Quantity__c || oldReservation.Bookstore__c != newReservation.Bookstore__c || oldReservation.Book__c != newReservation.Book__c)) {
                     reservationsToProcess.add(newReservation);
                 }
             }

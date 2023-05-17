@@ -76,7 +76,8 @@ public with sharing class TestFactory {
         newBookstoreBook.Book__c = bookId;
         newBookstoreBook.Bookstore__c = bookstoreId;
         newBookstoreBook.Quantity__c = 10;
-        
+        newBookstoreBook.Number_Of_Active_Reservations__c = 0;
+
         if(forInsert) {
             insert newBookstoreBook;
             return newBookstoreBook;

@@ -133,8 +133,8 @@ public with sharing class BookReservationTriggerTest {
         Bookstore_Book__c bookstoreBook1 = testFactory.createBookstoreBook(book1.Id, bookstore.Id, true, false);
         Book_Reservation__c bookReservation2 = testFactory.createBookReservation(bookstore.Id, book1.Id, true, false);
         delete bookstoreBook1;
-        bookReservation1.Quantity__c = 2;
-        bookReservation2.Quantity__c = 2;
+        bookReservation1.Quantity__c = 3;
+        bookReservation2.Quantity__c = 4;
 
         List<Book_Reservation__c> reservations = new List<Book_Reservation__c>{bookReservation1, bookReservation2};
 
@@ -144,8 +144,102 @@ public with sharing class BookReservationTriggerTest {
 
         Assert.isTrue(updateResults[0].isSuccess());
         Assert.isFalse(updateResults[1].isSuccess());
-        // Assert.isTrue(updateResults[1].getErrors().size() == 1);
-        // Assert.areEqual('There is no selected Book in selected Bookstore!', updateResults[1].getErrors()[0].getMessage());
+        Assert.isTrue(updateResults[1].getErrors().size() == 1);
+        Assert.areEqual('There is no selected Book in selected Bookstore!', updateResults[1].getErrors()[0].getMessage());
     }
 
+    @isTest
+    public static void onInsert_WillInsertRecordSuccessfully_IfValidRecordProvided() {
+        // create data
+        TestFactory testFactory = new TestFactory();
+        Bookstore__c bookstore = testFactory.createBookstore(true, false);
+        Publisher__c publisher = testFactory.createPublisher(true, false);
+        Author__c author = testFactory.createAuthor(true, false);
+        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, true, false);
+        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, true, false);
+        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, true, false);
+        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, true, false);
+        Book_Reservation__c bookReservation = new Book_Reservation__c(Bookstore__c = bookstore.Id, Book__c = book.Id, Quantity__c = 5, Price__c = 10.59);
+
+        Test.startTest();
+        Database.SaveResult insertResult = Database.insert(bookReservation, false);
+        Test.stopTest();
+
+        Assert.isTrue(insertResult.isSuccess());
+    }
+
+    @isTest
+    public static void onInsert_WillInsertTwoRecordsSuccessfully_IfValidRecordsProvided() {
+        // create data
+        TestFactory testFactory = new TestFactory();
+        Bookstore__c bookstore = testFactory.createBookstore(true, false);
+        Publisher__c publisher = testFactory.createPublisher(true, false);
+        Author__c author = testFactory.createAuthor(true, false);
+        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, true, false);
+        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, true, false);
+        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, true, false);
+        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, true, false);
+        Book__c book1 = testFactory.createPaperBook(publisher.Id, author.Id, true, false);
+        Bookstore_Book__c bookstoreBook1 = testFactory.createBookstoreBook(book1.Id, bookstore.Id, true, false);
+        Book_Reservation__c bookReservation = new Book_Reservation__c(Bookstore__c = bookstore.Id, Book__c = book.Id, Quantity__c = 5, Price__c = 10.59);
+        Book_Reservation__c bookReservation1 = new Book_Reservation__c(Bookstore__c = bookstore.Id, Book__c = book1.Id, Quantity__c = 3, Price__c = 10.59);
+
+        List<Book_Reservation__c> reservations = new List<Book_Reservation__c>{bookReservation, bookReservation1};
+
+        Test.startTest();
+        List<Database.SaveResult> insertResults = Database.insert(reservations, false);
+        Test.stopTest();
+
+        Assert.isTrue(insertResults[0].isSuccess());
+        Assert.isTrue(insertResults[1].isSuccess());
+    }
+
+    @isTest
+    public static void onUpdate_WillUpdateRecordSuccessfully_IfValidRecordProvided() {
+        // create data
+        TestFactory testFactory = new TestFactory();
+        Bookstore__c bookstore = testFactory.createBookstore(true, false);
+        Publisher__c publisher = testFactory.createPublisher(true, false);
+        Author__c author = testFactory.createAuthor(true, false);
+        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, true, false);
+        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, true, false);
+        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, true, false);
+        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, true, false);
+        Book_Reservation__c bookReservation =testFactory.createBookReservation(bookstore.Id, book.Id, true, false);
+        bookReservation.Quantity__c = 3;
+
+        Test.startTest();
+        Database.SaveResult updateResult = Database.update(bookReservation, false);
+        Test.stopTest();
+
+        Assert.isTrue(updateResult.isSuccess());
+    }
+
+    @isTest
+    public static void onUpdate_WillUpdateTwoRecordsSuccessfully_IfValidRecordsProvided() {
+        // create data
+        TestFactory testFactory = new TestFactory();
+        Bookstore__c bookstore = testFactory.createBookstore(true, false);
+        Publisher__c publisher = testFactory.createPublisher(true, false);
+        Author__c author = testFactory.createAuthor(true, false);
+        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, true, false);
+        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, true, false);
+        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, true, false);
+        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, true, false);
+        Book__c book1 = testFactory.createPaperBook(publisher.Id, author.Id, true, false);
+        Bookstore_Book__c bookstoreBook1 = testFactory.createBookstoreBook(book1.Id, bookstore.Id, true, false);
+        Book_Reservation__c bookReservation =testFactory.createBookReservation(bookstore.Id, book.Id, true, false);
+        Book_Reservation__c bookReservation1 =testFactory.createBookReservation(bookstore.Id, book1.Id, true, false);
+        bookReservation.Quantity__c = 3;
+        bookReservation1.Quantity__c = 3;
+
+        List<Book_Reservation__c> reservations = new List<Book_Reservation__c>{bookReservation, bookReservation1};
+
+        Test.startTest();
+        List<Database.SaveResult> updateResults = Database.update(reservations, false);
+        Test.stopTest();
+
+        Assert.isTrue(updateResults[0].isSuccess());
+        Assert.isTrue(updateResults[1].isSuccess());
+    }
 }
