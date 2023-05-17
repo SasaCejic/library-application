@@ -13,4 +13,21 @@ public with sharing class BookController {
         service.getBooks(bookstoreId, recordLimit);
         return service.getResponse();
     }
+
+    /**
+     * Call BookService class method to get
+     * Book__c record with certain Id value
+     * 
+     * @param bookId certain book id
+     * 
+     * @return Book__c object record
+     */
+    @AuraEnabled(cacheable = true)
+    public static Book__c getBookById(Id bookId) {
+        BookService service = (BookService) new ObjectFactory().createObject(BookService.class);
+
+        service.getBookById(bookId);
+
+        return service.getResponse();
+    }
 }

@@ -16,9 +16,3 @@ package.xml
 **/profiles/Admin.profile-meta.xml
 **/profiles/Trial Customer Portal User.profile-meta.xml
 **/profiles/Read Only.profile-meta.xml
-
-#CustomIndexes
-**/customIndex/Publisher__c.Hidden_Unique_Name_Field__c.indx-meta.xml
-
-#Approval Processes
-**/approvalProcesses/Book__c.Book_create_approval.approvalProcess-meta.xml

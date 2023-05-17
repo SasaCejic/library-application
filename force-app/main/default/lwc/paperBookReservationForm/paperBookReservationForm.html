@@ -1,3 +1,19 @@
 <template>
-    <p>test</p>
+    <section>
+        <header class="slds-modal__header">
+            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create a Book Reservation</h2>
+        </header>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <lightning-record-form
+                object-api-name="Book_Reservation__c"
+                layout-type= "Full"
+                columns="2"
+                oncancel = {closeForm}
+                onerror = {showErrorMessage}
+                onsuccess = {showSuccessMessage}
+                onsubmit = {onSubmitHandler}
+            >
+            </lightning-record-form>
+        </div>
+    </section>
 </template>
