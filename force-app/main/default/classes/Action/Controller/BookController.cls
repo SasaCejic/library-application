@@ -30,4 +30,23 @@ public with sharing class BookController {
 
         return service.getResponse();
     }
+
+    /*
+     * Method sends email to the user that bought the book
+     * @param emailAddress - email address of the user that bought the book
+     * @param bookName - name of the book user bought
+     * @param bookPrice - price of the book user bought
+     * @param bookId - Id of the book user bought
+     */
+    @AuraEnabled
+    public static void confirmDigitalBookPurchase(String emailAddress, string bookName, String bookPrice, Id bookId) {
+        //Insert purchase record into database
+        InsertBookPurchaseRecordService insertService = (InsertBookPurchaseRecordService) new ObjectFactory()
+            .createObject(InsertBookPurchaseRecordService.class);
+        insertService.insertPurchase(bookId);
+        // Send email to user
+        SendPurchaseEmailConfirmationService service = (SendPurchaseEmailConfirmationService) new ObjectFactory()
+            .createObject(SendPurchaseEmailConfirmationService.class);
+        service.sendMail(insertService.getResponse().isSuccess(), emailAddress, bookName, bookPrice);
+    }
 }

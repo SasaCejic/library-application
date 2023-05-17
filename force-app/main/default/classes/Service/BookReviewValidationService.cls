@@ -12,8 +12,8 @@ public with sharing class BookReviewValidationService implements CustomObject {
         Set<Id> booksIds = new Set<Id>();
         // Check if in the new added reviews there are 2 same ones(CreatedById is not checked since it is not writeable and can only have the Id of current user)
         // Meaning that there can never be multiple new book reviews at once from different users
-        for(Book_Review__c newbookReview:newBookReviews) {
-            if(booksIds.contains(newbookReview.Book__c)) {
+        for (Book_Review__c newbookReview:newBookReviews) {
+            if (booksIds.contains(newbookReview.Book__c)) {
                 newBookReview.addError('You can only leave one review per book!');
                 return;
             }
@@ -24,9 +24,9 @@ public with sharing class BookReviewValidationService implements CustomObject {
         BookReviewSelector bookReviewSelector = (BookReviewSelector) new ObjectFactory()
             .createObject(BookReviewSelector.class);
         List<Book_Review__c> allBookReviews = bookReviewSelector.getList();
-        for(Book_Review__c newBookReview:newBookReviews) {
-            for(Book_Review__c bookReview:allBookReviews) {
-                if(newBookReview.Book__c == bookReview.Book__c && UserInfo.getUserId() == bookReview.CreatedById) {
+        for (Book_Review__c newBookReview:newBookReviews) {
+            for (Book_Review__c bookReview:allBookReviews) {
+                if (newBookReview.Book__c == bookReview.Book__c && UserInfo.getUserId() == bookReview.CreatedById) {
                     newBookReview.addError('You can only leave one review per book!');
                 }
             }

@@ -19,7 +19,7 @@ public with sharing class BookValidationServiceTest {
 
         //Mock AuthorPublisher selector so we don't depend on it
         Mocker authorPublisherSelectorMock = new Mocker(AuthorPublisherSelector.class)
-        .setBehavior('getList', new List<Author_Publisher__c>{authorPublisherForMock});
+            .setBehavior('getList', new List<Author_Publisher__c>{authorPublisherForMock});
         ObjectFactory.mocks.put(
             AuthorPublisherSelector.class.getName(),
             (AuthorPublisherSelector) authorPublisherSelectorMock.getMock()
@@ -41,7 +41,7 @@ public with sharing class BookValidationServiceTest {
 
         //Mock AuthorPublisher selector so we don't depend on it
         Mocker authorPublisherSelectorMock = new Mocker(AuthorPublisherSelector.class)
-        .setBehavior('getList', new List<Author_Publisher__c>{});
+            .setBehavior('getList', new List<Author_Publisher__c>{});
         ObjectFactory.mocks.put(
             AuthorPublisherSelector.class.getName(),
             (AuthorPublisherSelector) authorPublisherSelectorMock.getMock()
@@ -57,7 +57,7 @@ public with sharing class BookValidationServiceTest {
     public static void validateAuthorPublisherMatch_willUseCorrectSelector() {
         //Mock AuthorPublisher selector so we don't depend on it
         Mocker authorPublisherSelectorMock = new Mocker(AuthorPublisherSelector.class)
-        .setBehavior('getList', new List<Author_Publisher__c>{});
+            .setBehavior('getList', new List<Author_Publisher__c>{});
         ObjectFactory.mocks.put(
             AuthorPublisherSelector.class.getName(),
             (AuthorPublisherSelector) authorPublisherSelectorMock.getMock()

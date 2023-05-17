@@ -169,6 +169,8 @@
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <searchLayouts>
         <listViewButtons>Reserve_a_Book_List_Button</listViewButtons>
+    
+        <listViewButtons>Buy_digital_book</listViewButtons>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>

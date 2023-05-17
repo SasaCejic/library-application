@@ -6,8 +6,7 @@ public with sharing class BookControllerTest {
     @isTest
     public static void getBooksNotInBookstore_willUseService() {
         // create mock
-        Mocker getBooksNotInBookstoreServiceMock = new Mocker(getBooksNotInBookstoreService.class)
-        .setBehavior('getBooks', null);
+        Mocker getBooksNotInBookstoreServiceMock = new Mocker(getBooksNotInBookstoreService.class);
         getBooksNotInBookstoreServiceMock.setBehavior('getResponse', new List<Book__c>{});
         getBooksNotInBookstoreServiceMock.setBehavior('getBooks', null);
         ObjectFactory.mocks.put(
@@ -41,5 +40,37 @@ public with sharing class BookControllerTest {
         // assert
         bookserviceMock.assertMethodExecutionCount('getBookById', 1);
         bookserviceMock.assertMethodExecutionCount('getResponse', 1);
+    }
+
+    @isTest
+    public static void confirmDigitalBookPurchase_willUseServices() {
+        // create mock data
+        TestFactory testFactory = new TestFactory();
+        Id testId = testFactory.getFakeId(Book_Purchase__c.SObjectType, true);
+        Database.SaveResult saveResultForMock = testFactory.createSuccessDatabaseSaveResult();
+
+        // create mocks
+        Mocker insertBookPurchaseServiceMock = new Mocker(InsertBookPurchaseRecordService.class);
+        insertBookPurchaseServiceMock.setBehavior('getResponse', saveResultForMock);
+        insertBookPurchaseServiceMock.setBehavior('insertPurchase', null);
+        ObjectFactory.mocks.put(
+            InsertBookPurchaseRecordService.class.getName(),
+            (InsertBookPurchaseRecordService) insertBookPurchaseServiceMock.getMock()  
+        );
+        Mocker sendPurchaseEmailConfirmationServiceMock = new Mocker(SendPurchaseEmailConfirmationService.class);
+        sendPurchaseEmailConfirmationServiceMock.setBehavior('getResponse', null);
+        sendPurchaseEmailConfirmationServiceMock.setBehavior('sendMail', null);
+        ObjectFactory.mocks.put(
+            SendPurchaseEmailConfirmationService.class.getName(),
+            (SendPurchaseEmailConfirmationService) SendPurchaseEmailConfirmationServiceMock.getMock()  
+        );
+
+        // execute
+        BookController.confirmDigitalBookPurchase('testAddress', 'testName', 'testPrice', testId);
+
+        // assert
+        insertBookPurchaseServiceMock.assertMethodExecutionCount('getResponse', 1);
+        insertBookPurchaseServiceMock.assertMethodExecutionCount('insertPurchase', 1);
+        sendPurchaseEmailConfirmationServiceMock.assertMethodExecutionCount('sendMail', 1);
     }
 }
