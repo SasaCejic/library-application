@@ -36,8 +36,8 @@ export default class BooksNotInBookstoreList extends NavigationMixin(LightningEl
 
     @wire(CurrentPageReference)
     getStateParameters(currentPageReference) {
-        if(currentPageReference) {
-            if(currentPageReference.state.c__bookstoreId && this.recordId === undefined) {
+        if (currentPageReference) {
+            if (currentPageReference.state.c__bookstoreId && this.recordId === undefined) {
                 this.recordId = currentPageReference.state.c__bookstoreId
                 this.limit = 2000;
                 this.isButtonVisible = false;
@@ -49,11 +49,11 @@ export default class BooksNotInBookstoreList extends NavigationMixin(LightningEl
     //If the Id of the bookstore manager matches, currently logged in user
     @wire(getRecord, { recordId:'$recordId', fields:[MANAGER_FIELD] })
     wiredBookstore(result) {
-        if(result.data) {
-            if(USER_ID == result.data.fields.Manager__c.value) {
+        if (result.data) {
+            if (USER_ID == result.data.fields.Manager__c.value) {
                 this.isManagerToBookstore = true;
             }
-        } else if(result.error) {
+        } else if (result.error) {
             this.isManagerToBookstore = false;
             const event = new ShowToastEvent({
                 title: 'Error while retrieving bookstore information',
@@ -66,8 +66,8 @@ export default class BooksNotInBookstoreList extends NavigationMixin(LightningEl
 
     @wire(getBooksNotInBookstore, { bookstoreId:'$recordId', recordLimit:'$limit' })
     wiredBooks(result) {
-        if(result.data) {
-            if(result.data.length === 0) {
+        if (result.data) {
+            if (result.data.length === 0) {
                 this.isBookListEmpty = true;
                 return;
             }
@@ -80,7 +80,7 @@ export default class BooksNotInBookstoreList extends NavigationMixin(LightningEl
             })
             this.allBooks = proccessedRecords;
             this.books = proccessedRecords.slice(0, this.currrentNumberOfLoadedBooks - 1);
-        } else if(result.error) {
+        } else if (result.error) {
             const event = new ShowToastEvent({
                 title: 'Error while retrieving book information',
                 message: result.error.body.message,
@@ -105,7 +105,7 @@ export default class BooksNotInBookstoreList extends NavigationMixin(LightningEl
     loadMoreData(event) {
         const { target } = event;
         // Check if we should load more records(depending if we are on a record page or not)
-        if(this.isOnRecordPage) {
+        if (this.isOnRecordPage) {
             target.enableInfiniteLoading = false;
             return;
         }
@@ -116,11 +116,11 @@ export default class BooksNotInBookstoreList extends NavigationMixin(LightningEl
             target.isLoading = false;
         }, 1000);
         //Check if we loaded all records
-        if(this.books.length === this.allBooks.length) {
+        if (this.books.length === this.allBooks.length) {
             target.enableInfiniteLoading = false;
         }
         // check if we reached the limit of records to be retrieved from database
-        if(this.books.length === this.limit) {
+        if (this.books.length === this.limit) {
             const event = new ShowToastEvent({
                 title: 'Error while retrieving book information',
                 message: 'We can not show more records at this time.',

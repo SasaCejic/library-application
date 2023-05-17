@@ -1,0 +1,39 @@
+<template>
+    <div onclick={handleOutsideClick}>
+        <lightning-card>
+            <div class="slds-modal__header slds-text-heading_medium">
+                <h1>Buy a digital book</h1>
+            </div>
+            <div if:false={isOnViewPage} class="slds-p-horizontal_xx-large slds-p-vertical_large">
+                <c-combobox-autocomplete-wrapper
+                    object-name={bookApiName}
+                    record-type-id={bookRecordTypeId}
+                    label="Search Books"
+                    placeholder="Search"
+                    onselectoption={handleSelectOption}>
+                </c-combobox-autocomplete-wrapper>
+            </div>
+            <div class="slds-p-horizontal_xx-large slds-p-vertical_large" if:true={isOnViewPage}>
+                <lightning-input
+                    label="Book"
+                    value={selectedName}
+                    disabled="true">
+                </lightning-input>
+            </div>
+            <p class="slds-p-horizontal_xx-large">Price: {price}</p>
+            <div if:true={isEmailInputLoading}>
+                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+            </div>
+            <lightning-input
+                value={email} 
+                onchange={handleEmailInput} 
+                class="slds-p-horizontal_xx-large slds-p-vertical_medium" 
+                label="Email">
+            </lightning-input>
+            <div class="slds-m-top_xx-large slds-align_absolute-center">
+                <lightning-button onclick={handleCancelBtn} label="Cancel"></lightning-button>
+                <lightning-button onclick={handleConfirmBtn} class="slds-m-left_small" label="Confirm"></lightning-button>
+            </div>
+        </lightning-card>
+    </div>
+</template>

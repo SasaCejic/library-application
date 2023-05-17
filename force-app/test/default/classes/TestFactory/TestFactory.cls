@@ -24,7 +24,9 @@ public with sharing class TestFactory {
         'description' => 'bookdesc',
         'ISBN' => '214215425',
         'language' => 'english',
-        'categories' => 'fantasy'
+        'categories' => 'fantasy',
+        'price' => '20',
+        'hoursOfListening' => '20'
     };
 
     @TestVisible
@@ -38,6 +40,13 @@ public with sharing class TestFactory {
         'name' => 'out-of-the-box authors setting'
     };
     
+    @TestVisible
+    public Map<String, String> mailDetails = new Map<String, String> {
+        'subject' => 'Test subject',
+        'body' => 'Test body',
+        'address' => 'testaddress@gmail.com'
+    };
+
     @TestVisible
     public Map<String, String> userDetails = new Map<String, String>{
         'lastName' => 'User',
@@ -57,7 +66,7 @@ public with sharing class TestFactory {
      * @param sObjecType- SObjectType of an object which we are creating fake Id for 
      */
     public String getFakeId(Schema.SObjectType sObjecType, Boolean simulateInsert) {
-        if(simulateInsert) {
+        if (simulateInsert) {
             String result = String.valueOf(s_num++);
             return sObjecType.getDescribe().getKeyPrefix() + '0'.repeat(12-result.length()) + result;
         }
@@ -75,7 +84,7 @@ public with sharing class TestFactory {
         newBookstoreBook.Book__c = bookId;
         newBookstoreBook.Bookstore__c = bookstoreId;
         
-        if(forInsert) {
+        if (forInsert) {
             insert newBookstoreBook;
             return newBookstoreBook;
         }
@@ -94,7 +103,7 @@ public with sharing class TestFactory {
         newBookstorePublisher.Publisher__c = publisherId;
         newBookstorePublisher.Bookstore__c = bookstoreId;
 
-        if(forInsert) {
+        if (forInsert) {
             insert newBookstorePublisher;
             return newBookstorePublisher;
         }
@@ -114,7 +123,7 @@ public with sharing class TestFactory {
         Integer randomIdentificationCode = (Integer)Math.floor(Math.random() * 90000000) + 10000000;
         newBookstore.Store_Identification_Code__c = String.valueOf(randomIdentificationCode);
 
-        if(forInsert) {
+        if (forInsert) {
             insert newBookstore;
             return newBookstore;
         }
@@ -132,7 +141,7 @@ public with sharing class TestFactory {
         newPublisher.Email__c = publisherDetails.get('email');
         newPublisher.Phone__c = publisherDetails.get('phone');
 
-        if(forInsert) {
+        if (forInsert) {
             insert newPublisher;
             return newPublisher;
         }
@@ -153,17 +162,47 @@ public with sharing class TestFactory {
         currentBook.ISBN__c = bookDetails.get('ISBN');
         currentBook.Language__c = bookDetails.get('language');
         currentBook.Categories__c = bookDetails.get('categories');
+        currentBook.Price__c = Decimal.valueOf(bookDetails.get('price'));
         currentBook.Publisher__c = publisherId;
         currentBook.Author__c = authorId;
         currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
 
-        if(forInsert) {
+        if (forInsert) {
             insert currentBook;
             return currentBook;
         }
         currentBook.Id = this.getFakeId(Book__c.SObjectType, simulateInsert);
         return currentBook;
     }
+    
+    /*
+     * @param forInsert - Boolean value representing if we want to insert the record or not
+     * @param publisherId - Id of a Publisher__c object which is a parent in master-detail relationship to Book__c
+     * @param authorId - Id of an Author__c which is connected through lookup relationship with Book__c
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+     */
+    public Book__c createDigitalBook(Id publisherId, Id authorId, Boolean forInsert, Boolean simulateInsert) {
+        Book__c currentBook = new Book__c();
+        currentBook.Name = bookDetails.get('name');
+        currentBook.Description__c = bookDetails.get('description');
+        currentBook.ISBN__c = bookDetails.get('ISBN');
+        currentBook.Language__c = bookDetails.get('language');
+        currentBook.Categories__c = bookDetails.get('categories');
+        currentBook.Hours_Of_Listening__c = Integer.valueOf(bookDetails.get('hoursOfListening'));
+        currentBook.Price__c = Decimal.valueOf(bookDetails.get('price'));
+        currentBook.Publisher__c = publisherId;
+        currentBook.Author__c = authorId;
+        currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
+        currentBook.RecordTypeId = Schema.SObjectType.Book__c.getRecordTypeInfosByName()
+            .get('Digital Book').getRecordTypeId();
+
+        if (forInsert) {
+            insert currentBook;
+            return currentBook;
+        }
+        currentBook.Id = this.getFakeId(Book__c.SObjectType, simulateInsert);
+        return currentBook;
+    }   
 
    /*
     * @param forInsert - Boolean value representing if we want to insert the record or not
@@ -175,7 +214,7 @@ public with sharing class TestFactory {
         newBookReview.Book__c = bookId;
         newBookReview.Name = bookReviewDetails.get('name');
         newBookReview.Rating__c = bookReviewDetails.get('rating');
-        if(forInsert) {
+        if (forInsert) {
             insert newBookReview;
             return newBookReview;
         }
@@ -193,7 +232,7 @@ public with sharing class TestFactory {
         newAuthor.First_Name__c = authorDetails.get('firstName');
         newAuthor.Last_Name__c = authorDetails.get('lastName');
 
-        if(forInsert) {
+        if (forInsert) {
             insert newAuthor;
             return newAuthor;
         }
@@ -212,7 +251,7 @@ public with sharing class TestFactory {
         newAuthorPublisher.Author__c=authorId;
         newAuthorPublisher.Publisher__c=publisherId;
 
-        if(forInsert) {
+        if (forInsert) {
             insert newAuthorPublisher;
             return newAuthorPublisher;
         }
@@ -241,6 +280,21 @@ public with sharing class TestFactory {
     }
 
     /*
+     * @param bookId - Id of the book that was purchased
+     */
+    public Book_Purchase__c createBookPurchase(Id bookId, Boolean forInsert, Boolean simulateInsert) {
+        Book_Purchase__c newBookPurchase = new Book_Purchase__c();
+        newBookPurchase.Book__c = bookId;
+
+        if (forInsert) {
+            insert newBookPurchase;
+            return newBookPurchase;
+        }
+        newBookPurchase.Id = getFakeId(Book_Purchase__c.SObjectType, simulateInsert);
+        return newBookPurchase;
+    }
+
+    /*
      * Method creates a library user for testing
      */
     public User createLibraryUser() {
@@ -253,6 +307,25 @@ public with sharing class TestFactory {
         return user;
     }
 
+    /*
+     * Create mail for testing
+     */
+    public Messaging.SingleEmailMessage createMail() {
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        mail.setSubject(mailDetails.get('subject'));
+        mail.setPlainTextBody(mailDetails.get('body'));
+        mail.setToAddresses(new String[] {mailDetails.get('address')});
+        return mail;
+    }
+
+    /*
+     * Method creates a fake Database.SaveResult for testing
+     */
+    public Database.SaveResult createSuccessDatabaseSaveResult() {
+        Database.SaveResult sr = (Database.SaveResult) JSON.deserialize('{"success":true,"id":"0013000000abcde"}', Database.SaveResult.class);
+        return sr;
+    }
+    
     /**
      * Method for creating a new User
      * 

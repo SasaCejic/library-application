@@ -17,7 +17,7 @@ public with sharing class BookstoreBookValidationService implements CustomObject
         Set<Id> nonValidatedBookstoreBooks = new Set<Id>(); 
         
         //Loop through all new records and put all book ids into a set
-        for(Bookstore_Book__c bookstoreBook : newBookstoreBooks) {
+        for (Bookstore_Book__c bookstoreBook : newBookstoreBooks) {
             addedBookIds.add(bookstoreBook.Book__c);
         }
 
@@ -25,7 +25,7 @@ public with sharing class BookstoreBookValidationService implements CustomObject
         BookSelector bookSelector = (BookSelector) new ObjectFactory().createObject(BookSelector.class);
         Map<Id, Book__c> correspondingBooks = bookSelector.getMapByIds(addedBookIds);
 
-        for(Bookstore_Book__c bookstoreBook: newBookstoreBooks) {
+        for (Bookstore_Book__c bookstoreBook: newBookstoreBooks) {
             List<Id> currentList = new List<Id>();
             currentList.add(correspondingBooks.get(bookstoreBook.Book__c).Publisher__c);
             currentList.add(bookstoreBook.Bookstore__c);
@@ -38,25 +38,25 @@ public with sharing class BookstoreBookValidationService implements CustomObject
         List<Bookstore_Publisher__c> bookstorePublishers = bookstorePublisherSelector.getList();
 
         //Find the Bookstore_Publisher__c objects corresponding to pairs of bookstores and publishers 
-        for(String key : publisherAndBookstoreIds.keySet()) {
+        for (String key : publisherAndBookstoreIds.keySet()) {
             Boolean isFound =  false;
             List<Id> publisherAndBookstoreIdPair = publisherAndBookstoreIds.get(key);
 
-            for(Bookstore_Publisher__c bookstorePublisher:bookstorePublishers) {
-                if(publisherAndBookstoreIdPair[0] == bookstorePublisher.Publisher__c && publisherAndBookstoreIdPair[1] == bookstorePublisher.Bookstore__c) {
+            for (Bookstore_Publisher__c bookstorePublisher:bookstorePublishers) {
+                if (publisherAndBookstoreIdPair[0] == bookstorePublisher.Publisher__c && publisherAndBookstoreIdPair[1] == bookstorePublisher.Bookstore__c) {
                         isFound = true;
                         break;
                 }
             }
             
-            if(!isFound) {
+            if (!isFound) {
                 nonValidatedBookstoreBooks.add(key);
             }
         }
 
         //Add error to all the Bookstore_Book__c objects that did not have the corresponding Bookstore_Publisher__c object
-        for(Bookstore_Book__c bookstoreBook:newBookstoreBooks) {
-            if(nonValidatedBookstoreBooks.contains(bookstoreBook.Id)) {
+        for (Bookstore_Book__c bookstoreBook:newBookstoreBooks) {
+            if (nonValidatedBookstoreBooks.contains(bookstoreBook.Id)) {
                 bookstoreBook.addError('Book and bookstore must work with the same publisher!');
             }
         }

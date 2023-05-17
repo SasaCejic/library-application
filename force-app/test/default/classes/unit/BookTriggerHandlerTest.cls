@@ -8,7 +8,7 @@ public with sharing class BookTriggerHandlerTest {
     public static void beforeInsert_willUseService() {
         //Mock AuthorPublisher selector so we don't depend on it
         Mocker bookValidationServiceMock = new Mocker(BookValidationService.class)
-        .setBehavior('validateAuthorPublisherMatch', null);
+            .setBehavior('validateAuthorPublisherMatch', null);
         ObjectFactory.mocks.put(
             bookValidationService.class.getName(),
             (BookValidationService)bookValidationServiceMock.getMock()
@@ -24,7 +24,7 @@ public with sharing class BookTriggerHandlerTest {
     public static void beforeUpdate_willUseService() {
         //Mock AuthorPublisher selector so we don't depend on it
         Mocker bookValidationServiceMock = new Mocker(BookValidationService.class)
-        .setBehavior('validateAuthorPublisherMatch', null);
+            .setBehavior('validateAuthorPublisherMatch', null);
         ObjectFactory.mocks.put(
             bookValidationService.class.getName(),
             (BookValidationService)bookValidationServiceMock.getMock()

@@ -285,6 +285,15 @@
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
+        <object>Book_Purchase__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>Book_Review__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -371,6 +380,10 @@
     </tabSettings>
     <tabSettings>
         <tab>Bookstore__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Buy_Digital_Book</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
