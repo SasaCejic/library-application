@@ -177,7 +177,7 @@ public with sharing class BookSearchService implements CustomObject{
 
             List<Book__c> searchedAndFilteredBooks;
 
-            if (bookSearchDTO.reviewScore!=null){
+            if (bookSearchDTO.reviewScore!=null && bookSearchDTO.reviewScore>0){
                 Map<Id, Book__c> searchedBookMap = new Map<Id, Book__c>(bookSelector.getListFromQueryConditions(bookQueryConditions));
                 List<AggregateResult> averageRatigsList = bookReviewSelector.getAverageRatingList(searchedBookMap.keySet());
                 searchedAndFilteredBooks = new List<Book__c>();

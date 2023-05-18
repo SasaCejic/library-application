@@ -81,6 +81,8 @@ export default class AdvancedBookSearch extends LightningElement {
     sortBy;
     // Direction to sort book record table in
     sortDirection;
+    // Key of the book object corresponding to the sortBy column
+    sortFieldName;
     // List that holds values for he languages listbox
     languagesOptions=[];
     // List that holds values for he categories listbox
@@ -114,7 +116,7 @@ export default class AdvancedBookSearch extends LightningElement {
     // Value of term input
     term='';
     // All books currently searched
-    books=undefined;
+    _books=undefined;
     //Maximum of the price slider
     priceRangeMaximum=500;
     //book default record id
@@ -130,6 +132,27 @@ export default class AdvancedBookSearch extends LightningElement {
     //boolean determening if book search returned empty result
     resultsNotFound=false;
 
+    // setter
+    set books(value) {
+        this._books = value;
+    }
+    
+    // getter
+    get books() {
+        if (this._books && this.sortFieldName && this.sortDirection) {
+            let isReverse = this.sortDirection === 'asc' ? 1: -1;
+            let sortedBooks=[...this._books];
+
+            sortedBooks.sort((x, y) => {
+                x = this.nullToEmpty(x[this.sortFieldName]);
+                y = this.nullToEmpty(y[this.sortFieldName]);
+                return isReverse * ((x > y) - (y > x));
+            });
+            this._books=sortedBooks;
+        }
+        console.log(this._books);
+        return this._books
+    }
 
     /*
      * Gets book object info
@@ -198,8 +221,14 @@ export default class AdvancedBookSearch extends LightningElement {
         this.term=event.target.value;
     }
 
-    handleSorting(){
+    nullToEmpty(val){
+        return val ? val : '';
+    }
 
+    handleSorting(event){
+        this.sortBy = event.detail.fieldName;
+        this.sortDirection = event.detail.sortDirection;
+        this.sortFieldName=this.sortBy=='NameUrl'?NAME_FIELD.fieldApiName:this.sortBy;
     }
 
     handleLoadMore(event){
