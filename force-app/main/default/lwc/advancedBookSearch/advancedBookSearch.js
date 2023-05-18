@@ -42,7 +42,7 @@ export default class AdvancedBookSearch extends LightningElement {
         },
         {
             label: 'Author',
-            fieldName: AUTHOR_FIELD.fieldApiName,
+            fieldName: 'Author',
             type: 'text',
             sortable: true
         },
@@ -69,6 +69,11 @@ export default class AdvancedBookSearch extends LightningElement {
             fieldName: DESCRIPTION_FIELD.fieldApiName,
             type: 'text',
             sortable: true
+        },
+        {
+            label: 'Bookstores',
+            fieldName: 'Bookstores',
+            type: 'linkList',
         },
 /*      {
             label: 'Price',
@@ -245,8 +250,8 @@ export default class AdvancedBookSearch extends LightningElement {
      * Calls makeSearchRequest() function
      */
     handleBookSearch(){
-        if (this.template.querySelector('lightning-datatable')) {
-                this.template.querySelector('lightning-datatable').isLoading=true
+        if (this.template.querySelector('c-datatable-with-link-list')) {
+                this.template.querySelector('c-datatable-with-link-list').isLoading=true
         };
         //set DTO field values and reset data
         this.bookSearchDTO={
@@ -263,7 +268,7 @@ export default class AdvancedBookSearch extends LightningElement {
             term:this.term
         }
         this.tableOffset=0;
-        this.books=[];
+        this._books=[];
 
         // Apex call
         this.makeSearchRequest();
@@ -284,13 +289,24 @@ export default class AdvancedBookSearch extends LightningElement {
                     mappedBook[field]=recievedBook[field];
                 }
                 mappedBook.NameUrl=`/`+recievedBook.Id;
+                mappedBook.Author=recievedBook.Author__r.Name;
+
+                if (recievedBook.Bookstore_Books__r){
+                    mappedBook.Bookstores=[];
+
+                    for (let bookstore_book of recievedBook.Bookstore_Books__r){
+                        mappedBook.Bookstores.push({
+                            value:'/'+bookstore_book.Bookstore__c,
+                            label:bookstore_book.Bookstore__r.Name
+                        });
+                    }
+                }
                 return mappedBook;
             });
-            this.books=[...this.books,...mappedBooks];
-            this.resultsNotFound=(this.books.length==0);
-            console.log(this.books);
+            this._books=[...this._books,...mappedBooks];
+            this.resultsNotFound=(this._books.length==0);
+            console.log(this._books);
 
-            //if (this.sortBy) this.sortData(this.sortFieldName, this.sortDirection, this.nullToEmpty);
             if (mappedBooks.length<this.tableLoadStep) {
                 this.moreToLoad=false;
             }
@@ -308,8 +324,8 @@ export default class AdvancedBookSearch extends LightningElement {
             }
         }).finally(() => {
 
-            if (this.template.querySelector('lightning-datatable')) {
-                this.template.querySelector('lightning-datatable').isLoading=false
+            if (this.template.querySelector('c-datatable-with-link-list')) {
+                this.template.querySelector('c-datatable-with-link-list').isLoading=false
             };
         })
 
