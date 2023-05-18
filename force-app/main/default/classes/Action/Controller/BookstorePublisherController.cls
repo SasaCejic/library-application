@@ -47,12 +47,23 @@ public class BookstorePublisherController {
     }
 
     /**
-     * Getter that will return all the Bookstore_Book__c records causing the deletion to fail
+     * Getter that will return first 5 Bookstore_Book__c records causing the deletion to fail
      */
     public List<Bookstore_Book__c> getBookstoreBooksCausingError() {
-        GetBokstoreBooksCausingPublsherDeletEror service = (GetBokstoreBooksCausingPublsherDeletEror) new ObjectFactory()
-            .createObject(GetBokstoreBooksCausingPublsherDeletEror.class);
-        service.getBookstoreBooks(bookstorePublisherForDelete);
+        GetBokstoreBooksOnPublsherDeleteService service = (GetBokstoreBooksOnPublsherDeleteService) new ObjectFactory()
+            .createObject(GetBokstoreBooksOnPublsherDeleteService.class);
+        service.getBookstoreBooks(recordId, 5);
+        return service.getResponse();
+    }
+
+    /**
+     * Method will return all Bookstore_Book__c records causing error and be callable from lwc
+     */
+    @AuraEnabled(cacheable = true)
+    public static List<Bookstore_Book__c> returnBookstoreBooksCausingErrorForLwc(Id bookstorePublisherForDeleteId, Integer recordLimit) {
+        GetBokstoreBooksOnPublsherDeleteService service = (GetBokstoreBooksOnPublsherDeleteService) new ObjectFactory()
+            .createObject(GetBokstoreBooksOnPublsherDeleteService.class);
+        service.getBookstoreBooks(bookstorePublisherForDeleteId, recordLimit);
         return service.getResponse();
     }
 

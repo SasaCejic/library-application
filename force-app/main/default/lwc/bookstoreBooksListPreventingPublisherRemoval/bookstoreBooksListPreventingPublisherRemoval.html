@@ -1,3 +1,18 @@
 <template>
-    
+    <lightning-card title="Bookstore Books causing error" icon-name="standard:contact">
+        <div style="height:50vh;">
+            <lightning-datatable
+                key-field="id"
+                columns={columns}
+                hide-checkbox-column
+                data={bookstoreBooks}
+                load-more-offset="0"
+                enable-infinite-loading
+                onloadmore={loadMoreData}>
+        </lightning-datatable>
+        </div>
+        <div if:true={isListEmpty}>
+            <p class="slds-align_absolute-center">No Bookstore Books to show.</p>
+        </div>
+    </lightning-card>
 </template>

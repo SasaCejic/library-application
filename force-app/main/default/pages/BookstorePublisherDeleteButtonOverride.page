@@ -16,12 +16,16 @@
                         <apex:pageBlock>
                             <apex:pageBlockTable value="{! BookstoreBooksCausingError }" var="errorRecord">
                                 <apex:column headerValue="Name" >
-                                    <apex:facet name="header">Name</apex:facet>
+                                    <apex:facet name="header">Book Name</apex:facet>
                                     <apex:outputLink value="/{! errorRecord.Book__c }">{! errorRecord.Book__r.Name }</apex:outputLink>
                                 </apex:column>
                                 <apex:column headerValue="Publisher" >
-                                    <apex:facet name="header">Publisher</apex:facet>
+                                    <apex:facet name="header">Publisher Name</apex:facet>
                                     <apex:outputLink value="/{! errorRecord.Book__r.Publisher__r.Id }">{! errorRecord.Book__r.Publisher__r.Name }</apex:outputLink>
+                                </apex:column>
+                                <apex:column headerValue="Publisher" >
+                                    <apex:facet name="header">Bookstore Name</apex:facet>
+                                    <apex:outputLink value="/{! errorRecord.Bookstore__c }">{! errorRecord.Bookstore__r.Name }</apex:outputLink>
                                 </apex:column>
                             </apex:pageBlockTable>
                             <div class="slds-align_absolute-center slds-p-top_x-small">

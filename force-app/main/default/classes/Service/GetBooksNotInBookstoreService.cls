@@ -24,7 +24,7 @@ public with sharing class GetBooksNotInBookstoreService implements CustomObject{
             .createObject(BookstoreBookSelector.class);
             
         //Get all bookstoreBooks assigned to Bookstore by bookstore Id
-        List<Bookstore_Book__c> bookstoreBooksInBookstore = bookstoreBookSelector.getListByBookstoreId(bookstoreId);
+        List<Bookstore_Book__c> bookstoreBooksInBookstore = bookstoreBookSelector.getListByBookstoreId(bookstoreId, 2000);
 
         //Loop through all the bookstoreBooks in bookstore and add Book ids to the set
         for (Bookstore_Book__c bookstoreBook:bookstoreBooksInBookstore) {
