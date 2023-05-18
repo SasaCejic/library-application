@@ -28,7 +28,7 @@ public with sharing class SendPurchaseEmailConfirmationService implements Custom
         List<Messaging.SingleEmailMessage> emailList = new List<Messaging.SingleEmailMessage>();
         // create the mail
         String emailSubject = 'Purchased book information';
-        String emailBody = 'Dear ' + UserInfo.getFirstName() + '\n' + 'You bought ' + bookName + '\n' + 'Price: ' + bookPrice + '$';
+        String emailBody = 'Dear ' + UserInfo.getFirstName() + '\n' + 'You bought ' + bookName + '\n' + 'Price: ' + bookPrice;
         CreateEmailWithoutTemplateService createEmailService = (CreateEmailWithoutTemplateService) new ObjectFactory()
             .createObject(CreateEmailWithoutTemplateService.class);
         Messaging.SingleEmailMessage mail = createEmailService.createMail(emailSubject,emailBody,emailAddress);
