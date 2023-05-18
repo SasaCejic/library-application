@@ -18,7 +18,7 @@ public with sharing class ReturnBookstorePublisherBasedOnIdService implements Cu
      * @param bookstorePublisherId - Id of the Bookstore_Publisher__c record
      */
     public void returnBookstorePublisher(Id bookstorePublisherId) {
-        // Selecor to retrieve the Bookstore_Publisher__c record
+        // Selector to retrieve the Bookstore_Publisher__c record
         BookstorePublisherSelector selector = (BookstorePublisherSelector) new ObjectFactory()
             .createObject(BookstorePublisherSelector.class);
         this.setResponse(selector.getRecordById(bookstorePublisherId));

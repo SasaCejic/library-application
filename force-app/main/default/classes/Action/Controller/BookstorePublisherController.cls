@@ -1,5 +1,5 @@
 /**
- * Class used to extend the standard BookstorePublisher VF page controller
+ * Class used as Bookstore_Publisher__c controller for both VF and LWC page
  */
 public class BookstorePublisherController {
     // Id of the Bookstore_Publisher__c record being deleted
@@ -16,7 +16,7 @@ public class BookstorePublisherController {
     public Boolean didDeleteFail { get; set; }
 
     /**
-     * Constructor that sets recordId and bookstoreId
+     * Constructor that sets recordId and Bookstore_Publisher__c record for deletion
      * @param controller - Standard controller
      */
     public BookstorePublisherController(ApexPages.StandardController controller) {
@@ -57,8 +57,9 @@ public class BookstorePublisherController {
     }
 
     /**
-     * Method will return all Bookstore_Book__c records causing error and be callable from lwc
-     */
+     * @param bookstorePublisherForDeleteId - Id of the Bookstore_Publisher__c record being deleted
+     * @param recordLimit - Number of Bookstore_Book__c records to be retrieved from database
+    */
     @AuraEnabled(cacheable = true)
     public static List<Bookstore_Book__c> returnBookstoreBooksCausingErrorForLwc(Id bookstorePublisherForDeleteId, Integer recordLimit) {
         GetBokstoreBooksOnPublsherDeleteService service = (GetBokstoreBooksOnPublsherDeleteService) new ObjectFactory()

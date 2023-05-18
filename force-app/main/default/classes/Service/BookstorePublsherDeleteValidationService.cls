@@ -2,18 +2,6 @@
  * Class responsible for stopping delete of Bookstore_Publisher__c record if Bookstore__Book__c record exist assigned to the same Bookstore__c record
  */
 public with sharing class BookstorePublsherDeleteValidationService implements CustomObject {
-    private List<Bookstore_Book__c> response;
-
-    //Getter
-    public List<Bookstore_Book__c> getResponse() {
-        return this.response;
-    }
-
-    //Setter
-    public void setResponse(List<Bookstore_Book__c> bookstoreBookList) {
-        this.response = bookstoreBookList;
-    }
-
     /**
      * @param deletedRecords - Bookstore_Publisher__c records being deleted
      */
@@ -39,7 +27,6 @@ public with sharing class BookstorePublsherDeleteValidationService implements Cu
                     bookstorePublisher.addError('You have to delete the associated books first');
                 }
             }
-        } 
-        this.setResponse(bookstoreBookRecordsThatCauseError);
+        }
     }
 }

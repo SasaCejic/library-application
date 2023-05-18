@@ -38,7 +38,9 @@ export default class BookstoreBooksListPreventingPublisherRemoval extends Lightn
     // Number of Bookstore__Book__c records to be retrieved from the database
     recordLimit = 2000;
 
-    // getter
+    /**
+     * @return - True if list is empty and vice versa
+     */
     get isListEmpty() {
         return this.bookstoreBooks.length < 0;
     }

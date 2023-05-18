@@ -1,5 +1,5 @@
 /*
- * This class is used for deleting Book_Publisher record after trying to delete it from related list
+ * This class is used for deleting Book_Publisher record
  */
 public with sharing class DeleteBookPublisherRecordService implements CustomObject{
     private Database.DeleteResult response;

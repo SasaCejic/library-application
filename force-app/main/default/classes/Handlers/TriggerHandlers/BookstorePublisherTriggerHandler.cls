@@ -13,8 +13,8 @@ public with sharing class BookstorePublisherTriggerHandler extends TriggerHandle
         return triggerDisabled;
     }
 
-    /*
-     * @param - newRecords - records being inserted
+    /**
+     * @param oldRecords - records being deleted
      */
     public override void beforeDelete(List<sObject> oldRecords) {
         BookstorePublsherDeleteValidationService service = (BookstorePublsherDeleteValidationService) new ObjectFactory()
