@@ -317,16 +317,6 @@
                 <identifier>RecordHours_of_Listening_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Price__c</fieldItem>
-                <identifier>RecordPrice_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-7ddc546e-3fda-4198-aca4-6f0819077f60</name>
         <type>Facet</type>
     </flexiPageRegions>

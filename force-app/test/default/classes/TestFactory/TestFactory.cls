@@ -47,13 +47,6 @@ public with sharing class TestFactory {
     };
     
     @TestVisible
-    public Map<String, String> mailDetails = new Map<String, String> {
-        'subject' => 'Test subject',
-        'body' => 'Test body',
-        'address' => 'testaddress@gmail.com'
-    };
-
-    @TestVisible
     public Map<String, String> userDetails = new Map<String, String>{
         'lastName' => 'User',
         'alias' => 'testuser',
@@ -395,17 +388,6 @@ public with sharing class TestFactory {
         }
         newUser.Id = this.getFakeId(User.SObjectType, simulateInsert);
         return newUser;
-    }
-
-    /*
-     * Create mail for testing
-     */
-    public Messaging.SingleEmailMessage createMail() {
-        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-        mail.setSubject(mailDetails.get('subject'));
-        mail.setPlainTextBody(mailDetails.get('body'));
-        mail.setToAddresses(new String[] {mailDetails.get('address')});
-        return mail;
     }
 
     /**
