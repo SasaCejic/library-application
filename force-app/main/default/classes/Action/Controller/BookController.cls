@@ -19,7 +19,7 @@ public with sharing class BookController {
      * @param limit - Maximum number of records to return
      */
     @AuraEnabled(cacheable=true)
-    public static List<AggregateResult> getBooksFromSearchDTO(BookSearchDTO bookSearchDTO, Integer limitSize, Integer offset) {
+    public static List<Book__c> getBooksFromSearchDTO(BookSearchDTO bookSearchDTO, Integer limitSize, Integer offset) {
         BookSearchService service = (BookSearchService) new ObjectFactory()
             .createObject(BookSearchService.class);
         service.getBooksFromSearchDTO(bookSearchDTO, limitSize, offset);

@@ -23,7 +23,8 @@
                     </c-combobox-autocomplete-wrapper>
                 </div>
                 <lightning-input
-                    value={publishDate} 
+                    value={publishDate}
+                    type="date" 
                     onchange={handlePublishDateInput} 
                     class="slds-p-horizontal_x-large slds-p-vertical_medium" 
                     label="Publish Date">
@@ -38,7 +39,7 @@
                         onselectoption={handlePublisherSelectOption}>
                     </c-combobox-autocomplete-wrapper>
                 </div>
-                <div class="slds-card slds-p-horizontal_x-large slds-p-vertical_medium">
+                <div class="slds-card slds-p-horizontal_x-large slds-p-vertical_small">
                     <c-combobox-autocomplete-wrapper
                         object-name={bookstoreApiName}
                         label="Bookstore"
@@ -46,13 +47,16 @@
                         onselectoption={handleBookstoreSelectOption}>
                     </c-combobox-autocomplete-wrapper>
                 </div>
-                <lightning-input
-                    value={reviewScore} 
-                    onchange={handlereviewScoreInput} 
-                    class="slds-p-horizontal_x-large slds-p-vertical_medium" 
-                    label="Minimum Review Score"
-                    type="number">
-                </lightning-input>
+                <div class="slds-card slds-p-horizontal_x-large slds-p-vertical_small">
+                    <lightning-slider
+                        label="Minimum Review Score"
+                        value={reviewScore}
+                        onchange={handlereviewScoreInput}
+                        max="5"
+                        step="0.01"
+                        min="1">               
+                    </lightning-slider>
+                </div>
                 <lightning-input
                     value={term} 
                     onchange={handleTermInput} 
@@ -68,7 +72,7 @@
                 value={price}
                 onchange={handlePriceChange}
                 max={priceRangeMaximum}
-                min="1">
+                min="1">               
             </lightning-slider>
         </div>
         <lightning-dual-listbox 
@@ -90,32 +94,32 @@
             onchange={handleLanguagesChange}>
         </lightning-dual-listbox>
 
-        <div class="slds-card slds-p-horizontal_xx-large slds-p-vertical_medium slds-clearfix">
+        <div class="slds-card slds-p-horizontal_xx-large slds-m-horizontal_large slds-p-vertical_medium slds-clearfix">
             <lightning-button onclick={handleBookSearch} label="Search" class="slds-float_right"></lightning-button>
         </div>
 
-        
-
-        <div style="height: 300px" class="slds-var-m-around_medium">
-            <template lwc:if={books}>
-                <lightning-datatable
-                    key-field="Id"
-                    data={books}
-                    columns={columns}
-                    hide-checkbox-column
-                    sorted-by={sortBy}
-                    sorted-direction={sortDirection}
-                    onsort={handleSorting}
-                    onloadmore={handleLoadMore}
-                    enable-infinite-loading={moreToLoad}
-                    show-row-number-column
-                    load-more-offset="5"
-                >
-                </lightning-datatable>
+        <div class="slds-m-horizontal_x-large slds-m-vertical_medium" lwc:if={books}>
+            <template lwc:if={resultsNotFound}>
+                <div class="slds-card slds-p-horizontal_x-large slds-p-vertical_medium slds-text-heading_large slds-align_absolute-center">
+                    No books matching provided criteria found
+                </div>
             </template>
-            <template lwc:elseif={error}>
-                <div class="slds-text-color_error">
-                    {error.body.message}
+            <template lwc:else>
+                <div style="height: 300px">
+                    <lightning-datatable
+                        key-field="Id"
+                        data={books}
+                        columns={columns}
+                        hide-checkbox-column
+                        sorted-by={sortBy}
+                        sorted-direction={sortDirection}
+                        onsort={handleSorting}
+                        onloadmore={handleLoadMore}
+                        enable-infinite-loading={moreToLoad}
+                        show-row-number-column
+                        load-more-offset="5"
+                    >
+                    </lightning-datatable>
                 </div>
             </template>
         </div>
