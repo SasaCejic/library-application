@@ -16,8 +16,21 @@ export default class ComboboxAutocompleteWrapper extends LightningElement {
     handleSearch(event) {
         window.clearTimeout(this.delay)
         this.searchTerm = event.detail.searchTerm;
+
         this.delay = setTimeout(() => {
+
             if (this.searchTerm === '') {
+                const custEvent = new CustomEvent(
+                    'selectoption', {
+                        detail: {
+                            value: null,
+                            label: null
+                        },
+                        composed: true,
+                        bubbles: true
+                    }
+                );
+                this.dispatchEvent(custEvent);
                 return;
             }
             this.search(this.objectName, this.recordTypeId, this.searchTerm);
