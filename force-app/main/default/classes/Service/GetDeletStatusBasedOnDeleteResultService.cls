@@ -1,5 +1,5 @@
 /**
- * Class used for BookstorePublisherControllerExtension
+ * Class used for BookstorePublisherController
  * Response will return true if delete is successfull and vice ers
  */
 public with sharing class GetDeletStatusBasedOnDeleteResultService implements CustomObject {
@@ -23,6 +23,6 @@ public with sharing class GetDeletStatusBasedOnDeleteResultService implements Cu
             this.setResponse(true);
             return;
         }
-        this.setResponse(deleteResult.isSuccess());
+        this.setResponse(!deleteResult.isSuccess());
     }
 }

@@ -14,7 +14,7 @@ public with sharing class BookstorePublsherDeleteValidationService implements Cu
         this.response = bookstoreBookList;
     }
 
-    /*
+    /**
      * @param deletedRecords - Bookstore_Publisher__c records being deleted
      */
     public void validateBookstorePublisher(List<Bookstore_Publisher__c> deletedRecords) {

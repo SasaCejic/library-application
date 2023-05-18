@@ -1,5 +1,5 @@
 /*
- * This class is used for returning Pagereference for BookstorePublisherControllerExtension
+ * This class is used for returning Pagereference for BookstorePublisherController
  */
 public with sharing class GetPageReferenceForBookstorePublisher implements CustomObject{
     private Pagereference response;
@@ -19,17 +19,14 @@ public with sharing class GetPageReferenceForBookstorePublisher implements Custo
      * @param deleteStatus - Boolean representing if the deletion result was successfull or not
      * @param bookstorePublisherId - Id of Bookstore_Publisher__c record being deleted
      */
-    public void getPageReference(Boolean isCanceled, Boolean deleteStatus, Id bookstorePublisherId) { 
-        if (isCanceled || deleteStatus) {
-            // Get the Bookstore_Publisher__c record being deleted
-            BookstorePublisherSelector selector = (BookstorePublisherSelector) new ObjectFactory()
-                .createObject(BookstorePublisherSelector.class);
-            Bookstore_Publisher__c bookstorePublisherForDelete = selector.getRecordById(bookstorePublisherId);
-            
+    public void getPageReference(Boolean isCanceled, Boolean isViewAllClicked, Boolean deleteStatus, Bookstore_Publisher__c bookstorePublisherForDelete) { 
+        if (isCanceled || !deleteStatus) {
             // Set the response that redirects to the bookstore detil view page of the record being deleted
             this.setResponse(new PageReference('/' + bookstorePublisherForDelete.Bookstore__c));
-            return;
+        } else if (isViewAllClicked) {
+            this.setResponse(new PageReference('/lightning/n/Books_preventing_publisher_removal?c__recordId=' + bookstorePublisherForDelete.Id));       
+        } else {
+            this.setResponse(null);
         }
-        this.setResponse(null);
     }
 }

@@ -1,4 +1,4 @@
-<apex:page standardController="Bookstore_Publisher__c" extensions="BookstorePublisherControllerExtension">
+<apex:page standardController="Bookstore_Publisher__c" extensions="BookstorePublisherController">
     <apex:slds />
     <div class="slds-scope">
         <apex:outputPanel styleClass="slds-modal slds-fade-in-open">
@@ -6,12 +6,12 @@
             <div class="slds-modal__container">
                 <div class="slds-modal__header">
                     <h2 class="slds-text-heading_medium">
-                        <apex:outputText rendered="{! DeletionStatus }">Deletion Failed</apex:outputText>
-                        <apex:outputText rendered="{! NOT(DeletionStatus) }">Confirm Delete</apex:outputText>
+                        <apex:outputText rendered="{! didDeleteFail }">Deletion Failed</apex:outputText>
+                        <apex:outputText rendered="{! NOT(didDeleteFail) }">Confirm Delete</apex:outputText>
                     </h2>
                 </div>
                 <div class="slds-modal__content slds-p-around_medium">
-                    <apex:outputPanel rendered="{! DeletionStatus }">
+                    <apex:outputPanel rendered="{!didDeleteFail }">
                         <p>You first have to remove all the books from this bookstore that are assigned to the publisher you want to delete.</p>
                         <apex:pageBlock>
                             <apex:pageBlockTable value="{! BookstoreBooksCausingError }" var="errorRecord">
@@ -21,22 +21,24 @@
                                 </apex:column>
                                 <apex:column headerValue="Publisher" >
                                     <apex:facet name="header">Publisher</apex:facet>
-                                    <apex:outputLink value="/{! errorRecord.Book__r.Publisher__r.Name }">{! errorRecord.Book__r.Publisher__r.Name }</apex:outputLink>
+                                    <apex:outputLink value="/{! errorRecord.Book__r.Publisher__r.Id }">{! errorRecord.Book__r.Publisher__r.Name }</apex:outputLink>
                                 </apex:column>
                             </apex:pageBlockTable>
+                            <div class="slds-align_absolute-center slds-p-top_x-small">
+                                <apex:form>
+                                    <apex:commandButton value="View All" action="{! viewAll}" styleClass="slds-button slds-button_neutral" />
+                                </apex:form>
+                            </div>
                         </apex:pageBlock>
                     </apex:outputPanel>
-                    <apex:outputPanel rendered="{! NOT(DeletionStatus) }">
+                    <apex:outputPanel rendered="{! NOT(didDeleteFail) }">
                         <p>Are you sure you want to delete this record?</p>
                     </apex:outputPanel>
                 </div>
                 <div class="slds-modal__footer">
-                    <apex:form rendered="{! NOT(DeletionStatus) }">
+                    <apex:form>
                         <apex:commandButton value="Cancel" action="{!cancel}" styleClass="slds-button slds-button_neutral" />
-                        <apex:commandButton value="Continue" action="{!deleteRecord}" styleClass="slds-button slds-button_destructive" />
-                    </apex:form>
-                    <apex:form rendered="{! DeletionStatus}">
-                        <apex:commandButton value="Continue" action="{!cancel}" styleClass="slds-button slds-button_neutral" />
+                        <apex:commandButton rendered="{! NOT(didDeleteFail) }" value="Continue" action="{!deleteRecord}" styleClass="slds-button slds-button_destructive" />
                     </apex:form>
                 </div>
             </div>

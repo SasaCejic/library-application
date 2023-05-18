@@ -22,7 +22,7 @@ public with sharing class DeleteBookPublisherRecordService implements CustomObje
             Database.DeleteResult deleteResult = Database.delete(bookstorePublisherId);
             this.setResponse(deleteResult);
         } catch(Exception e) {
-            System.debug('fuck it');
+            System.debug(e);
         }
         
     }
