@@ -29,6 +29,8 @@ public with sharing class BookstoreBookSelector implements CustomObject {
                 Id,
                 Book__c,
                 Book__r.Publisher__c,
+                Book__r.Name,
+                Book__r.Publisher__r.Name,
                 Bookstore__c
             FROM Bookstore_Book__c
             WHERE Bookstore__c IN :bookstoreIds
