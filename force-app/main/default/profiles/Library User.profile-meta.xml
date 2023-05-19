@@ -62,6 +62,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BookSearchDTO</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookSearchService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BookSelector</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -174,6 +182,18 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>ObjectSearchController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ObjectSearchService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ObjectSelector</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>PublisherController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -239,8 +259,8 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Book_Review__c.User__c</field>
-        <readable>false</readable>
+        <field>Book_Review__c.Rating_Number__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -264,8 +284,18 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Book__c.ISBN_Uneditable__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Book__c.Print_Length__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Book__c.Record_Type_Uneditable__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -318,18 +348,10 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Publisher__c.Hidden_Unique_Name_Field__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>User.isBookstoreManager__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <layoutAssignments>
-        <layout>Announcement__c-Announcement Layout</layout>
-    </layoutAssignments>
     <layoutAssignments>
         <layout>Author_Publisher__c-Author_Publisher Layout</layout>
     </layoutAssignments>
@@ -368,16 +390,10 @@
         <recordType>Bookstore__c.Physical</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CommunityMemberLayout-Community Member Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Publisher__c-Publisher Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Subscription__c-Subscription Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>User-User Layout</layout>
     </layoutAssignments>
     <objectPermissions>
         <allowCreate>false</allowCreate>
