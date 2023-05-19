@@ -31,7 +31,7 @@
         <inputAssignments>
             <field>Name</field>
             <value>
-                <stringValue>{!$Record.First_Name__c}  {!$Record.Last_Name__c} </stringValue>
+                <stringValue>{!$Record.First_Name__c} {!$Record.Last_Name__c} </stringValue>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -46,5 +46,5 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
 </Flow>

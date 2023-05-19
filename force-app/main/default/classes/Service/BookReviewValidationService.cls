@@ -13,7 +13,7 @@ public with sharing class BookReviewValidationService implements CustomObject {
         // Check if in the new added reviews there are 2 same ones(CreatedById is not checked since it is not writeable and can only have the Id of current user)
         // Meaning that there can never be multiple new book reviews at once from different users
         for (Book_Review__c newbookReview:newBookReviews) {
-            if(booksIds.contains(newbookReview.Book__c)) {
+            if (booksIds.contains(newbookReview.Book__c)) {
                 newBookReview.addError('You can only leave one review per book!');
                 return;
             }

@@ -1,5 +1,5 @@
 /*
- * This class tests publisher controller methods
+ * This class tests publisher controller method
  */
 @isTest
 public with sharing class PublisherControllerIntegrationTest {

@@ -15,14 +15,13 @@ public with sharing class GetBooksNotInBookstoreService implements CustomObject{
     }
 
     /*
-     * @param bookstoreId - Id of the bookstore 
+     * @param bookstoreId - Id of the bookstore
      */
     public void getBooks(Id bookstoreId, Integer recordLimit) {
         //Set of book ids that are already in bookstore
         Set<Id> booksInBookstoreIds = new Set<Id>();
         BookstoreBookSelector bookstoreBookSelector = (BookstoreBookSelector) new ObjectFactory()
             .createObject(BookstoreBookSelector.class);
-            
         //Get all bookstoreBooks assigned to Bookstore by bookstore Id
         List<Bookstore_Book__c> bookstoreBooksInBookstore = bookstoreBookSelector.getListByBookstoreId(bookstoreId, 2000);
 
@@ -30,7 +29,6 @@ public with sharing class GetBooksNotInBookstoreService implements CustomObject{
         for (Bookstore_Book__c bookstoreBook:bookstoreBooksInBookstore) {
             booksInBookstoreIds.add(bookstoreBook.Book__c);
         }
-
         //Get all the books that are not in the bookstore
         BookSelector bookSelector = (BookSelector) new ObjectFactory()
             .createObject(BookSelector.class);
