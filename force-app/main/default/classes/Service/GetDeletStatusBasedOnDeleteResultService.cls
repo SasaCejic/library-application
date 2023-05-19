@@ -20,7 +20,7 @@ public with sharing class GetDeletStatusBasedOnDeleteResultService implements Cu
      */
     public void getStatus(Database.DeleteResult deleteResult) {
         if (deleteResult == null) {
-            this.setResponse(true);
+            this.setResponse(false);
             return;
         }
         this.setResponse(!deleteResult.isSuccess());

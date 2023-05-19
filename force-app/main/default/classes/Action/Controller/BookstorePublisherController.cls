@@ -3,11 +3,11 @@
  */
 public class BookstorePublisherController {
     // Id of the Bookstore_Publisher__c record being deleted
-    public Id recordId { get; set; }
+    private Id recordId { get; set; }
     // Bookstore_Publisher__c record for delete
-    public Bookstore_Publisher__c bookstorePublisherForDelete { get; set; }
+    private Bookstore_Publisher__c bookstorePublisherForDelete { get; set; }
     // Database.DeleteResult representing the result of Bookstore_Publisher__c record deletion
-    public transient Database.DeleteResult deletionResult { get; set; }
+    private transient Database.DeleteResult deletionResult { get; set; }
     // Boolean indicating if Canceled button was clicked
     public Boolean isCanceled { get; set; }
     // Boolean indicating if the viewAllButton was clicked
@@ -22,6 +22,7 @@ public class BookstorePublisherController {
     public BookstorePublisherController(ApexPages.StandardController controller) {
         isCanceled = false;
         isViewAllClicked = false;
+        didDeleteFail = false;
         recordId = controller.getId();
         setBookstorePublihserForDelete();
     }
@@ -29,7 +30,7 @@ public class BookstorePublisherController {
     /**
      * Setter that will set to true if delete result is successfull and vice versa
      */
-    public void settDeletionStatus() {
+    private void settDeletionStatus() {
         GetDeletStatusBasedOnDeleteResultService service = (GetDeletStatusBasedOnDeleteResultService) new ObjectFactory()
             .createObject(GetDeletStatusBasedOnDeleteResultService.class);
         service.getStatus(deletionResult);

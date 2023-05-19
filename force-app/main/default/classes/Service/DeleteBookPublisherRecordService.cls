@@ -18,12 +18,7 @@ public with sharing class DeleteBookPublisherRecordService implements CustomObje
      * * @param bookstorePublisherId - Id of the bookstorePublisher for delete
      */
     public void deleteBookstorePublisher(Id bookstorePublisherId) { 
-        try {
-            Database.DeleteResult deleteResult = Database.delete(bookstorePublisherId);
-            this.setResponse(deleteResult);
-        } catch(Exception e) {
-            System.debug(e);
-        }
-        
+        Database.DeleteResult deleteResult = Database.delete(bookstorePublisherId, false);
+        this.setResponse(deleteResult);
     }
 }
