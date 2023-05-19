@@ -1,9 +1,11 @@
 import { LightningElement, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import {NavigationMixin} from 'lightning/navigation';
 import LightningConfirm from 'lightning/confirm';
 import getBookById from '@salesforce/apex/BookController.getBookById';
+import { CloseActionScreenEvent } from 'lightning/actions';
 
-export default class PaperBookReservationForm extends LightningElement {
+export default class PaperBookReservationForm extends NavigationMixin(LightningElement) {
     bookId = '';
     selectedBook;
 
@@ -31,11 +33,24 @@ export default class PaperBookReservationForm extends LightningElement {
     }
 
     closeForm (event) {
-        window.history.back();
+        this.dispatchEvent(new CloseActionScreenEvent());
     }
 
     showSuccessMessage (event) {
         this.toast('Success', 'Book reservation has been made successfully!', 'success', 'dismissable');
+        this.closeForm(event);
+        this.navigate('standard__recordPage', event.detail.id, 'Book_Reservation__c', 'view');
+    }
+
+    navigate(type, recordId, objectApiName, actionName){
+        this[NavigationMixin.Navigate]({
+            type: type,
+            attributes:{
+                recordId: recordId,
+                objectApiName: objectApiName,
+                actionName: actionName
+            }
+        });
     }
 
     toast (title, message, variant, mode) {
