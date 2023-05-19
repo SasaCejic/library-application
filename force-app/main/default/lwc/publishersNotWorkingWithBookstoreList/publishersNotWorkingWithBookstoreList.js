@@ -36,8 +36,8 @@ export default class BooksNotInBookstoreList extends NavigationMixin(LightningEl
 
     @wire(CurrentPageReference)
     getStateParameters(currentPageReference) {
-        if(currentPageReference) {
-            if(currentPageReference.state.c__bookstoreId && this.recordId === undefined) {
+        if (currentPageReference) {
+            if (currentPageReference.state.c__bookstoreId && this.recordId === undefined) {
                 this.recordId = currentPageReference.state.c__bookstoreId
                 this.limit = 2000;
                 this.isButtonVisible = false;
@@ -49,11 +49,11 @@ export default class BooksNotInBookstoreList extends NavigationMixin(LightningEl
     //If the Id of the bookstore manager matches, currently logged in user
     @wire(getRecord, { recordId:'$recordId', fields:[MANAGER_FIELD] })
     wiredBookstore(result) {
-        if(result.data) {
-            if(USER_ID == result.data.fields.Manager__c.value) {
+        if (result.data) {
+            if (USER_ID == result.data.fields.Manager__c.value) {
                 this.isManagerToBookstore = true;
             }
-        } else if(result.error) {
+        } else if (result.error) {
             this.isManagerToBookstore = false;
             const event = new ShowToastEvent({
                 title: 'Error while retrieving bookstore information',
@@ -66,8 +66,8 @@ export default class BooksNotInBookstoreList extends NavigationMixin(LightningEl
 
     @wire(getPublishersNotWorkingWithBookstore, { bookstoreId:'$recordId', recordLimit:'$limit' })
     wiredPublishers(result) {
-        if(result.data) {
-            if(result.data.length === 0) {
+        if (result.data) {
+            if (result.data.length === 0) {
                 this.isPublisherListEmpty = true;
                 return;
             }
@@ -80,7 +80,7 @@ export default class BooksNotInBookstoreList extends NavigationMixin(LightningEl
             })
             this.allPublishers = proccessedRecords;
             this.publishers = this.allPublishers.slice(0, this.currentNumberOfLoadedPublishers - 1)
-        } else if(result.error) {
+        } else if (result.error) {
             const event = new ShowToastEvent({
                 title: 'Error while retrieving publisher information',
                 message: result.error.body.message,
@@ -105,7 +105,7 @@ export default class BooksNotInBookstoreList extends NavigationMixin(LightningEl
     loadMoreData(event) {
         const { target } = event;
         // Check if we should load more records(depending if we are on a record page or not)
-        if(this.isOnRecordPage) {
+        if (this.isOnRecordPage) {
             target.enableInfiniteLoading = false;
             return;
         }
@@ -115,11 +115,11 @@ export default class BooksNotInBookstoreList extends NavigationMixin(LightningEl
         setTimeout(() => {
             target.isLoading = false;
         }, 1000);
-        if(this.publishers.length === this.allPublishers.length) {
+        if (this.publishers.length === this.allPublishers.length) {
             target.enableInfiniteLoading = false;
         }
         //Check if we loaded all records
-        if(this.publishers.length === this.limit) {
+        if (this.publishers.length === this.limit) {
             const event = new ShowToastEvent({
                 title: 'Error while retrieving book information',
                 message: 'We can not show more records at this time.',

@@ -7,7 +7,7 @@ public with sharing class BookReviewTriggerHandlerTest {
     public static void beforeInsert_willUseCorrectService() {
         // create mock
         Mocker BookReviewValidationServiceMocker = new Mocker(BookReviewValidationService.class)
-        .setBehavior('validateReview', new Book_Review__c());
+            .setBehavior('validateReview', new Book_Review__c());
         ObjectFactory.mocks.put(
             BookReviewValidationService.class.getName(),
             (BookReviewValidationService)BookReviewValidationServiceMocker.getMock()
