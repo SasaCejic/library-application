@@ -35,11 +35,7 @@ export default class PaperBookReservationForm extends LightningElement {
     }
 
     showSuccessMessage (event) {
-        this.toast('Success', 'Book reservation has been made successfully!');
-    }
-
-    showErrorMessage (event) {
-        this.toast('Error', 'Record cannot be created', 'error', 'dismissable');
+        this.toast('Success', 'Book reservation has been made successfully!', 'success', 'dismissable');
     }
 
     toast (title, message, variant, mode) {
