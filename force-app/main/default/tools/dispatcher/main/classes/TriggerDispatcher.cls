@@ -16,7 +16,7 @@ public with sharing class TriggerDispatcher {
      * @param handler - Class of type TriggerHanlder that implements blogic of what happens with the trigger
      */
     public void dispatch() {
-        if(handler.isDisabled()) {
+        if (handler.isDisabled()) {
             return;
         }
         
@@ -26,13 +26,13 @@ public with sharing class TriggerDispatcher {
             } when BEFORE_UPDATE {
                 handler.beforeUpdate(Trigger.old, Trigger.new);
             } when BEFORE_DELETE {
-                handler.beforeDelete(Trigger.old, Trigger.new);
+                handler.beforeDelete(Trigger.old);
             } when AFTER_INSERT {
                 handler.afterInsert(Trigger.new);
             } when AFTER_UPDATE {
                 handler.afterUpdate(Trigger.old, Trigger.new);
             } when AFTER_DELETE {
-                handler.afterDelete(Trigger.old, Trigger.new);
+                handler.afterDelete(Trigger.old);
             }
         }
     }

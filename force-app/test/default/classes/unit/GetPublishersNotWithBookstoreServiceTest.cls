@@ -14,13 +14,13 @@ public with sharing class GetPublishersNotWithBookstoreServiceTest {
 
         // create mocks
         Mocker BookstorePublisherSelectorMock = new Mocker(BookstorePublisherSelector.class)
-        .setBehavior('getListByBookstoreId', new List<Bookstore_Publisher__c>{bookstorePublisherForTest});
+            .setBehavior('getListByBookstoreId', new List<Bookstore_Publisher__c>{bookstorePublisherForTest});
         ObjectFactory.mocks.put(
             BookstorePublisherSelector.class.getName(),
             (BookstorePublisherSelector) BookstorePublisherSelectorMock.getMock()
         );
         Mocker PublisherSelectorMock = new Mocker(PublisherSelector.class)
-        .setBehavior('getListNotInIds', new List<Publisher__c>{publisherForTest});
+            .setBehavior('getListNotInIds', new List<Publisher__c>{publisherForTest});
         ObjectFactory.mocks.put(
             PublisherSelector.class.getName(),
             (PublisherSelector) PublisherSelectorMock.getMock()
@@ -45,13 +45,13 @@ public with sharing class GetPublishersNotWithBookstoreServiceTest {
         
         // create mocks
         Mocker BookstorePublisherSelectorMock = new Mocker(BookstorePublisherSelector.class)
-        .setBehavior('getListByBookstoreId', new List<Bookstore_Publisher__c>{bookstorePublisherForTest});
+            .setBehavior('getListByBookstoreId', new List<Bookstore_Publisher__c>{bookstorePublisherForTest});
         ObjectFactory.mocks.put(
             BookstorePublisherSelector.class.getName(),
             (BookstorePublisherSelector) BookstorePublisherSelectorMock.getMock()
         );
         Mocker PublisherSelectorMock = new Mocker(PublisherSelector.class)
-        .setBehavior('getListNotInIds', new List<Publisher__c>{});
+            .setBehavior('getListNotInIds', new List<Publisher__c>{});
         ObjectFactory.mocks.put(
             PublisherSelector.class.getName(),
             (PublisherSelector) PublisherSelectorMock.getMock()
@@ -76,13 +76,13 @@ public with sharing class GetPublishersNotWithBookstoreServiceTest {
 
         // create mocks
         Mocker BookstorePublisherSelectorMock = new Mocker(BookstorePublisherSelector.class)
-        .setBehavior('getListByBookstoreId', new List<Bookstore_Publisher__c>{bookstorePublisherForTest});
+            .setBehavior('getListByBookstoreId', new List<Bookstore_Publisher__c>{bookstorePublisherForTest});
         ObjectFactory.mocks.put(
             BookstorePublisherSelector.class.getName(),
             (BookstorePublisherSelector) BookstorePublisherSelectorMock.getMock()
         );
         Mocker PublisherSelectorMock = new Mocker(PublisherSelector.class)
-        .setBehavior('getListNotInIds', new List<Publisher__c>{});
+            .setBehavior('getListNotInIds', new List<Publisher__c>{});
         ObjectFactory.mocks.put(
             PublisherSelector.class.getName(),
             (PublisherSelector) PublisherSelectorMock.getMock()

@@ -27,7 +27,7 @@ public with sharing class GetPublishersNotWithBookstoreService implements Custom
         List<Bookstore_Publisher__c> bookstorePublishersInBookstore = bookstorePublisherSelector.getListByBookstoreId(bookstoreId);
 
         //Loop through all the bookstoreBooks in bookstore and add Book ids to the set
-        for(Bookstore_Publisher__c bookstorePublisher:bookstorePublishersInBookstore) {
+        for (Bookstore_Publisher__c bookstorePublisher:bookstorePublishersInBookstore) {
             publishersWorkingWithBookstoreIds.add(bookstorePublisher.Publisher__c);
         }
         

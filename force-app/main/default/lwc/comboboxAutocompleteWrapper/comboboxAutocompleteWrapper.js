@@ -74,3 +74,17 @@ export default class ComboboxAutocompleteWrapper extends LightningElement {
         this.dispatchEvent(event);
     }
 }
+    /**
+    * @param title - title of toast message
+    * @param message - message of toast message
+    * @param variant - varian of toast message
+    */
+    showToast(title, message, variant) {
+        const event = new ShowToastEvent({
+            title: title,
+            message: message,
+            variant: variant
+        });
+        this.dispatchEvent(event);
+    }
+}

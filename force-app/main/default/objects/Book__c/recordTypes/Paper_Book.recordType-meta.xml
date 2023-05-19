@@ -5,6 +5,21 @@
     <description>Physical printed copy of a book</description>
     <label>Paper Book</label>
     <picklistValues>
+        <picklist>Approval_Status__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Categories__c</picklist>
         <values>
             <fullName>Fantasy</fullName>

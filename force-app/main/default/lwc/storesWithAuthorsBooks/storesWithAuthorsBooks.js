@@ -45,8 +45,8 @@ export default class StoresWithAuthorsBooks extends NavigationMixin (LightningEl
      */
     @wire(getBookstoresWithAuthorsBooks, {authorId: '$recordId'})
     wiredBookstores({data}){
-        if(data){
-            if(data.length > 0){
+        if (data){
+            if (data.length > 0){
                 this.bookstores = data;
             }
         }
