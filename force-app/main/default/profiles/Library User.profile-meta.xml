@@ -14,6 +14,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AuthorDeleteValidationService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorDeleteValidationServiceTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AuthorPublisherSelector</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -26,7 +34,27 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BokstorePublsherControlerIntegrationTest</apexClass>
+        <apexClass>AuthorTriggerHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorTriggerHandlerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorTriggerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorUpdateValidationService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorUpdateValidationServiceTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BokstorePublshrVFControlerIntgrationTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -51,11 +79,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BookPurchaseTriggerHandlerTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookPurchaseTriggerTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookPurchaseValidationService</apexClass>
@@ -63,7 +91,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BookPurchaseValidationServiceTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookReviewSelector</apexClass>
@@ -114,6 +142,18 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BookstoreBookController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreBookControllerIntegrationTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreBookControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BookstoreBookSelector</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -138,14 +178,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BookstorePublisherController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BookstorePublisherControllerTest</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>BookstorePublisherDeleteValidationTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -163,6 +195,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BookstorePublisherTriggerIntegrationTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstorePublisherVFController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstorePublisherVFControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -206,15 +246,15 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CustomSettingSelector</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>DeleteBookPublisherRecordService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>GetBokstoreBooksOnPblsherDeleteTest</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>GetBokstoreBooksOnPublsherDeleteService</apexClass>
+        <apexClass>GetBokstoreBookOnPublsherDeletServicTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -223,6 +263,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>GetBooksNotInBookstoreServiceTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>GetBookstoreBookOnPublsherDeleteService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -255,7 +299,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>InsertBookPurchaseRecordServiceTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Mocker</apexClass>
@@ -306,6 +350,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>ReturnBookstorePublisherBasedOnIdService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ReturnBookstorePublisherBasedOnIdTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>SendEmailsService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -322,11 +374,11 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ReturnBookstorePublisherBasedOnIdService</apexClass>
+        <apexClass>StandardAuthorCreator</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ReturnBookstorePublisherBasedOnIdTest</apexClass>
+        <apexClass>StandardAuthorCreatorTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>

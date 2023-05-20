@@ -1,6 +1,6 @@
 /**
  * Class used for testing GetDeleteStatudBasedOnDeleteResultService used for BookstorePublisher Controller
- * @see BookstorePublisherController
+ * @see BookstorePublisherVFController
  * Database.DeleteResult can't be instantiated so Custom Json and type casting was used
  */
 @isTest

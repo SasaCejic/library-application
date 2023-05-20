@@ -1,5 +1,5 @@
 /*
- * This class is used for returning Pagereference for BookstorePublisherController
+ * This class is used for returning Pagereference for BookstorePublisherVFController
  */
 public with sharing class GetPageReferenceForBookstorePublisher implements CustomObject{
     private Pagereference response;

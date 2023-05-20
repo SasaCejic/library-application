@@ -1,11 +1,11 @@
 /**
- * Class tests selector execution account in BookstorePublisherController services
+ * Class tests selector execution account in BookstorePublisherVFController services
  * Every test requires data to be made so the controller can even be instantiated
  * Every test will require mocking the ReturnBookstorePublisherById class, because it runs in the constructor
  * Controller must be instantaiated because it is an extension of standard controller
  */
 @isTest
-public with sharing class BookstorePublisherControllerTest {
+public with sharing class BookstorePublisherVFControllerTest {
     /**
      * This method tests both if the delete failed, and the page reference that was returned.
      * If the deletion failed page reference will be null (staying on the same page of VF page)
@@ -38,7 +38,7 @@ public with sharing class BookstorePublisherControllerTest {
         );
 
         // execute
-        BookstorePublisherController controller = new BookstorePublisherController(stdController);
+        BookstorePublisherVFController controller = new BookstorePublisherVFController(stdController);
         controller.deleteRecord();
 
         // assert 
@@ -65,41 +65,17 @@ public with sharing class BookstorePublisherControllerTest {
             (ReturnBookstorePublisherBasedOnIdService) ReturnBookstorePublisherBasedOnIdServiceMocker.getMock()
         );
 
-        Mocker GetBokstoreBooksOnPublsherDeleteServiceMocker = new Mocker(GetBokstoreBooksOnPublsherDeleteService.class);
+        Mocker GetBokstoreBooksOnPublsherDeleteServiceMocker = new Mocker(GetBookstoreBookOnPublsherDeleteService.class);
         GetBokstoreBooksOnPublsherDeleteServiceMocker.setBehavior('getBookstoreBooks', null);
         GetBokstoreBooksOnPublsherDeleteServiceMocker.setBehavior('getResponse', null);
         ObjectFactory.mocks.put(
-            GetBokstoreBooksOnPublsherDeleteService.class.getName(),
-            (GetBokstoreBooksOnPublsherDeleteService) GetBokstoreBooksOnPublsherDeleteServiceMocker.getMock()
+            GetBookstoreBookOnPublsherDeleteService.class.getName(),
+            (GetBookstoreBookOnPublsherDeleteService) GetBokstoreBooksOnPublsherDeleteServiceMocker.getMock()
         );
 
         // execute
-        BookstorePublisherController controller = new BookstorePublisherController(stdController);
+        BookstorePublisherVFController controller = new BookstorePublisherVFController(stdController);
         controller.getBookstoreBooksCausingError();
-
-        // assert 
-        GetBokstoreBooksOnPublsherDeleteServiceMocker.assertMethodExecutionCount('getBookstoreBooks', 1);
-        GetBokstoreBooksOnPublsherDeleteServiceMocker.assertMethodExecutionCount('getResponse', 1);
-    }
-
-    /**
-     * This method doesen't required data and mock as in previous ones because we are testing a static method
-     */
-    @isTest
-    public static void returnBookstoreBooksCausingErrorForLwc_willUseService() {
-        // create data
-        Id bookstorePublisherId = new TestFactory().getFakeId(Bookstore_Publisher__c.SObjectType, true);
-        // create mocks
-        Mocker GetBokstoreBooksOnPublsherDeleteServiceMocker = new Mocker(GetBokstoreBooksOnPublsherDeleteService.class);
-        GetBokstoreBooksOnPublsherDeleteServiceMocker.setBehavior('getBookstoreBooks', null);
-        GetBokstoreBooksOnPublsherDeleteServiceMocker.setBehavior('getResponse', null);
-        ObjectFactory.mocks.put(
-            GetBokstoreBooksOnPublsherDeleteService.class.getName(),
-            (GetBokstoreBooksOnPublsherDeleteService) GetBokstoreBooksOnPublsherDeleteServiceMocker.getMock()
-        );
-
-        // execute
-        BookstorePublisherController.returnBookstoreBooksCausingErrorForLwc(bookstorePublisherId, 5);
 
         // assert 
         GetBokstoreBooksOnPublsherDeleteServiceMocker.assertMethodExecutionCount('getBookstoreBooks', 1);

@@ -1,5 +1,5 @@
 /**
- * Class used for BookstorePublisherController
+ * Class used for BookstorePublisherVFController
  * Response will return true if delete is successfull and vice ers
  */
 public with sharing class GetDeletStatusBasedOnDeleteResultService implements CustomObject {

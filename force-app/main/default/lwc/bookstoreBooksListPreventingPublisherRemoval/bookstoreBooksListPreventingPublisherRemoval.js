@@ -1,6 +1,7 @@
 import { api, LightningElement, wire } from 'lwc';
 import { CurrentPageReference } from 'lightning/navigation';
-import returnBookstoreBooksCausingErrorForLwc from '@salesforce/apex/BookstorePublisherController.returnBookstoreBooksCausingErrorForLwc';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import returnBookstoreBooksCausingErrorOnPublisherDelete from '@salesforce/apex/BookstoreBookController.returnBookstoreBooksCausingErrorOnPublisherDelete';
 
 const COLUMNS = [
     {
@@ -60,7 +61,7 @@ export default class BookstoreBooksListPreventingPublisherRemoval extends Lightn
      * @param recordLimit - Number of records to be retrieved from database
      * @return - Bookstore_Books__c that would cause the error if the Bookstore_Publisher__c record was to be deleted
      */
-    @wire(returnBookstoreBooksCausingErrorForLwc, { bookstorePublisherForDeleteId: '$recordId', recordLimit: '$recordLimit'})
+    @wire(returnBookstoreBooksCausingErrorOnPublisherDelete, { bookstorePublisherForDeleteId: '$recordId', recordLimit: '$recordLimit' })
     wireRecords(result) {
         if (result.data) {
             //Create new field that will hold the value of publisherId, so on click we can be redirected to that publisher view page
@@ -109,7 +110,7 @@ export default class BookstoreBooksListPreventingPublisherRemoval extends Lightn
         }
 
         //Check if maximum number of loaded records from database has been reached
-        if(this.bookstoreBooks.length === this.recordLimit) {
+        if (this.bookstoreBooks.length === this.recordLimit) {
             this.showToast('Error', 'Currently we can not show more records.', 'error')
         }
     }
@@ -127,5 +128,4 @@ export default class BookstoreBooksListPreventingPublisherRemoval extends Lightn
         });
         this.dispatchEvent(event);
     }
-
 }

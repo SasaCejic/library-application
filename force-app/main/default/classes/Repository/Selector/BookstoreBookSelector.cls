@@ -28,8 +28,9 @@ public with sharing class BookstoreBookSelector implements CustomObject {
 
     /**
      * @param bookstoreIds - Ids of the bookstores that Bookstore_Book__c records are assigned to
+     * @param recordLimit - Number of records to be retrieved
      */
-    public List<Bookstore_Book__c> getListByBookstoreIds(Set<Id> bookstoreIds) {
+    public List<Bookstore_Book__c> getListByBookstoreIds(Set<Id> bookstoreIds, Integer recordLimit) {
         return [
             SELECT
                 Id,
@@ -37,9 +38,11 @@ public with sharing class BookstoreBookSelector implements CustomObject {
                 Book__r.Publisher__c,
                 Book__r.Name,
                 Book__r.Publisher__r.Name,
+                Bookstore__r.Name,
                 Bookstore__c
             FROM Bookstore_Book__c
             WHERE Bookstore__c IN :bookstoreIds
+            LIMIT : recordLimit
         ];
     }
 
