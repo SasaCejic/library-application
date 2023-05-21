@@ -25,7 +25,7 @@ public with sharing class BookstoreBookValidationService implements CustomObject
         BookSelector bookSelector = (BookSelector) new ObjectFactory().createObject(BookSelector.class);
         Map<Id, Book__c> correspondingBooks = bookSelector.getMapByIds(addedBookIds);
 
-        for (Bookstore_Book__c bookstoreBook: newBookstoreBooks) {
+        for (Bookstore_Book__c bookstoreBook : newBookstoreBooks) {
             List<Id> currentList = new List<Id>();
             currentList.add(correspondingBooks.get(bookstoreBook.Book__c).Publisher__c);
             currentList.add(bookstoreBook.Bookstore__c);
@@ -42,8 +42,8 @@ public with sharing class BookstoreBookValidationService implements CustomObject
             Boolean isFound =  false;
             List<Id> publisherAndBookstoreIdPair = publisherAndBookstoreIds.get(key);
 
-            for (Bookstore_Publisher__c bookstorePublisher:bookstorePublishers) {
-                if(publisherAndBookstoreIdPair[0] == bookstorePublisher.Publisher__c && publisherAndBookstoreIdPair[1] == bookstorePublisher.Bookstore__c) {
+            for (Bookstore_Publisher__c bookstorePublisher : bookstorePublishers) {
+                if (publisherAndBookstoreIdPair[0] == bookstorePublisher.Publisher__c && publisherAndBookstoreIdPair[1] == bookstorePublisher.Bookstore__c) {
                         isFound = true;
                         break;
                 }
@@ -55,7 +55,7 @@ public with sharing class BookstoreBookValidationService implements CustomObject
         }
 
         //Add error to all the Bookstore_Book__c objects that did not have the corresponding Bookstore_Publisher__c object
-        for (Bookstore_Book__c bookstoreBook:newBookstoreBooks) {
+        for (Bookstore_Book__c bookstoreBook : newBookstoreBooks) {
             if (nonValidatedBookstoreBooks.contains(bookstoreBook.Id)) {
                 bookstoreBook.addError('Book and bookstore must work with the same publisher!');
             }

@@ -50,12 +50,17 @@
     </div>
     <div class="slds-backdrop slds-backdrop_open"></div>
     <script>
+        /**
+         * If delete didn't fail and confirm button was clicked, display toast message and redirect to detail view page
+         * If delete did fail just display an error toast message
+         */
         if (!{! didDeleteFail } && {! isConfirmClicked }) {
             sforce.one.showToast({
                 "title": "Success",
                 "message": "Delete successfull",
                 "type": "success"
-            });  
+            });
+            // Redirect to detail view page  
             getPageReference();
         } else if ({! didDeleteFail }) {
             sforce.one.showToast({

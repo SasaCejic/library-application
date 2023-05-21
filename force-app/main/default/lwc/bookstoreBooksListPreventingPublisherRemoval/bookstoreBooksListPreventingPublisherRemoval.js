@@ -51,7 +51,7 @@ export default class BookstoreBooksListPreventingPublisherRemoval extends Lightn
      */
     @wire(CurrentPageReference)
     getStateParameters(currentPageReference) {
-        if(currentPageReference) {
+        if (currentPageReference) {
             this.recordId = currentPageReference.state.c__recordId;
         }
     }
