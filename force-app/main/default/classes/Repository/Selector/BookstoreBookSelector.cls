@@ -7,26 +7,6 @@
 
 public with sharing class BookstoreBookSelector implements CustomObject {
     /**
-     * @param bookstoreId - Id of the bookstore we want to return Bookstore_Book__c records assigned to it
-     * @param recordLimit - Number of records to be retrieved from database
-     */
-    public List<Bookstore_Book__c> getListByBookstoreId(Id bookstoreId, Integer recordLimit) {
-        return [
-            SELECT
-                Id,
-                Book__c,
-                Book__r.Publisher__c,
-                Book__r.Name,
-                Book__r.Publisher__r.Name,
-                Bookstore__r.Name,
-                Bookstore__c
-            FROM Bookstore_Book__c
-            WHERE Bookstore__c = :bookstoreId
-            LIMIT : recordLimit
-        ];
-    }
-
-    /**
      * @param bookstoreIds - Ids of the bookstores that Bookstore_Book__c records are assigned to
      * @param recordLimit - Number of records to be retrieved
      */

@@ -35,7 +35,7 @@ public with sharing class BokstorePublshrVFControlerIntgrationTest {
         // assert 
         Assert.areEqual(true, controller.didDeleteFail);
     }
-    
+
     @isTest
     public static void getBookstoreBooksCausingError_willReturnBookstoreBook_ifTheyHaveSamePublisher() {
         // create data

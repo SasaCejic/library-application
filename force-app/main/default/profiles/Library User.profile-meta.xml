@@ -254,6 +254,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>DeleteBookPublisherRecordServiceTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>GetBokstoreBookOnPublsherDeletServicTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>

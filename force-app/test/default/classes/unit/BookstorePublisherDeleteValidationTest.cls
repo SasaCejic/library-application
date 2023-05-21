@@ -22,7 +22,7 @@ public with sharing class BookstorePublisherDeleteValidationTest {
 
         // execute
         BookstorePublsherDeleteValidationService service = new BookstorePublsherDeleteValidationService();
-        service.validateBookstorePublisher(new List<Bookstore_Publisher__c>{ bookstorePublisherForTest });
+        service.validateBookstorePublisher(new List<Bookstore_Publisher__c>{ bookstorePublisherForTest }, 2000);
 
         // Assert
         Assert.isTrue(bookstorePublisherForTest.getErrors().size() == 0);
@@ -47,7 +47,7 @@ public with sharing class BookstorePublisherDeleteValidationTest {
 
         // execute
         BookstorePublsherDeleteValidationService service = new BookstorePublsherDeleteValidationService();
-        service.validateBookstorePublisher(new List<Bookstore_Publisher__c>{ bookstorePublisherForTest });
+        service.validateBookstorePublisher(new List<Bookstore_Publisher__c>{ bookstorePublisherForTest }, 2000);
 
         // Assert
         BookstoreBookSelectorMocker.assertMethodExecutionCount('getListByBookstoreIds', 1);
