@@ -1,5 +1,5 @@
 /**
- * Class used as Bookstore_Publisher__c controller for both VF and LWC pages
+ * Class used as Bookstore_Publisher__c controller for both BookstorePublisherDeleteOvrried VF page
  */
 public class BookstorePublisherVFController {
     // Id of the Bookstore_Publisher__c record being deleted
