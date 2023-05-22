@@ -14,6 +14,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AuthorDeleteValidationService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorDeleteValidationServiceTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AuthorPublisherSelector</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -24,6 +32,26 @@
     <classAccesses>
         <apexClass>AuthorServiceTest</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorTriggerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorUpdateValidationService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorUpdateValidationServiceTest</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookController</apexClass>
@@ -182,6 +210,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CustomSettingSelector</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>GetBooksNotInBookstoreService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -268,6 +300,14 @@
     <classAccesses>
         <apexClass>SendPurchaseEmailConfirmationServiceTest</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>StandardAuthorCreator</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>StandardAuthorCreatorTest</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>TestFactory</apexClass>
@@ -418,6 +458,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
+        <layout>Announcement__c-Announcement Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Author_Publisher__c-Author_Publisher Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -458,10 +501,16 @@
         <recordType>Bookstore__c.Physical</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>CommunityMemberLayout-Community Member Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Publisher__c-Publisher Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Subscription__c-Subscription Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>User-User Layout</layout>
     </layoutAssignments>
     <objectPermissions>
         <allowCreate>false</allowCreate>
