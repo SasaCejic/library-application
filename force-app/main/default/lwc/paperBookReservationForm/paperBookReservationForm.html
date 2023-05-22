@@ -4,15 +4,59 @@
             <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create a Book Reservation</h2>
         </header>
         <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-            <lightning-record-form
-                object-api-name="Book_Reservation__c"
-                layout-type= "Full"
-                columns="2"
-                oncancel = {closeForm}
-                onsuccess = {showSuccessMessage}
-                onsubmit = {onSubmitHandler}
-            >
-            </lightning-record-form>
+            <template lwc:if = {objectFields}>
+                <lightning-record-edit-form 
+                    object-api-name = "Book_Reservation__c"
+                    oncancel = {closeForm}
+                    onsuccess = {showSuccessMessage}
+                    onsubmit = {onSubmitHandler}
+                >
+                    <template for:each = {objectFields} for:item = "field">
+                        <template lwc:if = {field.canBeDisabled}>
+                            <template lwc:if = {recordId}>
+                                <lightning-input-field key = {field.apiName} field-name = {field.apiName} disabled = "true" value = {recordId}></lightning-input-field>
+                            </template>
+                            <template lwc:else>
+                                <lightning-input-field key = {field.apiName} field-name = {field.apiName}></lightning-input-field>
+                            </template>
+                        </template>
+                        <template lwc:else>
+                            <lightning-input-field key = {field.apiName} field-name = {field.apiName}></lightning-input-field>
+                        </template>
+                    </template>
+                    <lightning-button
+                        class="slds-button slds-button_outline-brand"
+                        type="cancel"
+                        name="cancel"
+                        label="Cancel"
+                    >
+                    </lightning-button>
+                    <lightning-button
+                        class="slds-m-top_small"
+                        variant="brand"
+                        type="submit"
+                        name="reserve"
+                        label="Reserve"
+                    >
+                    </lightning-button>
+                    <!-- <template lwc:if = {recordId}>
+                        <lightning-input-field field-name="Book__c" disabled = "true" value = {recordId}></lightning-input-field>
+                    </template>
+                    <template lwc:else>
+                        <lightning-input-field field-name="Book__c"></lightning-input-field>
+                    </template>
+                    <lightning-input-field field-name = "Bookstore__c"></lightning-input-field>
+                    <lightning-input-field field-name = "Quantity__c"></lightning-input-field>
+                    <lightning-button
+                        class="slds-m-top_small"
+                        variant="brand"
+                        type="submit"
+                        name="update"
+                        label="Update"
+                    >
+                    </lightning-button> -->
+                </lightning-record-edit-form>
+            </template>
         </div>
     </section>
 </template>
