@@ -7,8 +7,8 @@
             <template lwc:if = {objectFields}>
                 <lightning-record-edit-form 
                     object-api-name = "Book_Reservation__c"
-                    oncancel = {closeForm}
                     onsuccess = {showSuccessMessage}
+                    onerror = {onErrorHandler}
                     onsubmit = {onSubmitHandler}
                 >
                     <template for:each = {objectFields} for:item = "field">
@@ -25,10 +25,11 @@
                         </template>
                     </template>
                     <lightning-button
-                        class="slds-button slds-button_outline-brand"
+                        class = "slds-m-left_x-small"
                         type="cancel"
                         name="cancel"
                         label="Cancel"
+                        onclick = {closeForm}
                     >
                     </lightning-button>
                     <lightning-button
@@ -39,22 +40,6 @@
                         label="Reserve"
                     >
                     </lightning-button>
-                    <!-- <template lwc:if = {recordId}>
-                        <lightning-input-field field-name="Book__c" disabled = "true" value = {recordId}></lightning-input-field>
-                    </template>
-                    <template lwc:else>
-                        <lightning-input-field field-name="Book__c"></lightning-input-field>
-                    </template>
-                    <lightning-input-field field-name = "Bookstore__c"></lightning-input-field>
-                    <lightning-input-field field-name = "Quantity__c"></lightning-input-field>
-                    <lightning-button
-                        class="slds-m-top_small"
-                        variant="brand"
-                        type="submit"
-                        name="update"
-                        label="Update"
-                    >
-                    </lightning-button> -->
                 </lightning-record-edit-form>
             </template>
         </div>

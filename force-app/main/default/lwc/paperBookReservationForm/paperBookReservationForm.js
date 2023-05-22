@@ -70,6 +70,10 @@ export default class PaperBookReservationForm extends NavigationMixin(LightningE
         this.navigate('standard__recordPage', event.detail.id, 'Book_Reservation__c', 'view');
     }
 
+    onErrorHandler (event) {
+        this.toast('Error',event.detail.detail, 'error', 'dismissable');
+    }
+
     navigate(type, recordId, objectApiName, actionName){
         this[NavigationMixin.Navigate]({
             type: type,
