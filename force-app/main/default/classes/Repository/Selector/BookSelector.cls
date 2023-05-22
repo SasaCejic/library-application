@@ -35,9 +35,7 @@ public with sharing class BookSelector implements CustomObject {
      * @param bookQueryConditions - string containing SOQL conditions, limit and offset for book search
      */
     public List<Book__c> getListFromQueryConditions(String bookQueryConditions) {
-        //DODAJ ZA PRICE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        ///DODAJ ZA REVIEW!!!
-        String queryString = 'SELECT Id, Name, ISBN__c, Author__r.Name, Publish_Date__c,'+
+        String queryString = 'SELECT Id, Name, ISBN__c, Author__r.Name, Publish_Date__c, Price__c,'+
             ' (select Bookstore__c, Bookstore__r.Name from Bookstore_Books__r), Categories__c, Language__c, Description__c'+
             ' FROM Book__c {0}';
         queryString = String.format(queryString, new String[] {bookQueryConditions});

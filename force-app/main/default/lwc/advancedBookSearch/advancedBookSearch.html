@@ -68,11 +68,11 @@
         <div class="slds-card slds-p-horizontal_x-large slds-p-vertical_medium">
             <lightning-slider
                 classes="slds-p-horizontal_x-large slds-p-vertical_medium"
-                label="Price Maximum"
+                label={priceLabel}
                 value={price}
                 onchange={handlePriceChange}
                 max={priceRangeMaximum}
-                min="1">               
+                min="0">               
             </lightning-slider>
         </div>
         <lightning-dual-listbox 

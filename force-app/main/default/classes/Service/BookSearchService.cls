@@ -153,7 +153,7 @@ public with sharing class BookSearchService implements CustomObject{
                 bookQueryConditions+=String.format('Language__c in ({0})', new String[] { concatedLanguages });
             }
 
-/*             if (bookSearchDTO.price!=null){
+            if (bookSearchDTO.price!=null && bookSearchDTO.price>0){
                 if (!String.isBlank(bookQueryConditions)){
                     bookQueryConditions+=' AND ';
                 }
@@ -161,12 +161,13 @@ public with sharing class BookSearchService implements CustomObject{
                 else {
                     bookQueryConditions+='WHERE ';
                 }
-                bookQueryConditions+=String.format('Price__c<={0}', new String[] { bookSearchDTO.price });
-            } */
+                bookQueryConditions+=String.format('Price__c<={0}', new String[] { bookSearchDTO.price.format() });
+            }
 
             if (limitSize!=null && limitSize>0){
                 bookQueryConditions+=String.format(' LIMIT {0}', new String[] { String.valueOf(limitSize) });
             }
+            
             else {
                 bookQueryConditions+=' LIMIT 2000';
             }

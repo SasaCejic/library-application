@@ -2,12 +2,11 @@ import { LightningElement, api, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import NAME_FIELD from '@salesforce/schema/Book__c.Name';
 import ISBN_FIELD from '@salesforce/schema/Book__c.ISBN__c';
-import AUTHOR_FIELD from '@salesforce/schema/Book__c.Author__c';
 import PUBLISH_DATE_FIELD from '@salesforce/schema/Book__c.Publish_Date__c';
 import CATEGORIES_FIELD from '@salesforce/schema/Book__c.Categories__c';
 import LANGUAGE_FIELD from '@salesforce/schema/Book__c.Language__c';
 import DESCRIPTION_FIELD from '@salesforce/schema/Book__c.Description__c';
-//import PRICE_FIELD from '@salesforce/schema/Book__c.Price__c';
+import PRICE_FIELD from '@salesforce/schema/Book__c.Price__c';
 import AUTHOR_OBJECT from '@salesforce/schema/Author__c';
 import BOOKSTORE_OBJECT from '@salesforce/schema/Bookstore__c';
 import PUBLISHER_OBJECT from '@salesforce/schema/Publisher__c';
@@ -16,6 +15,7 @@ import BOOK_OBJECT from '@salesforce/schema/Book__c';
 import CATEGORIES_PICKLIST from '@salesforce/schema/Book__c.Categories__c';
 import LANGUAGE_PICKLIST from '@salesforce/schema/Book__c.Language__c'
 import getBooksFromSearchDTO from '@salesforce/apex/BookController.getBooksFromSearchDTO';
+import CURRENCY from "@salesforce/i18n/currency";
 
 
 export default class AdvancedBookSearch extends LightningElement {
@@ -75,12 +75,12 @@ export default class AdvancedBookSearch extends LightningElement {
             fieldName: 'Bookstores',
             type: 'linkList',
         },
-/*      {
+     {
             label: 'Price',
             fieldName: PRICE_FIELD.fieldApiName,
-            type: 'text',
+            type: 'currency',
             sortable: true
-        } */
+        }
     ];
     // Column to sort book record table by
     sortBy;
@@ -117,7 +117,7 @@ export default class AdvancedBookSearch extends LightningElement {
     // Value of maximum price input
     price=0;
     // Value of review score input
-    reviewScore=null;
+    reviewScore=0;
     // Value of term input
     term='';
     // All books currently searched
@@ -136,6 +136,8 @@ export default class AdvancedBookSearch extends LightningElement {
     bookSearchDTO={};
     //boolean determening if book search returned empty result
     resultsNotFound=false;
+    //label with currency for price slider
+    priceLabel=`Maximum price (${CURRENCY}):`
 
     // setter
     set books(value) {
