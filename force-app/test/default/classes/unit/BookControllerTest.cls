@@ -27,7 +27,7 @@ public with sharing class BookControllerTest {
         // create mock data
         TestFactory testFactory = new TestFactory();
         Id testId = testFactory.getFakeId(Book_Purchase__c.SObjectType, true);
-        Database.SaveResult saveResultForMock = testFactory.createSuccessDatabaseSaveResult();
+        Database.SaveResult saveResultForMock = (Database.SaveResult) JSON.deserialize('{"success":true,"id":"0013000000abcde"}', Database.SaveResult.class);
 
         // create mocks
         Mocker insertBookPurchaseServiceMock = new Mocker(InsertBookPurchaseRecordService.class);

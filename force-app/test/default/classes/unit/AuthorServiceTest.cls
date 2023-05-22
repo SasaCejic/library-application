@@ -103,20 +103,20 @@ public with sharing class AuthorServiceTest {
 
         //We need to change the unique store Id number, Name and Email
         // before inserting another bookstore
-        testFactory.bookstoreDetails.put('name', 'bookstore2');
-        testFactory.bookstoreDetails.put('email', 'bookstore2@gmail.com');
-        testFactory.bookstoreDetails.put('storeId', '85758498');
         Bookstore__c bookstore2 = testFactory.createBookstore(false, true);
+        bookstore2.Name = 'bookstore2';
+        bookstore2.Email__c = 'bookstore2@gmail.com';
+        bookstore2.Store_Identification_Code__c = '85758498';
 
         //create Bookstore_Publisher__c junction object
         Bookstore_Publisher__c bookstorePublisher2 = testFactory.createBookstorePublisher(publisher.Id, bookstore2.Id, false, true);
 
         //We need to change the unique store Id number, Name and Email
         // before inserting another bookstore
-        testFactory.bookstoreDetails.put('name', 'bookstore3');
-        testFactory.bookstoreDetails.put('email', 'bookstore3@gmail.com');
-        testFactory.bookstoreDetails.put('storeId', '04793211');
         Bookstore__c bookstore3 = testFactory.createBookstore(false, true);
+        bookstore3.Name = 'bookstore3';
+        bookstore3.Email__c = 'bookstore3@gmail.com';
+        bookstore3.Store_Identification_Code__c = '04793211';
 
         //create Bookstore_Publisher__c junction object
         Bookstore_Publisher__c bookstorePublisher3 = testFactory.createBookstorePublisher(publisher.Id, bookstore3.Id, false, true);

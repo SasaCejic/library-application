@@ -1,68 +1,8 @@
 @isTest
 public with sharing class TestFactory {
-    @TestVisible
-    public Map<String, String> publisherDetails = new Map<String, String>{
-        'name' => 'publisher',
-        'email' => 'publisher@gmail.com',
-        'phone' => '124215426'
-    };
-
-    @TestVisible
-    public Map<String, String> bookstoreDetails = new Map<String, String>{
-        'name' => 'bookstore'
-    };
-
-    @TestVisible
-    public Map<String, String> authorDetails = new Map<String, String>{
-        'firstName' => 'Author',
-        'lastName' => 'Author'
-    };
-
-    @TestVisible
-    public Map<String, String> bookDetails = new Map<String, String>{
-        'name' => 'book',
-        'description' => 'bookdesc',
-        'ISBN' => '214215425',
-        'language' => 'english',
-        'categories' => 'fantasy',
-        'price' => '20',
-        'hoursOfListening' => '20'
-    };
-
-    @TestVisible
-    public Map<String, String> bookReviewDetails = new Map<String, String>{
-        'name' => 'Good book',
-        'rating' => '4'
-    };
-
-    @TestVisible
-    public Map<String, String> standardAuthorsSettingDetails = new Map<String, String>{
-        'name' => 'out-of-the-box authors setting'
-    };
-    
-    @TestVisible
-    public Map<String, String> mailDetails = new Map<String, String> {
-        'subject' => 'Test subject',
-        'body' => 'Test body',
-        'address' => 'testaddress@gmail.com'
-    };
-
-    @TestVisible
-    public Map<String, String> userDetails = new Map<String, String>{
-        'lastName' => 'User',
-        'alias' => 'testuser',
-        'email' => 'testuser123@gmail.com',
-        'emailEncodingKey' => 'ISO-8859-1',
-        'communityNickName' => 'testuser1234',
-        'localeSidKey' => 'en_US',
-        'timeZoneSidKey' => 'GMT',
-        'languageLocaleKey' => 'en_US',
-        'profileId' => [SELECT Id FROM Profile WHERE Name=:'Standard User' LIMIT 1].Id
-    };
-
     static Integer s_num = 1;
 
-    /*
+    /**
      * @param sObjecType- SObjectType of an object which we are creating fake Id for 
      */
     public String getFakeId(Schema.SObjectType sObjecType, Boolean simulateInsert) {
@@ -73,7 +13,7 @@ public with sharing class TestFactory {
         return null;
     }
 
-    /*
+    /**
      * @param bookId - Id of a book which is a parent in master-detail relationship with Bookstore_Book__c
      * @param bookstoreId - Id of a bookstore which isa a parent in master-detail relationship with Bookstore_Book__c
      * @param forInsert - Boolean value representing if we want to insert the record or not
@@ -92,7 +32,7 @@ public with sharing class TestFactory {
         return newBookstoreBook;
     }
 
-    /*
+    /**
      * @param publisherId - Id of a Publisher__c which is a parent in master-detail relationship
      * @param bookstoreId - Id of a Bookstore__c which is a parent in master-detail relationship
      * @param forInsert - Boolean value representing if we want to insert the record or not
@@ -111,13 +51,13 @@ public with sharing class TestFactory {
         return newBookstorePublisher;
     }
 
-    /*
+    /**
      * @param forInsert - Boolean value representing if we want to insert the record or not
      * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
      */
     public Bookstore__c createBookstore(Boolean forInsert, Boolean simulateInsert) {
         Bookstore__c newBookstore = new Bookstore__c();
-        newBookstore.Name = bookstoreDetails.get('name');
+        newBookstore.Name = 'Bookstore';
         Integer randomEmailNumber = (Integer)Math.floor(Math.random() * 9000) + 1000;
         newBookstore.Email__c = 'bookstore' + String.valueOf(randomEmailNumber) + '@gmail.com';
         Integer randomIdentificationCode = (Integer)Math.floor(Math.random() * 90000000) + 10000000;
@@ -131,15 +71,15 @@ public with sharing class TestFactory {
         return newBookstore;
     }
 
-    /*
+    /**
      * @param forInsert - Boolean value representing if we want to insert the record or not
      * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
      */
     public Publisher__c createPublisher(Boolean forInsert, Boolean simulateInsert) {
         Publisher__c newPublisher = new Publisher__c();
-        newPublisher.Name = publisherDetails.get('name');
-        newPublisher.Email__c = publisherDetails.get('email');
-        newPublisher.Phone__c = publisherDetails.get('phone');
+        newPublisher.Name = 'publisher';
+        newPublisher.Email__c = 'publisher@gmail.com';
+        newPublisher.Phone__c = '123214256';
 
         if (forInsert) {
             insert newPublisher;
@@ -149,7 +89,7 @@ public with sharing class TestFactory {
         return newPublisher;
     }
 
-    /*
+    /**
      * @param forInsert - Boolean value representing if we want to insert the record or not
      * @param publisherId - Id of a Publisher__c object which is a parent in master-detail relationship to Book__c
      * @param authorId - Id of an Author__c which is connected through lookup relationship with Book__c
@@ -157,12 +97,12 @@ public with sharing class TestFactory {
      */
     public Book__c createBook(Id publisherId, Id authorId, Boolean forInsert, Boolean simulateInsert) {
         Book__c currentBook = new Book__c();
-        currentBook.Name = bookDetails.get('name');
-        currentBook.Description__c = bookDetails.get('description');
-        currentBook.ISBN__c = bookDetails.get('ISBN');
-        currentBook.Language__c = bookDetails.get('language');
-        currentBook.Categories__c = bookDetails.get('categories');
-        currentBook.Price__c = Decimal.valueOf(bookDetails.get('price'));
+        currentBook.Name = 'book';
+        currentBook.Description__c = 'bookdesdc';
+        currentBook.ISBN__c = '2141342646';
+        currentBook.Language__c = 'english';
+        currentBook.Categories__c = 'fantasy';
+        currentBook.Price__c = 200;
         currentBook.Publisher__c = publisherId;
         currentBook.Author__c = authorId;
         currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
@@ -175,7 +115,7 @@ public with sharing class TestFactory {
         return currentBook;
     }
     
-    /*
+    /**
      * @param forInsert - Boolean value representing if we want to insert the record or not
      * @param publisherId - Id of a Publisher__c object which is a parent in master-detail relationship to Book__c
      * @param authorId - Id of an Author__c which is connected through lookup relationship with Book__c
@@ -183,13 +123,13 @@ public with sharing class TestFactory {
      */
     public Book__c createDigitalBook(Id publisherId, Id authorId, Boolean forInsert, Boolean simulateInsert) {
         Book__c currentBook = new Book__c();
-        currentBook.Name = bookDetails.get('name');
-        currentBook.Description__c = bookDetails.get('description');
-        currentBook.ISBN__c = bookDetails.get('ISBN');
-        currentBook.Language__c = bookDetails.get('language');
-        currentBook.Categories__c = bookDetails.get('categories');
-        currentBook.Hours_Of_Listening__c = Integer.valueOf(bookDetails.get('hoursOfListening'));
-        currentBook.Price__c = Decimal.valueOf(bookDetails.get('price'));
+        currentBook.Name = 'Digital book';
+        currentBook.Description__c = 'bookdesc';
+        currentBook.ISBN__c = '212412535';
+        currentBook.Language__c = 'english';
+        currentBook.Categories__c = 'fantasy';
+        currentBook.Hours_Of_Listening__c = 20;
+        currentBook.Price__c = 200;
         currentBook.Publisher__c = publisherId;
         currentBook.Author__c = authorId;
         currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
@@ -204,16 +144,16 @@ public with sharing class TestFactory {
         return currentBook;
     }   
 
-   /*
-    * @param forInsert - Boolean value representing if we want to insert the record or not
-    * @param bookId - Id of a Book__c object which is a parent in master-detail relationship to Book__c
-    * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
-    */
+   /**
+     * @param forInsert - Boolean value representing if we want to insert the record or not
+     * @param bookId - Id of a Book__c object which is a parent in master-detail relationship to Book__c
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+     */
     public Book_Review__c createBookReview(Id bookId, Boolean forInsert, Boolean simulateInsert) {
         Book_Review__c newBookReview = new Book_Review__c();
         newBookReview.Book__c = bookId;
-        newBookReview.Name = bookReviewDetails.get('name');
-        newBookReview.Rating__c = bookReviewDetails.get('rating');
+        newBookReview.Name = 'Good book';
+        newBookReview.Rating__c = '4';
         if (forInsert) {
             insert newBookReview;
             return newBookReview;
@@ -222,15 +162,15 @@ public with sharing class TestFactory {
         return newBookReview;
     }
 
-    /*
+    /**
      * @param forInsert - Boolean value representing if we want to insert the record or not
      * @param publisherId - Id of a Publisher__c object which is a parent in master-detail relationship to Book__c
      * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
      */
     public Author__c createAuthor(Boolean forInsert, Boolean simulateInsert) {
         Author__c newAuthor = new Author__c();
-        newAuthor.First_Name__c = authorDetails.get('firstName');
-        newAuthor.Last_Name__c = authorDetails.get('lastName');
+        newAuthor.First_Name__c = 'Author';
+        newAuthor.Last_Name__c = 'Test';
 
         if (forInsert) {
             insert newAuthor;
@@ -240,12 +180,12 @@ public with sharing class TestFactory {
         return newAuthor;
     }
 
-    /*
-    * @param authorId - Id of a Author__c which is a parent in master-detail relationship
-    * @param publisherId - Id of a Publisher__c which is a parent in master-detail relationship
-    * @param forInsert - Boolean value representing if we want to insert the record or not
-    * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
-    */
+    /**
+     * @param authorId - Id of a Author__c which is a parent in master-detail relationship
+     * @param publisherId - Id of a Publisher__c which is a parent in master-detail relationship
+     * @param forInsert - Boolean value representing if we want to insert the record or not
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+     */
     public Author_Publisher__c createAuthorPublisher(Id authorId, Id publisherId, Boolean forInsert, Boolean simulateInsert) {
         Author_Publisher__c newAuthorPublisher = new Author_Publisher__c();
         newAuthorPublisher.Author__c=authorId;
@@ -259,7 +199,7 @@ public with sharing class TestFactory {
         return newAuthorPublisher;
     }
 
-    /*
+    /**
      * @param anonymousId - Id of a Author__c object to be set as the standard Anonymous Author record
      * @param unknownId - Id of a Author__c object to be set as the standard Unknown Author record
      * @param forInsert - Boolean value representing if we want to insert the record or not
@@ -267,7 +207,7 @@ public with sharing class TestFactory {
      */
     public Standard_Authors_Settting__c createStandardAuthorsSettting(Id anonymousId, Id unknownId, Boolean forInsert, Boolean simulateInsert) {
         Standard_Authors_Settting__c stdAuthorSetting = new Standard_Authors_Settting__c();
-        stdAuthorSetting.Name=standardAuthorsSettingDetails.get('name');
+        stdAuthorSetting.Name = 'out of the box author settings';
         stdAuthorSetting.AnonymousId__c=anonymousId;
         stdAuthorSetting.UnknownId__c=unknownId;
 
@@ -279,7 +219,7 @@ public with sharing class TestFactory {
         return stdAuthorSetting;
     }
 
-    /*
+    /**
      * @param bookId - Id of the book that was purchased
      */
     public Book_Purchase__c createBookPurchase(Id bookId, Boolean forInsert, Boolean simulateInsert) {
@@ -294,7 +234,7 @@ public with sharing class TestFactory {
         return newBookPurchase;
     }
 
-    /*
+    /**
      * Method creates a library user for testing
      */
     public User createLibraryUser() {
@@ -307,25 +247,6 @@ public with sharing class TestFactory {
         return user;
     }
 
-    /*
-     * Create mail for testing
-     */
-    public Messaging.SingleEmailMessage createMail() {
-        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-        mail.setSubject(mailDetails.get('subject'));
-        mail.setPlainTextBody(mailDetails.get('body'));
-        mail.setToAddresses(new String[] {mailDetails.get('address')});
-        return mail;
-    }
-
-    /*
-     * Method creates a fake Database.SaveResult for testing
-     */
-    public Database.SaveResult createSuccessDatabaseSaveResult() {
-        Database.SaveResult sr = (Database.SaveResult) JSON.deserialize('{"success":true,"id":"0013000000abcde"}', Database.SaveResult.class);
-        return sr;
-    }
-    
     /**
      * Method for creating a new User
      * 
@@ -340,14 +261,14 @@ public with sharing class TestFactory {
         String uniqueName = orgId + dateString + randomInt;
         uniqueName = (uniqueName.length() > 51) ? uniqueName.substring(0,51) : uniqueName;
         newUser.Username = uniqueName + '@test' + orgId + '.org';
-        newUser.LastName = userDetails.get('lastName');
-        newUser.Email = userDetails.get('email');
-        newUser.EmailEncodingKey  = userDetails.get('emailEncodingKey');
-        newUser.Alias = userDetails.get('alias');
-        newUser.TimeZoneSidKey = userDetails.get('timeZoneSidKey');
-        newUser.LocaleSidKey = userDetails.get('localeSidKey');
-        newUser.LanguageLocaleKey = userDetails.get('languageLocaleKey');
-        newUser.ProfileId = userDetails.get('profileId');
+        newUser.LastName = 'User';
+        newUser.Email = 'testuser123@gmail.com';
+        newUser.EmailEncodingKey  = 'ISO-8859-1';
+        newUser.Alias = 'testuser';
+        newUser.TimeZoneSidKey = 'GMT';
+        newUser.LocaleSidKey = 'en_US';
+        newUser.LanguageLocaleKey = 'en_US';
+        newUser.ProfileId = [SELECT Id FROM Profile WHERE Name=:'Standard User' LIMIT 1].Id;
 
         if(forInsert) {
             insert newUser;
@@ -356,5 +277,4 @@ public with sharing class TestFactory {
         newUser.Id = this.getFakeId(User.SObjectType, simulateInsert);
         return newUser;
     }
-
 }
