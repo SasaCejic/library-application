@@ -1,4 +1,4 @@
-import { LightningElement, api, wire } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import NAME_FIELD from '@salesforce/schema/Book__c.Name';
 import ISBN_FIELD from '@salesforce/schema/Book__c.ISBN__c';
@@ -16,9 +16,11 @@ import CATEGORIES_PICKLIST from '@salesforce/schema/Book__c.Categories__c';
 import LANGUAGE_PICKLIST from '@salesforce/schema/Book__c.Language__c'
 import getBooksFromSearchDTO from '@salesforce/apex/BookController.getBooksFromSearchDTO';
 import CURRENCY from "@salesforce/i18n/currency";
+import { NavigationMixin } from 'lightning/navigation';
 
 
-export default class AdvancedBookSearch extends LightningElement {
+
+export default class AdvancedBookSearch extends NavigationMixin(LightningElement) {
     //object api names for autocompleteComoboxWrappers
     authorApiName=AUTHOR_OBJECT.objectApiName
     bookstoreApiName=BOOKSTORE_OBJECT.objectApiName
@@ -157,7 +159,7 @@ export default class AdvancedBookSearch extends LightningElement {
             });
             this._books=sortedBooks;
         }
-        console.log(this._books);
+        //if (this._books) console.log(this._books[0].Publish_Date__c);
         return this._books
     }
 
@@ -331,6 +333,19 @@ export default class AdvancedBookSearch extends LightningElement {
             };
         })
 
+    }
+
+    /*
+     * Navigates to Buy Digital Book custom component
+     */
+    handleBuyBook(){
+        console.log('nav')
+        this[NavigationMixin.Navigate]({
+            "type": "standard__component",
+            "attributes": {
+                "componentName": "c__buyDigitalBookWrapper"
+            }
+        });
     }
 
     /**

@@ -1,0 +1,6 @@
+<aura:documentation>
+	<aura:description>Documentation</aura:description>
+	<aura:example name="buyDigitalBookWrapper" ref="buyDigitalBookWrapperComponent" label="buyDigitalBookWrapper">
+		Wraps buyDigitalBook component so that it can be navigated to
+	</aura:example>
+</aura:documentation>
