@@ -15,11 +15,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>AuthorDeleteValidationService</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>AuthorDeleteValidationServiceTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>AuthorPublisherSelector</apexClass>
@@ -35,23 +35,27 @@
     </classAccesses>
     <classAccesses>
         <apexClass>AuthorTriggerHandler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>AuthorTriggerHandlerTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>AuthorTriggerTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>AuthorUpdateValidationService</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>AuthorUpdateValidationServiceTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BokstorePublshrVFControlerIntgrationTest</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookController</apexClass>
@@ -75,11 +79,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BookPurchaseTriggerHandlerTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookPurchaseTriggerTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookPurchaseValidationService</apexClass>
@@ -87,27 +91,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BookPurchaseValidationServiceTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BookReservationTriggerHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BookReservationTriggerHandlerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BookReservationTriggerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BookReservationValidationService</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BookReservationValidationServiceTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookReviewSelector</apexClass>
@@ -138,14 +122,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BookService</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BookServiceTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>BookTriggerHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -163,6 +139,18 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BookValidationServiceTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreBookController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreBookControllerIntegrationTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstoreBookControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -190,7 +178,35 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BookstorePublisherDeleteValidationTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BookstorePublisherSelector</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstorePublisherTriggerHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstorePublisherTriggerHandlerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstorePublisherTriggerIntegrationTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstorePublisherVFController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstorePublisherVFControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookstorePublsherDeleteValidationService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -199,23 +215,23 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BookstoreTriggerHandler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookstoreTriggerHandlerTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookstoreTriggerTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookstoreValidationService</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BookstoreValidationServiceTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>ControllerIntegrationTest</apexClass>
@@ -231,7 +247,19 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CustomSettingSelector</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>DeleteBookPublisherRecordService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>DeleteBookPublisherRecordServiceTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>GetBokstoreBookOnPublsherDeletServicTest</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>GetBooksNotInBookstoreService</apexClass>
@@ -239,6 +267,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>GetBooksNotInBookstoreServiceTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>GetBookstoreBookOnPublsherDeleteService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -255,7 +287,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>InsertBookPurchaseRecordServiceTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Mocker</apexClass>
@@ -287,6 +319,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ObjectSelector</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PageReferenceService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PageReferenceServiceTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -322,20 +362,20 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>SendReservationEmailConfirmationService</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>SendReservationEmailConfirmationTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>StandardAuthorCreator</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>StandardAuthorCreatorTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SendReservationEmailConfirmationService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SendReservationEmailConfirmationTest</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>TestFactory</apexClass>
@@ -652,6 +692,10 @@
         <object>Subscription__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <pageAccesses>
+        <apexPage>BookstorePublisherDeleteButtonOverride</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <recordTypeVisibilities>
         <default>true</default>
         <recordType>Book__c.Digital_Book</recordType>
@@ -690,6 +734,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Books_not_in_bookstore</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Books_preventing_publisher_removal</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
