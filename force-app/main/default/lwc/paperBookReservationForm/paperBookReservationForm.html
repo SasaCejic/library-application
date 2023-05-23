@@ -24,8 +24,9 @@
                             <lightning-input-field key = {field.apiName} field-name = {field.apiName}></lightning-input-field>
                         </template>
                     </template>
+                    <div class = "slds-align_absolute-center">
                     <lightning-button
-                        class = "slds-m-left_x-small"
+                        class = "slds-m-right_x-small"
                         type="cancel"
                         name="cancel"
                         label="Cancel"
@@ -33,13 +34,14 @@
                     >
                     </lightning-button>
                     <lightning-button
-                        class="slds-m-top_small"
+                        class="slds-m-left_x-small"
                         variant="brand"
                         type="submit"
                         name="reserve"
                         label="Reserve"
                     >
                     </lightning-button>
+                    </div>
                 </lightning-record-edit-form>
             </template>
         </div>
