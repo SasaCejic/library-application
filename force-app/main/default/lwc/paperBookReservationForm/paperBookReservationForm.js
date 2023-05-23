@@ -71,7 +71,16 @@ export default class PaperBookReservationForm extends NavigationMixin(LightningE
     }
 
     onErrorHandler (event) {
-        this.toast('Error',event.detail.detail, 'error', 'dismissable');
+        let errorMessage = '';
+        if (event.detail.detail != '') {
+            errorMessage = event.detail.detail; 
+        } else {
+            for (let key in event.detail.output.fieldErrors) {
+                errorMessage = `${errorMessage}\n${event.detail.output.fieldErrors[key][0].message}`;
+            }
+        }
+    
+        this.toast('Error',errorMessage, 'error', 'dismissable');
     }
 
     navigate(type, recordId, objectApiName, actionName){
