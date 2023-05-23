@@ -7,14 +7,16 @@ public with sharing class GetBokstoreBookOnPublsherDeletServicTest {
     public static void getBookstoreBooks_willUseService() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Id BookstorePublisherId = testFactory.getFakeId(Bookstore_Publisher__c.SObjectType, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
+        Bookstore_Publisher__c bookstorePublisherForTest = testFactory
+            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false, true);
         // create mocks
-        Mocker ReturnBookstorePublisherBasedOnIdServiceMocker = new Mocker(ReturnBookstorePublisherBasedOnIdService.class);
-        ReturnBookstorePublisherBasedOnIdServiceMocker.setBehavior('returnBookstorePublisher', null);
-        ReturnBookstorePublisherBasedOnIdServiceMocker.setBehavior('getResponse', null);
+        Mocker BookstorePublisherSelectorMocker = new Mocker(BookstorePublisherSelector.class)
+            .setBehavior('getRecordById', bookstorePublisherForTest);
         ObjectFactory.mocks.put(
-            ReturnBookstorePublisherBasedOnIdService.class.getName(),
-            (ReturnBookstorePublisherBasedOnIdService) ReturnBookstorePublisherBasedOnIdServiceMocker.getMock()
+            BookstorePublisherSelector.class.getName(),
+            (BookstorePublisherSelector) BookstorePublisherSelectorMocker.getMock()
         );
 
         Mocker BookstorePublsherDeleteValidationServiceMocker = new Mocker(BookstorePublsherDeleteValidationService.class);
@@ -27,11 +29,10 @@ public with sharing class GetBokstoreBookOnPublsherDeletServicTest {
 
         // execute
         GetBookstoreBookOnPublsherDeleteService service = new GetBookstoreBookOnPublsherDeleteService();
-        service.getBookstoreBooks(bookstorePublisherId, 5);
+        service.getBookstoreBooks(bookstorePublisherForTest.Id, 5);
 
         // Assert
-        ReturnBookstorePublisherBasedOnIdServiceMocker.assertMethodExecutionCount('returnBookstorePublisher', 1);
-        ReturnBookstorePublisherBasedOnIdServiceMocker.assertMethodExecutionCount('getResponse', 1);
+        BookstorePublisherSelectorMocker.assertMethodExecutionCount('getRecordById', 1);
         BookstorePublsherDeleteValidationServiceMocker.assertMethodExecutionCount('validateBookstorePublisher', 1);
         BookstorePublsherDeleteValidationServiceMocker.assertMethodExecutionCount('getResponse', 1);
     }

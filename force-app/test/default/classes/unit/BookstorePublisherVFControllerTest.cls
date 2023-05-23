@@ -19,19 +19,19 @@ public with sharing class BookstorePublisherVFControllerTest {
         Bookstore_Publisher__c bookstorePublisherForTest = testFactory
             .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false, true);
         ApexPages.StandardController stdController = new ApexPages.StandardController(bookstorePublisherForTest);
+        Database.DeleteResult deleteResultForMock = (Database.DeleteResult) JSON.deserialize('{"success":true,"id":"0013000000abcde"}', Database.DeleteResult.class);
 
         // create mocks
-        Mocker ReturnBookstorePublisherBasedOnIdServiceMocker = new Mocker(ReturnBookstorePublisherBasedOnIdService.class);
-        ReturnBookstorePublisherBasedOnIdServiceMocker.setBehavior('returnBookstorePublisher', null);
-        ReturnBookstorePublisherBasedOnIdServiceMocker.setBehavior('getResponse', bookstorePublisherForTest);
+        Mocker BookstorePublisherSelectorMocker = new Mocker(BookstorePublisherSelector.class)
+            .setBehavior('getRecordById', bookstorePublisherForTest);
         ObjectFactory.mocks.put(
-            ReturnBookstorePublisherBasedOnIdService.class.getName(),
-            (ReturnBookstorePublisherBasedOnIdService) ReturnBookstorePublisherBasedOnIdServiceMocker.getMock()
+            BookstorePublisherSelector.class.getName(),
+            (BookstorePublisherSelector) BookstorePublisherSelectorMocker.getMock()
         );
 
         Mocker DeleteBookPublisherRecordServiceMocker = new Mocker(DeleteBookPublisherRecordService.class);
         DeleteBookPublisherRecordServiceMocker.setBehavior('deleteBookstorePublisher', null);
-        DeleteBookPublisherRecordServiceMocker.setBehavior('getResponse', null);
+        DeleteBookPublisherRecordServiceMocker.setBehavior('getResponse', deleteResultForMock);
         ObjectFactory.mocks.put(
             DeleteBookPublisherRecordService.class.getName(),
             (DeleteBookPublisherRecordService) DeleteBookPublisherRecordServiceMocker.getMock()
@@ -57,12 +57,11 @@ public with sharing class BookstorePublisherVFControllerTest {
         ApexPages.StandardController stdController = new ApexPages.StandardController(bookstorePublisherForTest);
 
         // create mocks
-        Mocker ReturnBookstorePublisherBasedOnIdServiceMocker = new Mocker(ReturnBookstorePublisherBasedOnIdService.class);
-        ReturnBookstorePublisherBasedOnIdServiceMocker.setBehavior('returnBookstorePublisher', null);
-        ReturnBookstorePublisherBasedOnIdServiceMocker.setBehavior('getResponse', bookstorePublisherForTest);
+        Mocker BookstorePublisherSelectorMocker = new Mocker(BookstorePublisherSelector.class)
+            .setBehavior('getRecordById', bookstorePublisherForTest);
         ObjectFactory.mocks.put(
-            ReturnBookstorePublisherBasedOnIdService.class.getName(),
-            (ReturnBookstorePublisherBasedOnIdService) ReturnBookstorePublisherBasedOnIdServiceMocker.getMock()
+            BookstorePublisherSelector.class.getName(),
+            (BookstorePublisherSelector) BookstorePublisherSelectorMocker.getMock()
         );
 
         Mocker GetBokstoreBooksOnPublsherDeleteServiceMocker = new Mocker(GetBookstoreBookOnPublsherDeleteService.class);
@@ -93,20 +92,19 @@ public with sharing class BookstorePublisherVFControllerTest {
         ApexPages.StandardController stdController = new ApexPages.StandardController(bookstorePublisherForTest);
 
         // create mocks
-        Mocker ReturnBookstorePublisherBasedOnIdServiceMocker = new Mocker(ReturnBookstorePublisherBasedOnIdService.class);
-        ReturnBookstorePublisherBasedOnIdServiceMocker.setBehavior('returnBookstorePublisher', null);
-        ReturnBookstorePublisherBasedOnIdServiceMocker.setBehavior('getResponse', bookstorePublisherForTest);
+        Mocker BookstorePublisherSelectorMocker = new Mocker(BookstorePublisherSelector.class)
+            .setBehavior('getRecordById', bookstorePublisherForTest);
         ObjectFactory.mocks.put(
-            ReturnBookstorePublisherBasedOnIdService.class.getName(),
-            (ReturnBookstorePublisherBasedOnIdService) ReturnBookstorePublisherBasedOnIdServiceMocker.getMock()
+            BookstorePublisherSelector.class.getName(),
+            (BookstorePublisherSelector) BookstorePublisherSelectorMocker.getMock()
         );
 
-        Mocker GetPageReferenceForBookstorePublisherMocker = new Mocker(GetPageReferenceForBookstorePublisher.class);
-        GetPageReferenceForBookstorePublisherMocker.setBehavior('getPageReference', null);
-        GetPageReferenceForBookstorePublisherMocker.setBehavior('getResponse', null);
+        Mocker PageReferenceServiceMocker = new Mocker(PageReferenceService.class);
+        PageReferenceServiceMocker.setBehavior('getPageReferenceForBookstorePublisher', null);
+        PageReferenceServiceMocker.setBehavior('getResponse', null);
         ObjectFactory.mocks.put(
-            GetPageReferenceForBookstorePublisher.class.getName(),
-            (GetPageReferenceForBookstorePublisher) GetPageReferenceForBookstorePublisherMocker.getMock()
+            PageReferenceService.class.getName(),
+            (PageReferenceService) PageReferenceServiceMocker.getMock()
         );
 
         // execute
@@ -114,8 +112,8 @@ public with sharing class BookstorePublisherVFControllerTest {
         controller.getPageReference();
 
         // assert 
-        GetPageReferenceForBookstorePublisherMocker.assertMethodExecutionCount('getPageReference', 1);
-        GetPageReferenceForBookstorePublisherMocker.assertMethodExecutionCount('getResponse', 1);
+        PageReferenceServiceMocker.assertMethodExecutionCount('getPageReferenceForBookstorePublisher', 1);
+        PageReferenceServiceMocker.assertMethodExecutionCount('getResponse', 1);
     }
 
     @isTest
@@ -129,27 +127,26 @@ public with sharing class BookstorePublisherVFControllerTest {
         ApexPages.StandardController stdController = new ApexPages.StandardController(bookstorePublisherForTest);
 
         // create mocks
-        Mocker ReturnBookstorePublisherBasedOnIdServiceMocker = new Mocker(ReturnBookstorePublisherBasedOnIdService.class);
-        ReturnBookstorePublisherBasedOnIdServiceMocker.setBehavior('returnBookstorePublisher', null);
-        ReturnBookstorePublisherBasedOnIdServiceMocker.setBehavior('getResponse', bookstorePublisherForTest);
+        Mocker BookstorePublisherSelectorMocker = new Mocker(BookstorePublisherSelector.class)
+            .setBehavior('getRecordById', bookstorePublisherForTest);
         ObjectFactory.mocks.put(
-            ReturnBookstorePublisherBasedOnIdService.class.getName(),
-            (ReturnBookstorePublisherBasedOnIdService) ReturnBookstorePublisherBasedOnIdServiceMocker.getMock()
+            BookstorePublisherSelector.class.getName(),
+            (BookstorePublisherSelector) BookstorePublisherSelectorMocker.getMock()
         );
 
-        Mocker GetPageReferenceForBookstorePublisherMocker = new Mocker(GetPageReferenceForBookstorePublisher.class);
-        GetPageReferenceForBookstorePublisherMocker.setBehavior('getPageReference', null);
-        GetPageReferenceForBookstorePublisherMocker.setBehavior('getResponse', null);
+        Mocker PageReferenceServiceMocker = new Mocker(PageReferenceService.class);
+        PageReferenceServiceMocker.setBehavior('getPageReferenceForBookstorePublisher', null);
+        PageReferenceServiceMocker.setBehavior('getResponse', null);
         ObjectFactory.mocks.put(
-            GetPageReferenceForBookstorePublisher.class.getName(),
-            (GetPageReferenceForBookstorePublisher) GetPageReferenceForBookstorePublisherMocker.getMock()
+            PageReferenceService.class.getName(),
+            (PageReferenceService) PageReferenceServiceMocker.getMock()
         );
 
         // execute
         BookstorePublisherVFController controller = new BookstorePublisherVFController(stdController);
         controller.cancel();
-        GetPageReferenceForBookstorePublisherMocker.assertMethodExecutionCount('getPageReference', 1);
-        GetPageReferenceForBookstorePublisherMocker.assertMethodExecutionCount('getResponse', 1);
+        PageReferenceServiceMocker.assertMethodExecutionCount('getPageReferenceForBookstorePublisher', 1);
+        PageReferenceServiceMocker.assertMethodExecutionCount('getResponse', 1);
     }
 
     @isTest
@@ -163,26 +160,25 @@ public with sharing class BookstorePublisherVFControllerTest {
         ApexPages.StandardController stdController = new ApexPages.StandardController(bookstorePublisherForTest);
 
         // create mocks
-        Mocker ReturnBookstorePublisherBasedOnIdServiceMocker = new Mocker(ReturnBookstorePublisherBasedOnIdService.class);
-        ReturnBookstorePublisherBasedOnIdServiceMocker.setBehavior('returnBookstorePublisher', null);
-        ReturnBookstorePublisherBasedOnIdServiceMocker.setBehavior('getResponse', bookstorePublisherForTest);
+        Mocker BookstorePublisherSelectorMocker = new Mocker(BookstorePublisherSelector.class)
+            .setBehavior('getRecordById', bookstorePublisherForTest);
         ObjectFactory.mocks.put(
-            ReturnBookstorePublisherBasedOnIdService.class.getName(),
-            (ReturnBookstorePublisherBasedOnIdService) ReturnBookstorePublisherBasedOnIdServiceMocker.getMock()
+            BookstorePublisherSelector.class.getName(),
+            (BookstorePublisherSelector) BookstorePublisherSelectorMocker.getMock()
         );
 
-        Mocker GetPageReferenceForBookstorePublisherMocker = new Mocker(GetPageReferenceForBookstorePublisher.class);
-        GetPageReferenceForBookstorePublisherMocker.setBehavior('getPageReference', null);
-        GetPageReferenceForBookstorePublisherMocker.setBehavior('getResponse', null);
+        Mocker PageReferenceServiceMocker = new Mocker(PageReferenceService.class);
+        PageReferenceServiceMocker.setBehavior('getPageReferenceForBookstorePublisher', null);
+        PageReferenceServiceMocker.setBehavior('getResponse', null);
         ObjectFactory.mocks.put(
-            GetPageReferenceForBookstorePublisher.class.getName(),
-            (GetPageReferenceForBookstorePublisher) GetPageReferenceForBookstorePublisherMocker.getMock()
+            PageReferenceService.class.getName(),
+            (PageReferenceService) PageReferenceServiceMocker.getMock()
         );
 
         // execute
         BookstorePublisherVFController controller = new BookstorePublisherVFController(stdController);
         controller.viewAll();
-        GetPageReferenceForBookstorePublisherMocker.assertMethodExecutionCount('getPageReference', 1);
-        GetPageReferenceForBookstorePublisherMocker.assertMethodExecutionCount('getResponse', 1);
+        PageReferenceServiceMocker.assertMethodExecutionCount('getPageReferenceForBookstorePublisher', 1);
+        PageReferenceServiceMocker.assertMethodExecutionCount('getResponse', 1);
     }
 }

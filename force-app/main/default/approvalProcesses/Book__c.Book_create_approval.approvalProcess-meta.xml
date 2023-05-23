@@ -15,7 +15,7 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>test-quoqcvixkux5@example.com</name>
+                <name>test-0d4lkahgbp6x@example.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

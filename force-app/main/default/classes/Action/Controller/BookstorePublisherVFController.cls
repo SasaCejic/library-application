@@ -6,8 +6,6 @@ public class BookstorePublisherVFController {
     private Id recordId { get; set; }
     // Bookstore_Publisher__c record for delete
     private Bookstore_Publisher__c bookstorePublisherForDelete { get; set; }
-    // Database.DeleteResult representing the result of Bookstore_Publisher__c record deletion
-    private transient Database.DeleteResult deletionResult { get; set; }
     // Boolean indicating if Canceled button was clicked
     private Boolean isCanceled { get; set; }
     // Boolean indicating if the viewAllButton was clicked
@@ -31,23 +29,13 @@ public class BookstorePublisherVFController {
     }
 
     /**
-     * Setter that will set to true if delete result is successfull and vice versa
-     */
-    private void settDeletionStatus() {
-        GetDeletStatusBasedOnDeleteResultService service = (GetDeletStatusBasedOnDeleteResultService) new ObjectFactory()
-            .createObject(GetDeletStatusBasedOnDeleteResultService.class);
-        service.getStatus(deletionResult);
-        didDeleteFail = service.getResponse();
-    }
-
-    /**
      * Method that returns the Bookstore_Publisher__c record based on its id
      */
     private void setBookstorePublihserForDelete() {
-        ReturnBookstorePublisherBasedOnIdService service = (ReturnBookstorePublisherBasedOnIdService) new ObjectFactory()
-            .createObject(ReturnBookstorePublisherBasedOnIdService.class);
-        service.returnBookstorePublisher(recordId);
-        bookstorePublisherForDelete = service.getResponse();
+        // Selector to retrieve the Bookstore_Publisher__c record
+        BookstorePublisherSelector selector = (BookstorePublisherSelector) new ObjectFactory()
+            .createObject(BookstorePublisherSelector.class);
+        bookstorePublisherForDelete = selector.getRecordById(recordId);
     }
 
     /**
@@ -64,9 +52,9 @@ public class BookstorePublisherVFController {
      * Method that will return corresponding PageReference based on the state of the controller
      */
     public PageReference getPageReference() {
-        GetPageReferenceForBookstorePublisher service = (GetPageReferenceForBookstorePublisher) new ObjectFactory()
-            .createObject(GetPageReferenceForBookstorePublisher.class);
-        service.getPageReference(isCanceled, isViewAllClicked, didDeleteFail, bookstorePublisherForDelete);
+        PageReferenceService service = (PageReferenceService) new ObjectFactory()
+            .createObject(PageReferenceService.class);
+        service.getPageReferenceForBookstorePublisher(isCanceled, isViewAllClicked, didDeleteFail, bookstorePublisherForDelete);
         return service.getResponse();
     }
 
@@ -77,9 +65,8 @@ public class BookstorePublisherVFController {
         isConfirmClicked = true;
         DeleteBookPublisherRecordService deleteService = (DeleteBookPublisherRecordService) new ObjectFactory()
             .createObject(DeleteBookPublisherRecordService.class);
-        deleteService.deleteBookstorePublisher(this.recordId);
-        deletionResult = deleteService.getResponse();
-        settDeletionStatus();
+        deleteService.deleteBookstorePublisher(recordId);
+        didDeleteFail = !deleteService.getResponse().isSuccess();
     }
 
     /**

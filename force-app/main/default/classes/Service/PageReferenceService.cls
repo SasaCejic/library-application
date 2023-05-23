@@ -1,7 +1,7 @@
 /*
  * This class is used for returning Pagereference for BookstorePublisherVFController
  */
-public with sharing class GetPageReferenceForBookstorePublisher implements CustomObject{
+public with sharing class PageReferenceService implements CustomObject{
     private Pagereference response;
 
     //Getter
@@ -20,7 +20,7 @@ public with sharing class GetPageReferenceForBookstorePublisher implements Custo
      * @param deleteStatus - Boolean representing if the deletion result was successfull or not
      * @param bookstorePublisherForDelete - Bookstore_Publisher__c record being deleted
      */
-    public void getPageReference(Boolean isCanceled, Boolean isViewAllClicked, Boolean deleteStatus, Bookstore_Publisher__c bookstorePublisherForDelete) { 
+    public void getPageReferenceForBookstorePublisher(Boolean isCanceled, Boolean isViewAllClicked, Boolean deleteStatus, Bookstore_Publisher__c bookstorePublisherForDelete) { 
         if (isCanceled || !deleteStatus) {
             // Set the response that redirects to the bookstore detil view page of the record being deleted
             this.setResponse(new PageReference('/' + bookstorePublisherForDelete.Bookstore__c));

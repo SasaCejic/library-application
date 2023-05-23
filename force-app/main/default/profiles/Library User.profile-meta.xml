@@ -274,22 +274,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>GetDeletStatusBasedOnDeleteResultService</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>GetDeleteStatusBasedOnDeleteResultTest</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>GetPageReferenceForBookstorePublisher</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>GetPageReferenceForBookstorePublsherTest</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>GetPublishersNotWithBookstoreService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -338,6 +322,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>PageReferenceService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PageReferenceServiceTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>PublisherController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -351,14 +343,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PublisherSelector</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ReturnBookstorePublisherBasedOnIdService</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ReturnBookstorePublisherBasedOnIdTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>

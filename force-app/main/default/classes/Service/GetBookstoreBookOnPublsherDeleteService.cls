@@ -18,11 +18,10 @@ public with sharing class GetBookstoreBookOnPublsherDeleteService implements Cus
      * @param bookstorePublisherId - Id of Bookstore_Publisher__c record being deleted
      */
     public void getBookstoreBooks(Id bookstorePublisherId, Integer recordLimit) {
-        // Service to return Bookstore_Publisher__c record based on the Id
-        ReturnBookstorePublisherBasedOnIdService returnBookstorePublisherService = (ReturnBookstorePublisherBasedOnIdService) new ObjectFactory()
-            .createObject(ReturnBookstorePublisherBasedOnIdService.class);
-        returnBookstorePublisherService.returnBookstorePublisher(bookstorePublisherId);
-        Bookstore_Publisher__c bookstorePublisherForDelete = returnBookstorePublisherService.getResponse();
+        // Selector to retrieve the Bookstore_Publisher__c record
+        BookstorePublisherSelector selector = (BookstorePublisherSelector) new ObjectFactory()
+            .createObject(BookstorePublisherSelector.class);
+        Bookstore_Publisher__c bookstorePublisherForDelete = selector.getRecordById(bookstorePublisherId);
 
         // Service to validate bookstorePublisherDeletion
         BookstorePublsherDeleteValidationService bookstorePublisherDeleteValidationService = (BookstorePublsherDeleteValidationService) new ObjectFactory()
