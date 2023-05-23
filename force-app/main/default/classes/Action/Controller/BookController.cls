@@ -24,11 +24,8 @@ public with sharing class BookController {
      */
     @AuraEnabled(cacheable = true)
     public static Book__c getBookById(Id bookId) {
-        BookService service = (BookService) new ObjectFactory().createObject(BookService.class);
-
-        service.getBookById(bookId);
-
-        return service.getResponse();
+        BookSelector bookSelector = (BookSelector) new ObjectFactory().createObject(BookSelector.class);
+        return bookSelector.getBookById(bookId);
     }
 
     /*

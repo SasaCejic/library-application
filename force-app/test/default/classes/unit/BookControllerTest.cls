@@ -23,23 +23,22 @@ public with sharing class BookControllerTest {
     }
 
     @isTest
-    public static void getBookById_willUseService() {
+    public static void getBookById_willUseSelector() {
         // create mock
-        Mocker bookserviceMock = new Mocker(BookService.class)
-        .setBehavior('getBookById', null);
-        bookserviceMock.setBehavior('getResponse', new Book__c());
-
+        Mocker bookSelectorMock = new Mocker(BookSelector.class)
+            .setBehavior('getBookById', new Book__c());
+        // set mock
         ObjectFactory.mocks.put(
-            BookService.class.getName(),
-            (BookService) bookserviceMock.getMock()
+            BookSelector.class.getName(),
+            (BookSelector) bookSelectorMock.getMock()
         );
+
 
         // execute
         Book__c book = BookController.getBookById(new TestFactory().getFakeId(Book__c.SObjectType, true));
 
         // assert
-        bookserviceMock.assertMethodExecutionCount('getBookById', 1);
-        bookserviceMock.assertMethodExecutionCount('getResponse', 1);
+        bookSelectorMock.assertMethodExecutionCount('getBookById', 1);
     }
 
     @isTest
