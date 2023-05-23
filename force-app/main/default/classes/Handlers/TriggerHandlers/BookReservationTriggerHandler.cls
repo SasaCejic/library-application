@@ -29,7 +29,7 @@ public with sharing class BookReservationTriggerHandler extends TriggerHandler {
     public override void beforeInsert (List<sObject> newRecords) {
         BookReservationValidationService bookReservationValidationService = (BookReservationValidationService) new ObjectFactory()
         .createObject(BookReservationValidationService.class);
-        bookReservationValidationService.validateSelectedBook((List<Book_Reservation__c>) newRecords);
+        bookReservationValidationService.validateSelectedBook(null, (List<Book_Reservation__c>) newRecords);
     }
 
     /**
