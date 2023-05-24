@@ -51,11 +51,12 @@ public with sharing class BookstoreBookSelector implements CustomObject {
      * Get Bookstore_Book__c object records with quantity field
      * for given Bookstore and Book
      * 
-     * @param concatanatedIds - concatanated Bookstore and Book ids
+     * @param bookstoreIds - Set of bookstore ids
+     * @param bookIds - Set of book ids
      * 
      * @return Bookstore_Book__c records with book quantity, Bookstore and Book values
      */
-    public List<Bookstore_Book__c> getListByUniqueConcatanatedIds (Set<String> concatanatedIds) {
+    public List<Bookstore_Book__c> getListByBookstoreAndBookIds (Set<Id> bookstoreIds, Set<Id> bookIds) {
         return [
             SELECT
                 Id,
@@ -68,7 +69,9 @@ public with sharing class BookstoreBookSelector implements CustomObject {
             FROM 
                 Bookstore_Book__c
             WHERE 
-                Unique_Concatanated_Ids__c = :concatanatedIds
+                Bookstore__c IN :bookstoreIds
+            AND
+                Book__c IN :bookIds
         ];
     }
 }

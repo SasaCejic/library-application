@@ -7,7 +7,7 @@
 public with sharing class BookReservationTriggerHandlerTest {
     @isTest
     public static void beforeInsert_WillUseService() {
-        //disable triger unrelated to test
+        //disable trigger unrelated to test
         BookReservationTriggerHandler.triggerDisabled=true;
 
         // create mock

@@ -20,7 +20,7 @@ public with sharing class BookReservationValidationServiceTest {
 
         // create mocks
         Mocker bookstoreBookSelectorMock = new Mocker(BookstoreBookSelector.class)
-        .setBehavior('getListByUniqueConcatanatedIds', new List<Bookstore_Book__c>());
+        .setBehavior('getListByBookstoreAndBookIds', new List<Bookstore_Book__c>());
         ObjectFactory.mocks.put(
             BookstoreBookSelector.class.getName(),
             (BookstoreBookSelector)bookstoreBookSelectorMock.getMock()
@@ -31,7 +31,7 @@ public with sharing class BookReservationValidationServiceTest {
         bookReservationValidationService.validateSelectedBook(null, new List<Book_Reservation__c>{bookReservation});
 
         // assert
-        bookstoreBookSelectorMock.assertMethodExecutionCount('getListByUniqueConcatanatedIds', 1);
+        bookstoreBookSelectorMock.assertMethodExecutionCount('getListByBookstoreAndBookIds', 1);
     }
 
     @isTest
@@ -70,7 +70,7 @@ public with sharing class BookReservationValidationServiceTest {
 
        // create mocks
        Mocker bookstoreBookSelectorMock = new Mocker(BookstoreBookSelector.class)
-       .setBehavior('getListByUniqueConcatanatedIds', new List<Bookstore_Book__c>());
+       .setBehavior('getListByBookstoreAndBookIds', new List<Bookstore_Book__c>());
        ObjectFactory.mocks.put(
            BookstoreBookSelector.class.getName(),
            (BookstoreBookSelector)bookstoreBookSelectorMock.getMock()
