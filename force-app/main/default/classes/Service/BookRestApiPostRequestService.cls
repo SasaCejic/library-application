@@ -31,7 +31,7 @@ public with sharing class BookRestApiPostRequestService implements CustomObject 
             setHttpResponse(400, 'Please provide records for insertion.', 'Insertion failed', null, 0, 0);
             return;
         }
-        
+
         // Check if client provided correct insert option
         if (insertOption != 1 && insertOption != 2) {
             setHttpResponse(400, 'Invalid insert option, Please choose from values 1 and 2.', 'Insertion failed', null, 0, bookList.size());
@@ -62,10 +62,7 @@ public with sharing class BookRestApiPostRequestService implements CustomObject 
          * If insertion option is 2 and there are any duplicate records, insertion should be aborted
          * If insertion option is 1 and there are any duplicate records, we should insert only non duplicate records
          */
-        System.debug('uslo1');
         if (insertOption == 2 && !duplicateRecords.isEmpty()) {
-            System.debug('uslo2');
-            System.debug(bookList);
             // Form response
             setHttpResponse(409, 'Operation was aborted and no records were saved because of the duplicate records', 'Insertion failed', 
                 duplicateRecords, 0, bookList.size() - duplicatesFromDatabase.size());
