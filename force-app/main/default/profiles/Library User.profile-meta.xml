@@ -482,11 +482,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Bookstore_Book__c.Unique_Concatanated_Ids__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Bookstore__c.Address__c</field>
         <readable>true</readable>
     </fieldPermissions>
