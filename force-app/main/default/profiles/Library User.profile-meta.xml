@@ -347,11 +347,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SendEmailsService</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SendEmailsServiceTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SendPurchaseEmailConfirmationService</apexClass>
