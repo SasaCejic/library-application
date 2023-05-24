@@ -1,18 +1,23 @@
 /**
- * Class used for converting JSON from BOOK REST API request to list of books
- * JSON string will be in form of { "data": ["field": "fieldValue"] }
+ * Class used for converting JSON from BOOK REST API request to BookRestApiRequestDTO
+ * @see BookRestApiRequestDTO
+ * JSON string will be in form of { "data": ["field": "fieldValue"], "option": 1 } where data is books data and option is Insert option, can be 1 or 2
  */
-public with sharing class ConvertJSONToBookListService implements CustomObject {
+public with sharing class ConvertBookRestApiJsonDataService implements CustomObject {
     /**
      * @param jsonString - Json strig from request body
      */
-    public List<Book__c> convert(String jsonString) {
+    public BookRestApiRequestDTO convert(String jsonString) {
         // Cast the JSON body into a map
-        Map<String, Object> deserializeBody = (Map<String, Object>)JSON.deserializeUntyped(jsonString);
+        Map<String, Object> deserializeBody = (Map<String, Object>) JSON.deserializeUntyped(jsonString);
+        // Value of the option about book insert from request body
+        Integer insertOption = (Integer) deserializeBody.get('option');
         // Create a list that will store the data
         List<Map<String, Object>> data = new List<Map<String, Object>>();
-        // Deserialized body has key called data which holds the list of all the records
-        for (Object instance : (List<Object>)deserializeBody.get('data')) {
+
+        // IMPORTANT - For some reson apex doesen't allow us to deserialize List<Map<String,Object>> from JSON
+        // So the only option was to cast it first into List<Object> and than loop that List to cast that Each <Object> into to Map<String,Object> and add it to our data list
+        for (Object instance : (List<Object>) deserializeBody.get('data')) {
             data.add((Map<String, Object>)instance);
         } 
 
@@ -38,8 +43,14 @@ public with sharing class ConvertJSONToBookListService implements CustomObject {
             }
             bookList.add(book);
         }
+
+        // Set DTO class
+        BookRestApiRequestDTO bookRestApiRequestDTO = new BookRestApiRequestDTO();
+        bookRestApiRequestDTO.bookList = bookList;
+        bookRestApiRequestDTO.insertOption = insertOption;
+
         // return books
-        return bookList;        
+        return bookRestApiRequestDTO;        
     }
 
     /**
