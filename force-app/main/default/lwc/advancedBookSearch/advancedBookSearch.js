@@ -136,8 +136,6 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
     moreToLoad=true;
     //DTO used for passing parameters to controller
     bookSearchDTO={};
-    //boolean determening if book search returned empty result
-    resultsNotFound=false;
     //label with currency for price slider
     priceLabel=`Maximum price (${CURRENCY}):`
 
@@ -159,7 +157,6 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
             });
             this._books=sortedBooks;
         }
-        //if (this._books) console.log(this._books[0].Publish_Date__c);
         return this._books
     }
 
@@ -230,16 +227,28 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
         this.term=event.target.value;
     }
 
+    /*
+     * Returns empty string if passed parameter is null, otherwise returns unchanged parameter
+     * Used for sorting
+     */
     nullToEmpty(val){
         return val ? val : '';
     }
 
+    /*
+     * Sets relevant sorting data when datatable column header is clicked and sort is initiated
+     */
     handleSorting(event){
         this.sortBy = event.detail.fieldName;
         this.sortDirection = event.detail.sortDirection;
         this.sortFieldName=this.sortBy=='NameUrl'?NAME_FIELD.fieldApiName:this.sortBy;
     }
 
+    /*
+     * Sets tableOffset value to number of currently queried books
+     * Check if there is more data to be queried through lazy loading
+     * If more data is found, calls  makeSearchRequest() function
+     */
     handleLoadMore(event){
         this.tableOffset=this.books.length;
 
@@ -308,8 +317,6 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
                 return mappedBook;
             });
             this._books=[...this._books,...mappedBooks];
-            this.resultsNotFound=(this._books.length==0);
-            console.log(this._books);
 
             if (mappedBooks.length<this.tableLoadStep) {
                 this.moreToLoad=false;
@@ -339,7 +346,6 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
      * Navigates to Buy Digital Book custom component
      */
     handleBuyBook(){
-        console.log('nav')
         this[NavigationMixin.Navigate]({
             "type": "standard__component",
             "attributes": {
@@ -351,7 +357,7 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
     /**
      * @param title - title of toast message
      * @param message - message of toast message
-     * @param varian - varian of toast message
+     * @param variant - varian of toast message
      */
     showToast(title, message, variant) {
         const event = new ShowToastEvent({

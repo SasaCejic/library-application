@@ -20,7 +20,7 @@ public with sharing class BookReviewSelector implements CustomObject {
      * 
      * @param bookIds - set of book Ids for which average raitng should be be retrieved
      */
-    public List<AggregateResult> getAverageRatingList(Set<Id> bookIds) {
+    public List<AggregateResult> getAverageRatingListByBookIdSet(Set<Id> bookIds) {
         return [
             SELECT
                 Book__c,

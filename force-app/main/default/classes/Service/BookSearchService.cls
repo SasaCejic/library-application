@@ -8,7 +8,7 @@
  * @see BookSearchDTO.cls
  */
 public with sharing class BookSearchService implements CustomObject{
-/**
+    /**
      * List of Books containging book information that will be returned to Controller as a response
      */
     private List<Book__c> response;
@@ -32,11 +32,29 @@ public with sharing class BookSearchService implements CustomObject{
     }
 
     /**
-     * Call BookSelector method to get list of book information based on query conditions
-     * generated from the BookSearchDTO
-     * Retrieves 
+     * Returns conjunction (WHERE/AND) to append to query conditions depending on weather WHERE clause was already started or not
      * 
-     * @param bookSearchDTO object containing all relevant search keys
+     * @param queryConditions - Query conditions the conjunction is getting appended to
+     */
+    public String getQueryConjunction(String queryConditions){
+        if (!String.isBlank(queryConditions)){
+            return ' AND ';
+        }
+
+        else {
+            return 'WHERE ';
+        }
+    }
+
+    /**
+     * Generates query conditions based on recieved bookSearchDTO
+     * Calls BookSelector method to get a list of book information based on these query conditions
+     * Further filters book list by description term and minimum review score if they are set as search keys
+     * Sets response property to searched and filtered book list
+     * 
+     * @param bookSearchDTO - Object containing all relevant search keys
+     * @param limitSize - Maximum number of records to return
+     * @param offset - Offset for querying records
      * 
      */
     public void getBooksFromSearchDTO(BookSearchDTO bookSearchDTO, Integer limitSize, Integer offset) {
@@ -54,35 +72,18 @@ public with sharing class BookSearchService implements CustomObject{
             }
 
             if (!String.isBlank(bookSearchDTO.ISBN)){
-                if (!String.isBlank(bookQueryConditions)){
-                    bookQueryConditions+=' AND ';
-                }
-
-                else {
-                    bookQueryConditions+='WHERE ';
-                }
+                bookQueryConditions+= getQueryConjunction(bookQueryConditions);
                 bookQueryConditions+=String.format('ISBN__c LIKE \'%{0}%\'', new String[] { bookSearchDTO.ISBN.trim() });
             }
 
             if (!String.isBlank(bookSearchDTO.author)){
-                if (!String.isBlank(bookQueryConditions)){
-                    bookQueryConditions+=' AND ';
-                }
-                
-                else {
-                    bookQueryConditions+='WHERE ';
-                }
-                bookQueryConditions+=String.format('Author__c=\'{0}\'', new String[] { bookSearchDTO.author });
+                bookQueryConditions+= getQueryConjunction(bookQueryConditions);
+                bookQueryConditions+='Author__c=\''+bookSearchDTO.author+'\'';
             }
 
             if (bookSearchDTO.publishDate!=null){
-                if (!String.isBlank(bookQueryConditions)){
-                    bookQueryConditions+=' AND ';
-                }
-
-                else {
-                    bookQueryConditions+='WHERE ';
-                }
+                bookQueryConditions+= getQueryConjunction(bookQueryConditions);
+                //Creates DateTime from Date object to enable custom formatting
                 Datetime publishDateTime=Datetime.newInstance(
                     bookSearchDTO.publishDate.year(),
                     bookSearchDTO.publishDate.month(),
@@ -92,37 +93,20 @@ public with sharing class BookSearchService implements CustomObject{
             }
 
             if (!String.isBlank(bookSearchDTO.bookstore)){
-                if (!String.isBlank(bookQueryConditions)){
-                    bookQueryConditions+=' AND ';
-                }
-
-                else {
-                    bookQueryConditions+='WHERE ';
-                }
+                bookQueryConditions+= getQueryConjunction(bookQueryConditions);
                 bookQueryConditions+='Id IN (SELECT Book__c FROM Bookstore_Book__c WHERE Bookstore__c= \''+bookSearchDTO.bookstore+'\' )';
             }
 
             if (!String.isBlank(bookSearchDTO.publisher)){
-                if (!String.isBlank(bookQueryConditions)){
-                    bookQueryConditions+=' AND ';
-                }
-
-                else {
-                    bookQueryConditions+='WHERE ';
-                }
-                bookQueryConditions+=String.format('Publisher__c=\'{0}\'', new String[] { bookSearchDTO.publisher });
+                bookQueryConditions+= getQueryConjunction(bookQueryConditions);
+                bookQueryConditions+='Publisher__c=\''+bookSearchDTO.publisher+'\'';
             }
 
             if (bookSearchDTO.categories!=null && bookSearchDTO.categories.size()>0){
-                if (!String.isBlank(bookQueryConditions)){
-                    bookQueryConditions+=' AND ';
-                }
-
-                else {
-                    bookQueryConditions+='WHERE ';
-                }
+                bookQueryConditions+= getQueryConjunction(bookQueryConditions);
                 String concatedCategories='';
 
+                //Concats categories from an array to a string form suitable for an SOQL query
                 for(Integer i=0;i<bookSearchDTO.categories.size();i++){
                     concatedCategories+=bookSearchDTO.categories[i];
 
@@ -134,15 +118,10 @@ public with sharing class BookSearchService implements CustomObject{
             }
 
             if (bookSearchDTO.languages!=null && bookSearchDTO.languages.size()>0){
-                if (!String.isBlank(bookQueryConditions)){
-                    bookQueryConditions+=' AND ';
-                }
-
-                else {
-                    bookQueryConditions+='WHERE ';
-                }
+                bookQueryConditions+= getQueryConjunction(bookQueryConditions);
                 String concatedLanguages='';
 
+                //Concats languages from an array to a string form suitable for an SOQL query
                 for(Integer i=0;i<bookSearchDTO.languages.size();i++){
                     concatedLanguages+='\''+bookSearchDTO.languages[i]+'\'';
 
@@ -154,13 +133,7 @@ public with sharing class BookSearchService implements CustomObject{
             }
 
             if (bookSearchDTO.price!=null && bookSearchDTO.price>0){
-                if (!String.isBlank(bookQueryConditions)){
-                    bookQueryConditions+=' AND ';
-                }
-
-                else {
-                    bookQueryConditions+='WHERE ';
-                }
+                bookQueryConditions+= getQueryConjunction(bookQueryConditions);
                 bookQueryConditions+=String.format('Price__c<={0}', new String[] { bookSearchDTO.price.format() });
             }
 
@@ -176,25 +149,29 @@ public with sharing class BookSearchService implements CustomObject{
                 bookQueryConditions+=String.format(' OFFSET {0}', new String[] { String.valueOf(offset) });
             }
 
-            List<Book__c> searchedAndFilteredBooks;
+            //queries books as a list 
+            List<Book__c> searchedAndFilteredBooks=bookSelector.getListFromQueryConditions(bookQueryConditions);
 
+            /**
+             * If minimum review score set as search key, makes map of queried books
+             * The keyset of that map is used as a parameter for the getAverageRatingListByBookIdSet method of the bookReviewSelector
+             */
             if (bookSearchDTO.reviewScore!=null && bookSearchDTO.reviewScore>0){
-                Map<Id, Book__c> searchedBookMap = new Map<Id, Book__c>(bookSelector.getListFromQueryConditions(bookQueryConditions));
-                List<AggregateResult> averageRatigsList = bookReviewSelector.getAverageRatingList(searchedBookMap.keySet());
-                searchedAndFilteredBooks = new List<Book__c>();
+                Map<Id, Book__c> searchedBookMap = new Map<Id, Book__c>(searchedAndFilteredBooks);
+                List<AggregateResult> averageRatigsList = bookReviewSelector.getAverageRatingListByBookIdSet(searchedBookMap.keySet());
+                List<Book__c> booksWithPassingReview = new List<Book__c>();
 
+                //For each average review score, if it matches search criteria, adds the associated book to a filtered list
                 for (AggregateResult averageRating:averageRatigsList){
 
                     if ((Decimal)averageRating.get('Rating')>=bookSearchDTO.reviewScore){
-                        searchedAndFilteredBooks.add(searchedBookMap.get((Id)averageRating.get('Book__c')));
+                        booksWithPassingReview.add(searchedBookMap.get((Id)averageRating.get('Book__c')));
                     }
                 }
+                searchedAndFilteredBooks=booksWithPassingReview;
             }
 
-            else{
-                searchedAndFilteredBooks=bookSelector.getListFromQueryConditions(bookQueryConditions);
-            }
-            
+            //If term set as search key, filters existing book list to contain only books whose decriptions contain the term
             if (!String.isBlank(bookSearchDTO.term)){
                 List<Book__c> booksWithMatchingDescription = new List<Book__c>();
 
@@ -206,6 +183,7 @@ public with sharing class BookSearchService implements CustomObject{
                 }
                 searchedAndFilteredBooks=booksWithMatchingDescription;
             }
+
             this.setResponse(searchedAndFilteredBooks);
         }
     }

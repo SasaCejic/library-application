@@ -13,6 +13,8 @@ public with sharing class BookReviewTriggerTest {
         Publisher__c publisherForTest = testFactory.createPublisher(true, false);
         Author__c authorForTest = testFactory.createAuthor(true, false);
         Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true, false);
+        //Unlock book record
+        Approval.UnlockResult ur = Approval.unlock(bookForTest, false);
         Book_Review__c bookReviewForInsert = testFactory.createBookReview(bookForTest.Id, false, false);
         
         // Run test as another user because of the validation rule

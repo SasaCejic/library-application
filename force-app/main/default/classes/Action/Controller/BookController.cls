@@ -33,9 +33,10 @@ public with sharing class BookController {
         service.sendMail(insertService.getResponse().isSuccess(), emailAddress, bookName, bookPrice);
     }
 
-    /*
-     * @param bookstoreId - Id of bookstore and based on the id retrieves all the books not in the bookstore
-     * @param limit - Maximum number of records to return
+    /**
+     * @param bookSearchDTO - Object containing all relevant search keys
+     * @param limitSize - Maximum number of records to return
+     * @param offset - Offset for querying records
      */
     @AuraEnabled(cacheable=true)
     public static List<Book__c> getBooksFromSearchDTO(BookSearchDTO bookSearchDTO, Integer limitSize, Integer offset) {

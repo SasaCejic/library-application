@@ -1,3 +1,6 @@
+/**
+ * DTO Class used for performing advanced search functionality on book sObjects
+ */
 public with sharing class BookSearchDTO {
     @auraenabled
     public String name { get; set; }
