@@ -12,36 +12,18 @@ public with sharing class ConvertBookRestApiJsonDataService implements CustomObj
         Map<String, Object> deserializeBody = (Map<String, Object>) JSON.deserializeUntyped(jsonString);
         // Value of the option about book insert from request body
         Integer insertOption = (Integer) deserializeBody.get('option');
-        // Create a list that will store the data
-        List<Map<String, Object>> data = new List<Map<String, Object>>();
 
-        // IMPORTANT - For some reson apex doesen't allow us to deserialize List<Map<String,Object>> from JSON
-        // So the only option was to cast it first into List<Object> and than loop that List to cast that Each <Object> into to Map<String,Object> and add it to our data list
-        for (Object instance : (List<Object>) deserializeBody.get('data')) {
-            data.add((Map<String, Object>)instance);
-        } 
-
-        // Loop through record data and create book objects from it
+        // IMPORTANT - For some reson apex doesen't allow us to cast List<Map<String,Object>> from JSON
+        // So the only option was to cast it first into List<Object> and than loop that List to cast that Each <Object> into to Map<String,Object>
         List<Book__c> bookList = new List<Book__c>();
-        for (Map<String, Object> bookFields : data) {
-            // Dynamically create Book__c object from Map
-            Book__c book = new Book__c();
-            for (String fieldName : bookFields.keySet()) {
-                // Check if the field is a Publish date because it will need conversion to date from string
-                if (fieldName == 'Publish_Date__c') {
-                    book.put(fieldName, convertStringToDate((String) bookFields.get(fieldName)));
-                    continue;
-                }
-
-                // Check if the field is recordTypeName and generate corresponding recordTypeId for it
-                if (fieldName == 'RecordTypeName') {
-                    book.put('RecordTypeId', generateRecordTypeIdFromRecordTypeName((String) bookFields.get(fieldName)));
-                    continue;
-                }
-
-                book.put(fieldName, bookFields.get(fieldName));
+        if (deserializeBody.get('data') != null) {
+            // Lopp through book data and cast it from Object to Map<String,Object>
+            for (Object bookFields : (List<Object>) deserializeBody.get('data')) {
+                Book__c book = createBookFromFields((Map<String, Object>) bookFields);
+                bookList.add(book);
             }
-            bookList.add(book);
+        } else {
+            bookList = null;
         }
 
         // Set DTO class
@@ -51,6 +33,29 @@ public with sharing class ConvertBookRestApiJsonDataService implements CustomObj
 
         // return books
         return bookRestApiRequestDTO;        
+    }
+
+    /**
+     * Create a Book__c object from the given field map
+     * @param bookFields - Map of field names and values
+     * @return Book__c object
+     */
+    private Book__c createBookFromFields(Map<String, Object> bookFields) {
+        Book__c book = new Book__c();
+        // Loop through the fields, and cover the cases where data has to be converted (Dates, record type names etc...)
+        for (String fieldName : bookFields.keySet()) {
+            if (fieldName.equals('Publish_Date__c')) {
+                book.put(fieldName, convertStringToDate((String) bookFields.get(fieldName)));
+            } else if (fieldName.equals('attributes')) {
+                continue;
+            } else if (fieldName.equals('RecordTypeName')) {
+                book.put('RecordTypeId', generateRecordTypeIdFromRecordTypeName((String) bookFields.get(fieldName)));
+            } else {
+                book.put(fieldName, bookFields.get(fieldName));
+            }
+        }
+        // return the book
+        return book;
     }
 
     /**
