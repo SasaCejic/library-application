@@ -123,10 +123,10 @@ public with sharing class BookstoreTriggerTest {
         update bookstore1;
 
         Bookstore__c bookstore2 = testFactory.createBookstore(false);
-        insert boosktore2;
-        Bookstore__c bookstore3 = testFactory.createBookstore();
+        insert bookstore2;
+        Bookstore__c bookstore3 = testFactory.createBookstore(false);
         insert bookstore3;
-        Bookstore__c bookstore4 = testFactory.createBookstore();
+        Bookstore__c bookstore4 = testFactory.createBookstore(false);
         insert bookstore4;
 
         bookstore2.Manager__c = user2.Id;
@@ -155,12 +155,15 @@ public with sharing class BookstoreTriggerTest {
         user1.isBookstoreManager__c = true;
         update user1;
         User user2 = testFactory.createUser(false);
+        insert user2;
         user2.isBookstoreManager__c = true;
         update user2;
-        User user3 = testFactory.createUser(true, false);
+        User user3 = testFactory.createUser(false);
+        insert user3;
         user3.isBookstoreManager__c = true;
         update user3;
-        Bookstore__c bookstore1 = testFactory.createBookstore(true, false);
+        Bookstore__c bookstore1 = testFactory.createBookstore(false);
+        insert bookstore1;
         //make user manager of the bookstore
         bookstore1.Manager__c = user1.Id;
         update bookstore1;
@@ -197,24 +200,32 @@ public with sharing class BookstoreTriggerTest {
     public static void onUpdate_WillAddTwoErrors_IfTwoUsersAreAlreadyBookstoreManagers() {
         // create data
         TestFactory testFactory = new TestFactory();
-        User user1 = testFactory.createUser(true, false);
+        User user1 = testFactory.createUser(false);
+        insert user1;
         user1.isBookstoreManager__c = true;
         update user1;
-        User user2 = testFactory.createUser(true, false);
+        User user2 = testFactory.createUser(false);
+        insert user2;
         user2.isBookstoreManager__c = true;
         update user2;
-        User user3 = testFactory.createUser(true, false);
+        User user3 = testFactory.createUser(false);
+        insert user3;
         user3.isBookstoreManager__c = true;
         update user3;
-        Bookstore__c bookstore1 = testFactory.createBookstore(true, false);
+        Bookstore__c bookstore1 = testFactory.createBookstore(false);
+        insert bookstore1;
         //make user manager of the bookstore
         bookstore1.Manager__c = user1.Id;
         update bookstore1;
 
-        Bookstore__c bookstore2 = testFactory.createBookstore(true, false);
-        Bookstore__c bookstore3 = testFactory.createBookstore(true, false);
-        Bookstore__c bookstore4 = testFactory.createBookstore(true, false);
-        Bookstore__c bookstore5 = testFactory.createBookstore(true, false);
+        Bookstore__c bookstore2 = testFactory.createBookstore(false);
+        insert bookstore2;
+        Bookstore__c bookstore3 = testFactory.createBookstore(false);
+        insert bookstore3;
+        Bookstore__c bookstore4 = testFactory.createBookstore(false);
+        insert bookstore4;
+        Bookstore__c bookstore5 = testFactory.createBookstore(false);
+        insert bookstore5;
 
         bookstore2.Manager__c = user2.Id;
         bookstore3.Manager__c = user3.Id;
