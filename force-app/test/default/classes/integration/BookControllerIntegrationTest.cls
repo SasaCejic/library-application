@@ -10,10 +10,14 @@ public with sharing class BookControllerIntegrationTest {
 
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(true, false);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(true, false);
-        Author__c authorForTest = testFactory.createAuthor(true, false);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true, false);
+        Publisher__c publisherForTest = testFactory.createPublisher(false);
+        insert publisherForTest;
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(false);
+        insert bookstoreForTest;
+        Author__c authorForTest = testFactory.createAuthor(false);
+        insert authorForTest;
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false);
+        insert bookForTest;
         
         // execute
         Test.startTest();
@@ -32,9 +36,12 @@ public with sharing class BookControllerIntegrationTest {
         
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(true, false);
-        Author__c authorForTest = testFactory.createAuthor(true, false);
-        Book__c bookForTest = testFactory.createDigitalBook(publisherForTest.Id, authorForTest.Id, true, false);
+        Publisher__c publisherForTest = testFactory.createPublisher(false);
+        insert publisherForTest;
+        Author__c authorForTest = testFactory.createAuthor(false);
+        insert authorForTest;
+        Book__c bookForTest = testFactory.createDigitalBook(publisherForTest.Id, authorForTest.Id, false);
+        insert bookForTest;
 
         //Execute
         Test.startTest();
