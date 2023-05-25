@@ -2,7 +2,7 @@
  * Class used as controller for Book__c object
  */
 public with sharing class BookController {
-    /*
+    /**
      * @param bookstoreId - Id of bookstore and based on the id retrieves all the books not in the bookstore
      * @param limit - Maximum number of records to return
      */
@@ -14,7 +14,7 @@ public with sharing class BookController {
         return service.getResponse();
     }
 
-    /*
+    /**
      * Method sends email to the user that bought the book
      * @param emailAddress - email address of the user that bought the book
      * @param bookName - name of the book user bought
