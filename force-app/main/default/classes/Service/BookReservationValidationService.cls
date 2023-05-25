@@ -47,37 +47,13 @@ public with sharing class BookReservationValidationService implements CustomObje
                 Book_Reservation__c bookReservation = newReservationsByIds.get(oldReservation.Id);
 
                 for (Bookstore_Book__c bookstoreBook : bookstoreBooksByReservations[newBookReservations.indexOf(bookReservation)]) {
-                    Integer availableBooks = (Integer) bookstoreBook.Quantity__c - (Integer) bookstoreBook.Number_Of_Active_Reservations__c + (Integer) oldReservation.Quantity__c;
-        
-                    if (bookReservation.Quantity__c > availableBooks) {
-                        bookReservation.addError('There are no enough books! You can choose up to ' + availableBooks + '.');
-                    } else {
-                        bookstoreBook.Number_Of_Active_Reservations__c = bookstoreBook.Number_Of_Active_Reservations__c - oldReservation.Quantity__c + bookReservation.Quantity__c;
-                        bookstoreBooksToUpdate.add(bookstoreBook);
-                        //Send confirmation email
-                        SendReservationEmailConfirmationService confirmationEmail = (SendReservationEmailConfirmationService) new ObjectFactory().createObject(SendReservationEmailConfirmationService.class);
-                        Decimal totalPrice = bookstoreBook.Book__r.Price__c * (Integer) bookReservation.Quantity__c;
-                        bookReservation.Price__c = totalPrice;
-                        confirmationEmail.sendMail(UserInfo.getUserEmail(), bookstoreBook.Book__r.Name, (Integer) bookReservation.Quantity__c, totalPrice);
-                    }
+                    this.checkForQuantity(oldReservation, bookReservation, bookstoreBook, bookstoreBooksToUpdate);
                 }
             }
         } else {
             for (Book_Reservation__c bookReservation : newBookReservations) {
                 for (Bookstore_Book__c bookstoreBook : bookstoreBooksByReservations[newBookReservations.indexOf(bookReservation)]) {
-                    Integer availableBooks = (Integer) bookstoreBook.Quantity__c - (Integer) bookstoreBook.Number_Of_Active_Reservations__c;
-            
-                    if (bookReservation.Quantity__c > availableBooks) {
-                        bookReservation.addError('There are no enough books! You can choose up to ' + availableBooks + '.');
-                    } else {
-                        bookstoreBook.Number_Of_Active_Reservations__c += bookReservation.Quantity__c;
-                        bookstoreBooksToUpdate.add(bookstoreBook);
-                        //Send confirmation email
-                        SendReservationEmailConfirmationService confirmationEmail = (SendReservationEmailConfirmationService) new ObjectFactory().createObject(SendReservationEmailConfirmationService.class);
-                        Decimal totalPrice = bookstoreBook.Book__r.Price__c * (Integer) bookReservation.Quantity__c;
-                        bookReservation.Price__c = totalPrice;
-                        confirmationEmail.sendMail(UserInfo.getUserEmail(), bookstoreBook.Book__r.Name, (Integer) bookReservation.Quantity__c, totalPrice);
-                    }
+                    this.checkForQuantity(null, bookReservation, bookstoreBook, bookstoreBooksToUpdate);
                 }
             }
         }
@@ -91,5 +67,21 @@ public with sharing class BookReservationValidationService implements CustomObje
         if (!bookstoreBooksToUpdate.isEmpty()) {
             Database.update(bookstoreBooksToUpdate, false);
         }
+    }
+
+    private void checkForQuantity (Book_Reservation__c oldReservation, Book_Reservation__c newReservation, Bookstore_Book__c bookstoreBook, List<Bookstore_Book__c> bookstoreBooksToUpdate) {
+        Integer availableBooks = (oldReservation != null) ? (Integer) bookstoreBook.Quantity__c - (Integer) bookstoreBook.Number_Of_Active_Reservations__c + (Integer) oldReservation.Quantity__c : (Integer) bookstoreBook.Quantity__c - (Integer) bookstoreBook.Number_Of_Active_Reservations__c;
+
+        if (newReservation.Quantity__c > availableBooks) {
+            newReservation.addError('There are no enough books! You can choose up to ' + availableBooks + '.');
+        } else {
+            bookstoreBook.Number_Of_Active_Reservations__c = (oldReservation != null) ? bookstoreBook.Number_Of_Active_Reservations__c - oldReservation.Quantity__c + newReservation.Quantity__c : bookstoreBook.Number_Of_Active_Reservations__c + newReservation.Quantity__c;
+            bookstoreBooksToUpdate.add(bookstoreBook);
+            //Send confirmation email
+            SendReservationEmailConfirmationService confirmationEmail = (SendReservationEmailConfirmationService) new ObjectFactory().createObject(SendReservationEmailConfirmationService.class);
+            Decimal totalPrice = bookstoreBook.Book__r.Price__c * (Integer) newReservation.Quantity__c;
+            newReservation.Price__c = totalPrice;
+            confirmationEmail.sendMail(UserInfo.getUserEmail(), bookstoreBook.Book__r.Name, (Integer) newReservation.Quantity__c, totalPrice);
+        } 
     }
 }
