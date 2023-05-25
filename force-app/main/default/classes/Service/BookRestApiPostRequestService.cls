@@ -75,7 +75,7 @@ public with sharing class BookRestApiPostRequestService implements CustomObject 
                     'Insertion failed', duplicateRecords, nonDuplicateRecords.size(), duplicateRecords.size() - duplicatesFromDatabase.size());
             } catch (Exception e) {
                 // Form response
-                setHttpResponse(500, e.getMessage(), 'Insertion failed', duplicateRecords, 0, nonDuplicateRecords.size());
+                setHttpResponse(500, e.getMessage(), 'Insertion failed', duplicateRecords, 0, bookList.size() - duplicatesFromDatabase.size());
             }
         } else {
             // Cover insertion in case it fails because of some validation rules, triggers etc...
@@ -85,7 +85,7 @@ public with sharing class BookRestApiPostRequestService implements CustomObject 
                 setHttpResponse(200, 'Insertion was successfull', '', duplicateRecords, nonDuplicateRecords.size(), 0);
             } catch (Exception e) {
                 // Form response
-                setHttpResponse(500, e.getMessage(), 'Insertion failed', duplicateRecords, 0, nonDuplicateRecords.size());
+                setHttpResponse(500, e.getMessage(), 'Insertion failed', duplicateRecords, 0, bookList.size() - duplicatesFromDatabase.size());
             }
         }
     }
