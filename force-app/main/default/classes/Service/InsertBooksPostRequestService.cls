@@ -2,13 +2,13 @@
  * Class used for handling bussiness logic for performing insertion on POST method of BookRESTAPI
  * @see BookRESTAPI
  */
-public with sharing class BookRestApiPostRequestService implements CustomObject {
+public with sharing class InsertBooksPostRequestService implements CustomObject {
     
     // response for the service
-    private BookRestApiResponseDTO response;
+    private InsertBooksPostRequestResponseDTO response;
 
     // getter for response
-    public BookRestApiResponseDTO getResponse() {
+    public InsertBooksPostRequestResponseDTO getResponse() {
         return this.response;
     }
 
@@ -23,7 +23,7 @@ public with sharing class BookRestApiPostRequestService implements CustomObject 
      */
     private void setResponse(Integer statusCode, String message, String error, List<Book__c> duplicateRecords, Integer successfullRecords, Integer failedRecords) {
         // Create the response body as a map that will later be converted to a string
-        BookRestApiResponseDTO responseDTO = new BookRestApiResponseDTO();
+        InsertBooksPostRequestResponseDTO responseDTO = new InsertBooksPostRequestResponseDTO();
         // Set field values
         responseDTO.statusCode = statusCode;
         responseDTO.message = message;

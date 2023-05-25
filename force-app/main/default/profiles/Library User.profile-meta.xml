@@ -102,14 +102,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BookRestApiPostRequestService</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BookRestApiPostRequestServiceTest</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>BookRestApiRequestDTO</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -331,6 +323,18 @@
     </classAccesses>
     <classAccesses>
         <apexClass>InsertBookRecordService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>InsertBooksPostRequestResponseDTO</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>InsertBooksPostRequestService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>InsertBooksPostRequestServiceTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>

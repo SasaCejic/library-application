@@ -1,7 +1,7 @@
 /**
  * Class used as DTO for BookRestApiHttpResponse
  */
-public with sharing class BookRestApiResponseDTO {
+public with sharing class InsertBooksPostRequestResponseDTO {
     public Integer statusCode;
     public String message;
     public String error;

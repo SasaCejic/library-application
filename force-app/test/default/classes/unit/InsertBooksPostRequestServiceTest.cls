@@ -2,7 +2,7 @@
  * Class used for performing unit tests for BookRestApiPostRequestService
  */
 @isTest
-public with sharing class BookRestApiPostRequestServiceTest {
+public with sharing class InsertBooksPostRequestServiceTest {
     @isTest
     public static void insertBooks_willFailWithStatus400_ifDataWasntProvidedInHttpRequest() {
         // create data
@@ -22,16 +22,13 @@ public with sharing class BookRestApiPostRequestServiceTest {
         RestRequest request = new RestRequest();
         request.requestBody = Blob.valueOf(JSON.serialize(new Map<String, Object>()));
         RestContext.request = request;
-        // Set up the REST response so we can see what would the result of the service be
-        RestResponse response = new RestResponse();
-        RestContext.response = response;
 
         // execute
-        BookRestApiPostRequestService service = new BookRestApiPostRequestService();
-        service.insertBooks();
+        InsertBooksPostRequestService service = new InsertBooksPostRequestService();
+        service.insertBooks(request);
 
         // assert
-        Assert.areEqual(400, response.statusCode);        
+        Assert.areEqual(400, service.getResponse().statusCode);        
     }
 
     @isTest
@@ -59,16 +56,13 @@ public with sharing class BookRestApiPostRequestServiceTest {
         RestRequest request = new RestRequest();
         request.requestBody = Blob.valueOf(JSON.serialize(new Map<String, Object>()));
         RestContext.request = request;
-        // Set up the REST response so we can see what would the result of the service be
-        RestResponse response = new RestResponse();
-        RestContext.response = response;
 
         // execute
-        BookRestApiPostRequestService service = new BookRestApiPostRequestService();
-        service.insertBooks();
+        InsertBooksPostRequestService service = new InsertBooksPostRequestService();
+        service.insertBooks(request);
 
         // assert
-        Assert.areEqual(400, response.statusCode);
+        Assert.areEqual(400, service.getResponse().statusCode);
     }
 
     @isTest
@@ -115,16 +109,14 @@ public with sharing class BookRestApiPostRequestServiceTest {
         RestRequest request = new RestRequest();
         request.requestBody = Blob.valueOf(JSON.serialize(new Map<String, Object>()));
         RestContext.request = request;
-        // Set up the REST response so we can see what would the result of the service be
-        RestResponse response = new RestResponse();
-        RestContext.response = response;
+
 
         // execute
-        BookRestApiPostRequestService service = new BookRestApiPostRequestService();
-        service.insertBooks();
+        InsertBooksPostRequestService service = new InsertBooksPostRequestService();
+        service.insertBooks(request);
 
         // assert
-        Assert.areEqual(409, response.statusCode);
+        Assert.areEqual(409, service.getResponse().statusCode);
     }
     
     @isTest
@@ -172,16 +164,14 @@ public with sharing class BookRestApiPostRequestServiceTest {
         RestRequest request = new RestRequest();
         request.requestBody = Blob.valueOf(JSON.serialize(new Map<String, Object>()));
         RestContext.request = request;
-        // Set up the REST response so we can see what would the result of the service be
-        RestResponse response = new RestResponse();
-        RestContext.response = response;
+
 
         // execute
-        BookRestApiPostRequestService service = new BookRestApiPostRequestService();
-        service.insertBooks();
+        InsertBooksPostRequestService service = new InsertBooksPostRequestService();
+        service.insertBooks(request);
 
         // assert
-        Assert.areEqual(409, response.statusCode);
+        Assert.areEqual(409, service.getResponse().statusCode);
     }
 
     @isTest
@@ -228,16 +218,14 @@ public with sharing class BookRestApiPostRequestServiceTest {
         RestRequest request = new RestRequest();
         request.requestBody = Blob.valueOf(JSON.serialize(new Map<String, Object>()));
         RestContext.request = request;
-        // Set up the REST response so we can see what would the result of the service be
-        RestResponse response = new RestResponse();
-        RestContext.response = response;
+
 
         // execute
-        BookRestApiPostRequestService service = new BookRestApiPostRequestService();
-        service.insertBooks();
+        InsertBooksPostRequestService service = new InsertBooksPostRequestService();
+        service.insertBooks(request);
 
         // assert
-        Assert.areEqual(200, response.statusCode);
+        Assert.areEqual(200, service.getResponse().statusCode);
     }
 
     @isTest
@@ -284,13 +272,11 @@ public with sharing class BookRestApiPostRequestServiceTest {
         RestRequest request = new RestRequest();
         request.requestBody = Blob.valueOf(JSON.serialize(new Map<String, Object>()));
         RestContext.request = request;
-        // Set up the REST response so we can see what would the result of the service be
-        RestResponse response = new RestResponse();
-        RestContext.response = response;
+
 
         // execute
-        BookRestApiPostRequestService service = new BookRestApiPostRequestService();
-        service.insertBooks();
+        InsertBooksPostRequestService service = new InsertBooksPostRequestService();
+        service.insertBooks(request);
 
         // assert
         ConvertBookRestApiJsonDataServiceMocker.assertMethodExecutionCount('convert', 1);

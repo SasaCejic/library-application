@@ -8,14 +8,15 @@ global with sharing class BookRestApi {
         RestResponse res = RestContext.response;
 
         // execute
-        BookRestApiPostRequestService service = (BookRestApiPostRequestService) new ObjectFactory()
-            .createObject(BookRestApiPostRequestService.class);
+        InsertBooksPostRequestService service = (InsertBooksPostRequestService) new ObjectFactory()
+            .createObject(InsertBooksPostRequestService.class);
         service.insertBooks(req);
         // Get response for http response
-        BookRestApiResponseDTO serviceResponse = service.getResponse();
-        
-        // set response
+        InsertBooksPostRequestResponseDTO serviceResponse = service.getResponse();
+
+        // set Http response
         res.addHeader('Content-Type', 'application/json');
+        res.statusCode = serviceResponse.statusCode;
         res.responseBody = Blob.valueOf(JSON.serialize(serviceResponse));
     }
 }

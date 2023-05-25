@@ -5,18 +5,27 @@
 public with sharing class BookRestApiTest {
     @isTest
     public static void doPost_willUseService() {
+        // create data
+        InsertBooksPostRequestResponseDTO dto =  new InsertBooksPostRequestResponseDTO();
+        dto.statusCode = 200;
+
+        // set Rest response so we don't get error when setting header
+        RestResponse response = new RestResponse();
+        RestContext.response = response;
+
         // create mock
-        Mocker BookRestApiPostRequestServiceMocker = new Mocker(BookRestApiPostRequestService.class)
-            .setBehavior('insertBooks', null);
+        Mocker InsertBooksPostRequestServiceMocker = new Mocker(InsertBooksPostRequestService.class);
+        InsertBooksPostRequestServiceMocker.setBehavior('insertBooks', null);
+        InsertBooksPostRequestServiceMocker.setBehavior('getResponse', dto);
         ObjectFactory.mocks.put(
-            BookRestApiPostRequestService.class.getName(),
-            (BookRestApiPostRequestService) BookRestApiPostRequestServiceMocker.getMock()
+            InsertBooksPostRequestService.class.getName(),
+            (InsertBooksPostRequestService) InsertBooksPostRequestServiceMocker.getMock()
         );
 
         // execute
         BookRestapi.doPost();
 
         // assert
-        BookRestApiPostRequestServiceMocker.assertMethodExecutionCount('insertBooks', 1);
+        InsertBooksPostRequestServiceMocker.assertMethodExecutionCount('insertBooks', 1);
     }
 }
