@@ -249,6 +249,11 @@
         <field>Publisher__c.Address__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>User.isBookstoreManager__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Library Admin</label>
     <license>Salesforce</license>
