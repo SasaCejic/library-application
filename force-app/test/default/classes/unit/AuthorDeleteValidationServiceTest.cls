@@ -10,14 +10,14 @@ public with sharing class AuthorDeleteValidationServiceTest {
     public static void validateAuthorDelete_willAddErrors_ifStdAuthorsDeleted(){
         //create test data
         TestFactory testFactory = new TestFactory();
-        Author__c anonAuthor= testFactory.createAuthor(false, true);
-        Author__c unknownAuthor= testFactory.createAuthor(false, true);
+        Author__c anonAuthor= testFactory.createAuthor(true);
+        Author__c unknownAuthor= testFactory.createAuthor(true);
         Standard_Authors_Settting__c stdAuthorSetting = testFactory
-            .createStandardAuthorsSettting(anonAuthor.Id, unknownAuthor.Id, false, true);
+            .createStandardAuthorsSettting(anonAuthor.Id, unknownAuthor.Id, true);
         
         // create mock
         Mocker customSettingSelectorMock = new Mocker(CustomSettingSelector.class)
-            .setBehavior('getStdAuthorsSettingList', new List<Standard_Authors_Settting__c>{stdAuthorSetting});
+            .setBehavior('getStdAuthorsSettingList', new List<Standard_Authors_Settting__c>{ stdAuthorSetting });
         // set mock
         ObjectFactory.mocks.put(
             CustomSettingSelector.class.getName(),
@@ -26,7 +26,7 @@ public with sharing class AuthorDeleteValidationServiceTest {
 
         //execute
         AuthorDeleteValidationService authorValidationService = new AuthorDeleteValidationService();
-        authorValidationService.validateAuthorDelete(new List<Author__c>{unknownAuthor, anonAuthor});
+        authorValidationService.validateAuthorDelete(new List<Author__c>{ unknownAuthor, anonAuthor });
 
         //assert errors have been added to edited standard author record
         Assert.isTrue(unknownAuthor.getErrors().size() == 1,'Errors should have been added to deleted unknown author record');
@@ -37,14 +37,14 @@ public with sharing class AuthorDeleteValidationServiceTest {
     public static void validateAuthorDelete_willNotAddError_ifStdAuthorNotDeleted(){
         //create test data
         TestFactory testFactory = new TestFactory();
-        Author__c anonAuthor= testFactory.createAuthor(false, true);
-        Author__c unknownAuthor= testFactory.createAuthor(false, true);
+        Author__c anonAuthor= testFactory.createAuthor(true);
+        Author__c unknownAuthor= testFactory.createAuthor(true);
         Standard_Authors_Settting__c stdAuthorSetting = testFactory
-            .createStandardAuthorsSettting(anonAuthor.Id, unknownAuthor.Id, false, true);
+            .createStandardAuthorsSettting(anonAuthor.Id, unknownAuthor.Id, true);
         
         // create mock
         Mocker customSettingSelectorMock = new Mocker(CustomSettingSelector.class)
-            .setBehavior('getStdAuthorsSettingList', new List<Standard_Authors_Settting__c>{stdAuthorSetting});
+            .setBehavior('getStdAuthorsSettingList', new List<Standard_Authors_Settting__c>{ stdAuthorSetting });
         // set mock
         ObjectFactory.mocks.put(
             CustomSettingSelector.class.getName(),

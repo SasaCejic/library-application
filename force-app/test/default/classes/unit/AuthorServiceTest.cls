@@ -85,46 +85,41 @@ public with sharing class AuthorServiceTest {
     static void getResponse_WillReturnThreeBookstoresWithAuthorsBooks_IfThereAreThreeBookstoresWithAuthorsBooks() {
         // create testFactory
         TestFactory testFactory = new TestFactory();
-
         //create and insert Author__c object
-        Author__c author = testFactory.createAuthor(false, true);
-
+        Author__c author = testFactory.createAuthor(true);
         // create and insert Publisher__c object
-        Publisher__c publisher = testFactory.createPublisher(false, true);
-
+        Publisher__c publisher = testFactory.createPublisher(true);
         //create and insert Book__c object
-        Book__c book = testFactory.createBook(publisher.Id, author.Id, false, true);
-
+        Book__c book = testFactory.createBook(publisher.Id, author.Id, true);
         //create and insert Bookstore__c objects
-        Bookstore__c bookstore1 = testFactory.createBookstore(false, true);
-
+        Bookstore__c bookstore1 = testFactory.createBookstore(true);
         //create Bookstore_Publisher__c junction object
-        Bookstore_Publisher__c bookstorePublisher1 = testFactory.createBookstorePublisher(publisher.Id, bookstore1.Id, false, true);
+        Bookstore_Publisher__c bookstorePublisher1 = testFactory.createBookstorePublisher(publisher.Id, bookstore1.Id, true);
 
         //We need to change the unique store Id number, Name and Email
         // before inserting another bookstore
-        Bookstore__c bookstore2 = testFactory.createBookstore(false, true);
+        Bookstore__c bookstore2 = testFactory.createBookstore(true);
         bookstore2.Name = 'bookstore2';
         bookstore2.Email__c = 'bookstore2@gmail.com';
         bookstore2.Store_Identification_Code__c = '85758498';
 
         //create Bookstore_Publisher__c junction object
-        Bookstore_Publisher__c bookstorePublisher2 = testFactory.createBookstorePublisher(publisher.Id, bookstore2.Id, false, true);
+        Bookstore_Publisher__c bookstorePublisher2 = testFactory.createBookstorePublisher(publisher.Id, bookstore2.Id, true);
 
         //We need to change the unique store Id number, Name and Email
         // before inserting another bookstore
-        Bookstore__c bookstore3 = testFactory.createBookstore(false, true);
+        Bookstore__c bookstore3 = testFactory.createBookstore(true);
         bookstore3.Name = 'bookstore3';
         bookstore3.Email__c = 'bookstore3@gmail.com';
         bookstore3.Store_Identification_Code__c = '04793211';
 
         //create Bookstore_Publisher__c junction object
-        Bookstore_Publisher__c bookstorePublisher3 = testFactory.createBookstorePublisher(publisher.Id, bookstore3.Id, false, true);
+        Bookstore_Publisher__c bookstorePublisher3 = testFactory.createBookstorePublisher(publisher.Id, bookstore3.Id, true);
 
         //create and insert Bookstore_Book__c junction objects
-        Bookstore_Book__c bookstoreBook1 = testFactory.createBookstoreBook(book.Id, bookstore1.Id, false, true);
-        Bookstore_Book__c bookstoreBook2 = testFactory.createBookstoreBook(book.Id, bookstore2.Id, false, true);
-        Bookstore_Book__c bookstoreBook3 = testFactory.createBookstoreBook(book.Id, bookstore3.Id, false, true);
+        Bookstore_Book__c bookstoreBook1 = testFactory.createBookstoreBook(book.Id, bookstore1.Id, true);
+        Bookstore_Book__c bookstoreBook2 = testFactory.createBookstoreBook(book.Id, bookstore2.Id, true);
+        Bookstore_Book__c bookstoreBook3 = testFactory.createBookstoreBook(book.Id, bookstore3.Id, true);
 
         //create mock
         Mocker bookstoreSelectorMock = new Mocker(BookstoreSelector.class)

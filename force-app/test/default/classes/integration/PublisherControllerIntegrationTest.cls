@@ -7,8 +7,10 @@ public with sharing class PublisherControllerIntegrationTest {
     public static void getPublishernotWorkingWithBookstore_willReturnPublisher_ifBookstorePublisherRecordIsNotInserted() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(true, false);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(true, false);
+        Publisher__c publisherForTest = testFactory.createPublisher(false);
+        insert publisherForTest;
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(false);
+        insert bookstoreForTest;
 
         // execute
         Test.startTest();

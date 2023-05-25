@@ -24,7 +24,7 @@ public with sharing class TestFactory {
         newBookstoreBook.Bookstore__c = bookstoreId;
 
         // Generate Id based on simulateInsert
-        newBookstoreBook.Id = this.getFakeId(Bookstore__c.SObjectType, simulateInsert);
+        newBookstoreBook.Id = this.getFakeId(Bookstore_Book__c.SObjectType, simulateInsert);
         return newBookstoreBook;
     }
 
@@ -39,7 +39,7 @@ public with sharing class TestFactory {
         newBookstorePublisher.Bookstore__c = bookstoreId;
 
         // Generate Id based on simulateInsert
-        newBookstorePublisher.Id = this.getFakeId(Bookstore__c.SObjectType, simulateInsert);
+        newBookstorePublisher.Id = this.getFakeId(Bookstore_Publisher__c.SObjectType, simulateInsert);
         return newBookstorePublisher;
     }
 
@@ -69,7 +69,7 @@ public with sharing class TestFactory {
         newPublisher.Phone__c = '123214256';
 
         // Generate Id based on simulateInsert
-        newPublisher.Id = this.getFakeId(Bookstore__c.SObjectType, simulateInsert);
+        newPublisher.Id = this.getFakeId(Publisher__c.SObjectType, simulateInsert);
         return newPublisher;
     }
 

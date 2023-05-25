@@ -11,10 +11,10 @@ public with sharing class BookReviewValidationServiceTest {
     public static void validateReview_willAddError_ifSameBookReviewsAreCreated() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, true);
-        Book_Review__c bookReviewForInsert = testFactory.createBookReview(bookForTest.Id, false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true);
+        Book_Review__c bookReviewForInsert = testFactory.createBookReview(bookForTest.Id, true);
 
         // execute
         BookReviewValidationService service = new BookReviewValidationService();
@@ -28,10 +28,10 @@ public with sharing class BookReviewValidationServiceTest {
     public static void validateReview_willNotAddError_ifSameBookReviewDoesentExist() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, true);
-        Book_Review__c bookReviewForInsert = testFactory.createBookReview(bookForTest.Id, false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true);
+        Book_Review__c bookReviewForInsert = testFactory.createBookReview(bookForTest.Id, true);
 
         // create mock
         Mocker BookReviewSelectorMock = new Mocker(BookReviewSelector.class)
@@ -53,10 +53,10 @@ public with sharing class BookReviewValidationServiceTest {
     public static void validateReview_willUseCorrectSelector() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, true);
-        Book_Review__c bookReviewForInsert = testFactory.createBookReview(bookForTest.Id, false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true);
+        Book_Review__c bookReviewForInsert = testFactory.createBookReview(bookForTest.Id, true);
 
         // create mock
         Mocker BookReviewSelectorMock = new Mocker(BookReviewSelector.class)

@@ -7,10 +7,10 @@ public with sharing class BookstorePublisherDeleteValidationTest {
     public static void validatePublisher_willNotAddError_ifBookstoreBookWithSamePublisherDoesentExist() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
         Bookstore_Publisher__c bookstorePublisherForTest = testFactory
-            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false, true);
+            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, true);
 
         // create mock
         Mocker BookstoreBookSelectorMocker = new Mocker(BookstoreBookSelector.class)
@@ -32,10 +32,10 @@ public with sharing class BookstorePublisherDeleteValidationTest {
     public static void validatePublisher_willUseSelector() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
         Bookstore_Publisher__c bookstorePublisherForTest = testFactory
-            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false, true);
+            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, true);
 
         // create mock
         Mocker BookstoreBookSelectorMocker = new Mocker(BookstoreBookSelector.class)
