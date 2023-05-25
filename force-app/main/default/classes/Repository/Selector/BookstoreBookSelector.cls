@@ -6,17 +6,23 @@
  */
 
 public with sharing class BookstoreBookSelector implements CustomObject {
-    /*
-     * @param bookstoreId - Id of the bookstore we want to return all the books that are not in there
+    /**
+     * @param bookstoreIds - Ids of the bookstores that Bookstore_Book__c records are assigned to
+     * @param recordLimit - Number of records to be retrieved
      */
-    public List<Bookstore_Book__c> getListByBookstoreId(Id bookstoreId) {
+    public List<Bookstore_Book__c> getListByBookstoreIds(Set<Id> bookstoreIds, Integer recordLimit) {
         return [
             SELECT
                 Id,
                 Book__c,
+                Book__r.Publisher__c,
+                Book__r.Name,
+                Book__r.Publisher__r.Name,
+                Bookstore__r.Name,
                 Bookstore__c
             FROM Bookstore_Book__c
-            WHERE Bookstore__c = :bookstoreId
+            WHERE Bookstore__c IN :bookstoreIds
+            LIMIT : recordLimit
         ];
     }
 

@@ -15,7 +15,7 @@ public with sharing class GetBooksNotInBookstoreServiceTest {
         
         // create mocks
         Mocker BookstoreBookSelectorMock = new Mocker(BookstoreBookSelector.class)
-            .setBehavior('getListByBookstoreId', new List<Bookstore_Book__c>());
+            .setBehavior('getListByBookstoreIds', new List<Bookstore_Book__c>());
         ObjectFactory.mocks.put(
             BookstoreBookSelector.class.getName(),
             (BookstoreBookSelector)BookstoreBookSelectorMock.getMock()
@@ -49,7 +49,7 @@ public with sharing class GetBooksNotInBookstoreServiceTest {
 
         // create mocks
         Mocker BookstoreBookSelectorMock = new Mocker(BookstoreBookSelector.class)
-            .setBehavior('getListByBookstoreId', new List<Bookstore_Book__c>{bookstoreBookForTest});
+            .setBehavior('getListByBookstoreIds', new List<Bookstore_Book__c>{bookstoreBookForTest});
         ObjectFactory.mocks.put(
             BookstoreBookSelector.class.getName(),
             (BookstoreBookSelector)BookstoreBookSelectorMock.getMock()
@@ -83,7 +83,7 @@ public with sharing class GetBooksNotInBookstoreServiceTest {
 
         // create mocks
         Mocker BookstoreBookSelectorMock = new Mocker(BookstoreBookSelector.class)
-            .setBehavior('getListByBookstoreId', new List<Bookstore_Book__c>{bookstoreBookForTest});
+            .setBehavior('getListByBookstoreIds', new List<Bookstore_Book__c>{bookstoreBookForTest});
         ObjectFactory.mocks.put(
             BookstoreBookSelector.class.getName(),
             (BookstoreBookSelector)BookstoreBookSelectorMock.getMock()
@@ -102,6 +102,6 @@ public with sharing class GetBooksNotInBookstoreServiceTest {
 
         // assert
         BookSelectorMock.assertMethodExecutionCount('getListNotInIds', 1);
-        BookstoreBookSelectorMock.assertMethodExecutionCount('getListByBookstoreId', 1);
+        BookstoreBookSelectorMock.assertMethodExecutionCount('getListByBookstoreIds', 1);
     }
 }
