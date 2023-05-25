@@ -60,3 +60,5 @@ IlluminatedCloud
 **/profiles/Admin.profile-meta.xml
 **/profiles/Trial Customer Portal User.profile-meta.xml
 force-app/main/default/settings/Security.settings-meta.xml
+package-lock.json
+package.json

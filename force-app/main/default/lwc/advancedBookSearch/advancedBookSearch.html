@@ -1,7 +1,7 @@
 <template>
     <lightning-card>
-        <div class="slds-grid slds-gutters">
-            <div class="slds-col">
+        <lightning-layout horizontal-align="spread">
+            <lightning-layout-item size="6">
                 <lightning-input
                     value={name} 
                     onchange={handleNameInput} 
@@ -29,8 +29,8 @@
                     class="slds-p-horizontal_x-large slds-p-vertical_medium" 
                     label="Publish Date">
                 </lightning-input>
-            </div>
-            <div class="slds-col">
+            </lightning-layout-item>
+            <lightning-layout-item size="6">
                 <div class="slds-card slds-p-horizontal_x-large slds-p-vertical_medium">
                     <c-combobox-autocomplete-wrapper
                         object-name={publisherApiName}
@@ -63,8 +63,8 @@
                     class="slds-p-horizontal_x-large slds-p-vertical_medium" 
                     label="Term">
                 </lightning-input>
-            </div>
-        </div>
+            </lightning-layout-item>
+        </lightning-layout>
         <div class="slds-card slds-p-horizontal_x-large slds-p-vertical_medium">
             <lightning-slider
                 classes="slds-p-horizontal_x-large slds-p-vertical_medium"

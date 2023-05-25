@@ -46,4 +46,20 @@ public with sharing class BookstoreBookSelector implements CustomObject {
                 Bookstore__c
         ];
     }
+
+    /**
+     * @param bookstoreId certain bookstore id
+     * 
+     * @return Bookstore_Book__c records with matching Bookstore__c
+     */
+    public List<Bookstore_Book__c> getListByBookstoreId(Id bookstoreId) {
+        return [
+            SELECT
+                Book__c
+            FROM
+                Bookstore_Book__c
+            WHERE
+                Bookstore__c = :bookstoreId
+        ];
+    }
 }
