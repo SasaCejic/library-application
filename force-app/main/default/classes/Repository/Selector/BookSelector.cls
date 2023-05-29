@@ -47,4 +47,18 @@ public with sharing class BookSelector implements CustomObject {
             LIMIT 1
         ];
     }
+
+    /**
+     * @param bookISBNs - set of book ISBNs to retrieve books
+     */
+    public list<Book__c> getListByISBNs(Set<String> setOfISBNs) {
+        return [
+            SELECT
+                Id,
+                Name,
+                ISBN__c
+            FROM Book__c
+            WHERE ISBN__c IN :setOfISBNs
+        ];
+    }
 }
