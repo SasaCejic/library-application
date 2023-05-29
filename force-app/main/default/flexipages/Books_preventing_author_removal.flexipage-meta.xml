@@ -10,7 +10,7 @@
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Books_preventing_author_removal</masterLabel>
+    <masterLabel>Books Preventing Author Removal</masterLabel>
     <template>
         <name>flexipage:defaultAppHomeTemplate</name>
     </template>

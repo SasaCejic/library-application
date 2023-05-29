@@ -457,6 +457,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Books_preventing_author_removal</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Books_preventing_publisher_removal</tab>
         <visibility>Visible</visibility>
     </tabSettings>
