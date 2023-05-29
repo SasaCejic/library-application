@@ -15,6 +15,20 @@ public with sharing class BookController {
     }
 
     /**
+     * Call BookService class method to get
+     * Book__c record with certain Id value
+     * 
+     * @param bookId certain book id
+     * 
+     * @return Book__c object record
+     */
+    @AuraEnabled(cacheable = true)
+    public static Book__c getBookById(Id bookId) {
+        BookSelector bookSelector = (BookSelector) new ObjectFactory().createObject(BookSelector.class);
+        return bookSelector.getBookById(bookId);
+    }
+
+    /*
      * Method sends email to the user that bought the book
      * @param emailAddress - email address of the user that bought the book
      * @param bookName - name of the book user bought
