@@ -47,16 +47,17 @@ public with sharing class ControllerIntegrationTest {
         TestFactory testFactory = new TestFactory();
 
         //create and insert Author__c object
-        Author__c author = testFactory.createAuthor(true, false);
-
+        Author__c author = testFactory.createAuthor(false);
+        insert author;
         // create and insert Publisher__c object
-        Publisher__c publisher = testFactory.createPublisher(true, false);
-        
+        Publisher__c publisher = testFactory.createPublisher(false);
+        insert publisher;
         //create and insert Author_Publisher__c object
-        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, true, false);
-
+        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, false);
+        insert authorPublisher;
         //create and insert Book__c object
-        Book__c book = testFactory.createBook(publisher.Id, author.Id, true, false);
+        Book__c book = testFactory.createBook(publisher.Id, author.Id, false);
+        insert book;
 
         // execute
         Test.startTest();

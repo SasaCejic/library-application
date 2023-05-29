@@ -9,14 +9,14 @@ public with sharing class BookReservationValidationServiceTest {
     public static void validateSelectedBook_WillUseCorrectSelector() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Bookstore__c bookstore = testFactory.createBookstore(false, true);
-        Publisher__c publisher = testFactory.createPublisher(false, true);
-        Author__c author = testFactory.createAuthor(false, true);
-        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, false, true);
-        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, false, true);
-        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, false, true);
-        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, false, true);
-        Book_Reservation__c bookReservation = testFactory.createBookReservation(bookstore.Id, book.Id, false, true);
+        Bookstore__c bookstore = testFactory.createBookstore(true);
+        Publisher__c publisher = testFactory.createPublisher(true);
+        Author__c author = testFactory.createAuthor(true);
+        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, true);
+        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, true);
+        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, true);
+        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, true);
+        Book_Reservation__c bookReservation = testFactory.createBookReservation(bookstore.Id, book.Id, true);
 
         // create mocks
         Mocker bookstoreBookSelectorMock = new Mocker(BookstoreBookSelector.class)
@@ -38,14 +38,22 @@ public with sharing class BookReservationValidationServiceTest {
     public static void validateSelectedBook_WillNotAddError_IfThereIsBookInBookstore() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Bookstore__c bookstore = testFactory.createBookstore(true, false);
-        Publisher__c publisher = testFactory.createPublisher(true, false);
-        Author__c author = testFactory.createAuthor(true, false);
-        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, true, false);
-        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, true, false);
-        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, true, false);
-        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, true, false);
-        Book_Reservation__c bookReservation = testFactory.createBookReservation(bookstore.Id, book.Id, true, false);
+        Bookstore__c bookstore = testFactory.createBookstore(false);
+        insert bookstore;
+        Publisher__c publisher = testFactory.createPublisher(false);
+        insert publisher;
+        Author__c author = testFactory.createAuthor(false);
+        insert author;
+        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, false);
+        insert bookstorePublisher;
+        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, false);
+        insert authorPublisher;
+        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, false);
+        insert book;
+        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, false);
+        insert bookstoreBook;
+        Book_Reservation__c bookReservation = testFactory.createBookReservation(bookstore.Id, book.Id, false);
+        insert bookReservation;
 
         // execute
         BookReservationValidationService bookReservationValidationService = new BookReservationValidationService();
@@ -59,14 +67,14 @@ public with sharing class BookReservationValidationServiceTest {
     public static void validateSelectedBook_WillAddError_IfThereIsNoBookInSelectedBookstoreWhenRecordIsBeingCreated() {
        // create data
        TestFactory testFactory = new TestFactory();
-       Bookstore__c bookstore = testFactory.createBookstore(false, true);
-       Publisher__c publisher = testFactory.createPublisher(false, true);
-       Author__c author = testFactory.createAuthor(false, true);
-       Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, false, true);
-       Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, false, true);
-       Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, false, true);
-       Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, false, true);
-       Book_Reservation__c bookReservation = testFactory.createBookReservation(bookstore.Id, book.Id, false, true);
+       Bookstore__c bookstore = testFactory.createBookstore(true);
+       Publisher__c publisher = testFactory.createPublisher(true);
+       Author__c author = testFactory.createAuthor(true);
+       Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, true);
+       Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, true);
+       Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, true);
+       Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, true);
+       Book_Reservation__c bookReservation = testFactory.createBookReservation(bookstore.Id, book.Id, true);
 
        // create mocks
        Mocker bookstoreBookSelectorMock = new Mocker(BookstoreBookSelector.class)
@@ -89,14 +97,22 @@ public with sharing class BookReservationValidationServiceTest {
     public static void validateSelectedBook_WillAddError_IfThereIsNoBookInBookstoreWhenRecordIsBeingUpdated() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Bookstore__c bookstore = testFactory.createBookstore(true, false);
-        Publisher__c publisher = testFactory.createPublisher(true, false);
-        Author__c author = testFactory.createAuthor(true, false);
-        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, true, false);
-        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, true, false);
-        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, true, false);
-        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, true, false);
-        Book_Reservation__c bookReservation = testFactory.createBookReservation(bookstore.Id, book.Id, true, false);
+        Bookstore__c bookstore = testFactory.createBookstore(false);
+        insert bookstore;
+        Publisher__c publisher = testFactory.createPublisher(false);
+        insert publisher;
+        Author__c author = testFactory.createAuthor(false);
+        insert author;
+        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, false);
+        insert bookstorePublisher;
+        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, false);
+        insert authorPublisher;
+        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, false);
+        insert book;
+        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, false);
+        insert bookstoreBook;
+        Book_Reservation__c bookReservation = testFactory.createBookReservation(bookstore.Id, book.Id, false);
+        insert bookReservation;
         delete bookstoreBook;
         bookReservation.Quantity__c = 2;
 
@@ -113,13 +129,20 @@ public with sharing class BookReservationValidationServiceTest {
     public static void validateSelectedBook_WillAddError_IfThereAreNoEnoughBooksWhenRecordIsBeingInserted() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Bookstore__c bookstore = testFactory.createBookstore(true, false);
-        Publisher__c publisher = testFactory.createPublisher(true, false);
-        Author__c author = testFactory.createAuthor(true, false);
-        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, true, false);
-        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, true, false);
-        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, true, false);
-        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, true, false);
+        Bookstore__c bookstore = testFactory.createBookstore(false);
+        insert bookstore;
+        Publisher__c publisher = testFactory.createPublisher(false);
+        insert publisher;
+        Author__c author = testFactory.createAuthor(false);
+        insert author;
+        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, false);
+        insert bookstorePublisher;
+        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, false);
+        insert authorPublisher;
+        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, false);
+        insert book;
+        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, false);
+        insert bookstoreBook;
         Book_Reservation__c bookReservation = new Book_Reservation__c(Bookstore__c = bookstore.Id, Book__c = book.Id, Quantity__c = 11, Price__c = 10.59);
 
         Test.startTest();
@@ -134,14 +157,22 @@ public with sharing class BookReservationValidationServiceTest {
     public static void validateSelectedBook_WillAddError_IfThereAreNoEnoughBooksWhenRecordIsBeingUpdated() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Bookstore__c bookstore = testFactory.createBookstore(true, false);
-        Publisher__c publisher = testFactory.createPublisher(true, false);
-        Author__c author = testFactory.createAuthor(true, false);
-        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, true, false);
-        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, true, false);
-        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, true, false);
-        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, true, false);
-        Book_Reservation__c bookReservation = testFactory.createBookReservation(bookstore.Id, book.Id, true, false);
+        Bookstore__c bookstore = testFactory.createBookstore(false);
+        insert bookstore;
+        Publisher__c publisher = testFactory.createPublisher(false);
+        insert publisher;
+        Author__c author = testFactory.createAuthor(false);
+        insert author;
+        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, false);
+        insert bookstorePublisher;
+        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, false);
+        insert authorPublisher;
+        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, false);
+        insert book;
+        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, false);
+        insert bookstoreBook;
+        Book_Reservation__c bookReservation = testFactory.createBookReservation(bookstore.Id, book.Id, false);
+        insert bookReservation;
         bookReservation.Quantity__c = 11;
 
         Test.startTest();
@@ -156,15 +187,24 @@ public with sharing class BookReservationValidationServiceTest {
     public static void validateSelectedBook_WillAddOneError_IfOneBookOutOfTwoIsNotAddedToBookstoreWhenRecordIsBeingCreated() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Bookstore__c bookstore = testFactory.createBookstore(true, false);
-        Publisher__c publisher = testFactory.createPublisher(true, false);
-        Author__c author = testFactory.createAuthor(true, false);
-        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, true, false);
-        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, true, false);
-        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, true, false);
-        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, true, false);
+        Bookstore__c bookstore = testFactory.createBookstore(false);
+        insert bookstore;
+        Publisher__c publisher = testFactory.createPublisher(false);
+        insert publisher;
+        Author__c author = testFactory.createAuthor(false);
+        insert author;
+        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, false);
+        insert bookstorePublisher;
+        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, false);
+        insert authorPublisher;
+        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, false);
+        insert book;
+        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, false);
+        insert bookstoreBook;
         Book_Reservation__c bookReservation1 = new Book_Reservation__c(Bookstore__c = bookstore.Id, Book__c = book.Id, Quantity__c = 1, Price__c = 10.59);
-        Book__c book1 = testFactory.createPaperBook(publisher.Id, author.Id, true, false);
+        Book__c book1 = testFactory.createPaperBook(publisher.Id, author.Id, false);
+        book1.ISBN__c = '124462465';
+        insert book1;
         Book_Reservation__c bookReservation2 = new Book_Reservation__c(Bookstore__c = bookstore.Id, Book__c = book1.Id, Quantity__c = 1, Price__c = 10.59);
 
         List<Book_Reservation__c> reservations = new List<Book_Reservation__c>{bookReservation1, bookReservation2};
@@ -183,17 +223,29 @@ public with sharing class BookReservationValidationServiceTest {
     public static void validateSelectedBook_WillAddOneError_IfOneBookOutOfTwoIsNotAddedToBookstoreWhenRecordIsBeingUpdated() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Bookstore__c bookstore = testFactory.createBookstore(true, false);
-        Publisher__c publisher = testFactory.createPublisher(true, false);
-        Author__c author = testFactory.createAuthor(true, false);
-        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, true, false);
-        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, true, false);
-        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, true, false);
-        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, true, false);
-        Book_Reservation__c bookReservation1 = testFactory.createBookReservation(bookstore.Id, book.Id, true, false);
-        Book__c book1 = testFactory.createPaperBook(publisher.Id, author.Id, true, false);
-        Bookstore_Book__c bookstoreBook1 = testFactory.createBookstoreBook(book1.Id, bookstore.Id, true, false);
-        Book_Reservation__c bookReservation2 = testFactory.createBookReservation(bookstore.Id, book1.Id, true, false);
+        Bookstore__c bookstore = testFactory.createBookstore(false);
+        insert bookstore;
+        Publisher__c publisher = testFactory.createPublisher(false);
+        insert publisher;
+        Author__c author = testFactory.createAuthor(false);
+        insert author;
+        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, false);
+        insert bookstorePublisher;
+        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, false);
+        insert authorPublisher;
+        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, false);
+        insert book;
+        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, false);
+        insert bookstoreBook;
+        Book_Reservation__c bookReservation1 = testFactory.createBookReservation(bookstore.Id, book.Id, false);
+        insert bookReservation1;
+        Book__c book1 = testFactory.createPaperBook(publisher.Id, author.Id, false);
+        book1.ISBN__c = '21453425';
+        insert book1;
+        Bookstore_Book__c bookstoreBook1 = testFactory.createBookstoreBook(book1.Id, bookstore.Id, false);
+        insert bookstoreBook1;
+        Book_Reservation__c bookReservation2 = testFactory.createBookReservation(bookstore.Id, book1.Id, false);
+        insert bookReservation2;
         delete bookstoreBook1;
         bookReservation1.Quantity__c = 3;
         bookReservation2.Quantity__c = 4;

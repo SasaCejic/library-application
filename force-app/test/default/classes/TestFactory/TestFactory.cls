@@ -113,6 +113,7 @@ public with sharing class TestFactory {
         currentBook.Language__c = 'english';
         currentBook.Categories__c = 'fantasy';
         currentBook.Price__c = 200;
+        currentBook.Print_Length__c = 200;
         currentBook.Publisher__c = publisherId;
         currentBook.Author__c = authorId;
         currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
@@ -231,25 +232,6 @@ public with sharing class TestFactory {
                           TimeZoneSidKey='America/Los_Angeles', UserName='user12562d53@testorg.com',
                           ProfileId = p.Id);
         return user;
-    }
-
-    /*
-     * Create mail for testing
-     */
-    public Messaging.SingleEmailMessage createMail() {
-        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-        mail.setSubject(mailDetails.get('subject'));
-        mail.setPlainTextBody(mailDetails.get('body'));
-        mail.setToAddresses(new String[] {mailDetails.get('address')});
-        return mail;
-    }
-
-    /*
-     * Method creates a fake Database.SaveResult for testing
-     */
-    public Database.SaveResult createSuccessDatabaseSaveResult() {
-        Database.SaveResult sr = (Database.SaveResult) JSON.deserialize('{"success":true,"id":"0013000000abcde"}', Database.SaveResult.class);
-        return sr;
     }
     
     /**
