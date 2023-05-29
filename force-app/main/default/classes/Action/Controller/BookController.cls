@@ -46,4 +46,17 @@ public with sharing class BookController {
             .createObject(SendPurchaseEmailConfirmationService.class);
         service.sendMail(insertService.getResponse().isSuccess(), emailAddress, bookName, bookPrice);
     }
+
+    /**
+     * @param bookSearchDTO - Object containing all relevant search keys
+     * @param limitSize - Maximum number of records to return
+     * @param offset - Offset for querying records
+     */
+    @AuraEnabled(cacheable=true)
+    public static List<Book__c> getBooksFromSearchDTO(BookSearchDTO bookSearchDTO, Integer limitSize, Integer offset) {
+        BookSearchService service = (BookSearchService) new ObjectFactory()
+            .createObject(BookSearchService.class);
+        service.getBooksFromSearchDTO(bookSearchDTO, limitSize, offset);
+        return service.getResponse();
+    }
 }

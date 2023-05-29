@@ -72,4 +72,23 @@ public with sharing class BookControllerTest {
         insertBookPurchaseServiceMock.assertMethodExecutionCount('insertPurchase', 1);
         sendPurchaseEmailConfirmationServiceMock.assertMethodExecutionCount('sendMail', 1);
     }
+
+    @isTest
+    public static void getBooksFromSearchDTO_willUseService() {
+        // create mock
+        Mocker bookSearchServiceMock = new Mocker(BookSearchService.class);
+        bookSearchServiceMock.setBehavior('getResponse', new List<Book__c>{});
+        bookSearchServiceMock.setBehavior('getBooksFromSearchDTO', new List<Book__c>{});
+        ObjectFactory.mocks.put(
+            BookSearchService.class.getName(),
+            (BookSearchService) bookSearchServiceMock.getMock()
+        );
+
+        // execute
+        List<Book__c> searchedBooks = BookController.getBooksFromSearchDTO(new BookSearchDTO(), 5, 5);
+
+        // assert
+        bookSearchServiceMock.assertMethodExecutionCount('getBooksFromSearchDTO', 1);
+        bookSearchServiceMock.assertMethodExecutionCount('getResponse', 1);
+    }
 }

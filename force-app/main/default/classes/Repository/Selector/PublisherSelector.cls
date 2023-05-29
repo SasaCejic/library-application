@@ -16,4 +16,5 @@ public with sharing class PublisherSelector implements CustomObject{
             LIMIT :recordLimit
         ];
     }
+
 }
