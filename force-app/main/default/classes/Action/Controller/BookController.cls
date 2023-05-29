@@ -32,4 +32,16 @@ public with sharing class BookController {
             .createObject(SendPurchaseEmailConfirmationService.class);
         service.sendMail(insertService.getResponse().isSuccess(), emailAddress, bookName, bookPrice);
     }
+
+    /**
+     * @param authorPublisherForDeleteId - Id of the Author_Publisher__c record being deleted
+     * @param recordLimit - Number of Book__c records to be retrieved from database
+     */
+    @AuraEnabled(cacheable = true)
+    public static List<Book__c> returnBooksCausingErrorOnAuthPubDel(Id authorPublisherForDeleteId, Integer recordLimit) {
+        GetRelatedBooksOnAuthPubDelService service = (GetRelatedBooksOnAuthPubDelService) new ObjectFactory()
+            .createObject(GetRelatedBooksOnAuthPubDelService.class);
+        service.getRelatedBooks(authorPublisherForDeleteId, recordLimit);
+        return service.getResponse();
+    }
 }
