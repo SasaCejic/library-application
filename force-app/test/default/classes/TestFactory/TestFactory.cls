@@ -40,7 +40,7 @@ public with sharing class TestFactory {
         'body' => 'Test body',
         'address' => 'testaddress@gmail.com'
     };
-
+    
     @TestVisible
     public Map<String, String> standardAuthorsSettingDetails = new Map<String, String>{
         'name' => 'out-of-the-box authors setting'
