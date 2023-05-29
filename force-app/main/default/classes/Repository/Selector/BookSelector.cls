@@ -39,10 +39,9 @@ public with sharing class BookSelector implements CustomObject {
             ' (select Bookstore__c, Bookstore__r.Name from Bookstore_Books__r), Categories__c, Language__c, Description__c'+
             ' FROM Book__c {0}';
         queryString = String.format(queryString, new String[] {bookQueryConditions});
-        System.debug(queryString);
         return Database.query(queryString, AccessLevel.USER_MODE);
     }
-    
+
     /**
      * Get Book__c record by it's ID value
      * 

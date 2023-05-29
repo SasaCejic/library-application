@@ -62,7 +62,6 @@ public with sharing class TestFactory {
     @TestVisible
     public Map<String, String> bookSearchDTODetails = new Map<String, String>{
         'name' => 'book',
-        'ISBN' => '214215425',
         'languages' => 'english',
         'categories' => 'fantasy',
         'price' => '20',
@@ -230,7 +229,8 @@ public with sharing class TestFactory {
         Book__c currentBook = new Book__c();
         currentBook.Name = bookDetails.get('name');
         currentBook.Description__c = bookDetails.get('description');
-        currentBook.ISBN__c = bookDetails.get('ISBN');
+        Integer randomNumber = (Integer) (Math.random() * 90000000) + 10000000;
+        currentBook.ISBN__c = String.valueOf(randomNumber);
         currentBook.Language__c = bookDetails.get('language');
         currentBook.Categories__c = bookDetails.get('categories');
         currentBook.Hours_Of_Listening__c = Integer.valueOf(bookDetails.get('hoursOfListening'));
@@ -424,7 +424,7 @@ public with sharing class TestFactory {
         
         return newBookDTO;
     }
-    
+
     /**
      * Creates new Book_Reservation__c for testing
      */

@@ -95,8 +95,9 @@
         </lightning-dual-listbox>
 
         <div class="slds-card slds-p-horizontal_xx-large slds-m-horizontal_large slds-p-vertical_medium slds-clearfix">
-             <lightning-button onclick={handleBuyBook} label="Buy Digital Book" class="slds-float_right"></lightning-button>
-            <lightning-button onclick={handleBookSearch} label="Search" class="slds-float_right slds-m-horizontal_large"></lightning-button>
+            <lightning-button onclick={handleReserveBook} label="Reserve Paper Book" class="slds-float_right"></lightning-button>
+            <lightning-button onclick={handleBuyBook} label="Buy Digital Book" class="slds-float_right slds-m-horizontal_large"></lightning-button>
+            <lightning-button onclick={handleBookSearch} label="Search" class="slds-float_right"></lightning-button>
         </div>
 
         <div class="slds-m-horizontal_x-large slds-m-vertical_medium" lwc:if={books}>

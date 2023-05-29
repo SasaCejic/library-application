@@ -184,8 +184,7 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
   wireCategoriesPicklist({ data, error }) {
     if (data) {
       this.categoriesOptions = [...data.values];
-    }
-    else if (error) {
+    } else if (error) {
       this.showToast("Error", "Error while retrieving categories", "error");
     }
   }
@@ -200,8 +199,7 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
   wireLanguagesPicklist({ data, error }) {
     if (data) {
       this.languagesOptions = [...data.values];
-    }
-    else if (error) {
+    } else if (error) {
       this.showToast("Error", "Error while retrieving languages", "error");
     }
   }
@@ -212,7 +210,7 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
   handleNameInput(event) {
     this.name = event.target.value;
   }
-  
+
   handleISBNInput(event) {
     this.ISBN = event.target.value;
   }
@@ -220,7 +218,7 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
   handleAuthorSelectOption(event) {
     this.author = event.detail.value;
   }
-  
+
   handlePublishDateInput(event) {
     this.publishDate = event.target.value;
   }
@@ -290,9 +288,11 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
    */
   handleBookSearch() {
     if (this.template.querySelector("c-datatable-with-link-list")) {
-      this.template.querySelector("c-datatable-with-link-list").isLoading = true;
+      this.template.querySelector(
+        "c-datatable-with-link-list"
+      ).isLoading = true;
     }
-    
+
     //set DTO field values and reset data
     this.bookSearchDTO = {
       name: this.name,
@@ -324,8 +324,8 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
       bookSearchDTO: this.bookSearchDTO,
       limitSize: this.tableLoadStep,
       offset: this.tableOffset
-    }).then((data) => {
-
+    })
+      .then((data) => {
         let mappedBooks = data.map((recievedBook) => {
           let mappedBook = {};
 
@@ -351,26 +351,25 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
 
         if (mappedBooks.length < this.tableLoadStep) {
           this.moreToLoad = false;
-        }
-        else {
+        } else {
           this.moreToLoad = true;
         }
-      }).catch((err) => {
-
+      })
+      .catch((err) => {
         // Handle different type of errors
         if (err.body.message) {
           this.showToast("Error", err.body.message, "error");
-        }
-        else if (err.body.pageErrors) {
+        } else if (err.body.pageErrors) {
           this.showToast("Error", err.body.pageErrors[0].message, "error");
-        }
-        else {
+        } else {
           this.showToast("Error", "Error while searching books", "error");
         }
-      }).finally(() => {
-        
+      })
+      .finally(() => {
         if (this.template.querySelector("c-datatable-with-link-list")) {
-          this.template.querySelector("c-datatable-with-link-list").isLoading = false;
+          this.template.querySelector(
+            "c-datatable-with-link-list"
+          ).isLoading = false;
         }
       });
   }
@@ -383,6 +382,18 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
       type: "standard__component",
       attributes: {
         componentName: "c__buyDigitalBookWrapper"
+      }
+    });
+  }
+
+  /*
+   * Navigates to Reserve Paper Book custom component
+   */
+  handleReserveBook() {
+    this[NavigationMixin.Navigate]({
+      type: "standard__component",
+      attributes: {
+        componentName: "c__reservePaperBookWrapper"
       }
     });
   }

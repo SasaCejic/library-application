@@ -68,6 +68,7 @@ public with sharing class BookControllerIntegrationTest {
             bookReview = testFactory.createBookReview(book.Id, true, false);
         }
         BookSearchDTO searchDTO = testFactory.createBookSearchDTO(author.Id, publisher.Id, bookstore.Id);
+        searchDTO.ISBN=book.ISBN__c;
         
         // execute
         Test.startTest();

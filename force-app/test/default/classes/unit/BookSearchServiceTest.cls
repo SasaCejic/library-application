@@ -42,9 +42,9 @@ public with sharing class BookSearchServiceTest {
     //create data
     BookSearchDTO bookDTO = new TestFactory()
       .createBookSearchDTO(
-        testFactory.getFakeId(Author__c.SObjectType, false),
-        testFactory.getFakeId(Publisher__c.SObjectType, false),
-        testFactory.getFakeId(Bookstore__c.SObjectType, false)
+        testFactory.getFakeId(Author__c.SObjectType, true),
+        testFactory.getFakeId(Publisher__c.SObjectType, true),
+        testFactory.getFakeId(Bookstore__c.SObjectType, true)
       );
 
     // execute
@@ -200,7 +200,7 @@ public with sharing class BookSearchServiceTest {
     //create BookSearchDTO
     BookSearchDTO bookDTO = new BookSearchDTO();
     bookDTO.name = 'book';
-    bookDTO.ISBN = '214215425';
+    bookDTO.ISBN = book.ISBN__c;
 
     // create mock
     Mocker bookSelectorMock = new Mocker(BookSelector.class)
@@ -244,7 +244,7 @@ public with sharing class BookSearchServiceTest {
     //create BookSearchDTO
     BookSearchDTO bookDTO = new BookSearchDTO();
     bookDTO.name = 'book';
-    bookDTO.ISBN = '214215425';
+    bookDTO.ISBN = book.ISBN__c;
     bookDTO.author = author.Id;
 
     // create mock
@@ -289,7 +289,7 @@ public with sharing class BookSearchServiceTest {
     //create BookSearchDTO
     BookSearchDTO bookDTO = new BookSearchDTO();
     bookDTO.name = 'book';
-    bookDTO.ISBN = '214215425';
+    bookDTO.ISBN = book.ISBN__c;
     bookDTO.author = author.Id;
     bookDTO.publishDate = Date.newInstance(2022, 1, 1);
 
@@ -335,7 +335,7 @@ public with sharing class BookSearchServiceTest {
     //create BookSearchDTO
     BookSearchDTO bookDTO = new BookSearchDTO();
     bookDTO.name = 'book';
-    bookDTO.ISBN = '214215425';
+    bookDTO.ISBN = book.ISBN__c;
     bookDTO.author = author.Id;
     bookDTO.publishDate = Date.newInstance(2022, 1, 1);
     bookDTO.publisher = publisher.Id;
@@ -401,7 +401,7 @@ public with sharing class BookSearchServiceTest {
     //create BookSearchDTO
     BookSearchDTO bookDTO = new BookSearchDTO();
     bookDTO.name = 'book';
-    bookDTO.ISBN = '214215425';
+    bookDTO.ISBN = book.ISBN__c;
     bookDTO.author = author.Id;
     bookDTO.publishDate = Date.newInstance(2022, 1, 1);
     bookDTO.publisher = publisher.Id;
@@ -414,6 +414,15 @@ public with sharing class BookSearchServiceTest {
     ObjectFactory.mocks.put(
       BookSelector.class.getName(),
       (BookSelector) bookSelectorMock.getMock()
+    );
+
+    //create mock
+    Mocker bookstoreBookMock = new Mocker(BookstoreBookSelector.class)
+      .setBehavior('getListByBookstoreId', new List<Bookstore_Book__c>{bookstoreBook});
+    // set mock
+    ObjectFactory.mocks.put(
+      BookstoreBookSelector.class.getName(),
+      (BookstoreBookSelector) bookstoreBookMock.getMock()
     );
 
     // execute
@@ -468,7 +477,7 @@ public with sharing class BookSearchServiceTest {
     //create BookSearchDTO
     BookSearchDTO bookDTO = new BookSearchDTO();
     bookDTO.name = 'book';
-    bookDTO.ISBN = '214215425';
+    bookDTO.ISBN = book.ISBN__c;
     bookDTO.author = author.Id;
     bookDTO.publishDate = Date.newInstance(2022, 1, 1);
     bookDTO.publisher = publisher.Id;
@@ -482,6 +491,15 @@ public with sharing class BookSearchServiceTest {
     ObjectFactory.mocks.put(
       BookSelector.class.getName(),
       (BookSelector) bookSelectorMock.getMock()
+    );
+
+    //create mock
+    Mocker bookstoreBookMock = new Mocker(BookstoreBookSelector.class)
+      .setBehavior('getListByBookstoreId', new List<Bookstore_Book__c>{bookstoreBook});
+    // set mock
+    ObjectFactory.mocks.put(
+      BookstoreBookSelector.class.getName(),
+      (BookstoreBookSelector) bookstoreBookMock.getMock()
     );
 
     // execute
@@ -536,7 +554,7 @@ public with sharing class BookSearchServiceTest {
     //create BookSearchDTO
     BookSearchDTO bookDTO = new BookSearchDTO();
     bookDTO.name = 'book';
-    bookDTO.ISBN = '214215425';
+    bookDTO.ISBN = book.ISBN__c;
     bookDTO.author = author.Id;
     bookDTO.publishDate = Date.newInstance(2022, 1, 1);
     bookDTO.publisher = publisher.Id;
@@ -551,6 +569,15 @@ public with sharing class BookSearchServiceTest {
     ObjectFactory.mocks.put(
       BookSelector.class.getName(),
       (BookSelector) bookSelectorMock.getMock()
+    );
+
+    //create mock
+    Mocker bookstoreBookMock = new Mocker(BookstoreBookSelector.class)
+      .setBehavior('getListByBookstoreId', new List<Bookstore_Book__c>{bookstoreBook});
+    // set mock
+    ObjectFactory.mocks.put(
+      BookstoreBookSelector.class.getName(),
+      (BookstoreBookSelector) bookstoreBookMock.getMock()
     );
 
     // execute
@@ -605,7 +632,7 @@ public with sharing class BookSearchServiceTest {
     //create BookSearchDTO
     BookSearchDTO bookDTO = new BookSearchDTO();
     bookDTO.name = 'book';
-    bookDTO.ISBN = '214215425';
+    bookDTO.ISBN = book.ISBN__c;
     bookDTO.author = author.Id;
     bookDTO.publishDate = Date.newInstance(2022, 1, 1);
     bookDTO.publisher = publisher.Id;
@@ -621,6 +648,15 @@ public with sharing class BookSearchServiceTest {
     ObjectFactory.mocks.put(
       BookSelector.class.getName(),
       (BookSelector) bookSelectorMock.getMock()
+    );
+
+    //create mock
+    Mocker bookstoreBookMock = new Mocker(BookstoreBookSelector.class)
+      .setBehavior('getListByBookstoreId', new List<Bookstore_Book__c>{bookstoreBook});
+    // set mock
+    ObjectFactory.mocks.put(
+      BookstoreBookSelector.class.getName(),
+      (BookstoreBookSelector) bookstoreBookMock.getMock()
     );
 
     // execute
@@ -675,7 +711,7 @@ public with sharing class BookSearchServiceTest {
     //create BookSearchDTO
     BookSearchDTO bookDTO = new BookSearchDTO();
     bookDTO.name = 'book';
-    bookDTO.ISBN = '214215425';
+    bookDTO.ISBN = book.ISBN__c;
     bookDTO.author = author.Id;
     bookDTO.publishDate = Date.newInstance(2022, 1, 1);
     bookDTO.publisher = publisher.Id;
@@ -692,6 +728,15 @@ public with sharing class BookSearchServiceTest {
     ObjectFactory.mocks.put(
       BookSelector.class.getName(),
       (BookSelector) bookSelectorMock.getMock()
+    );
+
+    //create mock
+    Mocker bookstoreBookMock = new Mocker(BookstoreBookSelector.class)
+      .setBehavior('getListByBookstoreId', new List<Bookstore_Book__c>{bookstoreBook});
+    // set mock
+    ObjectFactory.mocks.put(
+      BookstoreBookSelector.class.getName(),
+      (BookstoreBookSelector) bookstoreBookMock.getMock()
     );
 
     // execute

@@ -190,7 +190,6 @@ public with sharing class BookSearchService implements CustomObject {
        * Iterating through book and bookstore_book lists, filters books that exist in  selected bookstore
        */
       if (!String.isBlank(bookSearchDTO.bookstore)) {
-        bookQueryConditions += getQueryConjunction(bookQueryConditions);
         List<Bookstore_Book__c> bookstore_books = bookstoreBookSelector.getListByBookstoreId(
           bookSearchDTO.bookstore
         );
