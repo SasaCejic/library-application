@@ -16,4 +16,18 @@ public with sharing class AuthorPublisherSelector implements CustomObject{
         ];
     }
 
+    /**
+     * @param Id - Id of the Bookstore_Publisher__c record retrieved
+     */
+    public Author_Publisher__c getRecordById(Id id){
+        return [
+            SELECT 
+                Id,
+                Author__c,
+                Publisher__c
+            FROM Author_Publisher__c
+            WHERE Id =: id
+        ];
+    }
+
 }

@@ -30,4 +30,20 @@ public with sharing class BookSelector implements CustomObject {
             LIMIT :recordLimit
         ];
     }
+
+    /*
+     * @param bookIds - set of author Ids to retieve by
+     */
+    public List<Book__c> getListByAuthorIds(Set<Id> authorIds, Integer recordLimit) {
+        return [
+            SELECT
+                Id,
+                Name,
+                Author__r.Name,
+                Publisher__r.Name
+            FROM Book__c
+            WHERE Author__c IN :authorIds
+            LIMIT :recordLimit
+        ];
+    }
 }
