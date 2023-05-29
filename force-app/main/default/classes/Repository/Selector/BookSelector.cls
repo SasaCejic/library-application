@@ -42,4 +42,21 @@ public with sharing class BookSelector implements CustomObject {
         System.debug(queryString);
         return Database.query(queryString, AccessLevel.USER_MODE);
     }
+    
+    /**
+     * Get Book__c record by it's ID value
+     * 
+     * @param bookId id of the book we are looking for
+     */
+    public Book__c getBookById (Id bookId) {
+        return [
+            SELECT
+                Name,
+                Price__c
+            FROM
+                Book__c
+            WHERE Id = :bookId
+            LIMIT 1
+        ];
+    }
 }

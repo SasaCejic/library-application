@@ -22,7 +22,6 @@ public with sharing class TestFactory {
     public Map<String, String> bookDetails = new Map<String, String>{
         'name' => 'book',
         'description' => 'bookdesc',
-        'ISBN' => '214215425',
         'language' => 'english',
         'categories' => 'fantasy',
         'price' => '20',
@@ -36,17 +35,17 @@ public with sharing class TestFactory {
     };
 
     @TestVisible
-    public Map<String, String> standardAuthorsSettingDetails = new Map<String, String>{
-        'name' => 'out-of-the-box authors setting'
-    };
-    
-    @TestVisible
     public Map<String, String> mailDetails = new Map<String, String> {
         'subject' => 'Test subject',
         'body' => 'Test body',
         'address' => 'testaddress@gmail.com'
     };
 
+    @TestVisible
+    public Map<String, String> standardAuthorsSettingDetails = new Map<String, String>{
+        'name' => 'out-of-the-box authors setting'
+    };
+    
     @TestVisible
     public Map<String, String> userDetails = new Map<String, String>{
         'lastName' => 'User',
@@ -94,8 +93,10 @@ public with sharing class TestFactory {
         Bookstore_Book__c newBookstoreBook = new Bookstore_Book__c();
         newBookstoreBook.Book__c = bookId;
         newBookstoreBook.Bookstore__c = bookstoreId;
-        
-        if (forInsert) {
+        newBookstoreBook.Quantity__c = 10;
+        newBookstoreBook.Number_Of_Active_Reservations__c = 0;
+
+        if(forInsert) {
             insert newBookstoreBook;
             return newBookstoreBook;
         }
@@ -160,7 +161,7 @@ public with sharing class TestFactory {
         return newPublisher;
     }
 
-    /*
+    /**
      * @param forInsert - Boolean value representing if we want to insert the record or not
      * @param publisherId - Id of a Publisher__c object which is a parent in master-detail relationship to Book__c
      * @param authorId - Id of an Author__c which is connected through lookup relationship with Book__c
@@ -170,13 +171,46 @@ public with sharing class TestFactory {
         Book__c currentBook = new Book__c();
         currentBook.Name = bookDetails.get('name');
         currentBook.Description__c = bookDetails.get('description');
-        currentBook.ISBN__c = bookDetails.get('ISBN');
+        Integer randomNumber = (Integer) (Math.random() * 90000000) + 10000000;
+        currentBook.ISBN__c = String.valueOf(randomNumber);
         currentBook.Language__c = bookDetails.get('language');
         currentBook.Categories__c = bookDetails.get('categories');
         currentBook.Price__c = Decimal.valueOf(bookDetails.get('price'));
         currentBook.Publisher__c = publisherId;
         currentBook.Author__c = authorId;
         currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
+        currentBook.Price__c = 19.99;
+
+        if(forInsert) {
+            insert currentBook;
+            return currentBook;
+        }
+        currentBook.Id = this.getFakeId(Book__c.SObjectType, simulateInsert);
+        return currentBook;
+    }
+
+    /**
+     * Create Book__c record with Paper record type
+     * 
+     * @param forInsert - Boolean value representing if we want to insert the record or not
+     * @param publisherId - Id of a Publisher__c object which is a parent in master-detail relationship to Book__c
+     * @param authorId - Id of an Author__c which is connected through lookup relationship with Book__c
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+     */
+    public Book__c createPaperBook(Id publisherId, Id authorId, Boolean forInsert, Boolean simulateInsert) {
+        Book__c currentBook = new Book__c();
+        currentBook.Name = bookDetails.get('name');
+        currentBook.recordTypeId = [SELECT Id FROM RecordType WHERE SObjectType = 'Book__c' AND Name = 'Paper Book'][0].Id;
+        currentBook.Description__c = bookDetails.get('description');
+        Integer randomNumber = (Integer) (Math.random() * 90000000) + 10000000;
+        currentBook.ISBN__c = String.valueOf(randomNumber);
+        currentBook.Language__c = bookDetails.get('language');
+        currentBook.Categories__c = bookDetails.get('categories');
+        currentBook.Print_Length__c = 100;
+        currentBook.Publisher__c = publisherId;
+        currentBook.Author__c = authorId;
+        currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
+        currentBook.Price__c = 19.99;
 
         if (forInsert) {
             insert currentBook;
@@ -317,7 +351,6 @@ public with sharing class TestFactory {
                           ProfileId = p.Id);
         return user;
     }
-
     /*
      * Create mail for testing
      */
@@ -390,6 +423,24 @@ public with sharing class TestFactory {
         newBookDTO.publishDate=Date.newInstance(2022, 1, 1);
         
         return newBookDTO;
+    }
+    
+    /**
+     * Creates new Book_Reservation__c for testing
+     */
+    public Book_Reservation__c createBookReservation(Id bookstoreId, Id bookId, Boolean forInsert, Boolean simulateInsert) {
+        Book_Reservation__c newBookReservation = new Book_Reservation__c();
+        newBookReservation.Bookstore__c = bookstoreId;
+        newBookReservation.Book__c = bookId;
+        newBookReservation.Quantity__c = 1;
+        newBookReservation.Price__c = 19.99;
+
+        if(forInsert) {
+            insert newBookReservation;
+            return newBookReservation;
+        }
+        newBookReservation.Id = getFakeId(Book_Reservation__c.SObjectType, simulateInsert);
+        return newBookReservation;
     }
 
 }

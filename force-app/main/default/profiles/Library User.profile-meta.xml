@@ -94,6 +94,26 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BookReservationTriggerHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookReservationTriggerHandlerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookReservationTriggerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookReservationValidationService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookReservationValidationServiceTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BookReviewSelector</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -370,6 +390,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>SendReservationEmailConfirmationService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SendReservationEmailConfirmationTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>StandardAuthorCreator</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -421,6 +449,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Book_Reservation__c.Price__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Book_Review__c.Comment__c</field>
         <readable>true</readable>
@@ -469,6 +502,11 @@
         <editable>false</editable>
         <field>Book__c.Record_Type_Uneditable__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Bookstore_Book__c.Number_Of_Active_Reservations__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -536,6 +574,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Book_Purchase__c-Book Purchase Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Book_Reservation__c-Book Reservation Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Book_Review__c-Book Review Layout</layout>
@@ -619,6 +660,15 @@
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Book_Reservation__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
@@ -685,7 +735,6 @@
     </pageAccesses>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>Book__c.Digital_Book</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -742,6 +791,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Publishers_not_working_with_bookstore</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Reserve_Paper_Book</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Salesforce</userLicense>

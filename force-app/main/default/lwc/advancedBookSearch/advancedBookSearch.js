@@ -185,7 +185,6 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
     if (data) {
       this.categoriesOptions = [...data.values];
     }
-    
     else if (error) {
       this.showToast("Error", "Error while retrieving categories", "error");
     }
@@ -202,7 +201,6 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
     if (data) {
       this.languagesOptions = [...data.values];
     }
-    
     else if (error) {
       this.showToast("Error", "Error while retrieving languages", "error");
     }
@@ -326,8 +324,7 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
       bookSearchDTO: this.bookSearchDTO,
       limitSize: this.tableLoadStep,
       offset: this.tableOffset
-    })
-      .then((data) => {
+    }).then((data) => {
 
         let mappedBooks = data.map((recievedBook) => {
           let mappedBook = {};
@@ -355,27 +352,22 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
         if (mappedBooks.length < this.tableLoadStep) {
           this.moreToLoad = false;
         }
-        
         else {
           this.moreToLoad = true;
         }
-      })
-      .catch((err) => {
+      }).catch((err) => {
 
         // Handle different type of errors
         if (err.body.message) {
           this.showToast("Error", err.body.message, "error");
         }
-        
         else if (err.body.pageErrors) {
           this.showToast("Error", err.body.pageErrors[0].message, "error");
         }
-        
         else {
           this.showToast("Error", "Error while searching books", "error");
         }
-      })
-      .finally(() => {
+      }).finally(() => {
         
         if (this.template.querySelector("c-datatable-with-link-list")) {
           this.template.querySelector("c-datatable-with-link-list").isLoading = false;
