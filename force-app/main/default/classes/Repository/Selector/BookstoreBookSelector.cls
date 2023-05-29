@@ -34,7 +34,7 @@ public with sharing class BookstoreBookSelector implements CustomObject {
      * 
      * @return Bookstore_Book__c records grouped by Bookstore__c field
      */
-    public List<AggregateResult> getListByAuthorId(Id authorId) {
+    public List<AggregateResult> getListByAuthorId (Id authorId) {
         return [
             SELECT
                 Bookstore__c
@@ -44,6 +44,34 @@ public with sharing class BookstoreBookSelector implements CustomObject {
                 Book__r.Author__c = :authorId
             GROUP BY
                 Bookstore__c
+        ];
+    }
+
+    /**
+     * Get Bookstore_Book__c object records with quantity field
+     * for given Bookstore and Book
+     * 
+     * @param bookstoreIds - Set of bookstore ids
+     * @param bookIds - Set of book ids
+     * 
+     * @return Bookstore_Book__c records with book quantity, Bookstore and Book values
+     */
+    public List<Bookstore_Book__c> getListByBookstoreAndBookIds (Set<Id> bookstoreIds, Set<Id> bookIds) {
+        return [
+            SELECT
+                Id,
+                Quantity__c,
+                Bookstore__c,
+                Book__c,
+                Book__r.Name,
+                Book__r.Price__c,
+                Number_Of_Active_Reservations__c
+            FROM 
+                Bookstore_Book__c
+            WHERE 
+                Bookstore__c IN :bookstoreIds
+            AND
+                Book__c IN :bookIds
         ];
     }
 }

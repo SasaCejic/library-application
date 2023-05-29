@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_Of_Active_Reservations_VR</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( Book__r.RecordType.DeveloperName  = &apos;Paper Book&apos;,
+       Number_Of_Active_Reservations__c  &gt;  Quantity__c )</errorConditionFormula>
+    <errorMessage>Number of active reservations cannot exceed the book quantity!</errorMessage>
+</ValidationRule>
