@@ -23,6 +23,25 @@ public with sharing class BookControllerTest {
     }
 
     @isTest
+    public static void getBookById_willUseSelector() {
+        // create mock
+        Mocker bookSelectorMock = new Mocker(BookSelector.class)
+            .setBehavior('getBookById', new Book__c());
+        // set mock
+        ObjectFactory.mocks.put(
+            BookSelector.class.getName(),
+            (BookSelector) bookSelectorMock.getMock()
+        );
+
+
+        // execute
+        Book__c book = BookController.getBookById(new TestFactory().getFakeId(Book__c.SObjectType, true));
+
+        // assert
+        bookSelectorMock.assertMethodExecutionCount('getBookById', 1);
+    }
+
+    @isTest
     public static void confirmDigitalBookPurchase_willUseServices() {
         // create mock data
         TestFactory testFactory = new TestFactory();

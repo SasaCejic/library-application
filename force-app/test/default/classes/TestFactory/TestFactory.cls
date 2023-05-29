@@ -22,6 +22,8 @@ public with sharing class TestFactory {
         Bookstore_Book__c newBookstoreBook = new Bookstore_Book__c();
         newBookstoreBook.Book__c = bookId;
         newBookstoreBook.Bookstore__c = bookstoreId;
+        newBookstoreBook.Quantity__c = 10;
+        newBookstoreBook.Number_Of_Active_Reservations__c = 0;
 
         // Generate Id based on simulateInsert
         newBookstoreBook.Id = this.getFakeId(Bookstore_Book__c.SObjectType, simulateInsert);
@@ -80,6 +82,31 @@ public with sharing class TestFactory {
      */
     public Book__c createBook(Id publisherId, Id authorId, Boolean simulateInsert) {
         Book__c currentBook = new Book__c();
+        currentBook.Name = 'book';
+        currentBook.Description__c = 'bookdesdc';
+        currentBook.ISBN__c = '2141342646';
+        currentBook.Language__c = 'english';
+        currentBook.Categories__c = 'fantasy';
+        currentBook.Price__c = 200;
+        currentBook.Publisher__c = publisherId;
+        currentBook.Author__c = authorId;
+        currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
+
+        // Generate fake Id
+        currentBook.Id = this.getFakeId(Book__c.SObjectType, simulateInsert);
+        return currentBook;
+    }
+
+    /**
+     * Create Book__c record with Paper record type
+     * 
+     * @param publisherId - Id of a Publisher__c object which is a parent in master-detail relationship to Book__c
+     * @param authorId - Id of an Author__c which is connected through lookup relationship with Book__c
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+     */
+    public Book__c createPaperBook(Id publisherId, Id authorId, Boolean simulateInsert) {
+        Book__c currentBook = new Book__c();
+        currentBook.recordTypeId = [SELECT Id FROM RecordType WHERE SObjectType = 'Book__c' AND Name = 'Paper Book'][0].Id;
         currentBook.Name = 'book';
         currentBook.Description__c = 'bookdesdc';
         currentBook.ISBN__c = '2141342646';
@@ -206,6 +233,25 @@ public with sharing class TestFactory {
         return user;
     }
 
+    /*
+     * Create mail for testing
+     */
+    public Messaging.SingleEmailMessage createMail() {
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        mail.setSubject(mailDetails.get('subject'));
+        mail.setPlainTextBody(mailDetails.get('body'));
+        mail.setToAddresses(new String[] {mailDetails.get('address')});
+        return mail;
+    }
+
+    /*
+     * Method creates a fake Database.SaveResult for testing
+     */
+    public Database.SaveResult createSuccessDatabaseSaveResult() {
+        Database.SaveResult sr = (Database.SaveResult) JSON.deserialize('{"success":true,"id":"0013000000abcde"}', Database.SaveResult.class);
+        return sr;
+    }
+    
     /**
      * Method for creating a new User
      * 
@@ -232,4 +278,19 @@ public with sharing class TestFactory {
         newUser.Id = this.getFakeId(User.SObjectType, simulateInsert);
         return newUser;
     }
+
+    /**
+     * Creates new Book_Reservation__c for testing
+     */
+    public Book_Reservation__c createBookReservation(Id bookstoreId, Id bookId, Boolean simulateInsert) {
+        Book_Reservation__c newBookReservation = new Book_Reservation__c();
+        newBookReservation.Bookstore__c = bookstoreId;
+        newBookReservation.Book__c = bookId;
+        newBookReservation.Quantity__c = 1;
+        newBookReservation.Price__c = 19.99;
+
+        newBookReservation.Id = getFakeId(Book_Reservation__c.SObjectType, simulateInsert);
+        return newBookReservation;
+    }
+
 }
