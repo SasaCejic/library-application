@@ -7,6 +7,9 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
+                            <value>Book__c.Buy_a_Book</value>
+                        </valueListItems>
+                        <valueListItems>
                             <value>Book__c.Create_Book_Review</value>
                         </valueListItems>
                         <valueListItems>
