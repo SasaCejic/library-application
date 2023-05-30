@@ -137,7 +137,7 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
   //book default record id
   bookDefaultRecordTypeId;
   //number of book records to retrieve in a single method call
-  tableLoadStep = 10;
+  tableLoadStep = 20;
   //offset when retrieving book records
   tableOffset = 0;
   //value indicating if more book records can still be retrieved
@@ -146,6 +146,8 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
   bookSearchDTO = {};
   //label with currency for price slider
   priceLabel = `Maximum price (${CURRENCY}):`;
+  //value indicating if no results were found
+  resultsNotFound = undefined;
 
   // setter
   set books(value) {
@@ -274,8 +276,6 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
    * If more data is found, calls  makeSearchRequest() function
    */
   handleLoadMore(event) {
-    this.tableOffset = this.books.length;
-
     if (this.moreToLoad) {
       event.target.isLoading = true;
       this.makeSearchRequest();
@@ -326,7 +326,7 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
       offset: this.tableOffset
     })
       .then((data) => {
-        let mappedBooks = data.map((recievedBook) => {
+        let mappedBooks = data.books.map((recievedBook) => {
           let mappedBook = {};
 
           for (const field in recievedBook) {
@@ -348,10 +348,19 @@ export default class AdvancedBookSearch extends NavigationMixin(LightningElement
           return mappedBook;
         });
         this._books = [...this._books, ...mappedBooks];
+        this.tableOffset = this._books.length + data.filteredOutCount;
 
-        if (mappedBooks.length < this.tableLoadStep) {
+        if(this._books.length==0){
+          this.resultsNotFound=true;
+        }
+        else{
+          this.resultsNotFound=false;
+        }
+
+        if (mappedBooks.length + data.filteredOutCount < this.tableLoadStep) {
           this.moreToLoad = false;
-        } else {
+        }
+        else {
           this.moreToLoad = true;
         }
       })
