@@ -1,10 +1,54 @@
+/**
+ * This class is used as a service for Book_Reservation__c cancelation
+ */
 public with sharing class BookReservationCancelationService {
+    /**
+     * Change Status of a Book Reservation and number of active reservations
+     * in related Bookstore Book object
+     * 
+     * @param bookReservations List of Book_Reservation records which status is going to be changed
+     */
     public void cancelBookReservation (List<Book_Reservation__c> bookReservations) {
-        // bookReservation.Status__c = bookReservation.Status__c == 'Active' ? 'Canceled' : bookReservation.Status__c;
-        //TODO Find Bookstore Book 
-        // bookstoreBook.Number_Of_Active_Reservations__c -= bookReservation.Quantity__c;
+        Set<Id> bookstoreIds = new Set<Id>();
+        Set<Id> bookIds = new Set<Id>();
 
-        // Database.update(bookReservation);
-        // Database.update(bookstoreBook);
+        for (Book_Reservation__c bookReservation : bookReservations) {
+            bookstoreIds.add(bookReservation.Bookstore__c);
+            bookIds.add(bookReservation.Book__c);
+        }
+
+        BookstoreBookSelector bookstoreBookSelector = (BookstoreBookSelector) new ObjectFactory().createObject(BookstoreBookSelector.class);
+        List<Bookstore_Book__c> bookstoreBooks = bookstoreBookSelector.getListByBookstoreAndBookIds(bookstoreIds, bookIds);
+        List<Bookstore_Book__c> bookstoreBooksToUpdate = new List<Bookstore_Book__c>();
+
+        Set<Id> reservationIds = new Set<Id>();
+        for (Book_Reservation__c reservation : bookReservations) {
+            reservationIds.add(reservation.Id);
+        }
+
+        BookReservationSelector bookReservationSelector = (BookReservationSelector) new ObjectFactory().createObject(BookReservationSelector.class);
+        List<Book_Reservation__c> reservationsWithUserInfo = bookReservationSelector.getListByIds(reservationIds);
+
+        for (Book_Reservation__c bookReservation : bookReservations) {
+            if (bookReservation.Status__c == 'Active') {
+                for (Bookstore_Book__c bookstoreBook : bookstoreBooks) {
+                    if (bookReservation.Book__c == bookstoreBook.Book__c && bookReservation.Bookstore__c == bookstoreBook.Bookstore__c) {
+                        bookstoreBook.Number_Of_Active_Reservations__c -= bookReservation.Quantity__c;
+                        bookstoreBooksToUpdate.add(bookstoreBook);
+                    }
+                }
+                bookReservation.Status__c = 'Canceled';
+
+                for (Book_Reservation__c reservationWithUserInfo : reservationsWithUserInfo) {
+                    if (bookReservation.Id == reservationWithUserInfo.Id) {
+                        SendCancelationEmailConfirmationService cancelationMail = (SendCancelationEmailConfirmationService) new ObjectFactory().createObject(SendCancelationEmailConfirmationService.class);
+                        cancelationMail.sendMail(reservationWithUserInfo.createdBy.Email, bookReservation.Name, reservationWithUserInfo.createdBy.Name);
+                    }
+                }
+            }
+        }
+
+        Database.update(bookReservations, false);
+        Database.update(bookstoreBooksToUpdate, false);
     }
 }
