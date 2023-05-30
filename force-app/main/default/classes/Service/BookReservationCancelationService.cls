@@ -1,7 +1,7 @@
 /**
  * This class is used as a service for Book_Reservation__c cancelation
  */
-public with sharing class BookReservationCancelationService {
+public with sharing class BookReservationCancelationService implements CustomObject{
     /**
      * Change Status of a Book Reservation and number of active reservations
      * in related Bookstore Book object
@@ -29,15 +29,20 @@ public with sharing class BookReservationCancelationService {
         BookReservationSelector bookReservationSelector = (BookReservationSelector) new ObjectFactory().createObject(BookReservationSelector.class);
         List<Book_Reservation__c> reservationsWithUserInfo = bookReservationSelector.getListByIds(reservationIds);
 
+        List<Book_Reservation__c> bookReservationsToUpdate = new List<Book_Reservation__c>();
+
         for (Book_Reservation__c bookReservation : bookReservations) {
             if (bookReservation.Status__c == 'Active') {
                 for (Bookstore_Book__c bookstoreBook : bookstoreBooks) {
                     if (bookReservation.Book__c == bookstoreBook.Book__c && bookReservation.Bookstore__c == bookstoreBook.Bookstore__c) {
                         bookstoreBook.Number_Of_Active_Reservations__c -= bookReservation.Quantity__c;
-                        bookstoreBooksToUpdate.add(bookstoreBook);
+                        if (!bookstoreBooksToUpdate.contains(bookstoreBook)) {
+                            bookstoreBooksToUpdate.add(bookstoreBook);
+                        }
                     }
                 }
                 bookReservation.Status__c = 'Canceled';
+                bookReservationsToUpdate.add(bookReservation);
 
                 for (Book_Reservation__c reservationWithUserInfo : reservationsWithUserInfo) {
                     if (bookReservation.Id == reservationWithUserInfo.Id) {
@@ -48,7 +53,11 @@ public with sharing class BookReservationCancelationService {
             }
         }
 
-        Database.update(bookReservations, false);
-        Database.update(bookstoreBooksToUpdate, false);
+        if (!bookReservationsToUpdate.isEmpty()) {
+            Database.update(bookReservationsToUpdate, false);
+        }
+        if (!bookstoreBooksToUpdate.isEmpty()) {
+            Database.update(bookstoreBooksToUpdate, false);
+        }
     }
 }

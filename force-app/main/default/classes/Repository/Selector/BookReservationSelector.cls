@@ -3,7 +3,7 @@
  * 
  * @see Book_Reservation__c
  */
-public with sharing class BookReservationSelector {
+public with sharing class BookReservationSelector implements CustomObject{
     /**
      * Get Bookstore_Book__c objects by Ids
      * 

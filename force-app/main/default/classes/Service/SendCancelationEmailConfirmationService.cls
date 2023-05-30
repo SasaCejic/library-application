@@ -25,7 +25,7 @@ public with sharing class SendCancelationEmailConfirmationService implements Cus
         List<Messaging.SingleEmailMessage> emailList = new List<Messaging.SingleEmailMessage>();
         // create the mail
         String emailSubject = 'Book Reservation cancelation mail';
-        String emailBody = 'Dear ' + userName + ',\n' + 'Revert period for your reservation ' + reservationNumber + 'has expired and the reservation is canceled.';
+        String emailBody = 'Dear ' + userName + ',\n' + 'Revert period for your reservation ' + reservationNumber + ' has expired and the reservation is canceled.';
         CreateEmailWithoutTemplateService createEmailService = (CreateEmailWithoutTemplateService) new ObjectFactory()
             .createObject(CreateEmailWithoutTemplateService.class);
         Messaging.SingleEmailMessage mail = createEmailService.createMail(emailSubject,emailBody,emailAddress);

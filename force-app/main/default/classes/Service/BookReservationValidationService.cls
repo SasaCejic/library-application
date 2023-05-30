@@ -76,7 +76,9 @@ public with sharing class BookReservationValidationService implements CustomObje
             newReservation.addError('There are no enough books! You can choose up to ' + availableBooks + '.');
         } else {
             bookstoreBook.Number_Of_Active_Reservations__c = (oldReservation != null) ? bookstoreBook.Number_Of_Active_Reservations__c - oldReservation.Quantity__c + newReservation.Quantity__c : bookstoreBook.Number_Of_Active_Reservations__c + newReservation.Quantity__c;
-            bookstoreBooksToUpdate.add(bookstoreBook);
+            if (!bookstoreBooksToUpdate.contains(bookstoreBook)) {
+                bookstoreBooksToUpdate.add(bookstoreBook);
+            }
             //Send confirmation email
             SendReservationEmailConfirmationService confirmationEmail = (SendReservationEmailConfirmationService) new ObjectFactory().createObject(SendReservationEmailConfirmationService.class);
             Decimal totalPrice = bookstoreBook.Book__r.Price__c * (Integer) newReservation.Quantity__c;
