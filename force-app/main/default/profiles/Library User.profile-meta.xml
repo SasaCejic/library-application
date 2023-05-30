@@ -114,6 +114,22 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BookRestApi</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookRestApiIntegrationTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookRestApiRequestDTO</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookRestApiTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BookReviewSelector</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -258,6 +274,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>ConverBookRestApiJsonDataServiceTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ConvertBookRestApiJsonDataService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CreateEmailWithoutTemplateService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -294,6 +318,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>GetDuplicateBooksService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>GetDuplicateBooksServiceTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>GetPublishersNotWithBookstoreService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -307,6 +339,22 @@
     </classAccesses>
     <classAccesses>
         <apexClass>InsertBookPurchaseRecordServiceTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>InsertBookRecordService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>InsertBooksPostRequestResponseDTO</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>InsertBooksPostRequestService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>InsertBooksPostRequestServiceTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
