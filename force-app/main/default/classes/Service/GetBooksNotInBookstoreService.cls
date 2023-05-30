@@ -5,7 +5,7 @@ public with sharing class GetBooksNotInBookstoreService implements CustomObject{
     private List<Book__c> response;
 
     //Getter
-    public List<Book__c> getResponse() {
+    public List<Book__c> getResponse() { 
         return this.response;
     }
 

@@ -40,7 +40,7 @@ public with sharing class TestFactory {
         'body' => 'Test body',
         'address' => 'testaddress@gmail.com'
     };
-
+    
     @TestVisible
     public Map<String, String> standardAuthorsSettingDetails = new Map<String, String>{
         'name' => 'out-of-the-box authors setting'
@@ -57,6 +57,16 @@ public with sharing class TestFactory {
         'timeZoneSidKey' => 'GMT',
         'languageLocaleKey' => 'en_US',
         'profileId' => [SELECT Id FROM Profile WHERE Name=:'Standard User' LIMIT 1].Id
+    };
+
+    @TestVisible
+    public Map<String, String> bookSearchDTODetails = new Map<String, String>{
+        'name' => 'book',
+        'languages' => 'english',
+        'categories' => 'fantasy',
+        'price' => '20',
+        'reviewScore' => '3',
+        'term' => 'desc'
     };
 
     static Integer s_num = 1;
@@ -219,7 +229,8 @@ public with sharing class TestFactory {
         Book__c currentBook = new Book__c();
         currentBook.Name = bookDetails.get('name');
         currentBook.Description__c = bookDetails.get('description');
-        currentBook.ISBN__c = bookDetails.get('ISBN');
+        Integer randomNumber = (Integer) (Math.random() * 90000000) + 10000000;
+        currentBook.ISBN__c = String.valueOf(randomNumber);
         currentBook.Language__c = bookDetails.get('language');
         currentBook.Categories__c = bookDetails.get('categories');
         currentBook.Hours_Of_Listening__c = Integer.valueOf(bookDetails.get('hoursOfListening'));
@@ -388,6 +399,30 @@ public with sharing class TestFactory {
         }
         newUser.Id = this.getFakeId(User.SObjectType, simulateInsert);
         return newUser;
+    }
+
+    /**
+     * Method for creating a new BookSearchDTO
+     * 
+     * @param author - Id of the author to search by
+     * @param publisher - Id of the publisher to search by
+     * @param bookstore - Id of the bookstore to search by
+     */
+    public BookSearchDTO createBookSearchDTO(Id author, Id publisher, Id bookstore) {
+        BookSearchDTO newBookDTO = new BookSearchDTO();
+        newBookDTO.name=bookSearchDTODetails.get('name');
+        newBookDTO.ISBN=bookSearchDTODetails.get('ISBN');
+        newBookDTO.categories=new List<String>{bookSearchDTODetails.get('categories')};
+        newBookDTO.languages=new List<String>{bookSearchDTODetails.get('languages')};
+        newBookDTO.price=Decimal.valueOf(bookSearchDTODetails.get('price'));
+        newBookDTO.reviewScore=Decimal.valueOf(bookSearchDTODetails.get('reviewScore'));
+        newBookDTO.term=bookSearchDTODetails.get('term');
+        newBookDTO.author=author;
+        newBookDTO.publisher=publisher;
+        newBookDTO.bookstore=bookstore;
+        newBookDTO.publishDate=Date.newInstance(2022, 1, 1);
+        
+        return newBookDTO;
     }
 
     /**

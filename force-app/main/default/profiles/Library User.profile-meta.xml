@@ -166,6 +166,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BookSearchDTO</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookSearchService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BookSelector</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -521,6 +529,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Book_Review__c.Rating_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Book_Review__c.Stars__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -848,6 +861,10 @@
     <tabVisibilities>
         <tab>Publishers_not_working_with_bookstore</tab>
         <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Reservations_and_Purchases_Statistics</tab>
+        <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Reserve_Paper_Book</tab>
