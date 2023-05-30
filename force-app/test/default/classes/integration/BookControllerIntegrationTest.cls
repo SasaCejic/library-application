@@ -72,7 +72,7 @@ public with sharing class BookControllerIntegrationTest {
         
         // execute
         Test.startTest();
-        List<Book__c> searchedBooks = BookController.getBooksFromSearchDTO(searchDTO, 5, 0);
+        List<Book__c> searchedBooks = BookController.getBooksFromSearchDTO(searchDTO, 5, 0).books;
         Test.stopTest();
         
         // assert
@@ -97,7 +97,7 @@ public with sharing class BookControllerIntegrationTest {
         
         // execute
         Test.startTest();
-        List<Book__c> searchedBooks = BookController.getBooksFromSearchDTO(searchDTO, 5, 0);
+        List<Book__c> searchedBooks = BookController.getBooksFromSearchDTO(searchDTO, 5, 0).books;
         Test.stopTest();
         
         // assert

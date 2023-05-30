@@ -77,15 +77,15 @@ public with sharing class BookControllerTest {
     public static void getBooksFromSearchDTO_willUseService() {
         // create mock
         Mocker bookSearchServiceMock = new Mocker(BookSearchService.class);
-        bookSearchServiceMock.setBehavior('getResponse', new List<Book__c>{});
-        bookSearchServiceMock.setBehavior('getBooksFromSearchDTO', new List<Book__c>{});
+        bookSearchServiceMock.setBehavior('getResponse', new BookSearchResultDTO());
+        bookSearchServiceMock.setBehavior('getBooksFromSearchDTO', new BookSearchResultDTO());
         ObjectFactory.mocks.put(
             BookSearchService.class.getName(),
             (BookSearchService) bookSearchServiceMock.getMock()
         );
 
         // execute
-        List<Book__c> searchedBooks = BookController.getBooksFromSearchDTO(new BookSearchDTO(), 5, 5);
+        BookController.getBooksFromSearchDTO(new BookSearchDTO(), 5, 5);
 
         // assert
         bookSearchServiceMock.assertMethodExecutionCount('getBooksFromSearchDTO', 1);

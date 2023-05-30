@@ -51,7 +51,7 @@ public with sharing class BookSearchServiceTest {
     Test.startTest();
     BookSearchService service = new BookSearchService();
     service.getBooksFromSearchDTO(bookDTO, 1, 1);
-    List<Book__c> books = service.getResponse();
+    List<Book__c> books = service.getResponse().books;
     Test.stopTest();
 
     // assert
@@ -96,7 +96,7 @@ public with sharing class BookSearchServiceTest {
     Test.startTest();
     BookSearchService service = new BookSearchService();
     service.getBooksFromSearchDTO(new BookSearchDTO(), 1, 1);
-    List<Book__c> books = service.getResponse();
+    List<Book__c> books = service.getResponse().books;
     Test.stopTest();
 
     // assert
@@ -133,11 +133,11 @@ public with sharing class BookSearchServiceTest {
     Test.startTest();
     BookSearchService service = new BookSearchService();
     service.getBooksFromSearchDTO(null, 1, 1);
-    List<Book__c> books = service.getResponse();
+    BookSearchResultDTO searchResult = service.getResponse();
     Test.stopTest();
 
     // assert
-    Assert.areEqual(null, books, 'Service should have null response value');
+    Assert.areEqual(null, searchResult, 'Service should have null response value');
   }
 
   @IsTest
@@ -171,7 +171,7 @@ public with sharing class BookSearchServiceTest {
     Test.startTest();
     BookSearchService service = new BookSearchService();
     service.getBooksFromSearchDTO(bookDTO, null, null);
-    List<Book__c> books = service.getResponse();
+    List<Book__c> books = service.getResponse().books;
     Test.stopTest();
 
     // assert
@@ -215,7 +215,7 @@ public with sharing class BookSearchServiceTest {
     Test.startTest();
     BookSearchService service = new BookSearchService();
     service.getBooksFromSearchDTO(bookDTO, null, null);
-    List<Book__c> books = service.getResponse();
+    List<Book__c> books = service.getResponse().books;
     Test.stopTest();
 
     // assert
@@ -260,7 +260,7 @@ public with sharing class BookSearchServiceTest {
     Test.startTest();
     BookSearchService service = new BookSearchService();
     service.getBooksFromSearchDTO(bookDTO, null, null);
-    List<Book__c> books = service.getResponse();
+    List<Book__c> books = service.getResponse().books;
     Test.stopTest();
 
     // assert
@@ -306,7 +306,7 @@ public with sharing class BookSearchServiceTest {
     Test.startTest();
     BookSearchService service = new BookSearchService();
     service.getBooksFromSearchDTO(bookDTO, null, null);
-    List<Book__c> books = service.getResponse();
+    List<Book__c> books = service.getResponse().books;
     Test.stopTest();
 
     // assert
@@ -353,7 +353,7 @@ public with sharing class BookSearchServiceTest {
     Test.startTest();
     BookSearchService service = new BookSearchService();
     service.getBooksFromSearchDTO(bookDTO, null, null);
-    List<Book__c> books = service.getResponse();
+    List<Book__c> books = service.getResponse().books;
     Test.stopTest();
 
     // assert
@@ -429,7 +429,7 @@ public with sharing class BookSearchServiceTest {
     Test.startTest();
     BookSearchService service = new BookSearchService();
     service.getBooksFromSearchDTO(bookDTO, null, null);
-    List<Book__c> books = service.getResponse();
+    List<Book__c> books = service.getResponse().books;
     Test.stopTest();
 
     // assert
@@ -506,7 +506,7 @@ public with sharing class BookSearchServiceTest {
     Test.startTest();
     BookSearchService service = new BookSearchService();
     service.getBooksFromSearchDTO(bookDTO, null, null);
-    List<Book__c> books = service.getResponse();
+    List<Book__c> books = service.getResponse().books;
     Test.stopTest();
 
     // assert
@@ -584,7 +584,7 @@ public with sharing class BookSearchServiceTest {
     Test.startTest();
     BookSearchService service = new BookSearchService();
     service.getBooksFromSearchDTO(bookDTO, null, null);
-    List<Book__c> books = service.getResponse();
+    List<Book__c> books = service.getResponse().books;
     Test.stopTest();
 
     // assert
@@ -663,7 +663,7 @@ public with sharing class BookSearchServiceTest {
     Test.startTest();
     BookSearchService service = new BookSearchService();
     service.getBooksFromSearchDTO(bookDTO, null, null);
-    List<Book__c> books = service.getResponse();
+    List<Book__c> books = service.getResponse().books;
     Test.stopTest();
 
     // assert
@@ -743,7 +743,7 @@ public with sharing class BookSearchServiceTest {
     Test.startTest();
     BookSearchService service = new BookSearchService();
     service.getBooksFromSearchDTO(bookDTO, null, null);
-    List<Book__c> books = service.getResponse();
+    List<Book__c> books = service.getResponse().books;
     Test.stopTest();
 
     // assert
@@ -817,7 +817,7 @@ public with sharing class BookSearchServiceTest {
     Test.startTest();
     BookSearchService service = new BookSearchService();
     service.getBooksFromSearchDTO(bookDTO, 1, 1);
-    List<Book__c> books = service.getResponse();
+    List<Book__c> books = service.getResponse().books;
     Test.stopTest();
 
     // assert

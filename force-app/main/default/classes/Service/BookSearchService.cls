@@ -6,19 +6,23 @@
  * @see BookSelector.cls
  * @see BookReviewSelector.cls
  * @see BookSearchDTO.cls
+ * @see BookSearchResultDTO.cls
  */
 public with sharing class BookSearchService implements CustomObject {
+  //counter of all records filtered from initial  query result
+  private Integer filteredCount=0;
+
   /**
    * List of Books containging book information that will be returned to Controller as a response
    */
-  private List<Book__c> response;
+  private BookSearchResultDTO response;
 
   /**
    * Getter method for response property
    *
    * @return this class's response property value
    */
-  public List<Book__c> getResponse() {
+  public BookSearchResultDTO getResponse() {
     return this.response;
   }
 
@@ -27,7 +31,7 @@ public with sharing class BookSearchService implements CustomObject {
    *
    * @param response List of Books containging book information that we want to assign to response field
    */
-  public void setResponse(List<Book__c> response) {
+  public void setResponse(BookSearchResultDTO response) {
     this.response = response;
   }
 
@@ -164,13 +168,13 @@ public with sharing class BookSearchService implements CustomObject {
 
       if (limitSize != null && limitSize > 0) {
         bookQueryConditions += String.format(
-          ' LIMIT {0}',
+          ' ORDER BY Id LIMIT {0}',
           new List<String>{ String.valueOf(limitSize) }
         );
       }
       
       else {
-        bookQueryConditions += ' LIMIT 2000';
+        bookQueryConditions += ' ORDER BY Id LIMIT 2000';
       }
 
       if (offset != null && offset > 0) {
@@ -178,6 +182,9 @@ public with sharing class BookSearchService implements CustomObject {
           ' OFFSET {0}',
           new List<String>{ String.valueOf(offset) }
         );
+      }
+      else {
+        filteredCount=0;
       }
 
       //queries books as a list
@@ -205,6 +212,7 @@ public with sharing class BookSearchService implements CustomObject {
             }
           }
         }
+        filteredCount+=searchedAndFilteredBooks.size()-booksInBookstore.size();
         searchedAndFilteredBooks = booksInBookstore;
       }
 
@@ -230,6 +238,7 @@ public with sharing class BookSearchService implements CustomObject {
             );
           }
         }
+        filteredCount+=searchedAndFilteredBooks.size()-booksWithPassingReview.size();
         searchedAndFilteredBooks = booksWithPassingReview;
       }
 
@@ -244,10 +253,14 @@ public with sharing class BookSearchService implements CustomObject {
             booksWithMatchingDescription.add(book);
           }
         }
+        filteredCount+=searchedAndFilteredBooks.size()-booksWithMatchingDescription.size();
         searchedAndFilteredBooks = booksWithMatchingDescription;
       }
 
-      this.setResponse(searchedAndFilteredBooks);
+      BookSearchResultDTO searchResultDTO = new BookSearchResultDTO();
+      searchResultDTO.books=searchedAndFilteredBooks;
+      searchResultDTO.filteredOutCount=filteredCount;
+      this.setResponse(searchResultDTO);
     }
   }
 }

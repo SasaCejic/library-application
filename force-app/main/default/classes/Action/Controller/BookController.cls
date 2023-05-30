@@ -53,7 +53,7 @@ public with sharing class BookController {
      * @param offset - Offset for querying records
      */
     @AuraEnabled(cacheable=true)
-    public static List<Book__c> getBooksFromSearchDTO(BookSearchDTO bookSearchDTO, Integer limitSize, Integer offset) {
+    public static BookSearchResultDTO getBooksFromSearchDTO(BookSearchDTO bookSearchDTO, Integer limitSize, Integer offset) {
         BookSearchService service = (BookSearchService) new ObjectFactory()
             .createObject(BookSearchService.class);
         service.getBooksFromSearchDTO(bookSearchDTO, limitSize, offset);
