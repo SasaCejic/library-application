@@ -842,6 +842,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>Reservations_and_Purchases_Statistics</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Reserve_Paper_Book</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
