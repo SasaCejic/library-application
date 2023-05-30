@@ -306,10 +306,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>DeleteAuthorPublisherRecordService</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>DeleteBookPublisherRecordService</apexClass>
         <enabled>true</enabled>
     </classAccesses>

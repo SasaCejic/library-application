@@ -63,10 +63,8 @@ public with sharing class AuthorPublisherVFController {
      */
     public void deleteRecord() {
         isConfirmClicked = true;
-        DeleteAuthorPublisherRecordService deleteService = (DeleteAuthorPublisherRecordService) new ObjectFactory()
-            .createObject(DeleteAuthorPublisherRecordService.class);
-        deleteService.deleteAuthorPublisher(recordId);
-        didDeleteFail = !deleteService.getResponse().isSuccess();
+        Database.DeleteResult deleteResult = Database.delete(recordId, false);
+        didDeleteFail = !deleteResult.isSuccess();
     }
 
     /**
