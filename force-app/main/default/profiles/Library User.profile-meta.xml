@@ -94,6 +94,18 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BookReservationCancelationController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookReservationCancelationService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookReservationSelector</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BookReservationTriggerHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -411,6 +423,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PublisherSelector</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SendCancelationEmailConfirmationService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>

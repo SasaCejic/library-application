@@ -79,6 +79,9 @@ public with sharing class BookReservationValidationService implements CustomObje
             if (!bookstoreBooksToUpdate.contains(bookstoreBook)) {
                 bookstoreBooksToUpdate.add(bookstoreBook);
             }
+            if (oldReservation == null) {
+                
+            }
             //Send confirmation email
             SendReservationEmailConfirmationService confirmationEmail = (SendReservationEmailConfirmationService) new ObjectFactory().createObject(SendReservationEmailConfirmationService.class);
             Decimal totalPrice = bookstoreBook.Book__r.Price__c * (Integer) newReservation.Quantity__c;
