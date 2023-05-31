@@ -146,13 +146,13 @@ public with sharing class BookSearchServiceTest {
     TestFactory testFactory = new TestFactory();
 
     //create and insert Author__c object
-    Author__c author = testFactory.createAuthor(false, true);
+    Author__c author = testFactory.createAuthor(true);
 
     // create and insert Publisher__c object
-    Publisher__c publisher = testFactory.createPublisher(false, true);
+    Publisher__c publisher = testFactory.createPublisher(true);
 
     //create and insert Book__c object
-    Book__c book = testFactory.createBook(publisher.Id, author.Id, false, true);
+    Book__c book = testFactory.createBook(publisher.Id, author.Id, true);
 
     //create BookSearchDTO
     BookSearchDTO bookDTO = new BookSearchDTO();
@@ -189,13 +189,13 @@ public with sharing class BookSearchServiceTest {
     TestFactory testFactory = new TestFactory();
 
     //create and insert Author__c object
-    Author__c author = testFactory.createAuthor(false, true);
+    Author__c author = testFactory.createAuthor(true);
 
     // create and insert Publisher__c object
-    Publisher__c publisher = testFactory.createPublisher(false, true);
+    Publisher__c publisher = testFactory.createPublisher(true);
 
     //create and insert Book__c object
-    Book__c book = testFactory.createBook(publisher.Id, author.Id, false, true);
+    Book__c book = testFactory.createBook(publisher.Id, author.Id, true);
 
     //create BookSearchDTO
     BookSearchDTO bookDTO = new BookSearchDTO();
@@ -233,13 +233,13 @@ public with sharing class BookSearchServiceTest {
     TestFactory testFactory = new TestFactory();
 
     //create and insert Author__c object
-    Author__c author = testFactory.createAuthor(false, true);
+    Author__c author = testFactory.createAuthor(true);
 
     // create and insert Publisher__c object
-    Publisher__c publisher = testFactory.createPublisher(false, true);
+    Publisher__c publisher = testFactory.createPublisher(true);
 
     //create and insert Book__c object
-    Book__c book = testFactory.createBook(publisher.Id, author.Id, false, true);
+    Book__c book = testFactory.createBook(publisher.Id, author.Id, true);
 
     //create BookSearchDTO
     BookSearchDTO bookDTO = new BookSearchDTO();
@@ -278,13 +278,13 @@ public with sharing class BookSearchServiceTest {
     TestFactory testFactory = new TestFactory();
 
     //create and insert Author__c object
-    Author__c author = testFactory.createAuthor(false, true);
+    Author__c author = testFactory.createAuthor(true);
 
     // create and insert Publisher__c object
-    Publisher__c publisher = testFactory.createPublisher(false, true);
+    Publisher__c publisher = testFactory.createPublisher(true);
 
     //create and insert Book__c object
-    Book__c book = testFactory.createBook(publisher.Id, author.Id, false, true);
+    Book__c book = testFactory.createBook(publisher.Id, author.Id, true);
 
     //create BookSearchDTO
     BookSearchDTO bookDTO = new BookSearchDTO();
@@ -324,13 +324,13 @@ public with sharing class BookSearchServiceTest {
     TestFactory testFactory = new TestFactory();
 
     //create and insert Author__c object
-    Author__c author = testFactory.createAuthor(false, true);
+    Author__c author = testFactory.createAuthor(true);
 
     // create and insert Publisher__c object
-    Publisher__c publisher = testFactory.createPublisher(false, true);
+    Publisher__c publisher = testFactory.createPublisher(true);
 
     //create and insert Book__c object
-    Book__c book = testFactory.createBook(publisher.Id, author.Id, false, true);
+    Book__c book = testFactory.createBook(publisher.Id, author.Id, true);
 
     //create BookSearchDTO
     BookSearchDTO bookDTO = new BookSearchDTO();
@@ -371,22 +371,21 @@ public with sharing class BookSearchServiceTest {
     TestFactory testFactory = new TestFactory();
 
     //create and insert Author__c object
-    Author__c author = testFactory.createAuthor(false, true);
+    Author__c author = testFactory.createAuthor(true);
 
     // create and insert Publisher__c object
-    Publisher__c publisher = testFactory.createPublisher(false, true);
+    Publisher__c publisher = testFactory.createPublisher(true);
 
     //create and insert Book__c object
-    Book__c book = testFactory.createBook(publisher.Id, author.Id, false, true);
+    Book__c book = testFactory.createBook(publisher.Id, author.Id, true);
 
     //create and insert Bookstore__c objects
-    Bookstore__c bookstore = testFactory.createBookstore(false, true);
+    Bookstore__c bookstore = testFactory.createBookstore(true);
 
     //create Bookstore_Publisher__c junction object
     Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(
       publisher.Id,
       bookstore.Id,
-      false,
       true
     );
 
@@ -394,7 +393,6 @@ public with sharing class BookSearchServiceTest {
     Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(
       book.Id,
       bookstore.Id,
-      false,
       true
     );
 
@@ -447,22 +445,21 @@ public with sharing class BookSearchServiceTest {
     TestFactory testFactory = new TestFactory();
 
     //create and insert Author__c object
-    Author__c author = testFactory.createAuthor(false, true);
+    Author__c author = testFactory.createAuthor(true);
 
     // create and insert Publisher__c object
-    Publisher__c publisher = testFactory.createPublisher(false, true);
+    Publisher__c publisher = testFactory.createPublisher(true);
 
     //create and insert Book__c object
-    Book__c book = testFactory.createBook(publisher.Id, author.Id, false, true);
+    Book__c book = testFactory.createBook(publisher.Id, author.Id, true);
 
     //create and insert Bookstore__c objects
-    Bookstore__c bookstore = testFactory.createBookstore(false, true);
+    Bookstore__c bookstore = testFactory.createBookstore(true);
 
     //create Bookstore_Publisher__c junction object
     Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(
       publisher.Id,
       bookstore.Id,
-      false,
       true
     );
 
@@ -470,7 +467,6 @@ public with sharing class BookSearchServiceTest {
     Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(
       book.Id,
       bookstore.Id,
-      false,
       true
     );
 
@@ -524,22 +520,21 @@ public with sharing class BookSearchServiceTest {
     TestFactory testFactory = new TestFactory();
 
     //create and insert Author__c object
-    Author__c author = testFactory.createAuthor(false, true);
+    Author__c author = testFactory.createAuthor(true);
 
     // create and insert Publisher__c object
-    Publisher__c publisher = testFactory.createPublisher(false, true);
+    Publisher__c publisher = testFactory.createPublisher(true);
 
     //create and insert Book__c object
-    Book__c book = testFactory.createBook(publisher.Id, author.Id, false, true);
+    Book__c book = testFactory.createBook(publisher.Id, author.Id, true);
 
     //create and insert Bookstore__c objects
-    Bookstore__c bookstore = testFactory.createBookstore(false, true);
+    Bookstore__c bookstore = testFactory.createBookstore(true);
 
     //create Bookstore_Publisher__c junction object
     Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(
       publisher.Id,
       bookstore.Id,
-      false,
       true
     );
 
@@ -547,7 +542,6 @@ public with sharing class BookSearchServiceTest {
     Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(
       book.Id,
       bookstore.Id,
-      false,
       true
     );
 
@@ -602,22 +596,21 @@ public with sharing class BookSearchServiceTest {
     TestFactory testFactory = new TestFactory();
 
     //create and insert Author__c object
-    Author__c author = testFactory.createAuthor(false, true);
+    Author__c author = testFactory.createAuthor(true);
 
     // create and insert Publisher__c object
-    Publisher__c publisher = testFactory.createPublisher(false, true);
+    Publisher__c publisher = testFactory.createPublisher(true);
 
     //create and insert Book__c object
-    Book__c book = testFactory.createBook(publisher.Id, author.Id, false, true);
+    Book__c book = testFactory.createBook(publisher.Id, author.Id, true);
 
     //create and insert Bookstore__c objects
-    Bookstore__c bookstore = testFactory.createBookstore(false, true);
+    Bookstore__c bookstore = testFactory.createBookstore(true);
 
     //create Bookstore_Publisher__c junction object
     Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(
       publisher.Id,
       bookstore.Id,
-      false,
       true
     );
 
@@ -625,7 +618,6 @@ public with sharing class BookSearchServiceTest {
     Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(
       book.Id,
       bookstore.Id,
-      false,
       true
     );
 
@@ -681,22 +673,21 @@ public with sharing class BookSearchServiceTest {
     TestFactory testFactory = new TestFactory();
 
     //create and insert Author__c object
-    Author__c author = testFactory.createAuthor(false, true);
+    Author__c author = testFactory.createAuthor(true);
 
     // create and insert Publisher__c object
-    Publisher__c publisher = testFactory.createPublisher(false, true);
+    Publisher__c publisher = testFactory.createPublisher(true);
 
     //create and insert Book__c object
-    Book__c book = testFactory.createBook(publisher.Id, author.Id, false, true);
+    Book__c book = testFactory.createBook(publisher.Id, author.Id, true);
 
     //create and insert Bookstore__c objects
-    Bookstore__c bookstore = testFactory.createBookstore(false, true);
+    Bookstore__c bookstore = testFactory.createBookstore(true);
 
     //create Bookstore_Publisher__c junction object
     Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(
       publisher.Id,
       bookstore.Id,
-      false,
       true
     );
 
@@ -704,7 +695,6 @@ public with sharing class BookSearchServiceTest {
     Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(
       book.Id,
       bookstore.Id,
-      false,
       true
     );
 
@@ -761,22 +751,21 @@ public with sharing class BookSearchServiceTest {
     TestFactory testFactory = new TestFactory();
 
     //create and insert Author__c object
-    Author__c author = testFactory.createAuthor(false, true);
+    Author__c author = testFactory.createAuthor(true);
 
     // create and insert Publisher__c object
-    Publisher__c publisher = testFactory.createPublisher(false, true);
+    Publisher__c publisher = testFactory.createPublisher(true);
 
     //create and insert Book__c object
-    Book__c book = testFactory.createBook(publisher.Id, author.Id, false, true);
+    Book__c book = testFactory.createBook(publisher.Id, author.Id, true);
 
     //create and insert Bookstore__c objects
-    Bookstore__c bookstore = testFactory.createBookstore(false, true);
+    Bookstore__c bookstore = testFactory.createBookstore(true);
 
     //create Bookstore_Publisher__c junction object
     Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(
       publisher.Id,
       bookstore.Id,
-      false,
       true
     );
 
@@ -784,7 +773,6 @@ public with sharing class BookSearchServiceTest {
     Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(
       book.Id,
       bookstore.Id,
-      false,
       true
     );
 

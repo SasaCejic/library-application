@@ -35,10 +35,10 @@ public with sharing class InsertBooksPostRequestServiceTest {
     public static void insertBooks_willFailWithStatus400_ifOptionWasntProvidedInHttpRequest() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
         List<Book__c> bookListForTest = new List<Book__c>();
-        bookListForTest.add(testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, true));
+        bookListForTest.add(testFactory.createBook(publisherForTest.Id, authorForTest.Id, true));
         
         BookRestApiRequestDTO bookRestApiRequestDto = new BookRestApiRequestDTO();
         bookRestApiRequestDto.bookList = bookListForTest;
@@ -69,10 +69,10 @@ public with sharing class InsertBooksPostRequestServiceTest {
     public static void insertBooks_willFailWithStatus409_ifThereAreBookDuplicatesAndInsertOptionIs2() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
         List<Book__c> booksForTest = new List<Book__c>{};
-        booksForTest.add(testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, false));
+        booksForTest.add(testFactory.createBook(publisherForTest.Id, authorForTest.Id, false));
 
         BookRestApiRequestDTO bookRestApiRequestDto = new BookRestApiRequestDTO();
         bookRestApiRequestDto.bookList = booksForTest;
@@ -123,10 +123,10 @@ public with sharing class InsertBooksPostRequestServiceTest {
     public static void insertBooks_willFailWithStatus409_ifThereAreBookDuplicatesAndOptionIs1() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
         List<Book__c> booksForTest = new List<Book__c>{};
-        booksForTest.add(testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, false));
+        booksForTest.add(testFactory.createBook(publisherForTest.Id, authorForTest.Id, false));
 
         BookRestApiRequestDTO bookRestApiRequestDto = new BookRestApiRequestDTO();
         bookRestApiRequestDto.bookList = booksForTest;
@@ -178,10 +178,10 @@ public with sharing class InsertBooksPostRequestServiceTest {
     public static void insertBooks_willSucceedWithStatusCode200_ifThereAreNoDuplicates() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
         List<Book__c> booksForTest = new List<Book__c>{};
-        booksForTest.add(testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, false));
+        booksForTest.add(testFactory.createBook(publisherForTest.Id, authorForTest.Id, false));
 
         BookRestApiRequestDTO bookRestApiRequestDto = new BookRestApiRequestDTO();
         bookRestApiRequestDto.bookList = booksForTest;
@@ -232,10 +232,10 @@ public with sharing class InsertBooksPostRequestServiceTest {
     public static void insertBooks_willUseServices() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
         List<Book__c> booksForTest = new List<Book__c>{};
-        booksForTest.add(testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, false));
+        booksForTest.add(testFactory.createBook(publisherForTest.Id, authorForTest.Id, false));
 
         BookRestApiRequestDTO bookRestApiRequestDto = new BookRestApiRequestDTO();
         bookRestApiRequestDto.bookList = booksForTest;

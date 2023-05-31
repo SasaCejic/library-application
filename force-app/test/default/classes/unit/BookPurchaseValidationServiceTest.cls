@@ -11,10 +11,10 @@ public with sharing class BookPurchaseValidationServiceTest {
     public static void validatePurchase_willAddError_ifTwoSamePurchasesAreInsertedAtOnce() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, true);
-        Book_Purchase__c purchaseForTest = testFactory.createBookPurchase(bookForTest.Id, false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true);
+        Book_Purchase__c purchaseForTest = testFactory.createBookPurchase(bookForTest.Id, true);
 
         // execute
         BookPurchaseValidationService service = new BookPurchaseValidationService();
@@ -28,10 +28,10 @@ public with sharing class BookPurchaseValidationServiceTest {
     public static void validatePurchase_wilNotAddError_ifNoSamePurchasesExist() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, true);
-        Book_Purchase__c purchaseForTest = testFactory.createBookPurchase(bookForTest.Id, false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true);
+        Book_Purchase__c purchaseForTest = testFactory.createBookPurchase(bookForTest.Id, true);
         
         // create mock
         Mocker BookPurchaseSelectorMock = new Mocker(BookPurchaseSelector.class)
@@ -53,10 +53,10 @@ public with sharing class BookPurchaseValidationServiceTest {
     public static void validatePurchase_willUseCorrectSelector() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, true);
-        Book_Purchase__c purchaseForTest = testFactory.createBookPurchase(bookForTest.Id, false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true);
+        Book_Purchase__c purchaseForTest = testFactory.createBookPurchase(bookForTest.Id, true);
         
         // create mock
         Mocker BookPurchaseSelectorMock = new Mocker(BookPurchaseSelector.class)

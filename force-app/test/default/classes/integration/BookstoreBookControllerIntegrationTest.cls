@@ -7,16 +7,23 @@ public with sharing class BookstoreBookControllerIntegrationTest {
     public static void returnBookstoreBooksCausingErrorOnPublisherDelete_willReturnBokstoreBooks_IfTheyHaveSamePublisher() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(true, false);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(true, false);
-        Author__c authorForTest = testFactory.createAuthor(true, false);
+        Publisher__c publisherForTest = testFactory.createPublisher(false);
+        insert publisherForTest;
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(false);
+        insert bookstoreForTest;
+        Author__c authorForTest = testFactory.createAuthor(false);
+        insert authorForTest;
         Author_Publisher__c authorPublisherForTest = testFactory
-            .createAuthorPublisher(authorForTest.Id, publisherForTest.Id, true, false);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true, false);
+            .createAuthorPublisher(authorForTest.Id, publisherForTest.Id, false);
+        insert authorPublisherForTest;
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false);
+        insert bookForTest;
         Bookstore_Publisher__c bookstorePublisherForTest = testFactory
-            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, true, false);
+            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false);
+        insert bookstorePublisherForTest;
         Bookstore_Book__c bookstoreBookForTest = testFactory
-            .createBookstoreBook(bookForTest.Id, bookstoreForTest.Id, true, false);
+            .createBookstoreBook(bookForTest.Id, bookstoreForTest.Id, false);
+        insert bookstoreBookForTest;
 
         // execute
         Test.startTest();

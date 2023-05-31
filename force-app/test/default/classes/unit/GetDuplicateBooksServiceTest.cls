@@ -7,9 +7,9 @@ public with sharing class GetDuplicateBooksServiceTest {
     public static void getDuplicates_willReturnDuplicates_ifDuplicatesExistInListProvidedAndDatabase() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, false);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false);
         List<Book__c> bookListForTest = new List<Book__c>{ bookForTest, bookForTest };
 
         // create mock
@@ -34,9 +34,9 @@ public with sharing class GetDuplicateBooksServiceTest {
     public static void getDuplicates_willNotReturnDuplicates_ifDuplicatesDontExist() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, false);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false);
         List<Book__c> bookListForTest = new List<Book__c>{ bookForTest };
 
         // create mock
@@ -61,9 +61,9 @@ public with sharing class GetDuplicateBooksServiceTest {
     public static void getDuplicates_willUseSelector() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, false);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false);
         List<Book__c> bookListForTest = new List<Book__c>{ bookForTest };
 
         // create mock

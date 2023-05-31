@@ -1,77 +1,8 @@
 @isTest
 public with sharing class TestFactory {
-    @TestVisible
-    public Map<String, String> publisherDetails = new Map<String, String>{
-        'name' => 'publisher',
-        'email' => 'publisher@gmail.com',
-        'phone' => '124215426'
-    };
-
-    @TestVisible
-    public Map<String, String> bookstoreDetails = new Map<String, String>{
-        'name' => 'bookstore'
-    };
-
-    @TestVisible
-    public Map<String, String> authorDetails = new Map<String, String>{
-        'firstName' => 'Author',
-        'lastName' => 'Author'
-    };
-
-    @TestVisible
-    public Map<String, String> bookDetails = new Map<String, String>{
-        'name' => 'book',
-        'description' => 'bookdesc',
-        'language' => 'english',
-        'categories' => 'fantasy',
-        'price' => '20',
-        'hoursOfListening' => '20'
-    };
-
-    @TestVisible
-    public Map<String, String> bookReviewDetails = new Map<String, String>{
-        'name' => 'Good book',
-        'rating' => '4'
-    };
-
-    @TestVisible
-    public Map<String, String> mailDetails = new Map<String, String> {
-        'subject' => 'Test subject',
-        'body' => 'Test body',
-        'address' => 'testaddress@gmail.com'
-    };
-    
-    @TestVisible
-    public Map<String, String> standardAuthorsSettingDetails = new Map<String, String>{
-        'name' => 'out-of-the-box authors setting'
-    };
-    
-    @TestVisible
-    public Map<String, String> userDetails = new Map<String, String>{
-        'lastName' => 'User',
-        'alias' => 'testuser',
-        'email' => 'testuser123@gmail.com',
-        'emailEncodingKey' => 'ISO-8859-1',
-        'communityNickName' => 'testuser1234',
-        'localeSidKey' => 'en_US',
-        'timeZoneSidKey' => 'GMT',
-        'languageLocaleKey' => 'en_US',
-        'profileId' => [SELECT Id FROM Profile WHERE Name=:'Standard User' LIMIT 1].Id
-    };
-
-    @TestVisible
-    public Map<String, String> bookSearchDTODetails = new Map<String, String>{
-        'name' => 'book',
-        'languages' => 'english',
-        'categories' => 'fantasy',
-        'price' => '20',
-        'reviewScore' => '3',
-        'term' => 'desc'
-    };
-
     static Integer s_num = 1;
 
-    /*
+    /**
      * @param sObjecType- SObjectType of an object which we are creating fake Id for 
      */
     public String getFakeId(Schema.SObjectType sObjecType, Boolean simulateInsert) {
@@ -82,108 +13,86 @@ public with sharing class TestFactory {
         return null;
     }
 
-    /*
+    /**
      * @param bookId - Id of a book which is a parent in master-detail relationship with Bookstore_Book__c
      * @param bookstoreId - Id of a bookstore which isa a parent in master-detail relationship with Bookstore_Book__c
-     * @param forInsert - Boolean value representing if we want to insert the record or not
-     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not
      */
-    public Bookstore_Book__c createBookstoreBook(Id bookId, Id bookstoreId, Boolean forInsert, Boolean simulateInsert) {
+    public Bookstore_Book__c createBookstoreBook(Id bookId, Id bookstoreId, Boolean simulateInsert) {
         Bookstore_Book__c newBookstoreBook = new Bookstore_Book__c();
         newBookstoreBook.Book__c = bookId;
         newBookstoreBook.Bookstore__c = bookstoreId;
         newBookstoreBook.Quantity__c = 10;
         newBookstoreBook.Number_Of_Active_Reservations__c = 0;
 
-        if(forInsert) {
-            insert newBookstoreBook;
-            return newBookstoreBook;
-        }
+        // Generate Id based on simulateInsert
         newBookstoreBook.Id = this.getFakeId(Bookstore_Book__c.SObjectType, simulateInsert);
         return newBookstoreBook;
     }
 
-    /*
+    /**
      * @param publisherId - Id of a Publisher__c which is a parent in master-detail relationship
      * @param bookstoreId - Id of a Bookstore__c which is a parent in master-detail relationship
-     * @param forInsert - Boolean value representing if we want to insert the record or not
-     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not
      */
-    public Bookstore_Publisher__c createBookstorePublisher(Id publisherId, Id bookstoreId, Boolean forInsert, Boolean simulateInsert) {
+    public Bookstore_Publisher__c createBookstorePublisher(Id publisherId, Id bookstoreId, Boolean simulateInsert) {
         Bookstore_Publisher__c newBookstorePublisher = new Bookstore_Publisher__c();
         newBookstorePublisher.Publisher__c = publisherId;
         newBookstorePublisher.Bookstore__c = bookstoreId;
 
-        if (forInsert) {
-            insert newBookstorePublisher;
-            return newBookstorePublisher;
-        }
+        // Generate Id based on simulateInsert
         newBookstorePublisher.Id = this.getFakeId(Bookstore_Publisher__c.SObjectType, simulateInsert);
         return newBookstorePublisher;
     }
 
-    /*
-     * @param forInsert - Boolean value representing if we want to insert the record or not
-     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+    /**
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not
      */
-    public Bookstore__c createBookstore(Boolean forInsert, Boolean simulateInsert) {
+    public Bookstore__c createBookstore(Boolean simulateInsert) {
         Bookstore__c newBookstore = new Bookstore__c();
-        newBookstore.Name = bookstoreDetails.get('name');
+        newBookstore.Name = 'Bookstore';
         Integer randomEmailNumber = (Integer)Math.floor(Math.random() * 9000) + 1000;
         newBookstore.Email__c = 'bookstore' + String.valueOf(randomEmailNumber) + '@gmail.com';
         Integer randomIdentificationCode = (Integer)Math.floor(Math.random() * 90000000) + 10000000;
         newBookstore.Store_Identification_Code__c = String.valueOf(randomIdentificationCode);
 
-        if (forInsert) {
-            insert newBookstore;
-            return newBookstore;
-        }
+        // Generate Id based on simulateInsert
         newBookstore.Id = this.getFakeId(Bookstore__c.SObjectType, simulateInsert);
         return newBookstore;
     }
 
-    /*
-     * @param forInsert - Boolean value representing if we want to insert the record or not
-     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+    /**
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not
      */
-    public Publisher__c createPublisher(Boolean forInsert, Boolean simulateInsert) {
+    public Publisher__c createPublisher(Boolean simulateInsert) {
         Publisher__c newPublisher = new Publisher__c();
-        newPublisher.Name = publisherDetails.get('name');
-        newPublisher.Email__c = publisherDetails.get('email');
-        newPublisher.Phone__c = publisherDetails.get('phone');
+        newPublisher.Name = 'publisher';
+        newPublisher.Email__c = 'publisher@gmail.com';
+        newPublisher.Phone__c = '123214256';
 
-        if (forInsert) {
-            insert newPublisher;
-            return newPublisher;
-        }
+        // Generate Id based on simulateInsert
         newPublisher.Id = this.getFakeId(Publisher__c.SObjectType, simulateInsert);
         return newPublisher;
     }
 
     /**
-     * @param forInsert - Boolean value representing if we want to insert the record or not
      * @param publisherId - Id of a Publisher__c object which is a parent in master-detail relationship to Book__c
      * @param authorId - Id of an Author__c which is connected through lookup relationship with Book__c
-     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not
      */
-    public Book__c createBook(Id publisherId, Id authorId, Boolean forInsert, Boolean simulateInsert) {
+    public Book__c createBook(Id publisherId, Id authorId, Boolean simulateInsert) {
         Book__c currentBook = new Book__c();
-        currentBook.Name = bookDetails.get('name');
-        currentBook.Description__c = bookDetails.get('description');
-        Integer randomNumber = (Integer) (Math.random() * 90000000) + 10000000;
-        currentBook.ISBN__c = String.valueOf(randomNumber);
-        currentBook.Language__c = bookDetails.get('language');
-        currentBook.Categories__c = bookDetails.get('categories');
-        currentBook.Price__c = Decimal.valueOf(bookDetails.get('price'));
+        currentBook.Name = 'book';
+        currentBook.Description__c = 'bookdesc';
+        currentBook.ISBN__c = '2141342646';
+        currentBook.Language__c = 'english';
+        currentBook.Categories__c = 'fantasy';
+        currentBook.Price__c = 200;
         currentBook.Publisher__c = publisherId;
         currentBook.Author__c = authorId;
         currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
-        currentBook.Price__c = 19.99;
 
-        if(forInsert) {
-            insert currentBook;
-            return currentBook;
-        }
+        // Generate fake Id
         currentBook.Id = this.getFakeId(Book__c.SObjectType, simulateInsert);
         return currentBook;
     }
@@ -191,158 +100,131 @@ public with sharing class TestFactory {
     /**
      * Create Book__c record with Paper record type
      * 
-     * @param forInsert - Boolean value representing if we want to insert the record or not
      * @param publisherId - Id of a Publisher__c object which is a parent in master-detail relationship to Book__c
      * @param authorId - Id of an Author__c which is connected through lookup relationship with Book__c
      * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
      */
-    public Book__c createPaperBook(Id publisherId, Id authorId, Boolean forInsert, Boolean simulateInsert) {
+    public Book__c createPaperBook(Id publisherId, Id authorId, Boolean simulateInsert) {
         Book__c currentBook = new Book__c();
-        currentBook.Name = bookDetails.get('name');
         currentBook.recordTypeId = [SELECT Id FROM RecordType WHERE SObjectType = 'Book__c' AND Name = 'Paper Book'][0].Id;
-        currentBook.Description__c = bookDetails.get('description');
-        Integer randomNumber = (Integer) (Math.random() * 90000000) + 10000000;
-        currentBook.ISBN__c = String.valueOf(randomNumber);
-        currentBook.Language__c = bookDetails.get('language');
-        currentBook.Categories__c = bookDetails.get('categories');
-        currentBook.Print_Length__c = 100;
+        currentBook.Name = 'book';
+        currentBook.Description__c = 'bookdesdc';
+        currentBook.ISBN__c = '2141342646';
+        currentBook.Language__c = 'english';
+        currentBook.Categories__c = 'fantasy';
+        currentBook.Price__c = 200;
+        currentBook.Print_Length__c = 200;
         currentBook.Publisher__c = publisherId;
         currentBook.Author__c = authorId;
         currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
-        currentBook.Price__c = 19.99;
 
-        if (forInsert) {
-            insert currentBook;
-            return currentBook;
-        }
+        // Generate Id based on simulate insert
         currentBook.Id = this.getFakeId(Book__c.SObjectType, simulateInsert);
         return currentBook;
     }
     
-    /*
-     * @param forInsert - Boolean value representing if we want to insert the record or not
+    /**
      * @param publisherId - Id of a Publisher__c object which is a parent in master-detail relationship to Book__c
      * @param authorId - Id of an Author__c which is connected through lookup relationship with Book__c
-     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not
      */
-    public Book__c createDigitalBook(Id publisherId, Id authorId, Boolean forInsert, Boolean simulateInsert) {
+    public Book__c createDigitalBook(Id publisherId, Id authorId, Boolean simulateInsert) {
         Book__c currentBook = new Book__c();
-        currentBook.Name = bookDetails.get('name');
-        currentBook.Description__c = bookDetails.get('description');
-        Integer randomNumber = (Integer) (Math.random() * 90000000) + 10000000;
-        currentBook.ISBN__c = String.valueOf(randomNumber);
-        currentBook.Language__c = bookDetails.get('language');
-        currentBook.Categories__c = bookDetails.get('categories');
-        currentBook.Hours_Of_Listening__c = Integer.valueOf(bookDetails.get('hoursOfListening'));
-        currentBook.Price__c = Decimal.valueOf(bookDetails.get('price'));
+        currentBook.Name = 'Digital book';
+        currentBook.Description__c = 'bookdesc';
+        currentBook.ISBN__c = '212412535';
+        currentBook.Language__c = 'english';
+        currentBook.Categories__c = 'fantasy';
+        currentBook.Hours_Of_Listening__c = 20;
+        currentBook.Price__c = 200;
         currentBook.Publisher__c = publisherId;
         currentBook.Author__c = authorId;
         currentBook.Publish_Date__c = Date.newInstance(2022, 1, 1);
         currentBook.RecordTypeId = Schema.SObjectType.Book__c.getRecordTypeInfosByName()
             .get('Digital Book').getRecordTypeId();
 
-        if (forInsert) {
-            insert currentBook;
-            return currentBook;
-        }
+        // Generate Id based on  simulate insert
         currentBook.Id = this.getFakeId(Book__c.SObjectType, simulateInsert);
         return currentBook;
     }   
 
-   /*
-    * @param forInsert - Boolean value representing if we want to insert the record or not
-    * @param bookId - Id of a Book__c object which is a parent in master-detail relationship to Book__c
-    * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
-    */
-    public Book_Review__c createBookReview(Id bookId, Boolean forInsert, Boolean simulateInsert) {
+   /**
+     * @param bookId - Id of a Book__c object which is a parent in master-detail relationship to Book__c
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not
+     */
+    public Book_Review__c createBookReview(Id bookId, Boolean simulateInsert) {
         Book_Review__c newBookReview = new Book_Review__c();
         newBookReview.Book__c = bookId;
-        newBookReview.Name = bookReviewDetails.get('name');
-        newBookReview.Rating__c = bookReviewDetails.get('rating');
-        if (forInsert) {
-            insert newBookReview;
-            return newBookReview;
-        }
+        newBookReview.Name = 'Good book';
+        newBookReview.Rating__c = '4';
+        
+        // Generate Id based on simulate insert
         newBookReview.Id = getFakeId(Book_Review__c.SObjectType, simulateInsert);
         return newBookReview;
     }
 
-    /*
-     * @param forInsert - Boolean value representing if we want to insert the record or not
+    /**
      * @param publisherId - Id of a Publisher__c object which is a parent in master-detail relationship to Book__c
-     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not
      */
-    public Author__c createAuthor(Boolean forInsert, Boolean simulateInsert) {
+    public Author__c createAuthor(Boolean simulateInsert) {
         Author__c newAuthor = new Author__c();
-        newAuthor.First_Name__c = authorDetails.get('firstName');
-        newAuthor.Last_Name__c = authorDetails.get('lastName');
+        newAuthor.First_Name__c = 'Author';
+        newAuthor.Last_Name__c = 'Test';
 
-        if (forInsert) {
-            insert newAuthor;
-            return newAuthor;
-        }
+        // Generate Id based on simulate insert
         newAuthor.Id = this.getFakeId(Author__c.SObjectType, simulateInsert);
         return newAuthor;
     }
 
-    /*
-    * @param authorId - Id of a Author__c which is a parent in master-detail relationship
-    * @param publisherId - Id of a Publisher__c which is a parent in master-detail relationship
-    * @param forInsert - Boolean value representing if we want to insert the record or not
-    * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
-    */
-    public Author_Publisher__c createAuthorPublisher(Id authorId, Id publisherId, Boolean forInsert, Boolean simulateInsert) {
+    /**
+     * @param authorId - Id of a Author__c which is a parent in master-detail relationship
+     * @param publisherId - Id of a Publisher__c which is a parent in master-detail relationship
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not
+     */
+    public Author_Publisher__c createAuthorPublisher(Id authorId, Id publisherId, Boolean simulateInsert) {
         Author_Publisher__c newAuthorPublisher = new Author_Publisher__c();
         newAuthorPublisher.Author__c=authorId;
         newAuthorPublisher.Publisher__c=publisherId;
 
-        if (forInsert) {
-            insert newAuthorPublisher;
-            return newAuthorPublisher;
-        }
+        // Generate Id based on simulate insert
         newAuthorPublisher.Id = getFakeId(Author_Publisher__c.SObjectType, simulateInsert);
         return newAuthorPublisher;
     }
 
-    /*
+    /**
      * @param anonymousId - Id of a Author__c object to be set as the standard Anonymous Author record
      * @param unknownId - Id of a Author__c object to be set as the standard Unknown Author record
-     * @param forInsert - Boolean value representing if we want to insert the record or not
-     * @param simulateInsert - Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not
      */
-    public Standard_Authors_Settting__c createStandardAuthorsSettting(Id anonymousId, Id unknownId, Boolean forInsert, Boolean simulateInsert) {
+    public Standard_Authors_Settting__c createStandardAuthorsSettting(Id anonymousId, Id unknownId, Boolean simulateInsert) {
         Standard_Authors_Settting__c stdAuthorSetting = new Standard_Authors_Settting__c();
-        stdAuthorSetting.Name=standardAuthorsSettingDetails.get('name');
+        stdAuthorSetting.Name = 'out of the box author settings';
         stdAuthorSetting.AnonymousId__c=anonymousId;
         stdAuthorSetting.UnknownId__c=unknownId;
 
-        if(forInsert) {
-            insert stdAuthorSetting;
-            return stdAuthorSetting;
-        }
+        // Generate Id based on simulate insert
         stdAuthorSetting.Id = this.getFakeId(Standard_Authors_Settting__c.SObjectType, simulateInsert);
         return stdAuthorSetting;
     }
 
-    /*
+    /**
      * @param bookId - Id of the book that was purchased
+     * @param simulateInsert - Boolean valure representing if we want fakeId or not
      */
-    public Book_Purchase__c createBookPurchase(Id bookId, Boolean forInsert, Boolean simulateInsert) {
+    public Book_Purchase__c createBookPurchase(Id bookId, Boolean simulateInsert) {
         Book_Purchase__c newBookPurchase = new Book_Purchase__c();
         newBookPurchase.Book__c = bookId;
 
-        if (forInsert) {
-            insert newBookPurchase;
-            return newBookPurchase;
-        }
+        // Generate Id based on simulate insert
         newBookPurchase.Id = getFakeId(Book_Purchase__c.SObjectType, simulateInsert);
         return newBookPurchase;
     }
 
-    /*
+    /**
      * Method creates a library user for testing
      */
-    public User createLibraryUser() {
+    public User createLibraryUser(Boolean simulateInsert) {
         Profile p = [SELECT Id FROM Profile WHERE Name='Library User'];
         User user = new User(Alias = 'testuser', Email='testuser@testorg.com',
                           EmailEncodingKey='UTF-8', LastName='Testing',
@@ -351,32 +233,13 @@ public with sharing class TestFactory {
                           ProfileId = p.Id);
         return user;
     }
-    /*
-     * Create mail for testing
-     */
-    public Messaging.SingleEmailMessage createMail() {
-        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-        mail.setSubject(mailDetails.get('subject'));
-        mail.setPlainTextBody(mailDetails.get('body'));
-        mail.setToAddresses(new String[] {mailDetails.get('address')});
-        return mail;
-    }
-
-    /*
-     * Method creates a fake Database.SaveResult for testing
-     */
-    public Database.SaveResult createSuccessDatabaseSaveResult() {
-        Database.SaveResult sr = (Database.SaveResult) JSON.deserialize('{"success":true,"id":"0013000000abcde"}', Database.SaveResult.class);
-        return sr;
-    }
     
     /**
      * Method for creating a new User
      * 
-     * @param forInsert Boolean value representing if we want to insert the record or not
-     * @param simulateInsert Boolean valure representing if we want fakeId or not(This boolean makes sense only if forInsert is false, if you set for Insert to be true, simulateInsert won't take action)
+     * @param simulateInsert Boolean valure representing if we want fakeId or not
      */
-    public User createUser(Boolean forInsert, Boolean simulateInsert) {
+    public User createUser(Boolean simulateInsert) {
         User newUser = new User();
         String orgId = UserInfo.getOrganizationId();
         String dateString = String.valueof(Datetime.now()).replace(' ', '').replace(':', '').replace('-', '');
@@ -384,19 +247,16 @@ public with sharing class TestFactory {
         String uniqueName = orgId + dateString + randomInt;
         uniqueName = (uniqueName.length() > 51) ? uniqueName.substring(0,51) : uniqueName;
         newUser.Username = uniqueName + '@test' + orgId + '.org';
-        newUser.LastName = userDetails.get('lastName');
-        newUser.Email = userDetails.get('email');
-        newUser.EmailEncodingKey  = userDetails.get('emailEncodingKey');
-        newUser.Alias = userDetails.get('alias');
-        newUser.TimeZoneSidKey = userDetails.get('timeZoneSidKey');
-        newUser.LocaleSidKey = userDetails.get('localeSidKey');
-        newUser.LanguageLocaleKey = userDetails.get('languageLocaleKey');
-        newUser.ProfileId = userDetails.get('profileId');
+        newUser.LastName = 'User';
+        newUser.Email = 'testuser123@gmail.com';
+        newUser.EmailEncodingKey  = 'ISO-8859-1';
+        newUser.Alias = 'testuser';
+        newUser.TimeZoneSidKey = 'GMT';
+        newUser.LocaleSidKey = 'en_US';
+        newUser.LanguageLocaleKey = 'en_US';
+        newUser.ProfileId = [SELECT Id FROM Profile WHERE Name=:'Standard User' LIMIT 1].Id;
 
-        if(forInsert) {
-            insert newUser;
-            return newUser;
-        }
+        // Generate id based on simulate insert
         newUser.Id = this.getFakeId(User.SObjectType, simulateInsert);
         return newUser;
     }
@@ -410,17 +270,17 @@ public with sharing class TestFactory {
      */
     public BookSearchDTO createBookSearchDTO(Id author, Id publisher, Id bookstore) {
         BookSearchDTO newBookDTO = new BookSearchDTO();
-        newBookDTO.name=bookSearchDTODetails.get('name');
-        newBookDTO.ISBN=bookSearchDTODetails.get('ISBN');
-        newBookDTO.categories=new List<String>{bookSearchDTODetails.get('categories')};
-        newBookDTO.languages=new List<String>{bookSearchDTODetails.get('languages')};
-        newBookDTO.price=Decimal.valueOf(bookSearchDTODetails.get('price'));
-        newBookDTO.reviewScore=Decimal.valueOf(bookSearchDTODetails.get('reviewScore'));
-        newBookDTO.term=bookSearchDTODetails.get('term');
-        newBookDTO.author=author;
-        newBookDTO.publisher=publisher;
-        newBookDTO.bookstore=bookstore;
-        newBookDTO.publishDate=Date.newInstance(2022, 1, 1);
+        newBookDTO.name = 'book';
+        newBookDTO.ISBN = '2141342646';
+        newBookDTO.categories = new List<String>{'fantasy'};
+        newBookDTO.languages = new List<String>{'english'};
+        newBookDTO.price = 200.0;
+        newBookDTO.reviewScore = 3.0;
+        newBookDTO.term = 'desc';
+        newBookDTO.author = author;
+        newBookDTO.publisher = publisher;
+        newBookDTO.bookstore = bookstore;
+        newBookDTO.publishDate = Date.newInstance(2022, 1, 1);
         
         return newBookDTO;
     }
@@ -428,17 +288,13 @@ public with sharing class TestFactory {
     /**
      * Creates new Book_Reservation__c for testing
      */
-    public Book_Reservation__c createBookReservation(Id bookstoreId, Id bookId, Boolean forInsert, Boolean simulateInsert) {
+    public Book_Reservation__c createBookReservation(Id bookstoreId, Id bookId, Boolean simulateInsert) {
         Book_Reservation__c newBookReservation = new Book_Reservation__c();
         newBookReservation.Bookstore__c = bookstoreId;
         newBookReservation.Book__c = bookId;
         newBookReservation.Quantity__c = 1;
         newBookReservation.Price__c = 19.99;
 
-        if(forInsert) {
-            insert newBookReservation;
-            return newBookReservation;
-        }
         newBookReservation.Id = getFakeId(Book_Reservation__c.SObjectType, simulateInsert);
         return newBookReservation;
     }
