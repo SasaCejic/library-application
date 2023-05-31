@@ -262,6 +262,30 @@ public with sharing class TestFactory {
     }
 
     /**
+     * Method for creating a new BookSearchDTO
+     * 
+     * @param author - Id of the author to search by
+     * @param publisher - Id of the publisher to search by
+     * @param bookstore - Id of the bookstore to search by
+     */
+    public BookSearchDTO createBookSearchDTO(Id author, Id publisher, Id bookstore) {
+        BookSearchDTO newBookDTO = new BookSearchDTO();
+        newBookDTO.name=bookSearchDTODetails.get('name');
+        newBookDTO.ISBN=bookSearchDTODetails.get('ISBN');
+        newBookDTO.categories=new List<String>{bookSearchDTODetails.get('categories')};
+        newBookDTO.languages=new List<String>{bookSearchDTODetails.get('languages')};
+        newBookDTO.price=Decimal.valueOf(bookSearchDTODetails.get('price'));
+        newBookDTO.reviewScore=Decimal.valueOf(bookSearchDTODetails.get('reviewScore'));
+        newBookDTO.term=bookSearchDTODetails.get('term');
+        newBookDTO.author=author;
+        newBookDTO.publisher=publisher;
+        newBookDTO.bookstore=bookstore;
+        newBookDTO.publishDate=Date.newInstance(2022, 1, 1);
+        
+        return newBookDTO;
+    }
+
+    /**
      * Creates new Book_Reservation__c for testing
      */
     public Book_Reservation__c createBookReservation(Id bookstoreId, Id bookId, Boolean simulateInsert) {
