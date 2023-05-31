@@ -270,17 +270,17 @@ public with sharing class TestFactory {
      */
     public BookSearchDTO createBookSearchDTO(Id author, Id publisher, Id bookstore) {
         BookSearchDTO newBookDTO = new BookSearchDTO();
-        newBookDTO.name=bookSearchDTODetails.get('name');
-        newBookDTO.ISBN=bookSearchDTODetails.get('ISBN');
-        newBookDTO.categories=new List<String>{bookSearchDTODetails.get('categories')};
-        newBookDTO.languages=new List<String>{bookSearchDTODetails.get('languages')};
-        newBookDTO.price=Decimal.valueOf(bookSearchDTODetails.get('price'));
-        newBookDTO.reviewScore=Decimal.valueOf(bookSearchDTODetails.get('reviewScore'));
-        newBookDTO.term=bookSearchDTODetails.get('term');
-        newBookDTO.author=author;
-        newBookDTO.publisher=publisher;
-        newBookDTO.bookstore=bookstore;
-        newBookDTO.publishDate=Date.newInstance(2022, 1, 1);
+        newBookDTO.name = 'book';
+        newBookDTO.ISBN = 123456;
+        newBookDTO.categories = new List<String>{'fantasy'};
+        newBookDTO.languages = new List<String>{'english'};
+        newBookDTO.price = 20.0;
+        newBookDTO.reviewScore = 3.0;
+        newBookDTO.term = 'desc';
+        newBookDTO.author = author;
+        newBookDTO.publisher = publisher;
+        newBookDTO.bookstore = bookstore;
+        newBookDTO.publishDate = Date.newInstance(2022, 1, 1);
         
         return newBookDTO;
     }

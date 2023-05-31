@@ -61,18 +61,24 @@ public with sharing class BookControllerIntegrationTest {
 
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisher = testFactory.createPublisher(true, false);
-        Bookstore__c bookstore = testFactory.createBookstore(true, false);
-        Author__c author = testFactory.createAuthor(true, false);
-        Book__c book = testFactory.createBook(publisher.Id, author.Id, true, false);
-        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, true, false);
+        Publisher__c publisher = testFactory.createPublisher(false);
+        insert publisher;
+        Bookstore__c bookstore = testFactory.createBookstore(false);
+        insert bookstore;
+        Author__c author = testFactory.createAuthor(false);
+        insert author;
+        Book__c book = testFactory.createBook(publisher.Id, author.Id, false);
+        insert book;
+        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, false);
+        insert bookstoreBook;
         Book_Review__c bookReview;
         //Unlock book record
         Approval.UnlockResult ur = Approval.unlock(book, false);
-        User user = testFactory.createLibraryUser();
+        User user = testFactory.createLibraryUser(false);
 
         system.runAs(user) {
-            bookReview = testFactory.createBookReview(book.Id, true, false);
+            bookReview = testFactory.createBookReview(book.Id, false);
+            insert bookReview;
         }
         BookSearchDTO searchDTO = testFactory.createBookSearchDTO(author.Id, publisher.Id, bookstore.Id);
         searchDTO.ISBN=book.ISBN__c;
@@ -94,13 +100,18 @@ public with sharing class BookControllerIntegrationTest {
 
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisher = testFactory.createPublisher(true, false);
-        Bookstore__c bookstore = testFactory.createBookstore(true, false);
-        Author__c author = testFactory.createAuthor(true, false);
-        Book__c book = testFactory.createBook(publisher.Id, author.Id, true, false);
-        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, true, false);
+        Publisher__c publisher = testFactory.createPublisher(false);
+        insert publisher;
+        Bookstore__c bookstore = testFactory.createBookstore(true);
+        insert bookstore;
+        Author__c author = testFactory.createAuthor(false);
+        insert author;
+        Book__c book = testFactory.createBook(publisher.Id, author.Id, false);
+        insert book;
+        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, false);
+        insert bookstoreBook;
         BookSearchDTO searchDTO = testFactory.createBookSearchDTO(author.Id, publisher.Id, bookstore.Id);
-        searchDTO.name='changed';
+        searchDTO.name = 'changed';
         
         // execute
         Test.startTest();
