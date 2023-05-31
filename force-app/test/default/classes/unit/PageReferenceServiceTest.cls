@@ -7,10 +7,10 @@ public with sharing class PageReferenceServiceTest {
     public static void getPageReferenceForBookstorePublisher_willReturnPageRef_ifIsCanceledIsTrue() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
         Bookstore_Publisher__c bookstorePublisherForTest = testFactory
-            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false, true);
+            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, true);
 
         // execute
         PageReferenceService service = new PageReferenceService();
@@ -25,10 +25,10 @@ public with sharing class PageReferenceServiceTest {
     public static void getPageReferenceForBookstorePublisher_willReturnPageRef_ifDeleteStatusIsFalse() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
         Bookstore_Publisher__c bookstorePublisherForTest = testFactory
-            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false, true);
+            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, true);
 
         // execute
         PageReferenceService service = new PageReferenceService();
@@ -43,10 +43,10 @@ public with sharing class PageReferenceServiceTest {
     public static void getPageReferenceForBookstorePublisher_willReturnPageRef_ifviewAllIsClicked() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
         Bookstore_Publisher__c bookstorePublisherForTest = testFactory
-            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false, true);
+            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, true);
 
         // execute
         PageReferenceService service = new PageReferenceService();
@@ -61,10 +61,10 @@ public with sharing class PageReferenceServiceTest {
     public static void getPageReferenceForBookstorePublisher_willReturnNull_ifNoButtonsWereClickedAndDeleteStatusIsTrue() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
         Bookstore_Publisher__c bookstorePublisherForTest = testFactory
-            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false, true);
+            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, true);
     
         // execute
         PageReferenceService service = new PageReferenceService();

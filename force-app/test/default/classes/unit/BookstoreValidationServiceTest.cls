@@ -9,8 +9,8 @@ public with sharing class BookstoreValidationServiceTest {
     public static void validateBookstoreManagerMatch_WillUseCorrectSelector() {
         // create data
         TestFactory testFactory = new TestFactory();
-        User userForTest = testFactory.createUser(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
+        User userForTest = testFactory.createUser(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
         //make user manager of the bookstore
         bookstoreForTest.Manager__c = userForTest.Id;
 
@@ -36,8 +36,8 @@ public with sharing class BookstoreValidationServiceTest {
     public static void validateBookstoreManagerMatch_WillNotAddError_IfUserIsNotManager() {
         // create data
         TestFactory testFactory = new TestFactory();
-        User userForTest = testFactory.createUser(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
+        User userForTest = testFactory.createUser(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
         //make user manager of the bookstore
         bookstoreForTest.Manager__c = userForTest.Id;
 
@@ -61,11 +61,11 @@ public with sharing class BookstoreValidationServiceTest {
     public static void validateBookstoreManagerMatch_WillAddError_IfUserIsManagerOfSomeBookstore() {
        // create data
        TestFactory testFactory = new TestFactory();
-       User userForTest = testFactory.createUser(false, true);
-       Bookstore__c bookstore1 = testFactory.createBookstore(false, true);
+       User userForTest = testFactory.createUser(true);
+       Bookstore__c bookstore1 = testFactory.createBookstore(true);
        //make user manager of the bookstore
        bookstore1.Manager__c = userForTest.Id;
-       Bookstore__c bookstore2 = testFactory.createBookstore(false, true);
+       Bookstore__c bookstore2 = testFactory.createBookstore(true);
        //make user manager of the bookstore
        bookstore2.Manager__c = userForTest.Id;
 

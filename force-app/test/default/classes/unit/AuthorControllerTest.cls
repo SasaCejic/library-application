@@ -9,12 +9,10 @@ public with sharing class AuthorControllerTest {
     static void getBookstoresWithAuthorsBooks_WillUseService() {
         //create TestFactory
         TestFactory testFactory = new TestFactory();
-
         //create Bookstore__c
-        Bookstore__c bookstore = testFactory.createBookstore(false, true);
-
+        Bookstore__c bookstore = testFactory.createBookstore(false);
         //create Author__c
-        Author__c author = testFactory.createAuthor(false, true);
+        Author__c author = testFactory.createAuthor(true);
 
         // create mock
         Mocker mock = new Mocker(AuthorService.class);

@@ -7,11 +7,14 @@ public with sharing class DeleteBookPublisherRecordServiceTest {
     public static void deleteBookstorePublisher_willDelete_ifNoBookstoreBooksWithSamePublisherExist() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(true, false);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(true, false);
+        Publisher__c publisherForTest = testFactory.createPublisher(false);
+        insert publisherForTest;
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(false);
+        insert bookstoreForTest;
         Bookstore_Publisher__c bookstorePublisherForTest = testFactory
-            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, true, false);
-        
+            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false);
+        insert bookstorePublisherForTest;
+
         // execute
         Test.startTest();
         DeleteBookPublisherRecordService service = new DeleteBookPublisherRecordService();

@@ -10,7 +10,7 @@ public with sharing class BookPurchaseTriggerHandlerTest {
             .setBehavior('validatePurchase', null);
         ObjectFactory.mocks.put(
             BookPurchaseValidationService.class.getName(),
-            (BookPurchaseValidationService)BookPurchaseValidationServiceMocker.getMock()
+            (BookPurchaseValidationService) BookPurchaseValidationServiceMocker.getMock()
         );
 
         // execute
