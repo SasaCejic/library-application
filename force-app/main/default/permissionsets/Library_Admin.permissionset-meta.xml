@@ -477,6 +477,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Reservations_and_Purchases_Statistics</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Reserve_Paper_Book</tab>
         <visibility>Visible</visibility>
     </tabSettings>
