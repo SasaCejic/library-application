@@ -121,4 +121,27 @@ public with sharing class BookControllerIntegrationTest {
         // assert
         Assert.areEqual(0, searchedBooks.size());
     }
+
+    @isTest
+    public static void returnBooksCausingErrorOnAuthPubDel_willReturnBook_IfRelatedBookExists() {
+        // create mock data
+        TestFactory testFactory = new TestFactory();
+        Publisher__c publisherForTest = testFactory.createPublisher(false);
+        insert publisherForTest;
+        Author__c authorForTest = testFactory.createAuthor(false);
+        insert authorForTest;
+        Author_Publisher__c authorPublisherForTest = testFactory
+            .createAuthorPublisher(authorForTest.Id, publisherForTest.Id, false);
+        insert authorPublisherForTest;
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false);
+        insert bookForTest;
+
+        // execute
+        Test.startTest();
+        List<Book__c> booksCausingError = BookController.returnBooksCausingErrorOnAuthPubDel(authorPublisherForTest.Id, 5);
+        Test.stopTest();
+
+        // assert 
+        Assert.areEqual(1, booksCausingError.size());
+    }
 }

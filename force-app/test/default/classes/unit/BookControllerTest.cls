@@ -91,4 +91,27 @@ public with sharing class BookControllerTest {
         bookSearchServiceMock.assertMethodExecutionCount('getBooksFromSearchDTO', 1);
         bookSearchServiceMock.assertMethodExecutionCount('getResponse', 1);
     }
+
+    @isTest
+    public static void returnBooksCausingErrorOnAuthPubDel_willUseService() {
+        // create mock data
+        TestFactory testFactory = new TestFactory();
+        Id testId = testFactory.getFakeId(Author__c.SObjectType, true);
+
+        // create mock
+        Mocker getRelatedBooksOnAuthPubDelServiceMock = new Mocker(GetRelatedBooksOnAuthPubDelService.class);
+        getRelatedBooksOnAuthPubDelServiceMock.setBehavior('getResponse', null);
+        getRelatedBooksOnAuthPubDelServiceMock.setBehavior('getRelatedBooks', null);
+        ObjectFactory.mocks.put(
+            GetRelatedBooksOnAuthPubDelService.class.getName(),
+            (GetRelatedBooksOnAuthPubDelService) getRelatedBooksOnAuthPubDelServiceMock.getMock()
+        );
+
+        // execute
+        BookController.returnBooksCausingErrorOnAuthPubDel(testId, 5);
+
+        // assert
+        getRelatedBooksOnAuthPubDelServiceMock.assertMethodExecutionCount('getRelatedBooks', 1);
+        getRelatedBooksOnAuthPubDelServiceMock.assertMethodExecutionCount('getResponse', 1);
+    }
 }
