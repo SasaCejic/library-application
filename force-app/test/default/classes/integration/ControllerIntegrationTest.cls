@@ -67,4 +67,27 @@ public with sharing class ControllerIntegrationTest {
         // assert
         Assert.areEqual(book.Id, returnedBook.Id);
     }
+
+    @isTest
+    static void cancelBookReservation_WillCancelBookReservation_IfReservationIsActive () {
+        // create data
+        TestFactory testFactory = new TestFactory();
+        Bookstore__c bookstore = testFactory.createBookstore(false);
+        Publisher__c publisher = testFactory.createPublisher(false);
+        Author__c author = testFactory.createAuthor(false);
+        Bookstore_Publisher__c bookstorePublisher = testFactory.createBookstorePublisher(publisher.Id, bookstore.Id, false);
+        Author_Publisher__c authorPublisher = testFactory.createAuthorPublisher(author.Id, publisher.Id, false);
+        Book__c book = testFactory.createPaperBook(publisher.Id, author.Id, false);
+        Bookstore_Book__c bookstoreBook = testFactory.createBookstoreBook(book.Id, bookstore.Id, false);
+        Book_Reservation__c bookReservation = testFactory.createBookReservation(bookstore.Id, book.Id, false);
+        bookReservation.Status__c = 'Active';
+
+        // create mocks
+
+        // execute
+        BookReservationCancelationController.cancelBookReservation(new List<Book_Reservation__c>{bookReservation});
+
+        // assert
+        Assert.areEqual('Canceled', bookReservation.Status__c);
+    }
 }
