@@ -1,0 +1,9 @@
+<template>
+    <ul>
+        <template lwc:if={value} for:each={value} for:item="link">
+            <li key={link.value}>
+                <lightning-formatted-url value={link.value} label={link.label} target="_blank" ></lightning-formatted-url>
+            </li>
+        </template>
+    </ul>
+</template>

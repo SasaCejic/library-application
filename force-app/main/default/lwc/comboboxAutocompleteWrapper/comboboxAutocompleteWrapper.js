@@ -16,8 +16,21 @@ export default class ComboboxAutocompleteWrapper extends LightningElement {
     handleSearch(event) {
         window.clearTimeout(this.delay)
         this.searchTerm = event.detail.searchTerm;
+
         this.delay = setTimeout(() => {
+
             if (this.searchTerm === '') {
+                const custEvent = new CustomEvent(
+                    'selectoption', {
+                        detail: {
+                            value: null,
+                            label: null
+                        },
+                        composed: true,
+                        bubbles: true
+                    }
+                );
+                this.dispatchEvent(custEvent);
                 return;
             }
             this.search(this.objectName, this.recordTypeId, this.searchTerm);
@@ -40,13 +53,25 @@ export default class ComboboxAutocompleteWrapper extends LightningElement {
                     value: book.Id
                 })
             });
-            // sort options
-            this.options.sort((a, b) => a.label.localeCompare(b.label));
         }).catch(() => {
             this.showToast('Error', 'Error while performing search', 'error');
         }).finally(() => {
             this.isLoading = false;
         });
+    }
+
+    /**
+    * @param title - title of toast message
+    * @param message - message of toast message
+    * @param variant - varian of toast message
+    */
+    showToast(title, message, variant) {
+        const event = new ShowToastEvent({
+            title: title,
+            message: message,
+            variant: variant
+        });
+        this.dispatchEvent(event);
     }
 
     /**
