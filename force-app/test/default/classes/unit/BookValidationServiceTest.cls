@@ -11,11 +11,11 @@ public with sharing class BookValidationServiceTest {
     public static void validateAuthorPublisherMatch_willNotAddError_ifAuthorPublisherIsAdded() {
         //Create data for mocks and test
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true);
         Author_Publisher__c authorPublisherForMock = testFactory
-        .createAuthorPublisher(authorForTest.Id, publisherForTest.Id, false, true);
+        .createAuthorPublisher(authorForTest.Id, publisherForTest.Id, true);
 
         //Mock AuthorPublisher selector so we don't depend on it
         Mocker authorPublisherSelectorMock = new Mocker(AuthorPublisherSelector.class)
@@ -35,9 +35,9 @@ public with sharing class BookValidationServiceTest {
     public static void validateAuthorPublisherMatch_willAddError_ifAuthorPublisherNotAdded() {
         //Create data for mocks and test
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Author__c authorForTest = testFactory.createAuthor(false, true);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true);
 
         //Mock AuthorPublisher selector so we don't depend on it
         Mocker authorPublisherSelectorMock = new Mocker(AuthorPublisherSelector.class)

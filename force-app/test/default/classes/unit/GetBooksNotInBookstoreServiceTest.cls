@@ -8,10 +8,10 @@ public with sharing class GetBooksNotInBookstoreServiceTest {
     public static void getBooks_willReturnOneBook_ifNoBookstoreBookRecordsAreCreated() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
-        Author__c authorForTest = testFactory.createAuthor(true, false);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true);
         
         // create mocks
         Mocker BookstoreBookSelectorMock = new Mocker(BookstoreBookSelector.class)
@@ -40,12 +40,12 @@ public with sharing class GetBooksNotInBookstoreServiceTest {
     public static void getBooks_willNotReturnAnyBooks_ifBookstoreBookRecordIsCreated() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
-        Author__c authorForTest = testFactory.createAuthor(true, false);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true);
         Bookstore_Book__c bookstoreBookForTest = testFactory
-        .createBookstoreBook(bookForTest.Id, bookstoreForTest.Id, false, true);
+        .createBookstoreBook(bookForTest.Id, bookstoreForTest.Id, true);
 
         // create mocks
         Mocker BookstoreBookSelectorMock = new Mocker(BookstoreBookSelector.class)
@@ -74,12 +74,12 @@ public with sharing class GetBooksNotInBookstoreServiceTest {
     public static void getBooks_willUseCorrectSelectors() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
-        Author__c authorForTest = testFactory.createAuthor(true, false);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true);
         Bookstore_Book__c bookstoreBookForTest = testFactory
-        .createBookstoreBook(bookForTest.Id, bookstoreForTest.Id, false, true);
+        .createBookstoreBook(bookForTest.Id, bookstoreForTest.Id, true);
 
         // create mocks
         Mocker BookstoreBookSelectorMock = new Mocker(BookstoreBookSelector.class)

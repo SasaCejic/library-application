@@ -7,7 +7,8 @@ public with sharing class ObjectSearchControllerIntegrationTest {
     public static void searchObject_willReturnPublisherRecords_ifRecordTypesAreNotIncludedInSearchAndSearchIsEmpty() {
         // create data for mock
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(true, false);
+        Publisher__c publisherForTest = testFactory.createPublisher(false);
+        insert publisherForTest;
 
         // execute
         Test.startTest();
@@ -22,8 +23,9 @@ public with sharing class ObjectSearchControllerIntegrationTest {
     public static void searchObject_willReturnBookstoreRecords_ifRecordTypesAreIncludedInSearchAndSearchIsEmpty() {
         // create data for mock
         TestFactory testFactory = new TestFactory();
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(true, false);
-
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(false);
+        insert bookstoreForTest;
+        
         // execute
         Test.startTest();
         List<SObject> searchedObjects = ObjectSearchController.searchObject('Bookstore__c', bookstoreForTest.recordTypeId, '');

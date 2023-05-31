@@ -7,11 +7,14 @@ public with sharing class BookRestApiIntegrationTest {
     public static void doPost_willInsertBookRecords_ifThereAreNotDuplicatesAndOptionEqualsToOne() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(true, false);
-        Author__c authorForTest = testFactory.createAuthor(true, false);
-        Author_Publisher__c authorPublisherForTest = testFactory.createAuthorPublisher(authorForTest.Id, publisherForTest.Id, true, false);
-        Book__c book1 = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, false);
-        Book__c book2 = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, false);
+        Publisher__c publisherForTest = testFactory.createPublisher(false);
+        insert publisherForTest;
+        Author__c authorForTest = testFactory.createAuthor(false);
+        insert authorForTest;
+        Author_Publisher__c authorPublisherForTest = testFactory.createAuthorPublisher(authorForTest.Id, publisherForTest.Id, false);
+        insert authorPublisherForTest;
+        Book__c book1 = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false);
+        Book__c book2 = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false);
         book2.ISBN__c = '21542675223';
 
         // Set up the REST Request

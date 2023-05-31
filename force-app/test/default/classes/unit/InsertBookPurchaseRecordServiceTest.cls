@@ -11,9 +11,12 @@ public with sharing class InsertBookPurchaseRecordServiceTest {
 
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(true, false);
-        Author__c authorForTest = testFactory.createAuthor(true, false);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true, false);
+        Publisher__c publisherForTest = testFactory.createPublisher(false);
+        insert publisherForTest;
+        Author__c authorForTest = testFactory.createAuthor(false);
+        insert authorForTest;
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false);
+        insert bookForTest;
         
         // execute
         Test.startTest();

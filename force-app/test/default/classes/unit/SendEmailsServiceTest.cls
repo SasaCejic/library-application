@@ -6,8 +6,10 @@ public with sharing class SendEmailsServiceTest {
     @isTest
     public static void sendMails_willSendMail_ifMailListIsNotEmpty() {
         // create mail
-        TestFactory testFactory = new TestFactory();
-        Messaging.SingleEmailMessage mail = testFactory.createMail();
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        mail.setSubject('Test subject');
+        mail.setPlainTextBody('Test body');
+        mail.setToAddresses(new String[] {'testaddress@gmail.com'});
 
         // execute
         List<Messaging.SendEmailResult> result = new SendEmailsService().sendMails(new List<Messaging.SingleEmailMessage>{mail});
