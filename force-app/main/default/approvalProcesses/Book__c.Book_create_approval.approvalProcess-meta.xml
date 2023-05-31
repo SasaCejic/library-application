@@ -16,7 +16,7 @@
         <assignedApprover>
             <approver>
                 <name>kefiwow5555@gmail.com</name>
-            <type>user</type>
+                <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
