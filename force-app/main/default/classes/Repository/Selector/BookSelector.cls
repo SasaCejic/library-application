@@ -42,6 +42,22 @@ public with sharing class BookSelector implements CustomObject {
         return Database.query(queryString, AccessLevel.USER_MODE);
     }
 
+    /*
+     * @param bookIds - set of author Ids to retieve by
+     */
+    public List<Book__c> getListByAuthorIds(Set<Id> authorIds, Integer recordLimit) {
+        return [
+            SELECT
+                Id,
+                Name,
+                Author__r.Name,
+                Publisher__r.Name
+            FROM Book__c
+            WHERE Author__c IN :authorIds
+            LIMIT :recordLimit
+        ];
+    }
+
     /**
      * Get Book__c record by it's ID value
      * 

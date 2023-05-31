@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Books causing error" icon-name="standard:contact">
+        <div style="height:50vh;">
+            <lightning-datatable
+                key-field="id"
+                columns={columns}
+                hide-checkbox-column
+                data={books}
+                load-more-offset="0"
+                enable-infinite-loading
+                onloadmore={loadMoreData}>
+            </lightning-datatable>
+        </div>
+        <div if:true={isListEmpty}>
+            <p class="slds-align_absolute-center">No Books to show.</p>
+        </div>
+    </lightning-card>
+</template>

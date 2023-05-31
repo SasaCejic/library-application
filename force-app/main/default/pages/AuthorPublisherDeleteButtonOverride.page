@@ -1,0 +1,75 @@
+<apex:page standardController="Author_Publisher__c" extensions="AuthorPublisherVFController">
+    <apex:slds />
+    <div class="slds-scope">
+        <apex:outputPanel styleClass="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">
+                        <apex:outputText rendered="{! didDeleteFail }">Deletion Failed</apex:outputText>
+                        <apex:outputText rendered="{! NOT(didDeleteFail) }">Confirm Delete</apex:outputText>
+                    </h2>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <apex:outputPanel rendered="{!didDeleteFail }">
+                        <p>You first have to remove all the books from this publisher that were written by the author you
+                            want to delete.</p>
+                        <apex:pageBlock >
+                            <apex:pageBlockTable value="{! BooksCausingError }" var="errorRecord">
+                                <apex:column headerValue="Name">
+                                    <apex:facet name="header">Book Name</apex:facet>
+                                    <apex:outputLink value="/{! errorRecord.Id }">{! errorRecord.Name }</apex:outputLink>
+                                </apex:column>
+                                <apex:column headerValue="Publisher">
+                                    <apex:facet name="header">Publisher Name</apex:facet>
+                                    <apex:outputLink value="/{! errorRecord.Publisher__c }">{! errorRecord.Publisher__r.Name }</apex:outputLink>
+                                </apex:column>
+                                <apex:column headerValue="Author">
+                                    <apex:facet name="header">Author Name</apex:facet>
+                                    <apex:outputLink value="/{! errorRecord.Author__c }">{! errorRecord.Author__r.Name }</apex:outputLink>
+                                </apex:column>
+                            </apex:pageBlockTable>
+                            <div class="slds-align_absolute-center slds-p-top_x-small">
+                                <apex:form >
+                                    <apex:commandButton value="View All" action="{! viewAll }" styleClass="slds-button slds-button_neutral" />
+                                </apex:form>
+                            </div>
+                        </apex:pageBlock>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{! NOT(didDeleteFail) }">
+                        <p>Are you sure you want to delete this record?</p>
+                    </apex:outputPanel>
+                </div>
+                <div class="slds-modal__footer">
+                    <apex:form >
+                        <apex:commandButton value="Cancel" action="{! cancel }" styleClass="slds-button slds-button_neutral" />
+                        <apex:actionFunction name="getPageReference" action="{!getPageReference}" />
+                        <apex:commandButton rendered="{!NOT(didDeleteFail)}" value="Continue" styleClass="slds-button slds-button_destructive" action="{!deleteRecord}"
+                        />
+                    </apex:form>
+                </div>
+            </div>
+        </apex:outputPanel>
+    </div>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+    <script>
+        /**
+         * If delete didn't fail and confirm button was clicked, display toast message and redirect to detail view page
+         * If delete did fail just display an error toast message
+         */
+        if (!{! didDeleteFail } && {! isConfirmClicked }) {
+            sforce.one.showToast({
+                "title": "Success",
+                "message": "Delete successfull",
+                "type": "success"
+            });
+            // Redirect to detail view page  
+            getPageReference();
+        } else if ({! didDeleteFail }) {
+            sforce.one.showToast({
+                "title": "Error",
+                "message": "Delete Failed",
+                "type": "error"
+            });
+        }
+    </script>
+</apex:page>

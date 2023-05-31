@@ -22,8 +22,20 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AuthorPublisherDeleteValidationService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AuthorPublisherSelector</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorPublisherTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AuthorPublisherVFController</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>AuthorService</apexClass>
@@ -352,6 +364,10 @@
     <classAccesses>
         <apexClass>GetPublishersNotWithBookstoreServiceTest</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>GetRelatedBooksOnAuthPubDelService</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>InsertBookPurchaseRecordService</apexClass>
@@ -799,6 +815,10 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
+        <apexPage>AuthorPublisherDeleteButtonOverride</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>BookstorePublisherDeleteButtonOverride</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -840,6 +860,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Books_not_in_bookstore</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Books_preventing_author_removal</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
