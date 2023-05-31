@@ -14,10 +14,10 @@ public with sharing class BookstorePublisherVFControllerTest {
     public static void deleteRecord_willUseService() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
         Bookstore_Publisher__c bookstorePublisherForTest = testFactory
-            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false, true);
+            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, true);
         ApexPages.StandardController stdController = new ApexPages.StandardController(bookstorePublisherForTest);
         Database.DeleteResult deleteResultForMock = (Database.DeleteResult) JSON.deserialize('{"success":true,"id":"0013000000abcde"}', Database.DeleteResult.class);
 
@@ -50,10 +50,10 @@ public with sharing class BookstorePublisherVFControllerTest {
     public static void getBookstoreBooksCausingError_willUseService() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
         Bookstore_Publisher__c bookstorePublisherForTest = testFactory
-            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false, true);
+            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, true);
         ApexPages.StandardController stdController = new ApexPages.StandardController(bookstorePublisherForTest);
 
         // create mocks
@@ -85,10 +85,10 @@ public with sharing class BookstorePublisherVFControllerTest {
     public static void getPageReference_willUseService() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
         Bookstore_Publisher__c bookstorePublisherForTest = testFactory
-            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false, true);
+            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, true);
         ApexPages.StandardController stdController = new ApexPages.StandardController(bookstorePublisherForTest);
 
         // create mocks
@@ -120,10 +120,10 @@ public with sharing class BookstorePublisherVFControllerTest {
     public static void cancel_willUseService() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
         Bookstore_Publisher__c bookstorePublisherForTest = testFactory
-            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false, true);
+            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, true);
         ApexPages.StandardController stdController = new ApexPages.StandardController(bookstorePublisherForTest);
 
         // create mocks
@@ -153,10 +153,10 @@ public with sharing class BookstorePublisherVFControllerTest {
     public static void viewAll_willUseService() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
         Bookstore_Publisher__c bookstorePublisherForTest = testFactory
-            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false, true);
+            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, true);
         ApexPages.StandardController stdController = new ApexPages.StandardController(bookstorePublisherForTest);
 
         // create mocks

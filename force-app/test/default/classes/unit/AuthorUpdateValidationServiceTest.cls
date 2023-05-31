@@ -11,12 +11,12 @@ public with sharing class AuthorUpdateValidationServiceTest {
     public static void validateAuthorUpdate_willAddError_ifStdAuthorUpdated(){
         //create test data
         TestFactory testFactory = new TestFactory();
-        Author__c anonAuthor= testFactory.createAuthor(false, true);
-        Author__c unknownAuthor= testFactory.createAuthor(false, true);
-        Author__c editedUnknownAuthor= unknownAuthor.clone(true, true);
+        Author__c anonAuthor= testFactory.createAuthor(true);
+        Author__c unknownAuthor= testFactory.createAuthor(true);
+        Author__c editedUnknownAuthor= unknownAuthor.clone(true);
         editedUnknownAuthor.First_Name__c='Changed';
         Standard_Authors_Settting__c stdAuthorSetting = testFactory
-            .createStandardAuthorsSettting(anonAuthor.Id, unknownAuthor.Id, false, true);
+            .createStandardAuthorsSettting(anonAuthor.Id, unknownAuthor.Id, true);
         
         // create mock
         Mocker customSettingSelectorMock = new Mocker(CustomSettingSelector.class)
@@ -39,12 +39,12 @@ public with sharing class AuthorUpdateValidationServiceTest {
     public static void validateAuthorUpdate_willNotAddError_ifAllowedForEditOnStdAuthorFieldUpdated(){
         //create test data
         TestFactory testFactory = new TestFactory();
-        Author__c anonAuthor= testFactory.createAuthor(false, true);
-        Author__c unknownAuthor= testFactory.createAuthor(false, true);
+        Author__c anonAuthor= testFactory.createAuthor(true);
+        Author__c unknownAuthor= testFactory.createAuthor(true);
         Author__c editedUnknownAuthor= unknownAuthor.clone(true, true,true);
         editedUnknownAuthor.Number_Of_Published_Books__c=5;
         Standard_Authors_Settting__c stdAuthorSetting = testFactory
-            .createStandardAuthorsSettting(anonAuthor.Id, unknownAuthor.Id, false, true);
+            .createStandardAuthorsSettting(anonAuthor.Id, unknownAuthor.Id, true);
         
         // create mock
         Mocker customSettingSelectorMock = new Mocker(CustomSettingSelector.class)
@@ -67,13 +67,13 @@ public with sharing class AuthorUpdateValidationServiceTest {
     public static void validateAuthorUpdate_willNotAddError_ifStdAuthorsNotUpdated(){
         //create test data
         TestFactory testFactory = new TestFactory();
-        Author__c anonAuthor= testFactory.createAuthor(false, true);
-        Author__c unknownAuthor= testFactory.createAuthor(false, true);
-        Author__c nonStdAuthor= testFactory.createAuthor(false, true);
+        Author__c anonAuthor= testFactory.createAuthor(true);
+        Author__c unknownAuthor= testFactory.createAuthor(true);
+        Author__c nonStdAuthor= testFactory.createAuthor(true);
         Author__c editedNonStdAuthor= nonStdAuthor.clone(true);
         editedNonStdAuthor.First_Name__c='Changed';
         Standard_Authors_Settting__c stdAuthorSetting = testFactory
-            .createStandardAuthorsSettting(anonAuthor.Id, unknownAuthor.Id, false, true);
+            .createStandardAuthorsSettting(anonAuthor.Id, unknownAuthor.Id, true);
         
         // create mock
         Mocker customSettingSelectorMock = new Mocker(CustomSettingSelector.class)

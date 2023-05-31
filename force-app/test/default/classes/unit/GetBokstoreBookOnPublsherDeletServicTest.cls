@@ -7,10 +7,11 @@ public with sharing class GetBokstoreBookOnPublsherDeletServicTest {
     public static void getBookstoreBooks_willUseService() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(false, true);
-        Bookstore__c bookstoreForTest = testFactory.createBookstore(false, true);
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Bookstore__c bookstoreForTest = testFactory.createBookstore(true);
         Bookstore_Publisher__c bookstorePublisherForTest = testFactory
-            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, false, true);
+            .createBookstorePublisher(publisherForTest.Id, bookstoreForTest.Id, true);
+
         // create mocks
         Mocker BookstorePublisherSelectorMocker = new Mocker(BookstorePublisherSelector.class)
             .setBehavior('getRecordById', bookstorePublisherForTest);

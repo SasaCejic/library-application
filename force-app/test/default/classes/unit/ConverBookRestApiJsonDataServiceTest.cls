@@ -7,11 +7,14 @@ public with sharing class ConverBookRestApiJsonDataServiceTest {
     public static void convert_willReturnBookRestApiRequestDTOWithData_ifDataWasProvidedInJsonRequest() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(true, false);
-        Author__c authorForTest = testFactory.createAuthor(true, false);
-        Author_Publisher__c authorPublisherForTest = testFactory.createAuthorPublisher(authorForTest.Id, publisherForTest.Id, true, false);
-        Book__c book1 = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, false);
-        Book__c book2 = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, false);
+        Publisher__c publisherForTest = testFactory.createPublisher(false);
+        insert publisherForTest;
+        Author__c authorForTest = testFactory.createAuthor(false);
+        insert authorForTest;
+        Author_Publisher__c authorPublisherForTest = testFactory.createAuthorPublisher(authorForTest.Id, publisherForTest.Id, false);
+        insert authorPublisherForTest;
+        Book__c book1 = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false);
+        Book__c book2 = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false);
 
         Map<String, Object> jsonMap = new Map<String, Object>();
         jsonMap.put('data', new List<Book__c>{ book1, book2 });
@@ -30,11 +33,11 @@ public with sharing class ConverBookRestApiJsonDataServiceTest {
     public static void convert_willReturnBookRestApiRequestDTOWithoutData_ifDataWasntProvidedInJsonRequest() {
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(true, false);
-        Author__c authorForTest = testFactory.createAuthor(true, false);
-        Author_Publisher__c authorPublisherForTest = testFactory.createAuthorPublisher(authorForTest.Id, publisherForTest.Id, true, false);
-        Book__c book1 = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, false);
-        Book__c book2 = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false, false);
+        Publisher__c publisherForTest = testFactory.createPublisher(false);
+        Author__c authorForTest = testFactory.createAuthor(false);
+        Author_Publisher__c authorPublisherForTest = testFactory.createAuthorPublisher(authorForTest.Id, publisherForTest.Id, false);
+        Book__c book1 = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false);
+        Book__c book2 = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false);
         Map<String, Object> jsonMap = new Map<String, Object>();
         
         // execute

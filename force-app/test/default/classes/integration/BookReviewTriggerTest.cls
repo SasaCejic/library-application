@@ -10,9 +10,12 @@ public with sharing class BookReviewTriggerTest {
 
         // create data
         TestFactory testFactory = new TestFactory();
-        Publisher__c publisherForTest = testFactory.createPublisher(true, false);
-        Author__c authorForTest = testFactory.createAuthor(true, false);
-        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, true, false);
+        Publisher__c publisherForTest = testFactory.createPublisher(false);
+        insert publisherForTest;
+        Author__c authorForTest = testFactory.createAuthor(false);
+        insert authorForTest;
+        Book__c bookForTest = testFactory.createBook(publisherForTest.Id, authorForTest.Id, false);
+        insert bookForTest;
 
         // approve the book that was inserted because it is locked for edit
         Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
@@ -21,10 +24,10 @@ public with sharing class BookReviewTriggerTest {
         Approval.process(new List<Approval.ProcessWorkitemRequest>{ req });
 
         // create Book review record
-        Book_Review__c bookReviewForInsert = testFactory.createBookReview(bookForTest.Id, false, false);
+        Book_Review__c bookReviewForInsert = testFactory.createBookReview(bookForTest.Id, false);
 
         // Run test as another user because of the validation rule
-        User user = testFactory.createLibraryUser();
+        User user = testFactory.createLibraryUser(false);
         system.runAs(user) {
              // execute
             Test.startTest();
