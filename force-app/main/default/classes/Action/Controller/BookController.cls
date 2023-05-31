@@ -58,4 +58,17 @@ public with sharing class BookController {
         service.getRelatedBooks(authorPublisherForDeleteId, recordLimit);
         return service.getResponse();
     }
+
+    /**
+     * @param bookSearchDTO - Object containing all relevant search keys
+     * @param limitSize - Maximum number of records to return
+     * @param offset - Offset for querying records
+     */
+    @AuraEnabled(cacheable=true)
+    public static BookSearchResultDTO getBooksFromSearchDTO(BookSearchDTO bookSearchDTO, Integer limitSize, Integer offset) {
+        BookSearchService service = (BookSearchService) new ObjectFactory()
+            .createObject(BookSearchService.class);
+        service.getBooksFromSearchDTO(bookSearchDTO, limitSize, offset);
+        return service.getResponse();
+    }
 }
