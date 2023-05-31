@@ -61,7 +61,11 @@ export default class PaperBookReservationForm extends NavigationMixin(LightningE
     }
 
     closeForm (event) {
-        this.dispatchEvent(new CloseActionScreenEvent());
+        if (this.recordId) {
+            this.dispatchEvent(new CloseActionScreenEvent());
+        } else {
+            history.back();   
+        }
     }
 
     showSuccessMessage (event) {
