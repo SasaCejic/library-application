@@ -102,7 +102,7 @@ public with sharing class BookControllerIntegrationTest {
         TestFactory testFactory = new TestFactory();
         Publisher__c publisher = testFactory.createPublisher(false);
         insert publisher;
-        Bookstore__c bookstore = testFactory.createBookstore(true);
+        Bookstore__c bookstore = testFactory.createBookstore(false);
         insert bookstore;
         Author__c author = testFactory.createAuthor(false);
         insert author;

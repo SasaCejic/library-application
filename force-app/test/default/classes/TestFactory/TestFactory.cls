@@ -83,7 +83,7 @@ public with sharing class TestFactory {
     public Book__c createBook(Id publisherId, Id authorId, Boolean simulateInsert) {
         Book__c currentBook = new Book__c();
         currentBook.Name = 'book';
-        currentBook.Description__c = 'bookdesdc';
+        currentBook.Description__c = 'bookdesc';
         currentBook.ISBN__c = '2141342646';
         currentBook.Language__c = 'english';
         currentBook.Categories__c = 'fantasy';
@@ -271,10 +271,10 @@ public with sharing class TestFactory {
     public BookSearchDTO createBookSearchDTO(Id author, Id publisher, Id bookstore) {
         BookSearchDTO newBookDTO = new BookSearchDTO();
         newBookDTO.name = 'book';
-        newBookDTO.ISBN = 123456;
+        newBookDTO.ISBN = '2141342646';
         newBookDTO.categories = new List<String>{'fantasy'};
         newBookDTO.languages = new List<String>{'english'};
-        newBookDTO.price = 20.0;
+        newBookDTO.price = 200.0;
         newBookDTO.reviewScore = 3.0;
         newBookDTO.term = 'desc';
         newBookDTO.author = author;
