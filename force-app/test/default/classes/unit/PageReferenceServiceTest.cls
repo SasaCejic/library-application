@@ -73,4 +73,75 @@ public with sharing class PageReferenceServiceTest {
         // Assert
         Assert.isTrue(service.getResponse() == null);
     }
+
+    @isTest
+    public static void getPageReferenceForAuthorPublisher_willReturnPageRef_ifIsCanceledIsTrue() {
+        // create data
+        TestFactory testFactory = new TestFactory();
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Author_Publisher__c authorPublisherForTest = testFactory
+            .createAuthorPublisher(authorForTest.Id, authorForTest.Id, true);
+
+        // execute
+        PageReferenceService service = new PageReferenceService();
+        service.getPageReferenceForAuthorPublisher(true, false, false, authorPublisherForTest);
+
+        // Assert
+        Assert.isTrue(service.getResponse() != null);
+        Assert.areEqual(service.getResponse().getUrl(), '/' + authorForTest.Id);
+    }
+
+    @isTest
+    public static void getPageReferenceForAuthorPublisher_willReturnPageRef_ifDeleteStatusIsFalse() {
+        // create data
+        TestFactory testFactory = new TestFactory();
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Author_Publisher__c authorPublisherForTest = testFactory
+            .createAuthorPublisher(publisherForTest.Id, authorForTest.Id, true);
+
+        // execute
+        PageReferenceService service = new PageReferenceService();
+        service.getPageReferenceForAuthorPublisher(false, false, false, authorPublisherForTest);
+
+        // Assert
+        Assert.isTrue(service.getResponse() != null);
+        Assert.areEqual(service.getResponse().getUrl(), '/' + authorForTest.Id);
+    }
+
+    @isTest
+    public static void getPageReferenceForAuthorPublisher_willReturnPageRef_ifviewAllIsClicked() {
+        // create data
+        TestFactory testFactory = new TestFactory();
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Author_Publisher__c authorPublisherForTest = testFactory
+            .createAuthorPublisher(publisherForTest.Id, authorForTest.Id, true);
+
+        // execute
+        PageReferenceService service = new PageReferenceService();
+        service.getPageReferenceForAuthorPublisher(false, true, true, authorPublisherForTest);
+
+        // Assert
+        Assert.isTrue(service.getResponse() != null);
+        Assert.areEqual(service.getResponse().getUrl(), '/lightning/n/Books_preventing_author_removal?c__recordId=' + authorPublisherForTest.Id);
+    }
+
+    @isTest
+    public static void getPageReferenceForAuthorPublisher_willReturnNull_ifNoButtonsWereClickedAndDeleteStatusIsTrue() {
+        // create data
+        TestFactory testFactory = new TestFactory();
+        Publisher__c publisherForTest = testFactory.createPublisher(true);
+        Author__c authorForTest = testFactory.createAuthor(true);
+        Author_Publisher__c authorPublisherForTest = testFactory
+            .createAuthorPublisher(publisherForTest.Id, authorForTest.Id, true);
+    
+        // execute
+        PageReferenceService service = new PageReferenceService();
+        service.getPageReferenceForAuthorPublisher(false, false, true, authorPublisherForTest);
+
+        // Assert
+        Assert.isTrue(service.getResponse() == null);
+    }
 }
